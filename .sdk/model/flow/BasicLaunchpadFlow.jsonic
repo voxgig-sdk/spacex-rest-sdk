@@ -1,0 +1,44 @@
+# BasicLaunchpadFlow
+
+main: kit: flow: BasicLaunchpadFlow:
+{
+  entity: "launchpad",
+  kind: "basic",
+  name: "BasicLaunchpadFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "launchpad_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "launchpad_ref01",
+        srcdatavar: "launchpad_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "launchpad01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-launchpad_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLaunchpadFlow"
+}

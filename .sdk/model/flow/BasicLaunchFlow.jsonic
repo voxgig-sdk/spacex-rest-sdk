@@ -1,0 +1,44 @@
+# BasicLaunchFlow
+
+main: kit: flow: BasicLaunchFlow:
+{
+  entity: "launch",
+  kind: "basic",
+  name: "BasicLaunchFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "launch_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "launch_ref01",
+        srcdatavar: "launch_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "launch01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-launch_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLaunchFlow"
+}

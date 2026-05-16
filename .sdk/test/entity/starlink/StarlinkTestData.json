@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "starlink": {
+      "STARLINK00": {
+        "height_km": 80,
+        "id": "STARLINK00",
+        "latitude": 82,
+        "launch": "s53",
+        "longitude": 84,
+        "space_track": {},
+        "velocity_km": 86,
+        "version": "s57"
+      },
+      "STARLINK01": {
+        "height_km": 160,
+        "id": "STARLINK01",
+        "latitude": 162,
+        "launch": "sa3",
+        "longitude": 164,
+        "space_track": {},
+        "velocity_km": 166,
+        "version": "sa7"
+      },
+      "STARLINK02": {
+        "height_km": 240,
+        "id": "STARLINK02",
+        "latitude": 242,
+        "launch": "sf3",
+        "longitude": 244,
+        "space_track": {},
+        "velocity_km": 246,
+        "version": "sf7"
+      }
+    }
+  },
+  "new": {
+    "starlink": {
+      "starlink_ref01": {
+        "height_km": 320,
+        "latitude": 322,
+        "launch": "s143",
+        "longitude": 324,
+        "space_track": {},
+        "velocity_km": 326,
+        "version": "s147"
+      }
+    }
+  }
+}

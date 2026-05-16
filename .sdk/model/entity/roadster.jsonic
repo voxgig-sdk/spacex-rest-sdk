@@ -1,0 +1,172 @@
+# Entity: roadster
+
+main: kit: entity: roadster: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "apoapsis_au"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "detail"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "earth_distance_km"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "earth_distance_mi"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "eccentricity"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "epoch_jd"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "flickr_image"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "inclination"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "launch_date_unix"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "launch_date_utc"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "launch_mass_kg"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "launch_mass_lb"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "longitude"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "mars_distance_km"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "mars_distance_mi"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "norad_id"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "orbit_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "periapsis_arg"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "periapsis_au"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "period_day"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "semi_major_axis_au"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "speed_kph"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "speed_mph"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "video"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "wikipedia"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "roadster"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/roadster"
+          parts: [
+            "roadster"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

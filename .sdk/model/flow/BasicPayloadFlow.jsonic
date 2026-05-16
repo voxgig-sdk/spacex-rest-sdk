@@ -1,0 +1,44 @@
+# BasicPayloadFlow
+
+main: kit: flow: BasicPayloadFlow:
+{
+  entity: "payload",
+  kind: "basic",
+  name: "BasicPayloadFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "payload_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "payload_ref01",
+        srcdatavar: "payload_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "payload01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-payload_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPayloadFlow"
+}

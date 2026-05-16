@@ -1,0 +1,185 @@
+# Entity: ship
+
+main: kit: entity: ship: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "abs"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "class"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "course_deg"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "home_port"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "image"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "imo"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "last_ais_update"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "latitude"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "launch"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "legacy_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "link"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "longitude"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "mass_kg"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "mass_lb"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "mmsi"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "model"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "role"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "speed_kn"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "status"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "year_built"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "ship"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/ships"
+          parts: [
+            "ships"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/ships/{id}"
+          parts: [
+            "ships"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

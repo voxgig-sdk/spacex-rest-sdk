@@ -1,0 +1,44 @@
+# BasicRocketFlow
+
+main: kit: flow: BasicRocketFlow:
+{
+  entity: "rocket",
+  kind: "basic",
+  name: "BasicRocketFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "rocket_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "rocket_ref01",
+        srcdatavar: "rocket_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "rocket01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-rocket_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRocketFlow"
+}

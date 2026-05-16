@@ -1,0 +1,53 @@
+{
+  "existing": {
+    "capsule": {
+      "CAPSULE00": {
+        "id": "CAPSULE00",
+        "land_landing": "s5b",
+        "last_update": "s5c",
+        "launch": [],
+        "reuse_count": "s5e",
+        "serial": "s5f",
+        "status": "s60",
+        "type": "s61",
+        "water_landing": "s62"
+      },
+      "CAPSULE01": {
+        "id": "CAPSULE01",
+        "land_landing": "sb5",
+        "last_update": "sb6",
+        "launch": [],
+        "reuse_count": "sb8",
+        "serial": "sb9",
+        "status": "sba",
+        "type": "sbb",
+        "water_landing": "sbc"
+      },
+      "CAPSULE02": {
+        "id": "CAPSULE02",
+        "land_landing": "s10f",
+        "last_update": "s110",
+        "launch": [],
+        "reuse_count": "s112",
+        "serial": "s113",
+        "status": "s114",
+        "type": "s115",
+        "water_landing": "s116"
+      }
+    }
+  },
+  "new": {
+    "capsule": {
+      "capsule_ref01": {
+        "land_landing": "s169",
+        "last_update": "s16a",
+        "launch": [],
+        "reuse_count": "s16c",
+        "serial": "s16d",
+        "status": "s16e",
+        "type": "s16f",
+        "water_landing": "s170"
+      }
+    }
+  }
+}

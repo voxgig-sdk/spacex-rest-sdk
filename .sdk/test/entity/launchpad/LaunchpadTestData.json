@@ -1,0 +1,69 @@
+{
+  "existing": {
+    "launchpad": {
+      "LAUNCHPAD00": {
+        "detail": "s82",
+        "full_name": "s83",
+        "id": "LAUNCHPAD00",
+        "latitude": 133,
+        "launch": [],
+        "launch_attempt": "s87",
+        "launch_success": "s88",
+        "locality": "s89",
+        "longitude": 138,
+        "name": "s8b",
+        "region": "s8c",
+        "rocket": [],
+        "status": "s8e"
+      },
+      "LAUNCHPAD01": {
+        "detail": "s104",
+        "full_name": "s105",
+        "id": "LAUNCHPAD01",
+        "latitude": 263,
+        "launch": [],
+        "launch_attempt": "s109",
+        "launch_success": "s10a",
+        "locality": "s10b",
+        "longitude": 268,
+        "name": "s10d",
+        "region": "s10e",
+        "rocket": [],
+        "status": "s110"
+      },
+      "LAUNCHPAD02": {
+        "detail": "s186",
+        "full_name": "s187",
+        "id": "LAUNCHPAD02",
+        "latitude": 393,
+        "launch": [],
+        "launch_attempt": "s18b",
+        "launch_success": "s18c",
+        "locality": "s18d",
+        "longitude": 398,
+        "name": "s18f",
+        "region": "s190",
+        "rocket": [],
+        "status": "s192"
+      }
+    }
+  },
+  "new": {
+    "launchpad": {
+      "launchpad_ref01": {
+        "detail": "s208",
+        "full_name": "s209",
+        "latitude": 523,
+        "launch": [],
+        "launch_attempt": "s20d",
+        "launch_success": "s20e",
+        "locality": "s20f",
+        "longitude": 528,
+        "name": "s211",
+        "region": "s212",
+        "rocket": [],
+        "status": "s214"
+      }
+    }
+  }
+}

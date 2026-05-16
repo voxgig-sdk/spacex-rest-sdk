@@ -1,0 +1,44 @@
+# BasicCoreFlow
+
+main: kit: flow: BasicCoreFlow:
+{
+  entity: "core",
+  kind: "basic",
+  name: "BasicCoreFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "core_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "core_ref01",
+        srcdatavar: "core_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "core01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-core_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCoreFlow"
+}

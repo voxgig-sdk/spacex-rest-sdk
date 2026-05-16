@@ -1,0 +1,73 @@
+{
+  "existing": {
+    "landpad": {
+      "LANDPAD00": {
+        "detail": "s8c",
+        "full_name": "s8d",
+        "id": "LANDPAD00",
+        "landing_attempt": "s8f",
+        "landing_success": "s90",
+        "latitude": 145,
+        "launch": [],
+        "locality": "s93",
+        "longitude": 148,
+        "name": "s95",
+        "region": "s96",
+        "status": "s97",
+        "type": "s98",
+        "wikipedia": "s99"
+      },
+      "LANDPAD01": {
+        "detail": "s118",
+        "full_name": "s119",
+        "id": "LANDPAD01",
+        "landing_attempt": "s11b",
+        "landing_success": "s11c",
+        "latitude": 285,
+        "launch": [],
+        "locality": "s11f",
+        "longitude": 288,
+        "name": "s121",
+        "region": "s122",
+        "status": "s123",
+        "type": "s124",
+        "wikipedia": "s125"
+      },
+      "LANDPAD02": {
+        "detail": "s1a4",
+        "full_name": "s1a5",
+        "id": "LANDPAD02",
+        "landing_attempt": "s1a7",
+        "landing_success": "s1a8",
+        "latitude": 425,
+        "launch": [],
+        "locality": "s1ab",
+        "longitude": 428,
+        "name": "s1ad",
+        "region": "s1ae",
+        "status": "s1af",
+        "type": "s1b0",
+        "wikipedia": "s1b1"
+      }
+    }
+  },
+  "new": {
+    "landpad": {
+      "landpad_ref01": {
+        "detail": "s230",
+        "full_name": "s231",
+        "landing_attempt": "s233",
+        "landing_success": "s234",
+        "latitude": 565,
+        "launch": [],
+        "locality": "s237",
+        "longitude": 568,
+        "name": "s239",
+        "region": "s23a",
+        "status": "s23b",
+        "type": "s23c",
+        "wikipedia": "s23d"
+      }
+    }
+  }
+}

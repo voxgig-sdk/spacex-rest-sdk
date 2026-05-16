@@ -1,0 +1,13 @@
+# Entity Models
+
+@"capsule.jsonic"
+@"core.jsonic"
+@"crew.jsonic"
+@"landpad.jsonic"
+@"launch.jsonic"
+@"launchpad.jsonic"
+@"payload.jsonic"
+@"roadster.jsonic"
+@"rocket.jsonic"
+@"ship.jsonic"
+@"starlink.jsonic"

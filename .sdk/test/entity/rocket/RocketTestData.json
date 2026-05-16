@@ -1,0 +1,85 @@
+{
+  "existing": {
+    "rocket": {
+      "ROCKET00": {
+        "active": true,
+        "booster": "sab",
+        "company": "sac",
+        "cost_per_launch": "sad",
+        "country": "sae",
+        "description": "saf",
+        "diameter": {},
+        "first_flight": "sb1",
+        "flickr_image": [],
+        "height": {},
+        "id": "ROCKET00",
+        "mass": {},
+        "name": "sb6",
+        "stage": "sb7",
+        "success_rate_pct": 184,
+        "type": "sb9",
+        "wikipedia": "sba"
+      },
+      "ROCKET01": {
+        "active": true,
+        "booster": "s155",
+        "company": "s156",
+        "cost_per_launch": "s157",
+        "country": "s158",
+        "description": "s159",
+        "diameter": {},
+        "first_flight": "s15b",
+        "flickr_image": [],
+        "height": {},
+        "id": "ROCKET01",
+        "mass": {},
+        "name": "s160",
+        "stage": "s161",
+        "success_rate_pct": 354,
+        "type": "s163",
+        "wikipedia": "s164"
+      },
+      "ROCKET02": {
+        "active": true,
+        "booster": "s1ff",
+        "company": "s200",
+        "cost_per_launch": "s201",
+        "country": "s202",
+        "description": "s203",
+        "diameter": {},
+        "first_flight": "s205",
+        "flickr_image": [],
+        "height": {},
+        "id": "ROCKET02",
+        "mass": {},
+        "name": "s20a",
+        "stage": "s20b",
+        "success_rate_pct": 524,
+        "type": "s20d",
+        "wikipedia": "s20e"
+      }
+    }
+  },
+  "new": {
+    "rocket": {
+      "rocket_ref01": {
+        "active": true,
+        "booster": "s2a9",
+        "company": "s2aa",
+        "cost_per_launch": "s2ab",
+        "country": "s2ac",
+        "description": "s2ad",
+        "diameter": {},
+        "first_flight": "s2af",
+        "flickr_image": [],
+        "height": {},
+        "mass": {},
+        "name": "s2b4",
+        "stage": "s2b5",
+        "success_rate_pct": 694,
+        "type": "s2b7",
+        "wikipedia": "s2b8"
+      }
+    }
+  }
+}

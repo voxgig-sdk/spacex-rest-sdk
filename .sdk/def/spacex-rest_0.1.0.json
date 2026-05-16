@@ -1,0 +1,1811 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "SpaceX REST API",
+    "description": "Open Source REST API for launch, rocket, core, capsule, starlink, launchpad, and landing pad data.",
+    "version": "5.0.0",
+    "contact": {
+      "url": "https://github.com/r-spacex/SpaceX-API"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.spacexdata.com/v5",
+      "description": "Production server (v5)"
+    }
+  ],
+  "paths": {
+    "/launches": {
+      "get": {
+        "summary": "Get all launches",
+        "description": "Returns all SpaceX launch data",
+        "operationId": "getAllLaunches",
+        "tags": [
+          "Launches"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Launch"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/launches/{id}": {
+      "get": {
+        "summary": "Get one launch",
+        "description": "Returns a single launch by ID",
+        "operationId": "getOneLaunch",
+        "tags": [
+          "Launches"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Launch ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Launch"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Launch not found"
+          }
+        }
+      }
+    },
+    "/launches/latest": {
+      "get": {
+        "summary": "Get latest launch",
+        "description": "Returns the latest SpaceX launch",
+        "operationId": "getLatestLaunch",
+        "tags": [
+          "Launches"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Launch"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/launches/upcoming": {
+      "get": {
+        "summary": "Get upcoming launches",
+        "description": "Returns all upcoming SpaceX launches",
+        "operationId": "getUpcomingLaunches",
+        "tags": [
+          "Launches"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Launch"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/launches/past": {
+      "get": {
+        "summary": "Get past launches",
+        "description": "Returns all past SpaceX launches",
+        "operationId": "getPastLaunches",
+        "tags": [
+          "Launches"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Launch"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rockets": {
+      "get": {
+        "summary": "Get all rockets",
+        "description": "Returns all SpaceX rocket data",
+        "operationId": "getAllRockets",
+        "tags": [
+          "Rockets"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Rocket"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rockets/{id}": {
+      "get": {
+        "summary": "Get one rocket",
+        "description": "Returns a single rocket by ID",
+        "operationId": "getOneRocket",
+        "tags": [
+          "Rockets"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Rocket ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rocket"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Rocket not found"
+          }
+        }
+      }
+    },
+    "/cores": {
+      "get": {
+        "summary": "Get all cores",
+        "description": "Returns all SpaceX core data",
+        "operationId": "getAllCores",
+        "tags": [
+          "Cores"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Core"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cores/{id}": {
+      "get": {
+        "summary": "Get one core",
+        "description": "Returns a single core by ID",
+        "operationId": "getOneCore",
+        "tags": [
+          "Cores"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Core ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Core"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Core not found"
+          }
+        }
+      }
+    },
+    "/capsules": {
+      "get": {
+        "summary": "Get all capsules",
+        "description": "Returns all SpaceX capsule data",
+        "operationId": "getAllCapsules",
+        "tags": [
+          "Capsules"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Capsule"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/capsules/{id}": {
+      "get": {
+        "summary": "Get one capsule",
+        "description": "Returns a single capsule by ID",
+        "operationId": "getOneCapsule",
+        "tags": [
+          "Capsules"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Capsule ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Capsule"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Capsule not found"
+          }
+        }
+      }
+    },
+    "/starlink": {
+      "get": {
+        "summary": "Get all Starlink satellites",
+        "description": "Returns all SpaceX Starlink satellite data",
+        "operationId": "getAllStarlink",
+        "tags": [
+          "Starlink"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Starlink"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/starlink/{id}": {
+      "get": {
+        "summary": "Get one Starlink satellite",
+        "description": "Returns a single Starlink satellite by ID",
+        "operationId": "getOneStarlink",
+        "tags": [
+          "Starlink"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Starlink satellite ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Starlink"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Starlink satellite not found"
+          }
+        }
+      }
+    },
+    "/launchpads": {
+      "get": {
+        "summary": "Get all launchpads",
+        "description": "Returns all SpaceX launchpad data",
+        "operationId": "getAllLaunchpads",
+        "tags": [
+          "Launchpads"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Launchpad"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/launchpads/{id}": {
+      "get": {
+        "summary": "Get one launchpad",
+        "description": "Returns a single launchpad by ID",
+        "operationId": "getOneLaunchpad",
+        "tags": [
+          "Launchpads"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Launchpad ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Launchpad"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Launchpad not found"
+          }
+        }
+      }
+    },
+    "/landpads": {
+      "get": {
+        "summary": "Get all landing pads",
+        "description": "Returns all SpaceX landing pad data",
+        "operationId": "getAllLandpads",
+        "tags": [
+          "Landpads"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Landpad"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/landpads/{id}": {
+      "get": {
+        "summary": "Get one landing pad",
+        "description": "Returns a single landing pad by ID",
+        "operationId": "getOneLandpad",
+        "tags": [
+          "Landpads"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Landing pad ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Landpad"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Landing pad not found"
+          }
+        }
+      }
+    },
+    "/payloads": {
+      "get": {
+        "summary": "Get all payloads",
+        "description": "Returns all SpaceX payload data",
+        "operationId": "getAllPayloads",
+        "tags": [
+          "Payloads"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Payload"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payloads/{id}": {
+      "get": {
+        "summary": "Get one payload",
+        "description": "Returns a single payload by ID",
+        "operationId": "getOnePayload",
+        "tags": [
+          "Payloads"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Payload ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payload"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Payload not found"
+          }
+        }
+      }
+    },
+    "/crew": {
+      "get": {
+        "summary": "Get all crew members",
+        "description": "Returns all SpaceX crew member data",
+        "operationId": "getAllCrew",
+        "tags": [
+          "Crew"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Crew"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/crew/{id}": {
+      "get": {
+        "summary": "Get one crew member",
+        "description": "Returns a single crew member by ID",
+        "operationId": "getOneCrew",
+        "tags": [
+          "Crew"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Crew member ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Crew"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Crew member not found"
+          }
+        }
+      }
+    },
+    "/ships": {
+      "get": {
+        "summary": "Get all ships",
+        "description": "Returns all SpaceX ship data",
+        "operationId": "getAllShips",
+        "tags": [
+          "Ships"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ship"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ships/{id}": {
+      "get": {
+        "summary": "Get one ship",
+        "description": "Returns a single ship by ID",
+        "operationId": "getOneShip",
+        "tags": [
+          "Ships"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Ship ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ship"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Ship not found"
+          }
+        }
+      }
+    },
+    "/roadster": {
+      "get": {
+        "summary": "Get roadster info",
+        "description": "Returns info about Elon's Tesla Roadster",
+        "operationId": "getRoadster",
+        "tags": [
+          "Roadster"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Roadster"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Launch": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Launch ID"
+          },
+          "flight_number": {
+            "type": "integer",
+            "description": "Flight number"
+          },
+          "name": {
+            "type": "string",
+            "description": "Launch name"
+          },
+          "date_utc": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Launch date in UTC"
+          },
+          "date_unix": {
+            "type": "integer",
+            "description": "Launch date in unix timestamp"
+          },
+          "date_local": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Launch date in local time"
+          },
+          "date_precision": {
+            "type": "string",
+            "description": "Date precision (hour, day, month, quarter, half, year)"
+          },
+          "static_fire_date_utc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "Static fire date in UTC"
+          },
+          "static_fire_date_unix": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Static fire date in unix timestamp"
+          },
+          "tdb": {
+            "type": "boolean",
+            "description": "To be determined"
+          },
+          "net": {
+            "type": "boolean",
+            "description": "No earlier than"
+          },
+          "window": {
+            "type": "integer",
+            "description": "Launch window in seconds"
+          },
+          "rocket": {
+            "type": "string",
+            "description": "Rocket ID"
+          },
+          "success": {
+            "type": "boolean",
+            "nullable": true,
+            "description": "Launch success status"
+          },
+          "failures": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "Launch failures"
+          },
+          "upcoming": {
+            "type": "boolean",
+            "description": "Whether the launch is upcoming"
+          },
+          "details": {
+            "type": "string",
+            "nullable": true,
+            "description": "Launch details"
+          },
+          "fairings": {
+            "type": "object",
+            "nullable": true,
+            "properties": {
+              "reused": {
+                "type": "boolean"
+              },
+              "recovery_attempt": {
+                "type": "boolean"
+              },
+              "recovered": {
+                "type": "boolean"
+              },
+              "ships": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "crew": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Crew member IDs"
+          },
+          "ships": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Ship IDs"
+          },
+          "capsules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Capsule IDs"
+          },
+          "payloads": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Payload IDs"
+          },
+          "launchpad": {
+            "type": "string",
+            "description": "Launchpad ID"
+          },
+          "cores": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "core": {
+                  "type": "string",
+                  "description": "Core ID"
+                },
+                "flight": {
+                  "type": "integer",
+                  "description": "Core flight number"
+                },
+                "gridfins": {
+                  "type": "boolean",
+                  "description": "Whether core has grid fins"
+                },
+                "legs": {
+                  "type": "boolean",
+                  "description": "Whether core has legs"
+                },
+                "reused": {
+                  "type": "boolean",
+                  "description": "Whether core was reused"
+                },
+                "landing_attempt": {
+                  "type": "boolean",
+                  "description": "Whether landing was attempted"
+                },
+                "landing_success": {
+                  "type": "boolean",
+                  "nullable": true,
+                  "description": "Whether landing was successful"
+                },
+                "landing_type": {
+                  "type": "string",
+                  "nullable": true,
+                  "description": "Landing type (ASDS, RTLS, Ocean)"
+                },
+                "landpad": {
+                  "type": "string",
+                  "nullable": true,
+                  "description": "Landing pad ID"
+                }
+              }
+            }
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "patch": {
+                "type": "object",
+                "properties": {
+                  "small": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "large": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              },
+              "reddit": {
+                "type": "object",
+                "properties": {
+                  "campaign": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "launch": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "media": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "recovery": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              },
+              "flickr": {
+                "type": "object",
+                "properties": {
+                  "small": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "original": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "presskit": {
+                "type": "string",
+                "nullable": true
+              },
+              "webcast": {
+                "type": "string",
+                "nullable": true
+              },
+              "youtube_id": {
+                "type": "string",
+                "nullable": true
+              },
+              "article": {
+                "type": "string",
+                "nullable": true
+              },
+              "wikipedia": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          },
+          "auto_update": {
+            "type": "boolean",
+            "description": "Whether the launch data is automatically updated"
+          }
+        }
+      },
+      "Rocket": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Rocket ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Rocket name"
+          },
+          "type": {
+            "type": "string",
+            "description": "Rocket type"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether the rocket is active"
+          },
+          "stages": {
+            "type": "integer",
+            "description": "Number of stages"
+          },
+          "boosters": {
+            "type": "integer",
+            "description": "Number of boosters"
+          },
+          "cost_per_launch": {
+            "type": "integer",
+            "description": "Cost per launch in USD"
+          },
+          "success_rate_pct": {
+            "type": "number",
+            "description": "Success rate percentage"
+          },
+          "first_flight": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of first flight"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country of origin"
+          },
+          "company": {
+            "type": "string",
+            "description": "Company"
+          },
+          "height": {
+            "type": "object",
+            "properties": {
+              "meters": {
+                "type": "number"
+              },
+              "feet": {
+                "type": "number"
+              }
+            }
+          },
+          "diameter": {
+            "type": "object",
+            "properties": {
+              "meters": {
+                "type": "number"
+              },
+              "feet": {
+                "type": "number"
+              }
+            }
+          },
+          "mass": {
+            "type": "object",
+            "properties": {
+              "kg": {
+                "type": "integer"
+              },
+              "lb": {
+                "type": "integer"
+              }
+            }
+          },
+          "flickr_images": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "wikipedia": {
+            "type": "string"
+          }
+        }
+      },
+      "Core": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Core serial number"
+          },
+          "block": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Core block number"
+          },
+          "reuse_count": {
+            "type": "integer",
+            "description": "Number of times core has been reused"
+          },
+          "rtls_attempts": {
+            "type": "integer",
+            "description": "Number of return to launch site attempts"
+          },
+          "rtls_landings": {
+            "type": "integer",
+            "description": "Number of successful RTLS landings"
+          },
+          "asds_attempts": {
+            "type": "integer",
+            "description": "Number of autonomous spaceport drone ship landing attempts"
+          },
+          "asds_landings": {
+            "type": "integer",
+            "description": "Number of successful ASDS landings"
+          },
+          "last_update": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last update about the core"
+          },
+          "launches": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Launch IDs"
+          },
+          "serial": {
+            "type": "string",
+            "description": "Core serial number"
+          },
+          "status": {
+            "type": "string",
+            "description": "Core status (active, inactive, unknown, expended, lost, retired)"
+          }
+        }
+      },
+      "Capsule": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Capsule serial number"
+          },
+          "type": {
+            "type": "string",
+            "description": "Capsule type"
+          },
+          "status": {
+            "type": "string",
+            "description": "Capsule status"
+          },
+          "serial": {
+            "type": "string",
+            "description": "Capsule serial number"
+          },
+          "launches": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Launch IDs"
+          },
+          "last_update": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last update about the capsule"
+          },
+          "land_landings": {
+            "type": "integer",
+            "description": "Number of land landings"
+          },
+          "water_landings": {
+            "type": "integer",
+            "description": "Number of water landings"
+          },
+          "reuse_count": {
+            "type": "integer",
+            "description": "Number of times capsule has been reused"
+          }
+        }
+      },
+      "Starlink": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Starlink satellite ID"
+          },
+          "version": {
+            "type": "string",
+            "description": "Satellite version"
+          },
+          "launch": {
+            "type": "string",
+            "description": "Launch ID"
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Current longitude"
+          },
+          "latitude": {
+            "type": "number",
+            "description": "Current latitude"
+          },
+          "height_km": {
+            "type": "number",
+            "description": "Current height in kilometers"
+          },
+          "velocity_kms": {
+            "type": "number",
+            "description": "Current velocity in km/s"
+          },
+          "spaceTrack": {
+            "type": "object",
+            "description": "Space-Track.org data"
+          }
+        }
+      },
+      "Launchpad": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Launchpad ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Launchpad name"
+          },
+          "full_name": {
+            "type": "string",
+            "description": "Full launchpad name"
+          },
+          "status": {
+            "type": "string",
+            "description": "Launchpad status (active, inactive, unknown, retired, lost, under construction)"
+          },
+          "locality": {
+            "type": "string",
+            "description": "Locality"
+          },
+          "region": {
+            "type": "string",
+            "description": "Region"
+          },
+          "latitude": {
+            "type": "number",
+            "description": "Latitude"
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Longitude"
+          },
+          "launch_attempts": {
+            "type": "integer",
+            "description": "Number of launch attempts"
+          },
+          "launch_successes": {
+            "type": "integer",
+            "description": "Number of successful launches"
+          },
+          "rockets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Rocket IDs"
+          },
+          "launches": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Launch IDs"
+          },
+          "details": {
+            "type": "string",
+            "description": "Launchpad details"
+          }
+        }
+      },
+      "Landpad": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Landing pad ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Landing pad name"
+          },
+          "full_name": {
+            "type": "string",
+            "description": "Full landing pad name"
+          },
+          "status": {
+            "type": "string",
+            "description": "Landing pad status (active, inactive, unknown, retired, lost, under construction)"
+          },
+          "type": {
+            "type": "string",
+            "description": "Landing pad type (ASDS, RTLS)"
+          },
+          "locality": {
+            "type": "string",
+            "description": "Locality"
+          },
+          "region": {
+            "type": "string",
+            "description": "Region"
+          },
+          "latitude": {
+            "type": "number",
+            "description": "Latitude"
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Longitude"
+          },
+          "landing_attempts": {
+            "type": "integer",
+            "description": "Number of landing attempts"
+          },
+          "landing_successes": {
+            "type": "integer",
+            "description": "Number of successful landings"
+          },
+          "wikipedia": {
+            "type": "string",
+            "description": "Wikipedia URL"
+          },
+          "details": {
+            "type": "string",
+            "description": "Landing pad details"
+          },
+          "launches": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Launch IDs"
+          }
+        }
+      },
+      "Payload": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Payload ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Payload name"
+          },
+          "type": {
+            "type": "string",
+            "description": "Payload type"
+          },
+          "reused": {
+            "type": "boolean",
+            "description": "Whether the payload was reused"
+          },
+          "launch": {
+            "type": "string",
+            "description": "Launch ID"
+          },
+          "customers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Customers"
+          },
+          "norad_ids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "NORAD IDs"
+          },
+          "nationalities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Nationalities"
+          },
+          "manufacturers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Manufacturers"
+          },
+          "mass_kg": {
+            "type": "number",
+            "nullable": true,
+            "description": "Payload mass in kilograms"
+          },
+          "mass_lbs": {
+            "type": "number",
+            "nullable": true,
+            "description": "Payload mass in pounds"
+          },
+          "orbit": {
+            "type": "string",
+            "description": "Orbit type"
+          },
+          "reference_system": {
+            "type": "string",
+            "description": "Reference system"
+          },
+          "regime": {
+            "type": "string",
+            "description": "Orbit regime"
+          },
+          "longitude": {
+            "type": "number",
+            "nullable": true,
+            "description": "Longitude"
+          },
+          "semi_major_axis_km": {
+            "type": "number",
+            "nullable": true,
+            "description": "Semi-major axis in km"
+          },
+          "eccentricity": {
+            "type": "number",
+            "nullable": true,
+            "description": "Eccentricity"
+          },
+          "periapsis_km": {
+            "type": "number",
+            "nullable": true,
+            "description": "Periapsis in km"
+          },
+          "apoapsis_km": {
+            "type": "number",
+            "nullable": true,
+            "description": "Apoapsis in km"
+          },
+          "inclination_deg": {
+            "type": "number",
+            "nullable": true,
+            "description": "Inclination in degrees"
+          },
+          "period_min": {
+            "type": "number",
+            "nullable": true,
+            "description": "Orbital period in minutes"
+          },
+          "lifespan_years": {
+            "type": "number",
+            "nullable": true,
+            "description": "Lifespan in years"
+          },
+          "epoch": {
+            "type": "string",
+            "nullable": true,
+            "description": "Epoch"
+          },
+          "mean_motion": {
+            "type": "number",
+            "nullable": true,
+            "description": "Mean motion"
+          },
+          "raan": {
+            "type": "number",
+            "nullable": true,
+            "description": "Right ascension of the ascending node"
+          },
+          "arg_of_pericenter": {
+            "type": "number",
+            "nullable": true,
+            "description": "Argument of pericenter"
+          },
+          "mean_anomaly": {
+            "type": "number",
+            "nullable": true,
+            "description": "Mean anomaly"
+          }
+        }
+      },
+      "Crew": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Crew member ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Crew member name"
+          },
+          "agency": {
+            "type": "string",
+            "description": "Agency"
+          },
+          "image": {
+            "type": "string",
+            "description": "Image URL"
+          },
+          "wikipedia": {
+            "type": "string",
+            "description": "Wikipedia URL"
+          },
+          "launches": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Launch IDs"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status (active, inactive, retired, unknown)"
+          }
+        }
+      },
+      "Ship": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Ship ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Ship name"
+          },
+          "legacy_id": {
+            "type": "string",
+            "nullable": true,
+            "description": "Legacy ID"
+          },
+          "model": {
+            "type": "string",
+            "nullable": true,
+            "description": "Ship model"
+          },
+          "type": {
+            "type": "string",
+            "description": "Ship type"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Ship roles"
+          },
+          "imo": {
+            "type": "integer",
+            "nullable": true,
+            "description": "IMO number"
+          },
+          "mmsi": {
+            "type": "integer",
+            "nullable": true,
+            "description": "MMSI number"
+          },
+          "abs": {
+            "type": "integer",
+            "nullable": true,
+            "description": "ABS number"
+          },
+          "class": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Ship class"
+          },
+          "mass_kg": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Mass in kilograms"
+          },
+          "mass_lbs": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Mass in pounds"
+          },
+          "year_built": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Year built"
+          },
+          "home_port": {
+            "type": "string",
+            "nullable": true,
+            "description": "Home port"
+          },
+          "status": {
+            "type": "string",
+            "description": "Ship status"
+          },
+          "speed_kn": {
+            "type": "number",
+            "nullable": true,
+            "description": "Speed in knots"
+          },
+          "course_deg": {
+            "type": "number",
+            "nullable": true,
+            "description": "Course in degrees"
+          },
+          "latitude": {
+            "type": "number",
+            "nullable": true,
+            "description": "Latitude"
+          },
+          "longitude": {
+            "type": "number",
+            "nullable": true,
+            "description": "Longitude"
+          },
+          "last_ais_update": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last AIS update timestamp"
+          },
+          "link": {
+            "type": "string",
+            "nullable": true,
+            "description": "Link to ship info"
+          },
+          "image": {
+            "type": "string",
+            "nullable": true,
+            "description": "Image URL"
+          },
+          "launches": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Launch IDs"
+          }
+        }
+      },
+      "Roadster": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Roadster ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Roadster name"
+          },
+          "launch_date_utc": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Launch date in UTC"
+          },
+          "launch_date_unix": {
+            "type": "integer",
+            "description": "Launch date in unix timestamp"
+          },
+          "launch_mass_kg": {
+            "type": "integer",
+            "description": "Launch mass in kilograms"
+          },
+          "launch_mass_lbs": {
+            "type": "integer",
+            "description": "Launch mass in pounds"
+          },
+          "norad_id": {
+            "type": "integer",
+            "description": "NORAD ID"
+          },
+          "epoch_jd": {
+            "type": "number",
+            "description": "Epoch in Julian Date"
+          },
+          "orbit_type": {
+            "type": "string",
+            "description": "Orbit type"
+          },
+          "apoapsis_au": {
+            "type": "number",
+            "description": "Apoapsis in AU"
+          },
+          "periapsis_au": {
+            "type": "number",
+            "description": "Periapsis in AU"
+          },
+          "semi_major_axis_au": {
+            "type": "number",
+            "description": "Semi-major axis in AU"
+          },
+          "eccentricity": {
+            "type": "number",
+            "description": "Eccentricity"
+          },
+          "inclination": {
+            "type": "number",
+            "description": "Inclination"
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Longitude"
+          },
+          "periapsis_arg": {
+            "type": "number",
+            "description": "Argument of periapsis"
+          },
+          "period_days": {
+            "type": "number",
+            "description": "Orbital period in days"
+          },
+          "speed_kph": {
+            "type": "number",
+            "description": "Speed in km/h"
+          },
+          "speed_mph": {
+            "type": "number",
+            "description": "Speed in mph"
+          },
+          "earth_distance_km": {
+            "type": "number",
+            "description": "Distance from Earth in km"
+          },
+          "earth_distance_mi": {
+            "type": "number",
+            "description": "Distance from Earth in miles"
+          },
+          "mars_distance_km": {
+            "type": "number",
+            "description": "Distance from Mars in km"
+          },
+          "mars_distance_mi": {
+            "type": "number",
+            "description": "Distance from Mars in miles"
+          },
+          "flickr_images": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Flickr images"
+          },
+          "wikipedia": {
+            "type": "string",
+            "description": "Wikipedia URL"
+          },
+          "video": {
+            "type": "string",
+            "description": "Video URL"
+          },
+          "details": {
+            "type": "string",
+            "description": "Details"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Launches",
+      "description": "Launch data endpoints"
+    },
+    {
+      "name": "Rockets",
+      "description": "Rocket data endpoints"
+    },
+    {
+      "name": "Cores",
+      "description": "Core data endpoints"
+    },
+    {
+      "name": "Capsules",
+      "description": "Capsule data endpoints"
+    },
+    {
+      "name": "Starlink",
+      "description": "Starlink satellite data endpoints"
+    },
+    {
+      "name": "Launchpads",
+      "description": "Launchpad data endpoints"
+    },
+    {
+      "name": "Landpads",
+      "description": "Landing pad data endpoints"
+    },
+    {
+      "name": "Payloads",
+      "description": "Payload data endpoints"
+    },
+    {
+      "name": "Crew",
+      "description": "Crew member data endpoints"
+    },
+    {
+      "name": "Ships",
+      "description": "Ship data endpoints"
+    },
+    {
+      "name": "Roadster",
+      "description": "Elon's Tesla Roadster data endpoint"
+    }
+  ]
+}

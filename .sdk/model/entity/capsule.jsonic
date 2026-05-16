@@ -1,0 +1,115 @@
+# Entity: capsule
+
+main: kit: entity: capsule: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "land_landing"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "last_update"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "launch"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "reuse_count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "serial"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "water_landing"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "capsule"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/capsules"
+          parts: [
+            "capsules"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/capsules/{id}"
+          parts: [
+            "capsules"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

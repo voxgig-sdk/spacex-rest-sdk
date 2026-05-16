@@ -1,0 +1,116 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 11
+  metrics: count: path: 24
+  metrics: count: method: 24
+
+  entity: capsule: {
+    path: "/capsules": {
+      op: list: method: *GET
+    }
+    path: "/capsules/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: core: {
+    path: "/cores": {
+      op: list: method: *GET
+    }
+    path: "/cores/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: crew: {
+    path: "/crew": {
+      op: list: method: *GET
+    }
+    path: "/crew/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: landpad: {
+    path: "/landpads": {
+      op: list: method: *GET
+    }
+    path: "/landpads/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: launch: {
+    path: "/launches": {
+      op: list: method: *GET
+    }
+    path: "/launches/latest": {
+      action: "latest": {}
+      op: list: method: *GET
+    }
+    path: "/launches/past": {
+      action: "past": {}
+      op: list: method: *GET
+    }
+    path: "/launches/upcoming": {
+      action: "upcoming": {}
+      op: list: method: *GET
+    }
+    path: "/launches/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: launchpad: {
+    path: "/launchpads": {
+      op: list: method: *GET
+    }
+    path: "/launchpads/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: payload: {
+    path: "/payloads": {
+      op: list: method: *GET
+    }
+    path: "/payloads/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: roadster: {
+    path: "/roadster": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: rocket: {
+    path: "/rockets": {
+      op: list: method: *GET
+    }
+    path: "/rockets/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: ship: {
+    path: "/ships": {
+      op: list: method: *GET
+    }
+    path: "/ships/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: starlink: {
+    path: "/starlink": {
+      op: list: method: *GET
+    }
+    path: "/starlink/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+}

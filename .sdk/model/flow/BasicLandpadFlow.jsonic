@@ -1,0 +1,44 @@
+# BasicLandpadFlow
+
+main: kit: flow: BasicLandpadFlow:
+{
+  entity: "landpad",
+  kind: "basic",
+  name: "BasicLandpadFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "landpad_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "landpad_ref01",
+        srcdatavar: "landpad_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "landpad01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-landpad_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLandpadFlow"
+}

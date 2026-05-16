@@ -1,0 +1,2214 @@
+
+import { BaseFeature } from './feature/base/BaseFeature'
+import { TestFeature } from './feature/test/TestFeature'
+
+
+
+const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
+   test: TestFeature
+
+}
+
+
+class Config {
+
+  makeFeature(this: any, fn: string) {
+    const fc = FEATURE_CLASS[fn]
+    const fi = new fc()
+    // TODO: errors etc
+    return fi
+  }
+
+
+  main = {
+    name: 'ProjectName',
+  }
+
+
+  feature = {
+     test:     {
+      "options": {
+        "active": false
+      }
+    }
+
+  }
+
+
+  options = {
+    base: 'https://api.spacexdata.com/v5',
+
+    auth: {
+      prefix: 'Bearer',
+    },
+
+    headers: {
+      "content-type": "application/json"
+    },
+
+    entity: {
+      
+      capsule: {
+      },
+
+      core: {
+      },
+
+      crew: {
+      },
+
+      landpad: {
+      },
+
+      launch: {
+      },
+
+      launchpad: {
+      },
+
+      payload: {
+      },
+
+      roadster: {
+      },
+
+      rocket: {
+      },
+
+      ship: {
+      },
+
+      starlink: {
+      },
+
+    }
+  }
+
+
+  entity = {
+    "capsule": {
+      "fields": [
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "land_landing",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "last_update",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "launch",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "reuse_count",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "serial",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "status",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "type",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "water_landing",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 8
+        }
+      ],
+      "name": "capsule",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/capsules",
+              "parts": [
+                "capsules"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/capsules/{id}",
+              "parts": [
+                "capsules",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "core": {
+      "fields": [
+        {
+          "name": "asds_attempt",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "asds_landing",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "block",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "last_update",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "launch",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "reuse_count",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "rtls_attempt",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "rtls_landing",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "serial",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "status",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 10
+        }
+      ],
+      "name": "core",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/cores",
+              "parts": [
+                "cores"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/cores/{id}",
+              "parts": [
+                "cores",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "crew": {
+      "fields": [
+        {
+          "name": "agency",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "image",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "launch",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "name",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "status",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "wikipedia",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 6
+        }
+      ],
+      "name": "crew",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/crew",
+              "parts": [
+                "crew"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/crew/{id}",
+              "parts": [
+                "crew",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "landpad": {
+      "fields": [
+        {
+          "name": "detail",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "full_name",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "landing_attempt",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "landing_success",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "latitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "launch",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "locality",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "longitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "name",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "region",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "status",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "type",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "wikipedia",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 13
+        }
+      ],
+      "name": "landpad",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/landpads",
+              "parts": [
+                "landpads"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/landpads/{id}",
+              "parts": [
+                "landpads",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "launch": {
+      "fields": [
+        {
+          "name": "auto_update",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "capsule",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "core",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "crew",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "date_local",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "date_precision",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "date_unix",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "date_utc",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "detail",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "failure",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "fairing",
+          "req": false,
+          "type": "`$OBJECT`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "flight",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "flight_number",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "gridfin",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "landing_attempt",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "landing_success",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 16
+        },
+        {
+          "name": "landing_type",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 17
+        },
+        {
+          "name": "landpad",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 18
+        },
+        {
+          "name": "launchpad",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 19
+        },
+        {
+          "name": "leg",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 20
+        },
+        {
+          "name": "link",
+          "req": false,
+          "type": "`$OBJECT`",
+          "active": true,
+          "index$": 21
+        },
+        {
+          "name": "name",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 22
+        },
+        {
+          "name": "net",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 23
+        },
+        {
+          "name": "payload",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 24
+        },
+        {
+          "name": "reused",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 25
+        },
+        {
+          "name": "rocket",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 26
+        },
+        {
+          "name": "ship",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 27
+        },
+        {
+          "name": "static_fire_date_unix",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 28
+        },
+        {
+          "name": "static_fire_date_utc",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 29
+        },
+        {
+          "name": "success",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 30
+        },
+        {
+          "name": "tdb",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 31
+        },
+        {
+          "name": "upcoming",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 32
+        },
+        {
+          "name": "window",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 33
+        }
+      ],
+      "name": "launch",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/launches",
+              "parts": [
+                "launches"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            },
+            {
+              "method": "GET",
+              "orig": "/launches/latest",
+              "parts": [
+                "launches",
+                "latest"
+              ],
+              "select": {
+                "$action": "latest"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "index$": 1
+            },
+            {
+              "method": "GET",
+              "orig": "/launches/past",
+              "parts": [
+                "launches",
+                "past"
+              ],
+              "select": {
+                "$action": "past"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "index$": 2
+            },
+            {
+              "method": "GET",
+              "orig": "/launches/upcoming",
+              "parts": [
+                "launches",
+                "upcoming"
+              ],
+              "select": {
+                "$action": "upcoming"
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "index$": 3
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/launches/{id}",
+              "parts": [
+                "launches",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "launchpad": {
+      "fields": [
+        {
+          "name": "detail",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "full_name",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "latitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "launch",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "launch_attempt",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "launch_success",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "locality",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "longitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "name",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "region",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "rocket",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "status",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 12
+        }
+      ],
+      "name": "launchpad",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/launchpads",
+              "parts": [
+                "launchpads"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/launchpads/{id}",
+              "parts": [
+                "launchpads",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "payload": {
+      "fields": [
+        {
+          "name": "apoapsis_km",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "arg_of_pericenter",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "customer",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "eccentricity",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "epoch",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "inclination_deg",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "launch",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "lifespan_year",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "longitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "manufacturer",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "mass_kg",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "mass_lb",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "mean_anomaly",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "mean_motion",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "name",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "nationality",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 16
+        },
+        {
+          "name": "norad_id",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 17
+        },
+        {
+          "name": "orbit",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 18
+        },
+        {
+          "name": "periapsis_km",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 19
+        },
+        {
+          "name": "period_min",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 20
+        },
+        {
+          "name": "raan",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 21
+        },
+        {
+          "name": "reference_system",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 22
+        },
+        {
+          "name": "regime",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 23
+        },
+        {
+          "name": "reused",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 24
+        },
+        {
+          "name": "semi_major_axis_km",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 25
+        },
+        {
+          "name": "type",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 26
+        }
+      ],
+      "name": "payload",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/payloads",
+              "parts": [
+                "payloads"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/payloads/{id}",
+              "parts": [
+                "payloads",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "roadster": {
+      "fields": [
+        {
+          "name": "apoapsis_au",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "detail",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "earth_distance_km",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "earth_distance_mi",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "eccentricity",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "epoch_jd",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "flickr_image",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "inclination",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "launch_date_unix",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "launch_date_utc",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "launch_mass_kg",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "launch_mass_lb",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "longitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "mars_distance_km",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "mars_distance_mi",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "name",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 16
+        },
+        {
+          "name": "norad_id",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 17
+        },
+        {
+          "name": "orbit_type",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 18
+        },
+        {
+          "name": "periapsis_arg",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 19
+        },
+        {
+          "name": "periapsis_au",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 20
+        },
+        {
+          "name": "period_day",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 21
+        },
+        {
+          "name": "semi_major_axis_au",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 22
+        },
+        {
+          "name": "speed_kph",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 23
+        },
+        {
+          "name": "speed_mph",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 24
+        },
+        {
+          "name": "video",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 25
+        },
+        {
+          "name": "wikipedia",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 26
+        }
+      ],
+      "name": "roadster",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/roadster",
+              "parts": [
+                "roadster"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "rocket": {
+      "fields": [
+        {
+          "name": "active",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "booster",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "company",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "cost_per_launch",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "country",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "description",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "diameter",
+          "req": false,
+          "type": "`$OBJECT`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "first_flight",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "flickr_image",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "height",
+          "req": false,
+          "type": "`$OBJECT`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "mass",
+          "req": false,
+          "type": "`$OBJECT`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "name",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "stage",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "success_rate_pct",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "type",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "wikipedia",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 16
+        }
+      ],
+      "name": "rocket",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/rockets",
+              "parts": [
+                "rockets"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/rockets/{id}",
+              "parts": [
+                "rockets",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "ship": {
+      "fields": [
+        {
+          "name": "abs",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "class",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "course_deg",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "home_port",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "image",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "imo",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "last_ais_update",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "latitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "launch",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "legacy_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "link",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "longitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "mass_kg",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "mass_lb",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "mmsi",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "model",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 16
+        },
+        {
+          "name": "name",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 17
+        },
+        {
+          "name": "role",
+          "req": false,
+          "type": "`$ARRAY`",
+          "active": true,
+          "index$": 18
+        },
+        {
+          "name": "speed_kn",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 19
+        },
+        {
+          "name": "status",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 20
+        },
+        {
+          "name": "type",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 21
+        },
+        {
+          "name": "year_built",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 22
+        }
+      ],
+      "name": "ship",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/ships",
+              "parts": [
+                "ships"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/ships/{id}",
+              "parts": [
+                "ships",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "starlink": {
+      "fields": [
+        {
+          "name": "height_km",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "latitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "launch",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "longitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "space_track",
+          "req": false,
+          "type": "`$OBJECT`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "velocity_km",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "version",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        }
+      ],
+      "name": "starlink",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/starlink",
+              "parts": [
+                "starlink"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/starlink/{id}",
+              "parts": [
+                "starlink",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    }
+  }
+}
+
+
+const config = new Config()
+
+export {
+  config
+}
+

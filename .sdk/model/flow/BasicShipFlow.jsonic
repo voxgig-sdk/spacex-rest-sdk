@@ -1,0 +1,44 @@
+# BasicShipFlow
+
+main: kit: flow: BasicShipFlow:
+{
+  entity: "ship",
+  kind: "basic",
+  name: "BasicShipFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "ship_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "ship_ref01",
+        srcdatavar: "ship_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "ship01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ship_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicShipFlow"
+}
