@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/spacex-rest-sdk/core"
+import "github.com/voxgig-sdk/spacex-rest-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll

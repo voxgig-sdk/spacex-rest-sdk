@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/spacex-rest-sdk"
+	sdk "github.com/voxgig-sdk/spacex-rest-sdk/go"
 )
 
 func TestCustomUtility(t *testing.T) {

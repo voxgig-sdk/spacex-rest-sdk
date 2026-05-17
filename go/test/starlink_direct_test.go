@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/spacex-rest-sdk"
-	"github.com/voxgig-sdk/spacex-rest-sdk/core"
+	sdk "github.com/voxgig-sdk/spacex-rest-sdk/go"
+	"github.com/voxgig-sdk/spacex-rest-sdk/go/core"
 )
 
 func TestStarlinkDirect(t *testing.T) {

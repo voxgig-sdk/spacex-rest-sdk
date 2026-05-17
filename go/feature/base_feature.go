@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/spacex-rest-sdk/core"
+	"github.com/voxgig-sdk/spacex-rest-sdk/go/core"
 )
 
 type BaseFeature struct {

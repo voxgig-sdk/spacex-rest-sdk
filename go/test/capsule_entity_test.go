@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/spacex-rest-sdk"
-	"github.com/voxgig-sdk/spacex-rest-sdk/core"
+	sdk "github.com/voxgig-sdk/spacex-rest-sdk/go"
+	"github.com/voxgig-sdk/spacex-rest-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/spacex-rest-sdk/go/utility/struct"
 )
 
 func TestCapsuleEntity(t *testing.T) {

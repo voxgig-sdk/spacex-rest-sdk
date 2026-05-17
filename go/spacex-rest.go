@@ -1,10 +1,10 @@
 package voxgigspacexrestsdk
 
 import (
-	"github.com/voxgig-sdk/spacex-rest-sdk/core"
-	"github.com/voxgig-sdk/spacex-rest-sdk/entity"
-	"github.com/voxgig-sdk/spacex-rest-sdk/feature"
-	_ "github.com/voxgig-sdk/spacex-rest-sdk/utility"
+	"github.com/voxgig-sdk/spacex-rest-sdk/go/core"
+	"github.com/voxgig-sdk/spacex-rest-sdk/go/entity"
+	"github.com/voxgig-sdk/spacex-rest-sdk/go/feature"
+	_ "github.com/voxgig-sdk/spacex-rest-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
