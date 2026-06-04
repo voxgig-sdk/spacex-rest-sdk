@@ -20,9 +20,6 @@ class SpacexRestConfig
             ],
             "options" => [
                 "base" => "https://api.spacexdata.com/v5",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

@@ -79,14 +79,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'SPACEXREST_TEST_ROADSTER_ENTID': {},
     'SPACEXREST_TEST_LIVE': 'FALSE',
-    'SPACEXREST_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.SPACEXREST_TEST_LIVE
 
   if (live) {
     const client = new SpacexRestSDK({
-      apikey: env.SPACEXREST_APIKEY,
     })
 
     let idmap: any = env['SPACEXREST_TEST_ROADSTER_ENTID']

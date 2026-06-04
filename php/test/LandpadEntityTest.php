@@ -96,7 +96,6 @@ function landpad_basic_setup($extra)
         "SPACEXREST_TEST_LANDPAD_ENTID" => $idmap,
         "SPACEXREST_TEST_LIVE" => "FALSE",
         "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-        "SPACEXREST_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +107,6 @@ function landpad_basic_setup($extra)
     if ($env["SPACEXREST_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SPACEXREST_APIKEY"],
             ],
             $extra ?? [],
         ]);

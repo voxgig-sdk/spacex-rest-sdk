@@ -135,7 +135,6 @@ func rocketBasicSetup(extra map[string]any) *entityTestSetup {
 		"SPACEXREST_TEST_ROCKET_ENTID": idmap,
 		"SPACEXREST_TEST_LIVE":      "FALSE",
 		"SPACEXREST_TEST_EXPLAIN":   "FALSE",
-		"SPACEXREST_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["SPACEXREST_TEST_ROCKET_ENTID"])
@@ -146,7 +145,6 @@ func rocketBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["SPACEXREST_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["SPACEXREST_APIKEY"],
 			},
 			extra,
 		})
