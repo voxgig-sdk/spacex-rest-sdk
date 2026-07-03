@@ -10,13 +10,13 @@ The Ruby SDK for the SpacexRest API — an entity-oriented client using idiomati
 
 ## Install
 ```bash
-gem install spacex-rest-sdk
+gem install voxgig-sdk-spacex-rest
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "spacex-rest-sdk"
+gem "voxgig-sdk-spacex-rest"
 ```
 
 Then run:

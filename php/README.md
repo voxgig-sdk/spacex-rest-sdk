@@ -10,7 +10,7 @@ The PHP SDK for the SpacexRest API — an entity-oriented client using PHP conve
 
 ## Install
 ```bash
-composer require voxgig/spacex-rest-sdk
+composer require voxgig-sdk/spacex-rest
 ```
 
 

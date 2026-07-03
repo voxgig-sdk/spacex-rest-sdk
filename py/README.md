@@ -10,7 +10,7 @@ The Python SDK for the SpacexRest API — an entity-oriented client following Py
 
 ## Install
 ```bash
-pip install spacex-rest-sdk
+pip install voxgig-sdk-spacex-rest
 ```
 
 Or install from source:

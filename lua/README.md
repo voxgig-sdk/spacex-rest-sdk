@@ -10,7 +10,7 @@ The Lua SDK for the SpacexRest API — an entity-oriented client using Lua conve
 
 ## Install
 ```bash
-luarocks install spacex-rest-sdk
+luarocks install voxgig-sdk-spacex-rest
 ```
 
 If the module is not yet published, add the source directory to

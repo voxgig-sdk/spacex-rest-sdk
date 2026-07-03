@@ -10,7 +10,7 @@ The TypeScript SDK for the SpacexRest API — a type-safe, entity-oriented clien
 
 ## Install
 ```bash
-npm install spacex-rest
+npm install @voxgig-sdk/spacex-rest
 ```
 ## Tutorial: your first API call
 
