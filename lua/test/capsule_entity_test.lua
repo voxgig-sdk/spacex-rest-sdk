@@ -102,6 +102,7 @@ function capsule_basic_setup(extra)
     ["SPACEXREST_TEST_CAPSULE_ENTID"] = idmap,
     ["SPACEXREST_TEST_LIVE"] = "FALSE",
     ["SPACEXREST_TEST_EXPLAIN"] = "FALSE",
+    ["SPACEXREST_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -113,6 +114,7 @@ function capsule_basic_setup(extra)
   if env["SPACEXREST_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["SPACEXREST_APIKEY"],
       },
       extra or {},
     })

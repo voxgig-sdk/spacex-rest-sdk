@@ -109,12 +109,14 @@ def _starlink_direct_setup(mockres):
     env = runner.env_override({
         "SPACEXREST_TEST_STARLINK_ENTID": {},
         "SPACEXREST_TEST_LIVE": "FALSE",
+        "SPACEXREST_APIKEY": "NONE",
     })
 
     live = env.get("SPACEXREST_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("SPACEXREST_APIKEY"),
         }
         client = SpacexRestSDK(merged_opts)
         return {

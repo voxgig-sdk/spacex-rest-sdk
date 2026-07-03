@@ -194,12 +194,14 @@ func crewDirectSetup(mockres any) *crewDirectSetupResult {
 	env := envOverride(map[string]any{
 		"SPACEXREST_TEST_CREW_ENTID": map[string]any{},
 		"SPACEXREST_TEST_LIVE":    "FALSE",
+		"SPACEXREST_APIKEY":       "NONE",
 	})
 
 	live := env["SPACEXREST_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["SPACEXREST_APIKEY"],
 		}
 		client := sdk.NewSpacexRestSDK(mergedOpts)
 

@@ -123,12 +123,14 @@ function launchpad_direct_setup($mockres)
     $env = Runner::env_override([
         "SPACEXREST_TEST_LAUNCHPAD_ENTID" => [],
         "SPACEXREST_TEST_LIVE" => "FALSE",
+        "SPACEXREST_APIKEY" => "NONE",
     ]);
 
     $live = $env["SPACEXREST_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["SPACEXREST_APIKEY"],
         ];
         $client = new SpacexRestSDK($merged_opts);
         return [

@@ -120,6 +120,7 @@ function basicSetup(extra?: any) {
     'SPACEX_REST_TEST_LANDPAD_ENTID': idmap,
     'SPACEX_REST_TEST_LIVE': 'FALSE',
     'SPACEX_REST_TEST_EXPLAIN': 'FALSE',
+    'SPACEX_REST_APIKEY': 'NONE',
   })
 
   idmap = env['SPACEX_REST_TEST_LANDPAD_ENTID']
@@ -129,6 +130,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new SpacexRestSDK(merge([
       {
+        apikey: env.SPACEX_REST_APIKEY,
       },
       extra
     ]))

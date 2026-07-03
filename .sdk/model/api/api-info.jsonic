@@ -20,38 +20,7 @@ main: {
       ]
       title: "SpaceX REST API"
       version: "5.0.0"
-      tagline: "Open-source REST API for SpaceX launches, rockets, capsules, cores, crew, payloads, pads, and Starlink data"
-      homepage: "https://github.com/r-spacex/SpaceX-API"
-      docs_url: "https://github.com/r-spacex/SpaceX-API/tree/master/docs"
-      license_short: "Apache-2.0 — community project, not affiliated with SpaceX"
-      license_md: `- Source code and data are released under the [Apache License 2.0](https://github.com/r-spacex/SpaceX-API/blob/master/LICENSE).
-- Maintained by the [r-spacex](https://github.com/r-spacex) community; this project is **not affiliated with, endorsed by, or associated with Space Exploration Technologies Corp** (SpaceX).
-- Attribution to the r-spacex project is appreciated when reusing data.
-- Operational status and backups are published separately at [status.spacexdata.com](https://status.spacexdata.com) and [backups.spacexdata.com](https://backups.spacexdata.com).`
-      about_md: `The [SpaceX REST API](https://github.com/r-spacex/SpaceX-API) is an open-source, community-maintained catalogue of SpaceX launches, vehicles, infrastructure, crew, and Starlink satellites. It is run by volunteer contributors at the [r-spacex](https://github.com/r-spacex) GitHub organisation and is independent of SpaceX itself. This SDK targets the \`v5\` base URL at \`https://api.spacexdata.com/v5\`.
-
-What you can pull from the API:
-
-- Past, upcoming, and "latest"/"next" launches with mission details and payloads.
-- Rockets, cores, and capsules — including reuse history and current status.
-- Launchpads and landing pads, with locations and status.
-- Crew members, payloads, the Tesla Roadster trajectory, ships, and Starlink satellite TLE data.
-
-The API is read-only and CORS-enabled, so it can be called directly from browser apps. No API key or authentication is required for the public endpoints. Published rate-limit numbers are not documented in the public docs; treat the service as best-effort and cache responses where possible.`
-      entity_desc: {
-        capsule: "Dragon capsule serial numbers with reuse counts, status, and mission history — `/capsules`."
-        core: "First-stage booster cores, including reuse, landing attempts, and current status — `/cores`."
-        crew: "Astronauts and crew members who have flown on SpaceX missions, with agency and status — `/crew`."
-        landpad: "Landing pads and droneships used for booster recovery, with location and status — `/landpads`."
-        launch: "Launch missions (past, upcoming, latest, next) with payloads, cores, links, and outcomes — `/launches`."
-        launchpad: "Launch facilities such as LC-39A or SLC-40, with location, status, and associated rockets — `/launchpads`."
-        payload: "Payloads carried on launches, including mass, orbit, customers, and manufacturer — `/payloads`."
-        roadster: "Telemetry for the Tesla Roadster launched on Falcon Heavy's demo flight — `/roadster`."
-        rocket: "Rocket families (Falcon 1, Falcon 9, Falcon Heavy, Starship) with specs and success rates — `/rockets`."
-        ship: "Recovery and support ships in the SpaceX fleet, with roles, ports, and status — `/ships`."
-        starlink: "Individual Starlink satellites with TLE orbital elements and launch references — `/starlink`."
-      }
-      auth: false
     }
   }
 }
+

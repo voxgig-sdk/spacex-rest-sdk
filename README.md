@@ -1,21 +1,8 @@
 # SpacexRest SDK
 
-Open-source REST API for SpaceX launches, rockets, capsules, cores, crew, payloads, pads, and Starlink data
+SpaceX REST API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About SpaceX REST API
-
-The [SpaceX REST API](https://github.com/r-spacex/SpaceX-API) is an open-source, community-maintained catalogue of SpaceX launches, vehicles, infrastructure, crew, and Starlink satellites. It is run by volunteer contributors at the [r-spacex](https://github.com/r-spacex) GitHub organisation and is independent of SpaceX itself. This SDK targets the `v5` base URL at `https://api.spacexdata.com/v5`.
-
-What you can pull from the API:
-
-- Past, upcoming, and "latest"/"next" launches with mission details and payloads.
-- Rockets, cores, and capsules — including reuse history and current status.
-- Launchpads and landing pads, with locations and status.
-- Crew members, payloads, the Tesla Roadster trajectory, ships, and Starlink satellite TLE data.
-
-The API is read-only and CORS-enabled, so it can be called directly from browser apps. No API key or authentication is required for the public endpoints. Published rate-limit numbers are not documented in the public docs; treat the service as best-effort and cache responses where possible.
 
 ## Try it
 
@@ -49,29 +36,31 @@ gem install spacex-rest-sdk
 luarocks install spacex-rest-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { SpacexRestSDK } from 'spacex-rest'
 
-const client = new SpacexRestSDK({})
+const client = new SpacexRestSDK({
+  apikey: process.env.SPACEX-REST_APIKEY,
+})
 
 // List all capsules
 const capsules = await client.Capsule().list()
+console.log(capsules.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,17 +90,17 @@ The API exposes 11 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Capsule** | Dragon capsule serial numbers with reuse counts, status, and mission history — `/capsules`. | `/capsules` |
-| **Core** | First-stage booster cores, including reuse, landing attempts, and current status — `/cores`. | `/cores` |
-| **Crew** | Astronauts and crew members who have flown on SpaceX missions, with agency and status — `/crew`. | `/crew` |
-| **Landpad** | Landing pads and droneships used for booster recovery, with location and status — `/landpads`. | `/landpads` |
-| **Launch** | Launch missions (past, upcoming, latest, next) with payloads, cores, links, and outcomes — `/launches`. | `/launches` |
-| **Launchpad** | Launch facilities such as LC-39A or SLC-40, with location, status, and associated rockets — `/launchpads`. | `/launchpads` |
-| **Payload** | Payloads carried on launches, including mass, orbit, customers, and manufacturer — `/payloads`. | `/payloads` |
-| **Roadster** | Telemetry for the Tesla Roadster launched on Falcon Heavy's demo flight — `/roadster`. | `/roadster` |
-| **Rocket** | Rocket families (Falcon 1, Falcon 9, Falcon Heavy, Starship) with specs and success rates — `/rockets`. | `/rockets` |
-| **Ship** | Recovery and support ships in the SpaceX fleet, with roles, ports, and status — `/ships`. | `/ships` |
-| **Starlink** | Individual Starlink satellites with TLE orbital elements and launch references — `/starlink`. | `/starlink` |
+| **Capsule** |  | `/capsules` |
+| **Core** |  | `/cores` |
+| **Crew** |  | `/crew` |
+| **Landpad** |  | `/landpads` |
+| **Launch** |  | `/launches` |
+| **Launchpad** |  | `/launchpads` |
+| **Payload** |  | `/payloads` |
+| **Roadster** |  | `/roadster` |
+| **Rocket** |  | `/rockets` |
+| **Ship** |  | `/ships` |
+| **Starlink** |  | `/starlink` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -121,17 +110,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from spacexrest_sdk import SpacexRestSDK
 
-client = SpacexRestSDK({})
+client = SpacexRestSDK({
+    "apikey": os.environ.get("SPACEX-REST_APIKEY"),
+})
 
 # List all capsules
-capsules, err = client.Capsule(None).list(None, None)
+capsules, err = client.Capsule().list()
+print(capsules)
 
 # Load a specific capsule
-capsule, err = client.Capsule(None).load(
-    {"id": "example_id"}, None
-)
+capsule, err = client.Capsule().load({"id": "example_id"})
+print(capsule)
 ```
 
 ### PHP
@@ -140,15 +132,17 @@ capsule, err = client.Capsule(None).load(
 <?php
 require_once 'spacexrest_sdk.php';
 
-$client = new SpacexRestSDK([]);
+$client = new SpacexRestSDK([
+    "apikey" => getenv("SPACEX-REST_APIKEY"),
+]);
 
 // List all capsules
-[$capsules, $err] = $client->Capsule(null)->list(null, null);
+[$capsules, $err] = $client->Capsule()->list();
+print_r($capsules);
 
 // Load a specific capsule
-[$capsule, $err] = $client->Capsule(null)->load(
-    ["id" => "example_id"], null
-);
+[$capsule, $err] = $client->Capsule()->load(["id" => "example_id"]);
+print_r($capsule);
 ```
 
 ### Golang
@@ -156,10 +150,13 @@ $client = new SpacexRestSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/spacex-rest-sdk/go"
 
-client := sdk.NewSpacexRestSDK(map[string]any{})
+client := sdk.NewSpacexRestSDK(map[string]any{
+    "apikey": os.Getenv("SPACEX-REST_APIKEY"),
+})
 
 // List all capsules
 capsules, err := client.Capsule(nil).List(nil, nil)
+fmt.Println(capsules)
 ```
 
 ### Ruby
@@ -167,15 +164,17 @@ capsules, err := client.Capsule(nil).List(nil, nil)
 ```ruby
 require_relative "SpacexRest_sdk"
 
-client = SpacexRestSDK.new({})
+client = SpacexRestSDK.new({
+  "apikey" => ENV["SPACEX-REST_APIKEY"],
+})
 
 # List all capsules
-capsules, err = client.Capsule(nil).list(nil, nil)
+capsules, err = client.Capsule().list
+puts capsules
 
 # Load a specific capsule
-capsule, err = client.Capsule(nil).load(
-  { "id" => "example_id" }, nil
-)
+capsule, err = client.Capsule().load({ "id" => "example_id" })
+puts capsule
 ```
 
 ### Lua
@@ -183,15 +182,17 @@ capsule, err = client.Capsule(nil).load(
 ```lua
 local sdk = require("spacex-rest_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("SPACEX-REST_APIKEY"),
+})
 
 -- List all capsules
-local capsules, err = client:Capsule(nil):list(nil, nil)
+local capsules, err = client:Capsule():list()
+print(capsules)
 
 -- Load a specific capsule
-local capsule, err = client:Capsule(nil):load(
-  { id = "example_id" }, nil
-)
+local capsule, err = client:Capsule():load({ id = "example_id" })
+print(capsule)
 ```
 
 ## Unit testing in offline mode
@@ -210,25 +211,21 @@ const result = await client.Capsule().load({ id: 'test01' })
 ### Python
 
 ```python
-client = SpacexRestSDK.test(None, None)
-result, err = client.Capsule(None).load(
-    {"id": "test01"}, None
-)
+client = SpacexRestSDK.test()
+result, err = client.Capsule().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = SpacexRestSDK::test(null, null);
-[$result, $err] = $client->Capsule(null)->load(
-    ["id" => "test01"], null
-);
+$client = SpacexRestSDK::test();
+[$result, $err] = $client->Capsule()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Capsule(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -237,19 +234,15 @@ result, err := client.Capsule(nil).Load(
 ### Ruby
 
 ```ruby
-client = SpacexRestSDK.test(nil, nil)
-result, err = client.Capsule(nil).load(
-  { "id" => "test01" }, nil
-)
+client = SpacexRestSDK.test
+result, err = client.Capsule().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Capsule(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Capsule():load({ id = "test01" })
 ```
 
 ## How it works
@@ -353,16 +346,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the SpaceX REST API
-
-- Upstream: [https://github.com/r-spacex/SpaceX-API](https://github.com/r-spacex/SpaceX-API)
-- API docs: [https://github.com/r-spacex/SpaceX-API/tree/master/docs](https://github.com/r-spacex/SpaceX-API/tree/master/docs)
-
-- Source code and data are released under the [Apache License 2.0](https://github.com/r-spacex/SpaceX-API/blob/master/LICENSE).
-- Maintained by the [r-spacex](https://github.com/r-spacex) community; this project is **not affiliated with, endorsed by, or associated with Space Exploration Technologies Corp** (SpaceX).
-- Attribution to the r-spacex project is appreciated when reusing data.
-- Operational status and backups are published separately at [status.spacexdata.com](https://status.spacexdata.com) and [backups.spacexdata.com](https://backups.spacexdata.com).
 
 ---
 
