@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:capsule():list() / client:capsule():load({ id = ... })
-function SpacexRestSDK:capsule(data)
+-- Idiomatic facade: client:Capsule():list() / client:Capsule():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SpacexRestSDK:Capsule(data)
   local EntityMod = require("entity.capsule_entity")
   if data == nil then
     if self._capsule == nil then
@@ -256,15 +257,10 @@ function SpacexRestSDK:capsule(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:capsule() instead.
-function SpacexRestSDK:Capsule(data)
-  local EntityMod = require("entity.capsule_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:core():list() / client:core():load({ id = ... })
-function SpacexRestSDK:core(data)
+-- Idiomatic facade: client:Core():list() / client:Core():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SpacexRestSDK:Core(data)
   local EntityMod = require("entity.core_entity")
   if data == nil then
     if self._core == nil then
@@ -275,15 +271,10 @@ function SpacexRestSDK:core(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:core() instead.
-function SpacexRestSDK:Core(data)
-  local EntityMod = require("entity.core_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:crew():list() / client:crew():load({ id = ... })
-function SpacexRestSDK:crew(data)
+-- Idiomatic facade: client:Crew():list() / client:Crew():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SpacexRestSDK:Crew(data)
   local EntityMod = require("entity.crew_entity")
   if data == nil then
     if self._crew == nil then
@@ -294,15 +285,10 @@ function SpacexRestSDK:crew(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:crew() instead.
-function SpacexRestSDK:Crew(data)
-  local EntityMod = require("entity.crew_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:landpad():list() / client:landpad():load({ id = ... })
-function SpacexRestSDK:landpad(data)
+-- Idiomatic facade: client:Landpad():list() / client:Landpad():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SpacexRestSDK:Landpad(data)
   local EntityMod = require("entity.landpad_entity")
   if data == nil then
     if self._landpad == nil then
@@ -313,15 +299,10 @@ function SpacexRestSDK:landpad(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:landpad() instead.
-function SpacexRestSDK:Landpad(data)
-  local EntityMod = require("entity.landpad_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:launch():list() / client:launch():load({ id = ... })
-function SpacexRestSDK:launch(data)
+-- Idiomatic facade: client:Launch():list() / client:Launch():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SpacexRestSDK:Launch(data)
   local EntityMod = require("entity.launch_entity")
   if data == nil then
     if self._launch == nil then
@@ -332,15 +313,10 @@ function SpacexRestSDK:launch(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:launch() instead.
-function SpacexRestSDK:Launch(data)
-  local EntityMod = require("entity.launch_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:launchpad():list() / client:launchpad():load({ id = ... })
-function SpacexRestSDK:launchpad(data)
+-- Idiomatic facade: client:Launchpad():list() / client:Launchpad():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SpacexRestSDK:Launchpad(data)
   local EntityMod = require("entity.launchpad_entity")
   if data == nil then
     if self._launchpad == nil then
@@ -351,15 +327,10 @@ function SpacexRestSDK:launchpad(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:launchpad() instead.
-function SpacexRestSDK:Launchpad(data)
-  local EntityMod = require("entity.launchpad_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:payload():list() / client:payload():load({ id = ... })
-function SpacexRestSDK:payload(data)
+-- Idiomatic facade: client:Payload():list() / client:Payload():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SpacexRestSDK:Payload(data)
   local EntityMod = require("entity.payload_entity")
   if data == nil then
     if self._payload == nil then
@@ -370,15 +341,10 @@ function SpacexRestSDK:payload(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:payload() instead.
-function SpacexRestSDK:Payload(data)
-  local EntityMod = require("entity.payload_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:roadster():list() / client:roadster():load({ id = ... })
-function SpacexRestSDK:roadster(data)
+-- Idiomatic facade: client:Roadster():list() / client:Roadster():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SpacexRestSDK:Roadster(data)
   local EntityMod = require("entity.roadster_entity")
   if data == nil then
     if self._roadster == nil then
@@ -389,15 +355,10 @@ function SpacexRestSDK:roadster(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:roadster() instead.
-function SpacexRestSDK:Roadster(data)
-  local EntityMod = require("entity.roadster_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:rocket():list() / client:rocket():load({ id = ... })
-function SpacexRestSDK:rocket(data)
+-- Idiomatic facade: client:Rocket():list() / client:Rocket():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SpacexRestSDK:Rocket(data)
   local EntityMod = require("entity.rocket_entity")
   if data == nil then
     if self._rocket == nil then
@@ -408,15 +369,10 @@ function SpacexRestSDK:rocket(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:rocket() instead.
-function SpacexRestSDK:Rocket(data)
-  local EntityMod = require("entity.rocket_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:ship():list() / client:ship():load({ id = ... })
-function SpacexRestSDK:ship(data)
+-- Idiomatic facade: client:Ship():list() / client:Ship():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SpacexRestSDK:Ship(data)
   local EntityMod = require("entity.ship_entity")
   if data == nil then
     if self._ship == nil then
@@ -427,15 +383,10 @@ function SpacexRestSDK:ship(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:ship() instead.
-function SpacexRestSDK:Ship(data)
-  local EntityMod = require("entity.ship_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:starlink():list() / client:starlink():load({ id = ... })
-function SpacexRestSDK:starlink(data)
+-- Idiomatic facade: client:Starlink():list() / client:Starlink():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SpacexRestSDK:Starlink(data)
   local EntityMod = require("entity.starlink_entity")
   if data == nil then
     if self._starlink == nil then
@@ -443,12 +394,6 @@ function SpacexRestSDK:starlink(data)
     end
     return self._starlink
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:starlink() instead.
-function SpacexRestSDK:Starlink(data)
-  local EntityMod = require("entity.starlink_entity")
   return EntityMod.new(self, data)
 end
 

@@ -30,53 +30,39 @@ go mod edit -replace github.com/voxgig-sdk/spacex-rest-sdk/go=../spacex-rest-sdk
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/spacex-rest-sdk/go"
-    "github.com/voxgig-sdk/spacex-rest-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 2. List capsules
-
-```go
-    result, err := client.Capsule(nil).List(nil, nil)
+    // List capsule records — the value is the array of records itself.
+    capsules, err := client.Capsule(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range capsules.([]any) {
+        fmt.Println(item)
     }
-```
 
-### 3. Load a capsule
-
-```go
-    result, err = client.Capsule(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single capsule — the value is the loaded record.
+    capsule, err := client.Capsule(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(capsule)
 }
 ```
 
@@ -127,10 +113,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Capsule(nil).Load(
+capsule, err := client.Capsule(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(capsule) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -237,17 +226,24 @@ All entities implement the `SpacexRestEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    capsule, err := client.Capsule(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // capsule is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -573,13 +569,21 @@ Create an instance: `capsule := client.Capsule(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Capsule(nil).Load(map[string]any{"id": "capsule_id"}, nil)
+capsule, err := client.Capsule(nil).Load(map[string]any{"id": "capsule_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(capsule) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Capsule(nil).List(nil, nil)
+capsules, err := client.Capsule(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(capsules) // the array of records
 ```
 
 
@@ -613,13 +617,21 @@ Create an instance: `core := client.Core(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Core(nil).Load(map[string]any{"id": "core_id"}, nil)
+core, err := client.Core(nil).Load(map[string]any{"id": "core_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(core) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Core(nil).List(nil, nil)
+cores, err := client.Core(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(cores) // the array of records
 ```
 
 
@@ -649,13 +661,21 @@ Create an instance: `crew := client.Crew(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Crew(nil).Load(map[string]any{"id": "crew_id"}, nil)
+crew, err := client.Crew(nil).Load(map[string]any{"id": "crew_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(crew) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Crew(nil).List(nil, nil)
+crews, err := client.Crew(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(crews) // the array of records
 ```
 
 
@@ -692,13 +712,21 @@ Create an instance: `landpad := client.Landpad(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Landpad(nil).Load(map[string]any{"id": "landpad_id"}, nil)
+landpad, err := client.Landpad(nil).Load(map[string]any{"id": "landpad_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(landpad) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Landpad(nil).List(nil, nil)
+landpads, err := client.Landpad(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(landpads) // the array of records
 ```
 
 
@@ -755,13 +783,21 @@ Create an instance: `launch := client.Launch(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Launch(nil).Load(map[string]any{"id": "launch_id"}, nil)
+launch, err := client.Launch(nil).Load(map[string]any{"id": "launch_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(launch) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Launch(nil).List(nil, nil)
+launchs, err := client.Launch(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(launchs) // the array of records
 ```
 
 
@@ -797,13 +833,21 @@ Create an instance: `launchpad := client.Launchpad(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Launchpad(nil).Load(map[string]any{"id": "launchpad_id"}, nil)
+launchpad, err := client.Launchpad(nil).Load(map[string]any{"id": "launchpad_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(launchpad) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Launchpad(nil).List(nil, nil)
+launchpads, err := client.Launchpad(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(launchpads) // the array of records
 ```
 
 
@@ -853,13 +897,21 @@ Create an instance: `payload := client.Payload(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Payload(nil).Load(map[string]any{"id": "payload_id"}, nil)
+payload, err := client.Payload(nil).Load(map[string]any{"id": "payload_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(payload) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Payload(nil).List(nil, nil)
+payloads, err := client.Payload(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(payloads) // the array of records
 ```
 
 
@@ -908,7 +960,11 @@ Create an instance: `roadster := client.Roadster(nil)`
 #### Example: List
 
 ```go
-results, err := client.Roadster(nil).List(nil, nil)
+roadsters, err := client.Roadster(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(roadsters) // the array of records
 ```
 
 
@@ -948,13 +1004,21 @@ Create an instance: `rocket := client.Rocket(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Rocket(nil).Load(map[string]any{"id": "rocket_id"}, nil)
+rocket, err := client.Rocket(nil).Load(map[string]any{"id": "rocket_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(rocket) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Rocket(nil).List(nil, nil)
+rockets, err := client.Rocket(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(rockets) // the array of records
 ```
 
 
@@ -1000,13 +1064,21 @@ Create an instance: `ship := client.Ship(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Ship(nil).Load(map[string]any{"id": "ship_id"}, nil)
+ship, err := client.Ship(nil).Load(map[string]any{"id": "ship_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(ship) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Ship(nil).List(nil, nil)
+ships, err := client.Ship(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(ships) // the array of records
 ```
 
 
@@ -1037,13 +1109,21 @@ Create an instance: `starlink := client.Starlink(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Starlink(nil).Load(map[string]any{"id": "starlink_id"}, nil)
+starlink, err := client.Starlink(nil).Load(map[string]any{"id": "starlink_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(starlink) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Starlink(nil).List(nil, nil)
+starlinks, err := client.Starlink(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(starlinks) // the array of records
 ```
 
 

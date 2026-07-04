@@ -26,9 +26,11 @@ import { SpacexRestSDK } from '@voxgig-sdk/spacex-rest'
 
 const client = new SpacexRestSDK()
 
-// List all capsules
-const capsules = await client.capsule.list()
-console.log(capsules.data)
+// List all capsules (returns Capsule[])
+const capsules = await client.Capsule().list()
+for (const capsule of capsules) {
+  console.log(capsule)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -93,12 +95,13 @@ from spacexrest_sdk import SpacexRestSDK
 
 client = SpacexRestSDK()
 
-# List all capsules
-capsules = client.capsule.list()
-print(capsules)
+# List all capsules (returns a list, raises on error)
+capsules = client.Capsule().list({})
+for capsule in capsules:
+    print(capsule)
 
-# Load a specific capsule
-capsule = client.capsule.load({"id": "example_id"})
+# Load a specific capsule (returns the record, raises on error)
+capsule = client.Capsule().load({"id": "example_id"})
 print(capsule)
 ```
 
@@ -110,12 +113,12 @@ require_once 'spacexrest_sdk.php';
 
 $client = new SpacexRestSDK();
 
-// List all capsules (throws on error)
-$capsules = $client->capsule()->list();
+// List all capsules (returns an array; throws on error)
+$capsules = $client->Capsule()->list();
 print_r($capsules);
 
-// Load a specific capsule
-$capsule = $client->capsule()->load(["id" => "example_id"]);
+// Load a specific capsule (returns the bare record; throws on error)
+$capsule = $client->Capsule()->load(["id" => "example_id"]);
 print_r($capsule);
 ```
 
@@ -138,12 +141,12 @@ require_relative "SpacexRest_sdk"
 
 client = SpacexRestSDK.new
 
-# List all capsules
-capsules = client.capsule.list
+# List all capsules (returns an Array; raises on error)
+capsules = client.Capsule.list
 puts capsules
 
-# Load a specific capsule
-capsule = client.capsule.load({ "id" => "example_id" })
+# Load a specific capsule (returns the bare record; raises on error)
+capsule = client.Capsule.load({ "id" => "example_id" })
 puts capsule
 ```
 
@@ -155,11 +158,11 @@ local sdk = require("spacex-rest_sdk")
 local client = sdk.new()
 
 -- List all capsules
-local capsules, err = client:capsule():list()
+local capsules, err = client:Capsule():list()
 print(capsules)
 
 -- Load a specific capsule
-local capsule, err = client:capsule():load({ id = "example_id" })
+local capsule, err = client:Capsule():load({ id = "example_id" })
 print(capsule)
 ```
 
@@ -172,22 +175,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = SpacexRestSDK.test()
-const result = await client.capsule.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const capsule = await client.Capsule().load({ id: 'test01' })
+// capsule is a bare Capsule populated with mock data
+console.log(capsule)
 ```
 
 ### Python
 
 ```python
 client = SpacexRestSDK.test()
-result = client.capsule.load({"id": "test01"})
+capsule = client.Capsule().load({"id": "test01"})
+print(capsule)
 ```
 
 ### PHP
 
 ```php
-$client = SpacexRestSDK::test();
-$result = $client->capsule()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = SpacexRestSDK::test([
+    "entity" => ["capsule" => ["test01" => ["id" => "test01"]]],
+]);
+$capsule = $client->Capsule()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -202,15 +210,18 @@ result, err := client.Capsule(nil).Load(
 ### Ruby
 
 ```ruby
-client = SpacexRestSDK.test
-result = client.capsule.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = SpacexRestSDK.test({
+  "entity" => { "capsule" => { "test01" => { "id" => "test01" } } },
+})
+capsule = client.Capsule.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:capsule():load({ id = "test01" })
+local result, err = client:Capsule():load({ id = "test01" })
 ```
 
 ## How it works
@@ -258,6 +269,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

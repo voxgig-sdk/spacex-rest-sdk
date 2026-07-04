@@ -28,16 +28,14 @@ require_relative "SpacexRest_sdk"
 client = SpacexRestSDK.new
 ```
 
-### 2. List capsules
+### 2. List capsule records
 
 ```ruby
 begin
-  result = client.capsule.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Capsule records — iterate directly.
+  capsules = client.Capsule.list
+  capsules.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,8 +46,9 @@ end
 
 ```ruby
 begin
-  result = client.capsule.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Capsule record (raises on error).
+  capsule = client.Capsule.load({ "id" => "example_id" })
+  puts capsule
 rescue => err
   warn "load failed: #{err}"
 end
@@ -96,13 +95,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = SpacexRestSDK.test
+client = SpacexRestSDK.test({
+  "entity" => { "capsule" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.capsule.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+capsule = client.Capsule.load({ "id" => "test01" })
+puts capsule
 ```
 
 ### Use a custom fetch function
@@ -523,7 +526,7 @@ API path: `/starlink`
 
 ### Capsule
 
-Create an instance: `const capsule = client.capsule`
+Create an instance: `capsule = client.Capsule`
 
 #### Operations
 
@@ -548,20 +551,22 @@ Create an instance: `const capsule = client.capsule`
 
 #### Example: Load
 
-```ts
-const capsule = await client.capsule.load({ id: 'capsule_id' })
+```ruby
+# load returns the bare Capsule record (raises on error).
+capsule = client.Capsule.load({ "id" => "capsule_id" })
 ```
 
 #### Example: List
 
-```ts
-const capsules = await client.capsule.list()
+```ruby
+# list returns an Array of Capsule records (raises on error).
+capsules = client.Capsule.list
 ```
 
 
 ### Core
 
-Create an instance: `const core = client.core`
+Create an instance: `core = client.Core`
 
 #### Operations
 
@@ -588,20 +593,22 @@ Create an instance: `const core = client.core`
 
 #### Example: Load
 
-```ts
-const core = await client.core.load({ id: 'core_id' })
+```ruby
+# load returns the bare Core record (raises on error).
+core = client.Core.load({ "id" => "core_id" })
 ```
 
 #### Example: List
 
-```ts
-const cores = await client.core.list()
+```ruby
+# list returns an Array of Core records (raises on error).
+cores = client.Core.list
 ```
 
 
 ### Crew
 
-Create an instance: `const crew = client.crew`
+Create an instance: `crew = client.Crew`
 
 #### Operations
 
@@ -624,20 +631,22 @@ Create an instance: `const crew = client.crew`
 
 #### Example: Load
 
-```ts
-const crew = await client.crew.load({ id: 'crew_id' })
+```ruby
+# load returns the bare Crew record (raises on error).
+crew = client.Crew.load({ "id" => "crew_id" })
 ```
 
 #### Example: List
 
-```ts
-const crews = await client.crew.list()
+```ruby
+# list returns an Array of Crew records (raises on error).
+crews = client.Crew.list
 ```
 
 
 ### Landpad
 
-Create an instance: `const landpad = client.landpad`
+Create an instance: `landpad = client.Landpad`
 
 #### Operations
 
@@ -667,20 +676,22 @@ Create an instance: `const landpad = client.landpad`
 
 #### Example: Load
 
-```ts
-const landpad = await client.landpad.load({ id: 'landpad_id' })
+```ruby
+# load returns the bare Landpad record (raises on error).
+landpad = client.Landpad.load({ "id" => "landpad_id" })
 ```
 
 #### Example: List
 
-```ts
-const landpads = await client.landpad.list()
+```ruby
+# list returns an Array of Landpad records (raises on error).
+landpads = client.Landpad.list
 ```
 
 
 ### Launch
 
-Create an instance: `const launch = client.launch`
+Create an instance: `launch = client.Launch`
 
 #### Operations
 
@@ -730,20 +741,22 @@ Create an instance: `const launch = client.launch`
 
 #### Example: Load
 
-```ts
-const launch = await client.launch.load({ id: 'launch_id' })
+```ruby
+# load returns the bare Launch record (raises on error).
+launch = client.Launch.load({ "id" => "launch_id" })
 ```
 
 #### Example: List
 
-```ts
-const launchs = await client.launch.list()
+```ruby
+# list returns an Array of Launch records (raises on error).
+launchs = client.Launch.list
 ```
 
 
 ### Launchpad
 
-Create an instance: `const launchpad = client.launchpad`
+Create an instance: `launchpad = client.Launchpad`
 
 #### Operations
 
@@ -772,20 +785,22 @@ Create an instance: `const launchpad = client.launchpad`
 
 #### Example: Load
 
-```ts
-const launchpad = await client.launchpad.load({ id: 'launchpad_id' })
+```ruby
+# load returns the bare Launchpad record (raises on error).
+launchpad = client.Launchpad.load({ "id" => "launchpad_id" })
 ```
 
 #### Example: List
 
-```ts
-const launchpads = await client.launchpad.list()
+```ruby
+# list returns an Array of Launchpad records (raises on error).
+launchpads = client.Launchpad.list
 ```
 
 
 ### Payload
 
-Create an instance: `const payload = client.payload`
+Create an instance: `payload = client.Payload`
 
 #### Operations
 
@@ -828,20 +843,22 @@ Create an instance: `const payload = client.payload`
 
 #### Example: Load
 
-```ts
-const payload = await client.payload.load({ id: 'payload_id' })
+```ruby
+# load returns the bare Payload record (raises on error).
+payload = client.Payload.load({ "id" => "payload_id" })
 ```
 
 #### Example: List
 
-```ts
-const payloads = await client.payload.list()
+```ruby
+# list returns an Array of Payload records (raises on error).
+payloads = client.Payload.list
 ```
 
 
 ### Roadster
 
-Create an instance: `const roadster = client.roadster`
+Create an instance: `roadster = client.Roadster`
 
 #### Operations
 
@@ -883,14 +900,15 @@ Create an instance: `const roadster = client.roadster`
 
 #### Example: List
 
-```ts
-const roadsters = await client.roadster.list()
+```ruby
+# list returns an Array of Roadster records (raises on error).
+roadsters = client.Roadster.list
 ```
 
 
 ### Rocket
 
-Create an instance: `const rocket = client.rocket`
+Create an instance: `rocket = client.Rocket`
 
 #### Operations
 
@@ -923,20 +941,22 @@ Create an instance: `const rocket = client.rocket`
 
 #### Example: Load
 
-```ts
-const rocket = await client.rocket.load({ id: 'rocket_id' })
+```ruby
+# load returns the bare Rocket record (raises on error).
+rocket = client.Rocket.load({ "id" => "rocket_id" })
 ```
 
 #### Example: List
 
-```ts
-const rockets = await client.rocket.list()
+```ruby
+# list returns an Array of Rocket records (raises on error).
+rockets = client.Rocket.list
 ```
 
 
 ### Ship
 
-Create an instance: `const ship = client.ship`
+Create an instance: `ship = client.Ship`
 
 #### Operations
 
@@ -975,20 +995,22 @@ Create an instance: `const ship = client.ship`
 
 #### Example: Load
 
-```ts
-const ship = await client.ship.load({ id: 'ship_id' })
+```ruby
+# load returns the bare Ship record (raises on error).
+ship = client.Ship.load({ "id" => "ship_id" })
 ```
 
 #### Example: List
 
-```ts
-const ships = await client.ship.list()
+```ruby
+# list returns an Array of Ship records (raises on error).
+ships = client.Ship.list
 ```
 
 
 ### Starlink
 
-Create an instance: `const starlink = client.starlink`
+Create an instance: `starlink = client.Starlink`
 
 #### Operations
 
@@ -1012,14 +1034,16 @@ Create an instance: `const starlink = client.starlink`
 
 #### Example: Load
 
-```ts
-const starlink = await client.starlink.load({ id: 'starlink_id' })
+```ruby
+# load returns the bare Starlink record (raises on error).
+starlink = client.Starlink.load({ "id" => "starlink_id" })
 ```
 
 #### Example: List
 
-```ts
-const starlinks = await client.starlink.list()
+```ruby
+# list returns an Array of Starlink records (raises on error).
+starlinks = client.Starlink.list
 ```
 
 
@@ -1094,7 +1118,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-capsule = client.capsule
+capsule = client.Capsule
 capsule.load({ "id" => "example_id" })
 
 # capsule.data_get now returns the loaded capsule data

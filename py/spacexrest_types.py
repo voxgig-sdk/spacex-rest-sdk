@@ -4,525 +4,497 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Capsule:
-    id: Optional[str] = None
-    land_landing: Optional[int] = None
-    last_update: Optional[str] = None
-    launch: Optional[list] = None
-    reuse_count: Optional[int] = None
-    serial: Optional[str] = None
-    status: Optional[str] = None
-    type: Optional[str] = None
-    water_landing: Optional[int] = None
+class Capsule(TypedDict, total=False):
+    id: str
+    land_landing: int
+    last_update: str
+    launch: list
+    reuse_count: int
+    serial: str
+    status: str
+    type: str
+    water_landing: int
 
 
-@dataclass
-class CapsuleLoadMatch:
+class CapsuleLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class CapsuleListMatch:
-    id: Optional[str] = None
-    land_landing: Optional[int] = None
-    last_update: Optional[str] = None
-    launch: Optional[list] = None
-    reuse_count: Optional[int] = None
-    serial: Optional[str] = None
-    status: Optional[str] = None
-    type: Optional[str] = None
-    water_landing: Optional[int] = None
+class CapsuleListMatch(TypedDict, total=False):
+    id: str
+    land_landing: int
+    last_update: str
+    launch: list
+    reuse_count: int
+    serial: str
+    status: str
+    type: str
+    water_landing: int
 
 
-@dataclass
-class Core:
-    asds_attempt: Optional[int] = None
-    asds_landing: Optional[int] = None
-    block: Optional[int] = None
-    id: Optional[str] = None
-    last_update: Optional[str] = None
-    launch: Optional[list] = None
-    reuse_count: Optional[int] = None
-    rtls_attempt: Optional[int] = None
-    rtls_landing: Optional[int] = None
-    serial: Optional[str] = None
-    status: Optional[str] = None
+class Core(TypedDict, total=False):
+    asds_attempt: int
+    asds_landing: int
+    block: int
+    id: str
+    last_update: str
+    launch: list
+    reuse_count: int
+    rtls_attempt: int
+    rtls_landing: int
+    serial: str
+    status: str
 
 
-@dataclass
-class CoreLoadMatch:
+class CoreLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class CoreListMatch:
-    asds_attempt: Optional[int] = None
-    asds_landing: Optional[int] = None
-    block: Optional[int] = None
-    id: Optional[str] = None
-    last_update: Optional[str] = None
-    launch: Optional[list] = None
-    reuse_count: Optional[int] = None
-    rtls_attempt: Optional[int] = None
-    rtls_landing: Optional[int] = None
-    serial: Optional[str] = None
-    status: Optional[str] = None
+class CoreListMatch(TypedDict, total=False):
+    asds_attempt: int
+    asds_landing: int
+    block: int
+    id: str
+    last_update: str
+    launch: list
+    reuse_count: int
+    rtls_attempt: int
+    rtls_landing: int
+    serial: str
+    status: str
 
 
-@dataclass
-class Crew:
-    agency: Optional[str] = None
-    id: Optional[str] = None
-    image: Optional[str] = None
-    launch: Optional[list] = None
-    name: Optional[str] = None
-    status: Optional[str] = None
-    wikipedia: Optional[str] = None
+class Crew(TypedDict, total=False):
+    agency: str
+    id: str
+    image: str
+    launch: list
+    name: str
+    status: str
+    wikipedia: str
 
 
-@dataclass
-class CrewLoadMatch:
+class CrewLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class CrewListMatch:
-    agency: Optional[str] = None
-    id: Optional[str] = None
-    image: Optional[str] = None
-    launch: Optional[list] = None
-    name: Optional[str] = None
-    status: Optional[str] = None
-    wikipedia: Optional[str] = None
+class CrewListMatch(TypedDict, total=False):
+    agency: str
+    id: str
+    image: str
+    launch: list
+    name: str
+    status: str
+    wikipedia: str
 
 
-@dataclass
-class Landpad:
-    detail: Optional[str] = None
-    full_name: Optional[str] = None
-    id: Optional[str] = None
-    landing_attempt: Optional[int] = None
-    landing_success: Optional[int] = None
-    latitude: Optional[float] = None
-    launch: Optional[list] = None
-    locality: Optional[str] = None
-    longitude: Optional[float] = None
-    name: Optional[str] = None
-    region: Optional[str] = None
-    status: Optional[str] = None
-    type: Optional[str] = None
-    wikipedia: Optional[str] = None
+class Landpad(TypedDict, total=False):
+    detail: str
+    full_name: str
+    id: str
+    landing_attempt: int
+    landing_success: int
+    latitude: float
+    launch: list
+    locality: str
+    longitude: float
+    name: str
+    region: str
+    status: str
+    type: str
+    wikipedia: str
 
 
-@dataclass
-class LandpadLoadMatch:
+class LandpadLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class LandpadListMatch:
-    detail: Optional[str] = None
-    full_name: Optional[str] = None
-    id: Optional[str] = None
-    landing_attempt: Optional[int] = None
-    landing_success: Optional[int] = None
-    latitude: Optional[float] = None
-    launch: Optional[list] = None
-    locality: Optional[str] = None
-    longitude: Optional[float] = None
-    name: Optional[str] = None
-    region: Optional[str] = None
-    status: Optional[str] = None
-    type: Optional[str] = None
-    wikipedia: Optional[str] = None
+class LandpadListMatch(TypedDict, total=False):
+    detail: str
+    full_name: str
+    id: str
+    landing_attempt: int
+    landing_success: int
+    latitude: float
+    launch: list
+    locality: str
+    longitude: float
+    name: str
+    region: str
+    status: str
+    type: str
+    wikipedia: str
 
 
-@dataclass
-class Launch:
-    auto_update: Optional[bool] = None
-    capsule: Optional[list] = None
-    core: Optional[list] = None
-    crew: Optional[list] = None
-    date_local: Optional[str] = None
-    date_precision: Optional[str] = None
-    date_unix: Optional[int] = None
-    date_utc: Optional[str] = None
-    detail: Optional[str] = None
-    failure: Optional[list] = None
-    fairing: Optional[dict] = None
-    flight: Optional[int] = None
-    flight_number: Optional[int] = None
-    gridfin: Optional[bool] = None
-    id: Optional[str] = None
-    landing_attempt: Optional[bool] = None
-    landing_success: Optional[bool] = None
-    landing_type: Optional[str] = None
-    landpad: Optional[str] = None
-    launchpad: Optional[str] = None
-    leg: Optional[bool] = None
-    link: Optional[dict] = None
-    name: Optional[str] = None
-    net: Optional[bool] = None
-    payload: Optional[list] = None
-    reused: Optional[bool] = None
-    rocket: Optional[str] = None
-    ship: Optional[list] = None
-    static_fire_date_unix: Optional[int] = None
-    static_fire_date_utc: Optional[str] = None
-    success: Optional[bool] = None
-    tdb: Optional[bool] = None
-    upcoming: Optional[bool] = None
-    window: Optional[int] = None
+class Launch(TypedDict, total=False):
+    auto_update: bool
+    capsule: list
+    core: list
+    crew: list
+    date_local: str
+    date_precision: str
+    date_unix: int
+    date_utc: str
+    detail: str
+    failure: list
+    fairing: dict
+    flight: int
+    flight_number: int
+    gridfin: bool
+    id: str
+    landing_attempt: bool
+    landing_success: bool
+    landing_type: str
+    landpad: str
+    launchpad: str
+    leg: bool
+    link: dict
+    name: str
+    net: bool
+    payload: list
+    reused: bool
+    rocket: str
+    ship: list
+    static_fire_date_unix: int
+    static_fire_date_utc: str
+    success: bool
+    tdb: bool
+    upcoming: bool
+    window: int
 
 
-@dataclass
-class LaunchLoadMatch:
+class LaunchLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class LaunchListMatch:
-    auto_update: Optional[bool] = None
-    capsule: Optional[list] = None
-    core: Optional[list] = None
-    crew: Optional[list] = None
-    date_local: Optional[str] = None
-    date_precision: Optional[str] = None
-    date_unix: Optional[int] = None
-    date_utc: Optional[str] = None
-    detail: Optional[str] = None
-    failure: Optional[list] = None
-    fairing: Optional[dict] = None
-    flight: Optional[int] = None
-    flight_number: Optional[int] = None
-    gridfin: Optional[bool] = None
-    id: Optional[str] = None
-    landing_attempt: Optional[bool] = None
-    landing_success: Optional[bool] = None
-    landing_type: Optional[str] = None
-    landpad: Optional[str] = None
-    launchpad: Optional[str] = None
-    leg: Optional[bool] = None
-    link: Optional[dict] = None
-    name: Optional[str] = None
-    net: Optional[bool] = None
-    payload: Optional[list] = None
-    reused: Optional[bool] = None
-    rocket: Optional[str] = None
-    ship: Optional[list] = None
-    static_fire_date_unix: Optional[int] = None
-    static_fire_date_utc: Optional[str] = None
-    success: Optional[bool] = None
-    tdb: Optional[bool] = None
-    upcoming: Optional[bool] = None
-    window: Optional[int] = None
+class LaunchListMatch(TypedDict, total=False):
+    auto_update: bool
+    capsule: list
+    core: list
+    crew: list
+    date_local: str
+    date_precision: str
+    date_unix: int
+    date_utc: str
+    detail: str
+    failure: list
+    fairing: dict
+    flight: int
+    flight_number: int
+    gridfin: bool
+    id: str
+    landing_attempt: bool
+    landing_success: bool
+    landing_type: str
+    landpad: str
+    launchpad: str
+    leg: bool
+    link: dict
+    name: str
+    net: bool
+    payload: list
+    reused: bool
+    rocket: str
+    ship: list
+    static_fire_date_unix: int
+    static_fire_date_utc: str
+    success: bool
+    tdb: bool
+    upcoming: bool
+    window: int
 
 
-@dataclass
-class Launchpad:
-    detail: Optional[str] = None
-    full_name: Optional[str] = None
-    id: Optional[str] = None
-    latitude: Optional[float] = None
-    launch: Optional[list] = None
-    launch_attempt: Optional[int] = None
-    launch_success: Optional[int] = None
-    locality: Optional[str] = None
-    longitude: Optional[float] = None
-    name: Optional[str] = None
-    region: Optional[str] = None
-    rocket: Optional[list] = None
-    status: Optional[str] = None
+class Launchpad(TypedDict, total=False):
+    detail: str
+    full_name: str
+    id: str
+    latitude: float
+    launch: list
+    launch_attempt: int
+    launch_success: int
+    locality: str
+    longitude: float
+    name: str
+    region: str
+    rocket: list
+    status: str
 
 
-@dataclass
-class LaunchpadLoadMatch:
+class LaunchpadLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class LaunchpadListMatch:
-    detail: Optional[str] = None
-    full_name: Optional[str] = None
-    id: Optional[str] = None
-    latitude: Optional[float] = None
-    launch: Optional[list] = None
-    launch_attempt: Optional[int] = None
-    launch_success: Optional[int] = None
-    locality: Optional[str] = None
-    longitude: Optional[float] = None
-    name: Optional[str] = None
-    region: Optional[str] = None
-    rocket: Optional[list] = None
-    status: Optional[str] = None
+class LaunchpadListMatch(TypedDict, total=False):
+    detail: str
+    full_name: str
+    id: str
+    latitude: float
+    launch: list
+    launch_attempt: int
+    launch_success: int
+    locality: str
+    longitude: float
+    name: str
+    region: str
+    rocket: list
+    status: str
 
 
-@dataclass
-class Payload:
-    apoapsis_km: Optional[float] = None
-    arg_of_pericenter: Optional[float] = None
-    customer: Optional[list] = None
-    eccentricity: Optional[float] = None
-    epoch: Optional[str] = None
-    id: Optional[str] = None
-    inclination_deg: Optional[float] = None
-    launch: Optional[str] = None
-    lifespan_year: Optional[float] = None
-    longitude: Optional[float] = None
-    manufacturer: Optional[list] = None
-    mass_kg: Optional[float] = None
-    mass_lb: Optional[float] = None
-    mean_anomaly: Optional[float] = None
-    mean_motion: Optional[float] = None
-    name: Optional[str] = None
-    nationality: Optional[list] = None
-    norad_id: Optional[list] = None
-    orbit: Optional[str] = None
-    periapsis_km: Optional[float] = None
-    period_min: Optional[float] = None
-    raan: Optional[float] = None
-    reference_system: Optional[str] = None
-    regime: Optional[str] = None
-    reused: Optional[bool] = None
-    semi_major_axis_km: Optional[float] = None
-    type: Optional[str] = None
+class Payload(TypedDict, total=False):
+    apoapsis_km: float
+    arg_of_pericenter: float
+    customer: list
+    eccentricity: float
+    epoch: str
+    id: str
+    inclination_deg: float
+    launch: str
+    lifespan_year: float
+    longitude: float
+    manufacturer: list
+    mass_kg: float
+    mass_lb: float
+    mean_anomaly: float
+    mean_motion: float
+    name: str
+    nationality: list
+    norad_id: list
+    orbit: str
+    periapsis_km: float
+    period_min: float
+    raan: float
+    reference_system: str
+    regime: str
+    reused: bool
+    semi_major_axis_km: float
+    type: str
 
 
-@dataclass
-class PayloadLoadMatch:
+class PayloadLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class PayloadListMatch:
-    apoapsis_km: Optional[float] = None
-    arg_of_pericenter: Optional[float] = None
-    customer: Optional[list] = None
-    eccentricity: Optional[float] = None
-    epoch: Optional[str] = None
-    id: Optional[str] = None
-    inclination_deg: Optional[float] = None
-    launch: Optional[str] = None
-    lifespan_year: Optional[float] = None
-    longitude: Optional[float] = None
-    manufacturer: Optional[list] = None
-    mass_kg: Optional[float] = None
-    mass_lb: Optional[float] = None
-    mean_anomaly: Optional[float] = None
-    mean_motion: Optional[float] = None
-    name: Optional[str] = None
-    nationality: Optional[list] = None
-    norad_id: Optional[list] = None
-    orbit: Optional[str] = None
-    periapsis_km: Optional[float] = None
-    period_min: Optional[float] = None
-    raan: Optional[float] = None
-    reference_system: Optional[str] = None
-    regime: Optional[str] = None
-    reused: Optional[bool] = None
-    semi_major_axis_km: Optional[float] = None
-    type: Optional[str] = None
+class PayloadListMatch(TypedDict, total=False):
+    apoapsis_km: float
+    arg_of_pericenter: float
+    customer: list
+    eccentricity: float
+    epoch: str
+    id: str
+    inclination_deg: float
+    launch: str
+    lifespan_year: float
+    longitude: float
+    manufacturer: list
+    mass_kg: float
+    mass_lb: float
+    mean_anomaly: float
+    mean_motion: float
+    name: str
+    nationality: list
+    norad_id: list
+    orbit: str
+    periapsis_km: float
+    period_min: float
+    raan: float
+    reference_system: str
+    regime: str
+    reused: bool
+    semi_major_axis_km: float
+    type: str
 
 
-@dataclass
-class Roadster:
-    apoapsis_au: Optional[float] = None
-    detail: Optional[str] = None
-    earth_distance_km: Optional[float] = None
-    earth_distance_mi: Optional[float] = None
-    eccentricity: Optional[float] = None
-    epoch_jd: Optional[float] = None
-    flickr_image: Optional[list] = None
-    id: Optional[str] = None
-    inclination: Optional[float] = None
-    launch_date_unix: Optional[int] = None
-    launch_date_utc: Optional[str] = None
-    launch_mass_kg: Optional[int] = None
-    launch_mass_lb: Optional[int] = None
-    longitude: Optional[float] = None
-    mars_distance_km: Optional[float] = None
-    mars_distance_mi: Optional[float] = None
-    name: Optional[str] = None
-    norad_id: Optional[int] = None
-    orbit_type: Optional[str] = None
-    periapsis_arg: Optional[float] = None
-    periapsis_au: Optional[float] = None
-    period_day: Optional[float] = None
-    semi_major_axis_au: Optional[float] = None
-    speed_kph: Optional[float] = None
-    speed_mph: Optional[float] = None
-    video: Optional[str] = None
-    wikipedia: Optional[str] = None
+class Roadster(TypedDict, total=False):
+    apoapsis_au: float
+    detail: str
+    earth_distance_km: float
+    earth_distance_mi: float
+    eccentricity: float
+    epoch_jd: float
+    flickr_image: list
+    id: str
+    inclination: float
+    launch_date_unix: int
+    launch_date_utc: str
+    launch_mass_kg: int
+    launch_mass_lb: int
+    longitude: float
+    mars_distance_km: float
+    mars_distance_mi: float
+    name: str
+    norad_id: int
+    orbit_type: str
+    periapsis_arg: float
+    periapsis_au: float
+    period_day: float
+    semi_major_axis_au: float
+    speed_kph: float
+    speed_mph: float
+    video: str
+    wikipedia: str
 
 
-@dataclass
-class RoadsterListMatch:
-    apoapsis_au: Optional[float] = None
-    detail: Optional[str] = None
-    earth_distance_km: Optional[float] = None
-    earth_distance_mi: Optional[float] = None
-    eccentricity: Optional[float] = None
-    epoch_jd: Optional[float] = None
-    flickr_image: Optional[list] = None
-    id: Optional[str] = None
-    inclination: Optional[float] = None
-    launch_date_unix: Optional[int] = None
-    launch_date_utc: Optional[str] = None
-    launch_mass_kg: Optional[int] = None
-    launch_mass_lb: Optional[int] = None
-    longitude: Optional[float] = None
-    mars_distance_km: Optional[float] = None
-    mars_distance_mi: Optional[float] = None
-    name: Optional[str] = None
-    norad_id: Optional[int] = None
-    orbit_type: Optional[str] = None
-    periapsis_arg: Optional[float] = None
-    periapsis_au: Optional[float] = None
-    period_day: Optional[float] = None
-    semi_major_axis_au: Optional[float] = None
-    speed_kph: Optional[float] = None
-    speed_mph: Optional[float] = None
-    video: Optional[str] = None
-    wikipedia: Optional[str] = None
+class RoadsterListMatch(TypedDict, total=False):
+    apoapsis_au: float
+    detail: str
+    earth_distance_km: float
+    earth_distance_mi: float
+    eccentricity: float
+    epoch_jd: float
+    flickr_image: list
+    id: str
+    inclination: float
+    launch_date_unix: int
+    launch_date_utc: str
+    launch_mass_kg: int
+    launch_mass_lb: int
+    longitude: float
+    mars_distance_km: float
+    mars_distance_mi: float
+    name: str
+    norad_id: int
+    orbit_type: str
+    periapsis_arg: float
+    periapsis_au: float
+    period_day: float
+    semi_major_axis_au: float
+    speed_kph: float
+    speed_mph: float
+    video: str
+    wikipedia: str
 
 
-@dataclass
-class Rocket:
-    active: Optional[bool] = None
-    booster: Optional[int] = None
-    company: Optional[str] = None
-    cost_per_launch: Optional[int] = None
-    country: Optional[str] = None
-    description: Optional[str] = None
-    diameter: Optional[dict] = None
-    first_flight: Optional[str] = None
-    flickr_image: Optional[list] = None
-    height: Optional[dict] = None
-    id: Optional[str] = None
-    mass: Optional[dict] = None
-    name: Optional[str] = None
-    stage: Optional[int] = None
-    success_rate_pct: Optional[float] = None
-    type: Optional[str] = None
-    wikipedia: Optional[str] = None
+class Rocket(TypedDict, total=False):
+    active: bool
+    booster: int
+    company: str
+    cost_per_launch: int
+    country: str
+    description: str
+    diameter: dict
+    first_flight: str
+    flickr_image: list
+    height: dict
+    id: str
+    mass: dict
+    name: str
+    stage: int
+    success_rate_pct: float
+    type: str
+    wikipedia: str
 
 
-@dataclass
-class RocketLoadMatch:
+class RocketLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class RocketListMatch:
-    active: Optional[bool] = None
-    booster: Optional[int] = None
-    company: Optional[str] = None
-    cost_per_launch: Optional[int] = None
-    country: Optional[str] = None
-    description: Optional[str] = None
-    diameter: Optional[dict] = None
-    first_flight: Optional[str] = None
-    flickr_image: Optional[list] = None
-    height: Optional[dict] = None
-    id: Optional[str] = None
-    mass: Optional[dict] = None
-    name: Optional[str] = None
-    stage: Optional[int] = None
-    success_rate_pct: Optional[float] = None
-    type: Optional[str] = None
-    wikipedia: Optional[str] = None
+class RocketListMatch(TypedDict, total=False):
+    active: bool
+    booster: int
+    company: str
+    cost_per_launch: int
+    country: str
+    description: str
+    diameter: dict
+    first_flight: str
+    flickr_image: list
+    height: dict
+    id: str
+    mass: dict
+    name: str
+    stage: int
+    success_rate_pct: float
+    type: str
+    wikipedia: str
 
 
-@dataclass
-class Ship:
-    abs: Optional[int] = None
-    course_deg: Optional[float] = None
-    home_port: Optional[str] = None
-    id: Optional[str] = None
-    image: Optional[str] = None
-    imo: Optional[int] = None
-    last_ais_update: Optional[str] = None
-    latitude: Optional[float] = None
-    launch: Optional[list] = None
-    legacy_id: Optional[str] = None
-    link: Optional[str] = None
-    longitude: Optional[float] = None
-    mass_kg: Optional[int] = None
-    mass_lb: Optional[int] = None
-    mmsi: Optional[int] = None
-    model: Optional[str] = None
-    name: Optional[str] = None
-    role: Optional[list] = None
-    speed_kn: Optional[float] = None
-    status: Optional[str] = None
-    type: Optional[str] = None
-    year_built: Optional[int] = None
+class Ship(TypedDict, total=False):
+    abs: int
+    course_deg: float
+    home_port: str
+    id: str
+    image: str
+    imo: int
+    last_ais_update: str
+    latitude: float
+    launch: list
+    legacy_id: str
+    link: str
+    longitude: float
+    mass_kg: int
+    mass_lb: int
+    mmsi: int
+    model: str
+    name: str
+    role: list
+    speed_kn: float
+    status: str
+    type: str
+    year_built: int
 
 
-@dataclass
-class ShipLoadMatch:
+class ShipLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ShipListMatch:
-    abs: Optional[int] = None
-    course_deg: Optional[float] = None
-    home_port: Optional[str] = None
-    id: Optional[str] = None
-    image: Optional[str] = None
-    imo: Optional[int] = None
-    last_ais_update: Optional[str] = None
-    latitude: Optional[float] = None
-    launch: Optional[list] = None
-    legacy_id: Optional[str] = None
-    link: Optional[str] = None
-    longitude: Optional[float] = None
-    mass_kg: Optional[int] = None
-    mass_lb: Optional[int] = None
-    mmsi: Optional[int] = None
-    model: Optional[str] = None
-    name: Optional[str] = None
-    role: Optional[list] = None
-    speed_kn: Optional[float] = None
-    status: Optional[str] = None
-    type: Optional[str] = None
-    year_built: Optional[int] = None
+class ShipListMatch(TypedDict, total=False):
+    abs: int
+    course_deg: float
+    home_port: str
+    id: str
+    image: str
+    imo: int
+    last_ais_update: str
+    latitude: float
+    launch: list
+    legacy_id: str
+    link: str
+    longitude: float
+    mass_kg: int
+    mass_lb: int
+    mmsi: int
+    model: str
+    name: str
+    role: list
+    speed_kn: float
+    status: str
+    type: str
+    year_built: int
 
 
-@dataclass
-class Starlink:
-    height_km: Optional[float] = None
-    id: Optional[str] = None
-    latitude: Optional[float] = None
-    launch: Optional[str] = None
-    longitude: Optional[float] = None
-    space_track: Optional[dict] = None
-    velocity_km: Optional[float] = None
-    version: Optional[str] = None
+class Starlink(TypedDict, total=False):
+    height_km: float
+    id: str
+    latitude: float
+    launch: str
+    longitude: float
+    space_track: dict
+    velocity_km: float
+    version: str
 
 
-@dataclass
-class StarlinkLoadMatch:
+class StarlinkLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class StarlinkListMatch:
-    height_km: Optional[float] = None
-    id: Optional[str] = None
-    latitude: Optional[float] = None
-    launch: Optional[str] = None
-    longitude: Optional[float] = None
-    space_track: Optional[dict] = None
-    velocity_km: Optional[float] = None
-    version: Optional[str] = None
-
+class StarlinkListMatch(TypedDict, total=False):
+    height_km: float
+    id: str
+    latitude: float
+    launch: str
+    longitude: float
+    space_track: dict
+    velocity_km: float
+    version: str

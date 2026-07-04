@@ -29,18 +29,16 @@ require_once 'spacexrest_sdk.php';
 $client = new SpacexRestSDK();
 ```
 
-### 2. List capsules
+### 2. List capsule records
 
 ```php
 try {
-    $result = $client->capsule()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Capsule records — iterate directly.
+    $capsules = $client->Capsule()->list();
+    foreach ($capsules as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -49,9 +47,10 @@ try {
 
 ```php
 try {
-    $result = $client->capsule()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Capsule record (throws on error).
+    $capsule = $client->Capsule()->load(["id" => "example_id"]);
+    print_r($capsule);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -97,13 +96,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = SpacexRestSDK::test();
+$client = SpacexRestSDK::test([
+    "entity" => ["capsule" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->capsule()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$capsule = $client->Capsule()->load(["id" => "test01"]);
+print_r($capsule);
 ```
 
 ### Use a custom fetch function
@@ -528,7 +531,7 @@ API path: `/starlink`
 
 ### Capsule
 
-Create an instance: `const capsule = client.capsule`
+Create an instance: `$capsule = $client->Capsule();`
 
 #### Operations
 
@@ -553,20 +556,22 @@ Create an instance: `const capsule = client.capsule`
 
 #### Example: Load
 
-```ts
-const capsule = await client.capsule.load({ id: 'capsule_id' })
+```php
+// load() returns the bare Capsule record (throws on error).
+$capsule = $client->Capsule()->load(["id" => "capsule_id"]);
 ```
 
 #### Example: List
 
-```ts
-const capsules = await client.capsule.list()
+```php
+// list() returns an array of Capsule records (throws on error).
+$capsules = $client->Capsule()->list();
 ```
 
 
 ### Core
 
-Create an instance: `const core = client.core`
+Create an instance: `$core = $client->Core();`
 
 #### Operations
 
@@ -593,20 +598,22 @@ Create an instance: `const core = client.core`
 
 #### Example: Load
 
-```ts
-const core = await client.core.load({ id: 'core_id' })
+```php
+// load() returns the bare Core record (throws on error).
+$core = $client->Core()->load(["id" => "core_id"]);
 ```
 
 #### Example: List
 
-```ts
-const cores = await client.core.list()
+```php
+// list() returns an array of Core records (throws on error).
+$cores = $client->Core()->list();
 ```
 
 
 ### Crew
 
-Create an instance: `const crew = client.crew`
+Create an instance: `$crew = $client->Crew();`
 
 #### Operations
 
@@ -629,20 +636,22 @@ Create an instance: `const crew = client.crew`
 
 #### Example: Load
 
-```ts
-const crew = await client.crew.load({ id: 'crew_id' })
+```php
+// load() returns the bare Crew record (throws on error).
+$crew = $client->Crew()->load(["id" => "crew_id"]);
 ```
 
 #### Example: List
 
-```ts
-const crews = await client.crew.list()
+```php
+// list() returns an array of Crew records (throws on error).
+$crews = $client->Crew()->list();
 ```
 
 
 ### Landpad
 
-Create an instance: `const landpad = client.landpad`
+Create an instance: `$landpad = $client->Landpad();`
 
 #### Operations
 
@@ -672,20 +681,22 @@ Create an instance: `const landpad = client.landpad`
 
 #### Example: Load
 
-```ts
-const landpad = await client.landpad.load({ id: 'landpad_id' })
+```php
+// load() returns the bare Landpad record (throws on error).
+$landpad = $client->Landpad()->load(["id" => "landpad_id"]);
 ```
 
 #### Example: List
 
-```ts
-const landpads = await client.landpad.list()
+```php
+// list() returns an array of Landpad records (throws on error).
+$landpads = $client->Landpad()->list();
 ```
 
 
 ### Launch
 
-Create an instance: `const launch = client.launch`
+Create an instance: `$launch = $client->Launch();`
 
 #### Operations
 
@@ -735,20 +746,22 @@ Create an instance: `const launch = client.launch`
 
 #### Example: Load
 
-```ts
-const launch = await client.launch.load({ id: 'launch_id' })
+```php
+// load() returns the bare Launch record (throws on error).
+$launch = $client->Launch()->load(["id" => "launch_id"]);
 ```
 
 #### Example: List
 
-```ts
-const launchs = await client.launch.list()
+```php
+// list() returns an array of Launch records (throws on error).
+$launchs = $client->Launch()->list();
 ```
 
 
 ### Launchpad
 
-Create an instance: `const launchpad = client.launchpad`
+Create an instance: `$launchpad = $client->Launchpad();`
 
 #### Operations
 
@@ -777,20 +790,22 @@ Create an instance: `const launchpad = client.launchpad`
 
 #### Example: Load
 
-```ts
-const launchpad = await client.launchpad.load({ id: 'launchpad_id' })
+```php
+// load() returns the bare Launchpad record (throws on error).
+$launchpad = $client->Launchpad()->load(["id" => "launchpad_id"]);
 ```
 
 #### Example: List
 
-```ts
-const launchpads = await client.launchpad.list()
+```php
+// list() returns an array of Launchpad records (throws on error).
+$launchpads = $client->Launchpad()->list();
 ```
 
 
 ### Payload
 
-Create an instance: `const payload = client.payload`
+Create an instance: `$payload = $client->Payload();`
 
 #### Operations
 
@@ -833,20 +848,22 @@ Create an instance: `const payload = client.payload`
 
 #### Example: Load
 
-```ts
-const payload = await client.payload.load({ id: 'payload_id' })
+```php
+// load() returns the bare Payload record (throws on error).
+$payload = $client->Payload()->load(["id" => "payload_id"]);
 ```
 
 #### Example: List
 
-```ts
-const payloads = await client.payload.list()
+```php
+// list() returns an array of Payload records (throws on error).
+$payloads = $client->Payload()->list();
 ```
 
 
 ### Roadster
 
-Create an instance: `const roadster = client.roadster`
+Create an instance: `$roadster = $client->Roadster();`
 
 #### Operations
 
@@ -888,14 +905,15 @@ Create an instance: `const roadster = client.roadster`
 
 #### Example: List
 
-```ts
-const roadsters = await client.roadster.list()
+```php
+// list() returns an array of Roadster records (throws on error).
+$roadsters = $client->Roadster()->list();
 ```
 
 
 ### Rocket
 
-Create an instance: `const rocket = client.rocket`
+Create an instance: `$rocket = $client->Rocket();`
 
 #### Operations
 
@@ -928,20 +946,22 @@ Create an instance: `const rocket = client.rocket`
 
 #### Example: Load
 
-```ts
-const rocket = await client.rocket.load({ id: 'rocket_id' })
+```php
+// load() returns the bare Rocket record (throws on error).
+$rocket = $client->Rocket()->load(["id" => "rocket_id"]);
 ```
 
 #### Example: List
 
-```ts
-const rockets = await client.rocket.list()
+```php
+// list() returns an array of Rocket records (throws on error).
+$rockets = $client->Rocket()->list();
 ```
 
 
 ### Ship
 
-Create an instance: `const ship = client.ship`
+Create an instance: `$ship = $client->Ship();`
 
 #### Operations
 
@@ -980,20 +1000,22 @@ Create an instance: `const ship = client.ship`
 
 #### Example: Load
 
-```ts
-const ship = await client.ship.load({ id: 'ship_id' })
+```php
+// load() returns the bare Ship record (throws on error).
+$ship = $client->Ship()->load(["id" => "ship_id"]);
 ```
 
 #### Example: List
 
-```ts
-const ships = await client.ship.list()
+```php
+// list() returns an array of Ship records (throws on error).
+$ships = $client->Ship()->list();
 ```
 
 
 ### Starlink
 
-Create an instance: `const starlink = client.starlink`
+Create an instance: `$starlink = $client->Starlink();`
 
 #### Operations
 
@@ -1017,14 +1039,16 @@ Create an instance: `const starlink = client.starlink`
 
 #### Example: Load
 
-```ts
-const starlink = await client.starlink.load({ id: 'starlink_id' })
+```php
+// load() returns the bare Starlink record (throws on error).
+$starlink = $client->Starlink()->load(["id" => "starlink_id"]);
 ```
 
 #### Example: List
 
-```ts
-const starlinks = await client.starlink.list()
+```php
+// list() returns an array of Starlink records (throws on error).
+$starlinks = $client->Starlink()->list();
 ```
 
 
@@ -1099,7 +1123,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$capsule = $client->capsule();
+$capsule = $client->Capsule();
 $capsule->load(["id" => "example_id"]);
 
 // $capsule->dataGet() now returns the loaded capsule data

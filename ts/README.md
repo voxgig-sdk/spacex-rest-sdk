@@ -28,25 +28,28 @@ import { SpacexRestSDK } from '@voxgig-sdk/spacex-rest'
 const client = new SpacexRestSDK()
 ```
 
-### 2. List capsules
+### 2. List capsule records
+
+`list()` resolves to an array of Capsule objects — iterate it directly:
 
 ```ts
-const result = await client.capsule.list()
+const capsules = await client.Capsule().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const capsule of capsules) {
+  console.log(capsule)
 }
 ```
 
 ### 3. Load a capsule
 
-```ts
-const result = await client.capsule.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const capsule = await client.Capsule().load({ id: 'example_id' })
+  console.log(capsule)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -64,6 +67,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -92,9 +98,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = SpacexRestSDK.test()
 
-const result = await client.capsule.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const capsule = await client.Capsule().load({ id: 'test01' })
+// capsule is a bare entity populated with mock response data
+console.log(capsule)
 ```
 
 You can also use the instance method:
@@ -109,7 +115,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.capsule
+const entity = client.Capsule()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -214,29 +220,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): SpacexRestSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -564,7 +571,7 @@ API path: `/starlink`
 
 ### Capsule
 
-Create an instance: `const capsule = client.capsule`
+Create an instance: `const capsule = client.Capsule()`
 
 #### Operations
 
@@ -590,19 +597,19 @@ Create an instance: `const capsule = client.capsule`
 #### Example: Load
 
 ```ts
-const capsule = await client.capsule.load({ id: 'capsule_id' })
+const capsule = await client.Capsule().load({ id: 'capsule_id' })
 ```
 
 #### Example: List
 
 ```ts
-const capsules = await client.capsule.list()
+const capsules = await client.Capsule().list()
 ```
 
 
 ### Core
 
-Create an instance: `const core = client.core`
+Create an instance: `const core = client.Core()`
 
 #### Operations
 
@@ -630,19 +637,19 @@ Create an instance: `const core = client.core`
 #### Example: Load
 
 ```ts
-const core = await client.core.load({ id: 'core_id' })
+const core = await client.Core().load({ id: 'core_id' })
 ```
 
 #### Example: List
 
 ```ts
-const cores = await client.core.list()
+const cores = await client.Core().list()
 ```
 
 
 ### Crew
 
-Create an instance: `const crew = client.crew`
+Create an instance: `const crew = client.Crew()`
 
 #### Operations
 
@@ -666,19 +673,19 @@ Create an instance: `const crew = client.crew`
 #### Example: Load
 
 ```ts
-const crew = await client.crew.load({ id: 'crew_id' })
+const crew = await client.Crew().load({ id: 'crew_id' })
 ```
 
 #### Example: List
 
 ```ts
-const crews = await client.crew.list()
+const crews = await client.Crew().list()
 ```
 
 
 ### Landpad
 
-Create an instance: `const landpad = client.landpad`
+Create an instance: `const landpad = client.Landpad()`
 
 #### Operations
 
@@ -709,19 +716,19 @@ Create an instance: `const landpad = client.landpad`
 #### Example: Load
 
 ```ts
-const landpad = await client.landpad.load({ id: 'landpad_id' })
+const landpad = await client.Landpad().load({ id: 'landpad_id' })
 ```
 
 #### Example: List
 
 ```ts
-const landpads = await client.landpad.list()
+const landpads = await client.Landpad().list()
 ```
 
 
 ### Launch
 
-Create an instance: `const launch = client.launch`
+Create an instance: `const launch = client.Launch()`
 
 #### Operations
 
@@ -772,19 +779,19 @@ Create an instance: `const launch = client.launch`
 #### Example: Load
 
 ```ts
-const launch = await client.launch.load({ id: 'launch_id' })
+const launch = await client.Launch().load({ id: 'launch_id' })
 ```
 
 #### Example: List
 
 ```ts
-const launchs = await client.launch.list()
+const launchs = await client.Launch().list()
 ```
 
 
 ### Launchpad
 
-Create an instance: `const launchpad = client.launchpad`
+Create an instance: `const launchpad = client.Launchpad()`
 
 #### Operations
 
@@ -814,19 +821,19 @@ Create an instance: `const launchpad = client.launchpad`
 #### Example: Load
 
 ```ts
-const launchpad = await client.launchpad.load({ id: 'launchpad_id' })
+const launchpad = await client.Launchpad().load({ id: 'launchpad_id' })
 ```
 
 #### Example: List
 
 ```ts
-const launchpads = await client.launchpad.list()
+const launchpads = await client.Launchpad().list()
 ```
 
 
 ### Payload
 
-Create an instance: `const payload = client.payload`
+Create an instance: `const payload = client.Payload()`
 
 #### Operations
 
@@ -870,19 +877,19 @@ Create an instance: `const payload = client.payload`
 #### Example: Load
 
 ```ts
-const payload = await client.payload.load({ id: 'payload_id' })
+const payload = await client.Payload().load({ id: 'payload_id' })
 ```
 
 #### Example: List
 
 ```ts
-const payloads = await client.payload.list()
+const payloads = await client.Payload().list()
 ```
 
 
 ### Roadster
 
-Create an instance: `const roadster = client.roadster`
+Create an instance: `const roadster = client.Roadster()`
 
 #### Operations
 
@@ -925,13 +932,13 @@ Create an instance: `const roadster = client.roadster`
 #### Example: List
 
 ```ts
-const roadsters = await client.roadster.list()
+const roadsters = await client.Roadster().list()
 ```
 
 
 ### Rocket
 
-Create an instance: `const rocket = client.rocket`
+Create an instance: `const rocket = client.Rocket()`
 
 #### Operations
 
@@ -965,19 +972,19 @@ Create an instance: `const rocket = client.rocket`
 #### Example: Load
 
 ```ts
-const rocket = await client.rocket.load({ id: 'rocket_id' })
+const rocket = await client.Rocket().load({ id: 'rocket_id' })
 ```
 
 #### Example: List
 
 ```ts
-const rockets = await client.rocket.list()
+const rockets = await client.Rocket().list()
 ```
 
 
 ### Ship
 
-Create an instance: `const ship = client.ship`
+Create an instance: `const ship = client.Ship()`
 
 #### Operations
 
@@ -1017,19 +1024,19 @@ Create an instance: `const ship = client.ship`
 #### Example: Load
 
 ```ts
-const ship = await client.ship.load({ id: 'ship_id' })
+const ship = await client.Ship().load({ id: 'ship_id' })
 ```
 
 #### Example: List
 
 ```ts
-const ships = await client.ship.list()
+const ships = await client.Ship().list()
 ```
 
 
 ### Starlink
 
-Create an instance: `const starlink = client.starlink`
+Create an instance: `const starlink = client.Starlink()`
 
 #### Operations
 
@@ -1054,13 +1061,13 @@ Create an instance: `const starlink = client.starlink`
 #### Example: Load
 
 ```ts
-const starlink = await client.starlink.load({ id: 'starlink_id' })
+const starlink = await client.Starlink().load({ id: 'starlink_id' })
 ```
 
 #### Example: List
 
 ```ts
-const starlinks = await client.starlink.list()
+const starlinks = await client.Starlink().list()
 ```
 
 
@@ -1131,7 +1138,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const capsule = client.capsule
+const capsule = client.Capsule()
 await capsule.load({ id: "example_id" })
 
 // capsule.data() now returns the loaded capsule data

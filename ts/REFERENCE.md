@@ -229,7 +229,7 @@ Alias for `SpacexRestSDK.test()`.
 ## CapsuleEntity
 
 ```ts
-const capsule = client.capsule
+const capsule = client.Capsule()
 ```
 
 ### Fields
@@ -253,7 +253,7 @@ const capsule = client.capsule
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.capsule.list()
+const results = await client.Capsule().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -261,7 +261,7 @@ const results = await client.capsule.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.capsule.load({ id: 'capsule_id' })
+const result = await client.Capsule().load({ id: 'capsule_id' })
 ```
 
 ### Common Methods
@@ -295,7 +295,7 @@ Return a copy of the entity options.
 ## CoreEntity
 
 ```ts
-const core = client.core
+const core = client.Core()
 ```
 
 ### Fields
@@ -321,7 +321,7 @@ const core = client.core
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.core.list()
+const results = await client.Core().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -329,7 +329,7 @@ const results = await client.core.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.core.load({ id: 'core_id' })
+const result = await client.Core().load({ id: 'core_id' })
 ```
 
 ### Common Methods
@@ -363,7 +363,7 @@ Return a copy of the entity options.
 ## CrewEntity
 
 ```ts
-const crew = client.crew
+const crew = client.Crew()
 ```
 
 ### Fields
@@ -385,7 +385,7 @@ const crew = client.crew
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.crew.list()
+const results = await client.Crew().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -393,7 +393,7 @@ const results = await client.crew.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.crew.load({ id: 'crew_id' })
+const result = await client.Crew().load({ id: 'crew_id' })
 ```
 
 ### Common Methods
@@ -427,7 +427,7 @@ Return a copy of the entity options.
 ## LandpadEntity
 
 ```ts
-const landpad = client.landpad
+const landpad = client.Landpad()
 ```
 
 ### Fields
@@ -456,7 +456,7 @@ const landpad = client.landpad
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.landpad.list()
+const results = await client.Landpad().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -464,7 +464,7 @@ const results = await client.landpad.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.landpad.load({ id: 'landpad_id' })
+const result = await client.Landpad().load({ id: 'landpad_id' })
 ```
 
 ### Common Methods
@@ -498,7 +498,7 @@ Return a copy of the entity options.
 ## LaunchEntity
 
 ```ts
-const launch = client.launch
+const launch = client.Launch()
 ```
 
 ### Fields
@@ -547,7 +547,7 @@ const launch = client.launch
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.launch.list()
+const results = await client.Launch().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -555,7 +555,7 @@ const results = await client.launch.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.launch.load({ id: 'launch_id' })
+const result = await client.Launch().load({ id: 'launch_id' })
 ```
 
 ### Common Methods
@@ -589,7 +589,7 @@ Return a copy of the entity options.
 ## LaunchpadEntity
 
 ```ts
-const launchpad = client.launchpad
+const launchpad = client.Launchpad()
 ```
 
 ### Fields
@@ -617,7 +617,7 @@ const launchpad = client.launchpad
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.launchpad.list()
+const results = await client.Launchpad().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -625,7 +625,7 @@ const results = await client.launchpad.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.launchpad.load({ id: 'launchpad_id' })
+const result = await client.Launchpad().load({ id: 'launchpad_id' })
 ```
 
 ### Common Methods
@@ -659,7 +659,7 @@ Return a copy of the entity options.
 ## PayloadEntity
 
 ```ts
-const payload = client.payload
+const payload = client.Payload()
 ```
 
 ### Fields
@@ -701,7 +701,7 @@ const payload = client.payload
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.payload.list()
+const results = await client.Payload().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -709,7 +709,7 @@ const results = await client.payload.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.payload.load({ id: 'payload_id' })
+const result = await client.Payload().load({ id: 'payload_id' })
 ```
 
 ### Common Methods
@@ -743,7 +743,7 @@ Return a copy of the entity options.
 ## RoadsterEntity
 
 ```ts
-const roadster = client.roadster
+const roadster = client.Roadster()
 ```
 
 ### Fields
@@ -785,7 +785,7 @@ const roadster = client.roadster
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.roadster.list()
+const results = await client.Roadster().list()
 ```
 
 ### Common Methods
@@ -819,7 +819,7 @@ Return a copy of the entity options.
 ## RocketEntity
 
 ```ts
-const rocket = client.rocket
+const rocket = client.Rocket()
 ```
 
 ### Fields
@@ -851,7 +851,7 @@ const rocket = client.rocket
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.rocket.list()
+const results = await client.Rocket().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -859,7 +859,7 @@ const results = await client.rocket.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.rocket.load({ id: 'rocket_id' })
+const result = await client.Rocket().load({ id: 'rocket_id' })
 ```
 
 ### Common Methods
@@ -893,7 +893,7 @@ Return a copy of the entity options.
 ## ShipEntity
 
 ```ts
-const ship = client.ship
+const ship = client.Ship()
 ```
 
 ### Fields
@@ -931,7 +931,7 @@ const ship = client.ship
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.ship.list()
+const results = await client.Ship().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -939,7 +939,7 @@ const results = await client.ship.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.ship.load({ id: 'ship_id' })
+const result = await client.Ship().load({ id: 'ship_id' })
 ```
 
 ### Common Methods
@@ -973,7 +973,7 @@ Return a copy of the entity options.
 ## StarlinkEntity
 
 ```ts
-const starlink = client.starlink
+const starlink = client.Starlink()
 ```
 
 ### Fields
@@ -996,7 +996,7 @@ const starlink = client.starlink
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.starlink.list()
+const results = await client.Starlink().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -1004,7 +1004,7 @@ const results = await client.starlink.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.starlink.load({ id: 'starlink_id' })
+const result = await client.Starlink().load({ id: 'starlink_id' })
 ```
 
 ### Common Methods

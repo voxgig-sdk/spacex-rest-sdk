@@ -233,10 +233,10 @@ class SpacexRestSDK
 
     private $_capsule = null;
 
-    // Idiomatic facade: $client->capsule()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Capsule() (PHP method
-    // names are case-insensitive).
-    public function capsule($data = null)
+    // Canonical facade: $client->Capsule()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->capsule()
+    // resolves here too.
+    public function Capsule($data = null)
     {
         require_once __DIR__ . '/entity/capsule_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class SpacexRestSDK
 
     private $_core = null;
 
-    // Idiomatic facade: $client->core()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Core() (PHP method
-    // names are case-insensitive).
-    public function core($data = null)
+    // Canonical facade: $client->Core()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->core()
+    // resolves here too.
+    public function Core($data = null)
     {
         require_once __DIR__ . '/entity/core_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class SpacexRestSDK
 
     private $_crew = null;
 
-    // Idiomatic facade: $client->crew()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Crew() (PHP method
-    // names are case-insensitive).
-    public function crew($data = null)
+    // Canonical facade: $client->Crew()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->crew()
+    // resolves here too.
+    public function Crew($data = null)
     {
         require_once __DIR__ . '/entity/crew_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class SpacexRestSDK
 
     private $_landpad = null;
 
-    // Idiomatic facade: $client->landpad()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Landpad() (PHP method
-    // names are case-insensitive).
-    public function landpad($data = null)
+    // Canonical facade: $client->Landpad()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->landpad()
+    // resolves here too.
+    public function Landpad($data = null)
     {
         require_once __DIR__ . '/entity/landpad_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class SpacexRestSDK
 
     private $_launch = null;
 
-    // Idiomatic facade: $client->launch()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Launch() (PHP method
-    // names are case-insensitive).
-    public function launch($data = null)
+    // Canonical facade: $client->Launch()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->launch()
+    // resolves here too.
+    public function Launch($data = null)
     {
         require_once __DIR__ . '/entity/launch_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class SpacexRestSDK
 
     private $_launchpad = null;
 
-    // Idiomatic facade: $client->launchpad()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Launchpad() (PHP method
-    // names are case-insensitive).
-    public function launchpad($data = null)
+    // Canonical facade: $client->Launchpad()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->launchpad()
+    // resolves here too.
+    public function Launchpad($data = null)
     {
         require_once __DIR__ . '/entity/launchpad_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class SpacexRestSDK
 
     private $_payload = null;
 
-    // Idiomatic facade: $client->payload()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Payload() (PHP method
-    // names are case-insensitive).
-    public function payload($data = null)
+    // Canonical facade: $client->Payload()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->payload()
+    // resolves here too.
+    public function Payload($data = null)
     {
         require_once __DIR__ . '/entity/payload_entity.php';
         if ($data === null) {
@@ -359,10 +359,10 @@ class SpacexRestSDK
 
     private $_roadster = null;
 
-    // Idiomatic facade: $client->roadster()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Roadster() (PHP method
-    // names are case-insensitive).
-    public function roadster($data = null)
+    // Canonical facade: $client->Roadster()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->roadster()
+    // resolves here too.
+    public function Roadster($data = null)
     {
         require_once __DIR__ . '/entity/roadster_entity.php';
         if ($data === null) {
@@ -377,10 +377,10 @@ class SpacexRestSDK
 
     private $_rocket = null;
 
-    // Idiomatic facade: $client->rocket()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Rocket() (PHP method
-    // names are case-insensitive).
-    public function rocket($data = null)
+    // Canonical facade: $client->Rocket()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->rocket()
+    // resolves here too.
+    public function Rocket($data = null)
     {
         require_once __DIR__ . '/entity/rocket_entity.php';
         if ($data === null) {
@@ -395,10 +395,10 @@ class SpacexRestSDK
 
     private $_ship = null;
 
-    // Idiomatic facade: $client->ship()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Ship() (PHP method
-    // names are case-insensitive).
-    public function ship($data = null)
+    // Canonical facade: $client->Ship()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->ship()
+    // resolves here too.
+    public function Ship($data = null)
     {
         require_once __DIR__ . '/entity/ship_entity.php';
         if ($data === null) {
@@ -413,10 +413,10 @@ class SpacexRestSDK
 
     private $_starlink = null;
 
-    // Idiomatic facade: $client->starlink()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Starlink() (PHP method
-    // names are case-insensitive).
-    public function starlink($data = null)
+    // Canonical facade: $client->Starlink()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->starlink()
+    // resolves here too.
+    public function Starlink($data = null)
     {
         require_once __DIR__ . '/entity/starlink_entity.php';
         if ($data === null) {

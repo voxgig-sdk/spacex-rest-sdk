@@ -31,26 +31,26 @@ local sdk = require("spacex-rest_sdk")
 local client = sdk.new()
 ```
 
-### 2. List capsules
+### 2. List capsule records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:capsule():list()
+local capsules, err = client:Capsule():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(capsules) do
+  print(item["id"], item["name"])
 end
 ```
 
 ### 3. Load a capsule
 
 ```lua
-local result, err = client:capsule():load({ id = "example_id" })
+local capsule, err = client:Capsule():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(capsule)
 ```
 
 
@@ -96,8 +96,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:capsule():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Capsule():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -207,17 +207,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local capsule, err = client:Capsule():load({ id = "example_id" })
+    if err then error(err) end
+    -- capsule is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -517,7 +522,7 @@ API path: `/starlink`
 
 ### Capsule
 
-Create an instance: `const capsule = client.capsule`
+Create an instance: `local capsule = client:Capsule(nil)`
 
 #### Operations
 
@@ -542,20 +547,20 @@ Create an instance: `const capsule = client.capsule`
 
 #### Example: Load
 
-```ts
-const capsule = await client.capsule.load({ id: 'capsule_id' })
+```lua
+local capsule, err = client:Capsule():load({ id = "capsule_id" })
 ```
 
 #### Example: List
 
-```ts
-const capsules = await client.capsule.list()
+```lua
+local capsules, err = client:Capsule():list()
 ```
 
 
 ### Core
 
-Create an instance: `const core = client.core`
+Create an instance: `local core = client:Core(nil)`
 
 #### Operations
 
@@ -582,20 +587,20 @@ Create an instance: `const core = client.core`
 
 #### Example: Load
 
-```ts
-const core = await client.core.load({ id: 'core_id' })
+```lua
+local core, err = client:Core():load({ id = "core_id" })
 ```
 
 #### Example: List
 
-```ts
-const cores = await client.core.list()
+```lua
+local cores, err = client:Core():list()
 ```
 
 
 ### Crew
 
-Create an instance: `const crew = client.crew`
+Create an instance: `local crew = client:Crew(nil)`
 
 #### Operations
 
@@ -618,20 +623,20 @@ Create an instance: `const crew = client.crew`
 
 #### Example: Load
 
-```ts
-const crew = await client.crew.load({ id: 'crew_id' })
+```lua
+local crew, err = client:Crew():load({ id = "crew_id" })
 ```
 
 #### Example: List
 
-```ts
-const crews = await client.crew.list()
+```lua
+local crews, err = client:Crew():list()
 ```
 
 
 ### Landpad
 
-Create an instance: `const landpad = client.landpad`
+Create an instance: `local landpad = client:Landpad(nil)`
 
 #### Operations
 
@@ -661,20 +666,20 @@ Create an instance: `const landpad = client.landpad`
 
 #### Example: Load
 
-```ts
-const landpad = await client.landpad.load({ id: 'landpad_id' })
+```lua
+local landpad, err = client:Landpad():load({ id = "landpad_id" })
 ```
 
 #### Example: List
 
-```ts
-const landpads = await client.landpad.list()
+```lua
+local landpads, err = client:Landpad():list()
 ```
 
 
 ### Launch
 
-Create an instance: `const launch = client.launch`
+Create an instance: `local launch = client:Launch(nil)`
 
 #### Operations
 
@@ -724,20 +729,20 @@ Create an instance: `const launch = client.launch`
 
 #### Example: Load
 
-```ts
-const launch = await client.launch.load({ id: 'launch_id' })
+```lua
+local launch, err = client:Launch():load({ id = "launch_id" })
 ```
 
 #### Example: List
 
-```ts
-const launchs = await client.launch.list()
+```lua
+local launchs, err = client:Launch():list()
 ```
 
 
 ### Launchpad
 
-Create an instance: `const launchpad = client.launchpad`
+Create an instance: `local launchpad = client:Launchpad(nil)`
 
 #### Operations
 
@@ -766,20 +771,20 @@ Create an instance: `const launchpad = client.launchpad`
 
 #### Example: Load
 
-```ts
-const launchpad = await client.launchpad.load({ id: 'launchpad_id' })
+```lua
+local launchpad, err = client:Launchpad():load({ id = "launchpad_id" })
 ```
 
 #### Example: List
 
-```ts
-const launchpads = await client.launchpad.list()
+```lua
+local launchpads, err = client:Launchpad():list()
 ```
 
 
 ### Payload
 
-Create an instance: `const payload = client.payload`
+Create an instance: `local payload = client:Payload(nil)`
 
 #### Operations
 
@@ -822,20 +827,20 @@ Create an instance: `const payload = client.payload`
 
 #### Example: Load
 
-```ts
-const payload = await client.payload.load({ id: 'payload_id' })
+```lua
+local payload, err = client:Payload():load({ id = "payload_id" })
 ```
 
 #### Example: List
 
-```ts
-const payloads = await client.payload.list()
+```lua
+local payloads, err = client:Payload():list()
 ```
 
 
 ### Roadster
 
-Create an instance: `const roadster = client.roadster`
+Create an instance: `local roadster = client:Roadster(nil)`
 
 #### Operations
 
@@ -877,14 +882,14 @@ Create an instance: `const roadster = client.roadster`
 
 #### Example: List
 
-```ts
-const roadsters = await client.roadster.list()
+```lua
+local roadsters, err = client:Roadster():list()
 ```
 
 
 ### Rocket
 
-Create an instance: `const rocket = client.rocket`
+Create an instance: `local rocket = client:Rocket(nil)`
 
 #### Operations
 
@@ -917,20 +922,20 @@ Create an instance: `const rocket = client.rocket`
 
 #### Example: Load
 
-```ts
-const rocket = await client.rocket.load({ id: 'rocket_id' })
+```lua
+local rocket, err = client:Rocket():load({ id = "rocket_id" })
 ```
 
 #### Example: List
 
-```ts
-const rockets = await client.rocket.list()
+```lua
+local rockets, err = client:Rocket():list()
 ```
 
 
 ### Ship
 
-Create an instance: `const ship = client.ship`
+Create an instance: `local ship = client:Ship(nil)`
 
 #### Operations
 
@@ -969,20 +974,20 @@ Create an instance: `const ship = client.ship`
 
 #### Example: Load
 
-```ts
-const ship = await client.ship.load({ id: 'ship_id' })
+```lua
+local ship, err = client:Ship():load({ id = "ship_id" })
 ```
 
 #### Example: List
 
-```ts
-const ships = await client.ship.list()
+```lua
+local ships, err = client:Ship():list()
 ```
 
 
 ### Starlink
 
-Create an instance: `const starlink = client.starlink`
+Create an instance: `local starlink = client:Starlink(nil)`
 
 #### Operations
 
@@ -1006,14 +1011,14 @@ Create an instance: `const starlink = client.starlink`
 
 #### Example: Load
 
-```ts
-const starlink = await client.starlink.load({ id: 'starlink_id' })
+```lua
+local starlink, err = client:Starlink():load({ id = "starlink_id" })
 ```
 
 #### Example: List
 
-```ts
-const starlinks = await client.starlink.list()
+```lua
+local starlinks, err = client:Starlink():list()
 ```
 
 
@@ -1088,7 +1093,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local capsule = client:capsule()
+local capsule = client:Capsule()
 capsule:load({ id = "example_id" })
 
 -- capsule:data_get() now returns the loaded capsule data

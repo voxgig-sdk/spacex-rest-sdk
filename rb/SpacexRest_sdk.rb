@@ -208,143 +208,77 @@ class SpacexRestSDK
   end
 
 
-  # Idiomatic facade: client.capsule.list / client.capsule.load({ "id" => ... })
-  def capsule
-    require_relative 'entity/capsule_entity'
-    @capsule ||= CapsuleEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.capsule instead.
+  # Canonical facade: client.Capsule.list / client.Capsule.load({ "id" => ... })
   def Capsule(data = nil)
     require_relative 'entity/capsule_entity'
     CapsuleEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.core.list / client.core.load({ "id" => ... })
-  def core
-    require_relative 'entity/core_entity'
-    @core ||= CoreEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.core instead.
+  # Canonical facade: client.Core.list / client.Core.load({ "id" => ... })
   def Core(data = nil)
     require_relative 'entity/core_entity'
     CoreEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.crew.list / client.crew.load({ "id" => ... })
-  def crew
-    require_relative 'entity/crew_entity'
-    @crew ||= CrewEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.crew instead.
+  # Canonical facade: client.Crew.list / client.Crew.load({ "id" => ... })
   def Crew(data = nil)
     require_relative 'entity/crew_entity'
     CrewEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.landpad.list / client.landpad.load({ "id" => ... })
-  def landpad
-    require_relative 'entity/landpad_entity'
-    @landpad ||= LandpadEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.landpad instead.
+  # Canonical facade: client.Landpad.list / client.Landpad.load({ "id" => ... })
   def Landpad(data = nil)
     require_relative 'entity/landpad_entity'
     LandpadEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.launch.list / client.launch.load({ "id" => ... })
-  def launch
-    require_relative 'entity/launch_entity'
-    @launch ||= LaunchEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.launch instead.
+  # Canonical facade: client.Launch.list / client.Launch.load({ "id" => ... })
   def Launch(data = nil)
     require_relative 'entity/launch_entity'
     LaunchEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.launchpad.list / client.launchpad.load({ "id" => ... })
-  def launchpad
-    require_relative 'entity/launchpad_entity'
-    @launchpad ||= LaunchpadEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.launchpad instead.
+  # Canonical facade: client.Launchpad.list / client.Launchpad.load({ "id" => ... })
   def Launchpad(data = nil)
     require_relative 'entity/launchpad_entity'
     LaunchpadEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.payload.list / client.payload.load({ "id" => ... })
-  def payload
-    require_relative 'entity/payload_entity'
-    @payload ||= PayloadEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.payload instead.
+  # Canonical facade: client.Payload.list / client.Payload.load({ "id" => ... })
   def Payload(data = nil)
     require_relative 'entity/payload_entity'
     PayloadEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.roadster.list / client.roadster.load({ "id" => ... })
-  def roadster
-    require_relative 'entity/roadster_entity'
-    @roadster ||= RoadsterEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.roadster instead.
+  # Canonical facade: client.Roadster.list / client.Roadster.load({ "id" => ... })
   def Roadster(data = nil)
     require_relative 'entity/roadster_entity'
     RoadsterEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.rocket.list / client.rocket.load({ "id" => ... })
-  def rocket
-    require_relative 'entity/rocket_entity'
-    @rocket ||= RocketEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.rocket instead.
+  # Canonical facade: client.Rocket.list / client.Rocket.load({ "id" => ... })
   def Rocket(data = nil)
     require_relative 'entity/rocket_entity'
     RocketEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.ship.list / client.ship.load({ "id" => ... })
-  def ship
-    require_relative 'entity/ship_entity'
-    @ship ||= ShipEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.ship instead.
+  # Canonical facade: client.Ship.list / client.Ship.load({ "id" => ... })
   def Ship(data = nil)
     require_relative 'entity/ship_entity'
     ShipEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.starlink.list / client.starlink.load({ "id" => ... })
-  def starlink
-    require_relative 'entity/starlink_entity'
-    @starlink ||= StarlinkEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.starlink instead.
+  # Canonical facade: client.Starlink.list / client.Starlink.load({ "id" => ... })
   def Starlink(data = nil)
     require_relative 'entity/starlink_entity'
     StarlinkEntity.new(self, data)
