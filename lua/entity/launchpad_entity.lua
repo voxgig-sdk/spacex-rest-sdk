@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch LaunchpadLoadMatch
+---@param ctrl? table
+---@return Launchpad
+---@return string? err
 function LaunchpadEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch LaunchpadListMatch
+---@param ctrl? table
+---@return Launchpad[]
+---@return string? err
 function LaunchpadEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -117,14 +117,12 @@ function capsule_direct_setup(mockres)
   local env = runner.env_override({
     ["SPACEXREST_TEST_CAPSULE_ENTID"] = {},
     ["SPACEXREST_TEST_LIVE"] = "FALSE",
-    ["SPACEXREST_APIKEY"] = "NONE",
   })
 
   local live = env["SPACEXREST_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["SPACEXREST_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

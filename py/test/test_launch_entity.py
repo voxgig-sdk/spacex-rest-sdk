@@ -50,16 +50,14 @@ class TestLaunchEntity:
         launch_ref01_ent = client.Launch(None)
         launch_ref01_match = {}
 
-        launch_ref01_list_result, err = launch_ref01_ent.list(launch_ref01_match, None)
-        assert err is None
+        launch_ref01_list_result = launch_ref01_ent.list(launch_ref01_match, None)
         assert isinstance(launch_ref01_list_result, list)
 
         # LOAD
         launch_ref01_match_dt0 = {
             "id": launch_ref01_data["id"],
         }
-        launch_ref01_data_dt0_loaded, err = launch_ref01_ent.load(launch_ref01_match_dt0, None)
-        assert err is None
+        launch_ref01_data_dt0_loaded = launch_ref01_ent.load(launch_ref01_match_dt0, None)
         launch_ref01_data_dt0_load_result = helpers.to_map(launch_ref01_data_dt0_loaded)
         assert launch_ref01_data_dt0_load_result is not None
         assert launch_ref01_data_dt0_load_result["id"] == launch_ref01_data["id"]
@@ -102,7 +100,6 @@ def _launch_basic_setup(extra):
         "SPACEXREST_TEST_LAUNCH_ENTID": idmap,
         "SPACEXREST_TEST_LIVE": "FALSE",
         "SPACEXREST_TEST_EXPLAIN": "FALSE",
-        "SPACEXREST_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _launch_basic_setup(extra):
     if env.get("SPACEXREST_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SPACEXREST_APIKEY"),
             },
             extra or {},
         ])

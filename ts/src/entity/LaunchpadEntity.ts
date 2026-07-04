@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Launchpad,
+  LaunchpadLoadMatch,
+  LaunchpadListMatch,
+} from '../SpacexRestTypes'
 
 // TODO: needs Entity superclass
-class LaunchpadEntity extends SpacexRestEntityBase {
+class LaunchpadEntity extends SpacexRestEntityBase<Launchpad> {
 
   constructor(client: SpacexRestSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class LaunchpadEntity extends SpacexRestEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: LaunchpadLoadMatch, ctrl?: Control): Promise<Launchpad> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class LaunchpadEntity extends SpacexRestEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Launchpad> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: LaunchpadListMatch, ctrl?: Control): Promise<Launchpad[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class LaunchpadEntity extends SpacexRestEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Launchpad[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

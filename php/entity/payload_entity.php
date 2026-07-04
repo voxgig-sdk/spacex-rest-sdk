@@ -55,6 +55,9 @@ class PayloadEntity
         return new PayloadEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Payload|array $args Payload data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class PayloadEntity
         }
     }
 
+    /**
+     * @return Payload|array The current Payload data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Payload fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class PayloadEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Payload fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class PayloadEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Payload.
+     *
+     * @param PayloadLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed PayloadLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Payload|array The loaded Payload as an assoc-array at the
+     *   SDK boundary; throws SpacexRestError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class PayloadEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Payload items matching the given filter.
+     *
+     * @param PayloadListMatch|array|null $reqmatch Match filter (any subset
+     *   of Payload fields) as an assoc-array; PayloadListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Payload[]|array A list of Payload items as assoc-arrays at
+     *   the SDK boundary; throws SpacexRestError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class PayloadEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

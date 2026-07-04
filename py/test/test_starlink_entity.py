@@ -50,16 +50,14 @@ class TestStarlinkEntity:
         starlink_ref01_ent = client.Starlink(None)
         starlink_ref01_match = {}
 
-        starlink_ref01_list_result, err = starlink_ref01_ent.list(starlink_ref01_match, None)
-        assert err is None
+        starlink_ref01_list_result = starlink_ref01_ent.list(starlink_ref01_match, None)
         assert isinstance(starlink_ref01_list_result, list)
 
         # LOAD
         starlink_ref01_match_dt0 = {
             "id": starlink_ref01_data["id"],
         }
-        starlink_ref01_data_dt0_loaded, err = starlink_ref01_ent.load(starlink_ref01_match_dt0, None)
-        assert err is None
+        starlink_ref01_data_dt0_loaded = starlink_ref01_ent.load(starlink_ref01_match_dt0, None)
         starlink_ref01_data_dt0_load_result = helpers.to_map(starlink_ref01_data_dt0_loaded)
         assert starlink_ref01_data_dt0_load_result is not None
         assert starlink_ref01_data_dt0_load_result["id"] == starlink_ref01_data["id"]
@@ -102,7 +100,6 @@ def _starlink_basic_setup(extra):
         "SPACEXREST_TEST_STARLINK_ENTID": idmap,
         "SPACEXREST_TEST_LIVE": "FALSE",
         "SPACEXREST_TEST_EXPLAIN": "FALSE",
-        "SPACEXREST_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _starlink_basic_setup(extra):
     if env.get("SPACEXREST_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SPACEXREST_APIKEY"),
             },
             extra or {},
         ])

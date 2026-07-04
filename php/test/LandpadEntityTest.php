@@ -50,16 +50,14 @@ class LandpadEntityTest extends TestCase
         $landpad_ref01_ent = $client->Landpad(null);
         $landpad_ref01_match = [];
 
-        [$landpad_ref01_list_result, $err] = $landpad_ref01_ent->list($landpad_ref01_match, null);
-        $this->assertNull($err);
+        $landpad_ref01_list_result = $landpad_ref01_ent->list($landpad_ref01_match, null);
         $this->assertIsArray($landpad_ref01_list_result);
 
         // LOAD
         $landpad_ref01_match_dt0 = [
             "id" => $landpad_ref01_data["id"],
         ];
-        [$landpad_ref01_data_dt0_loaded, $err] = $landpad_ref01_ent->load($landpad_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $landpad_ref01_data_dt0_loaded = $landpad_ref01_ent->load($landpad_ref01_match_dt0, null);
         $landpad_ref01_data_dt0_load_result = Helpers::to_map($landpad_ref01_data_dt0_loaded);
         $this->assertNotNull($landpad_ref01_data_dt0_load_result);
         $this->assertEquals($landpad_ref01_data_dt0_load_result["id"], $landpad_ref01_data["id"]);
@@ -96,7 +94,6 @@ function landpad_basic_setup($extra)
         "SPACEXREST_TEST_LANDPAD_ENTID" => $idmap,
         "SPACEXREST_TEST_LIVE" => "FALSE",
         "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-        "SPACEXREST_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function landpad_basic_setup($extra)
     if ($env["SPACEXREST_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SPACEXREST_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -43,16 +43,14 @@ class CoreEntityTest < Minitest::Test
     core_ref01_ent = client.Core(nil)
     core_ref01_match = {}
 
-    core_ref01_list_result, err = core_ref01_ent.list(core_ref01_match, nil)
-    assert_nil err
+    core_ref01_list_result = core_ref01_ent.list(core_ref01_match, nil)
     assert core_ref01_list_result.is_a?(Array)
 
     # LOAD
     core_ref01_match_dt0 = {
       "id" => core_ref01_data["id"],
     }
-    core_ref01_data_dt0_loaded, err = core_ref01_ent.load(core_ref01_match_dt0, nil)
-    assert_nil err
+    core_ref01_data_dt0_loaded = core_ref01_ent.load(core_ref01_match_dt0, nil)
     core_ref01_data_dt0_load_result = Helpers.to_map(core_ref01_data_dt0_loaded)
     assert !core_ref01_data_dt0_load_result.nil?
     assert_equal core_ref01_data_dt0_load_result["id"], core_ref01_data["id"]
@@ -93,7 +91,6 @@ def core_basic_setup(extra)
     "SPACEXREST_TEST_CORE_ENTID" => idmap,
     "SPACEXREST_TEST_LIVE" => "FALSE",
     "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-    "SPACEXREST_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def core_basic_setup(extra)
   if env["SPACEXREST_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SPACEXREST_APIKEY"],
       },
       extra || {},
     ])

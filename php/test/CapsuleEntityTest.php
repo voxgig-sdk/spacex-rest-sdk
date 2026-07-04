@@ -50,16 +50,14 @@ class CapsuleEntityTest extends TestCase
         $capsule_ref01_ent = $client->Capsule(null);
         $capsule_ref01_match = [];
 
-        [$capsule_ref01_list_result, $err] = $capsule_ref01_ent->list($capsule_ref01_match, null);
-        $this->assertNull($err);
+        $capsule_ref01_list_result = $capsule_ref01_ent->list($capsule_ref01_match, null);
         $this->assertIsArray($capsule_ref01_list_result);
 
         // LOAD
         $capsule_ref01_match_dt0 = [
             "id" => $capsule_ref01_data["id"],
         ];
-        [$capsule_ref01_data_dt0_loaded, $err] = $capsule_ref01_ent->load($capsule_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $capsule_ref01_data_dt0_loaded = $capsule_ref01_ent->load($capsule_ref01_match_dt0, null);
         $capsule_ref01_data_dt0_load_result = Helpers::to_map($capsule_ref01_data_dt0_loaded);
         $this->assertNotNull($capsule_ref01_data_dt0_load_result);
         $this->assertEquals($capsule_ref01_data_dt0_load_result["id"], $capsule_ref01_data["id"]);
@@ -96,7 +94,6 @@ function capsule_basic_setup($extra)
         "SPACEXREST_TEST_CAPSULE_ENTID" => $idmap,
         "SPACEXREST_TEST_LIVE" => "FALSE",
         "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-        "SPACEXREST_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function capsule_basic_setup($extra)
     if ($env["SPACEXREST_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SPACEXREST_APIKEY"],
             ],
             $extra ?? [],
         ]);

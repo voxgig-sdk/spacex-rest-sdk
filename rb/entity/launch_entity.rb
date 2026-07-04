@@ -45,6 +45,7 @@ class LaunchEntity
     end
   end
 
+  # @return [Launch, Hash] the current Launch data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class LaunchEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Launch fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Launch.
+  #
+  # @param reqmatch [LaunchLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Launch, Hash] the loaded Launch; raises SpacexRestError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class LaunchEntity
 
 
   
+  # List Launch items matching the given filter.
+  #
+  # @param reqmatch [LaunchListMatch, Hash, nil] match filter (any subset of Launch fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Launch>, Array] the matching Launch items; raises SpacexRestError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch PayloadLoadMatch
+---@param ctrl? table
+---@return Payload
+---@return string? err
 function PayloadEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch PayloadListMatch
+---@param ctrl? table
+---@return Payload[]
+---@return string? err
 function PayloadEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

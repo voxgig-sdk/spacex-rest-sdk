@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch StarlinkLoadMatch
+---@param ctrl? table
+---@return Starlink
+---@return string? err
 function StarlinkEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch StarlinkListMatch
+---@param ctrl? table
+---@return Starlink[]
+---@return string? err
 function StarlinkEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

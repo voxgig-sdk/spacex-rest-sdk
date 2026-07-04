@@ -12,6 +12,8 @@ import { RocketEntity } from './entity/RocketEntity'
 import { ShipEntity } from './entity/ShipEntity'
 import { StarlinkEntity } from './entity/StarlinkEntity'
 
+export type * from './SpacexRestTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -212,66 +214,154 @@ class SpacexRestSDK {
 
 
 
+  _capsule?: CapsuleEntity
+
+  // Idiomatic facade: `client.capsule.list()` / `client.capsule.load({ id })`.
+  get capsule(): CapsuleEntity {
+    return (this._capsule ??= new CapsuleEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.capsule` instead. */
   Capsule(data?: any) {
     const self = this
     return new CapsuleEntity(self,data)
   }
 
 
+  _core?: CoreEntity
+
+  // Idiomatic facade: `client.core.list()` / `client.core.load({ id })`.
+  get core(): CoreEntity {
+    return (this._core ??= new CoreEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.core` instead. */
   Core(data?: any) {
     const self = this
     return new CoreEntity(self,data)
   }
 
 
+  _crew?: CrewEntity
+
+  // Idiomatic facade: `client.crew.list()` / `client.crew.load({ id })`.
+  get crew(): CrewEntity {
+    return (this._crew ??= new CrewEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.crew` instead. */
   Crew(data?: any) {
     const self = this
     return new CrewEntity(self,data)
   }
 
 
+  _landpad?: LandpadEntity
+
+  // Idiomatic facade: `client.landpad.list()` / `client.landpad.load({ id })`.
+  get landpad(): LandpadEntity {
+    return (this._landpad ??= new LandpadEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.landpad` instead. */
   Landpad(data?: any) {
     const self = this
     return new LandpadEntity(self,data)
   }
 
 
+  _launch?: LaunchEntity
+
+  // Idiomatic facade: `client.launch.list()` / `client.launch.load({ id })`.
+  get launch(): LaunchEntity {
+    return (this._launch ??= new LaunchEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.launch` instead. */
   Launch(data?: any) {
     const self = this
     return new LaunchEntity(self,data)
   }
 
 
+  _launchpad?: LaunchpadEntity
+
+  // Idiomatic facade: `client.launchpad.list()` / `client.launchpad.load({ id })`.
+  get launchpad(): LaunchpadEntity {
+    return (this._launchpad ??= new LaunchpadEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.launchpad` instead. */
   Launchpad(data?: any) {
     const self = this
     return new LaunchpadEntity(self,data)
   }
 
 
+  _payload?: PayloadEntity
+
+  // Idiomatic facade: `client.payload.list()` / `client.payload.load({ id })`.
+  get payload(): PayloadEntity {
+    return (this._payload ??= new PayloadEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.payload` instead. */
   Payload(data?: any) {
     const self = this
     return new PayloadEntity(self,data)
   }
 
 
+  _roadster?: RoadsterEntity
+
+  // Idiomatic facade: `client.roadster.list()` / `client.roadster.load({ id })`.
+  get roadster(): RoadsterEntity {
+    return (this._roadster ??= new RoadsterEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.roadster` instead. */
   Roadster(data?: any) {
     const self = this
     return new RoadsterEntity(self,data)
   }
 
 
+  _rocket?: RocketEntity
+
+  // Idiomatic facade: `client.rocket.list()` / `client.rocket.load({ id })`.
+  get rocket(): RocketEntity {
+    return (this._rocket ??= new RocketEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.rocket` instead. */
   Rocket(data?: any) {
     const self = this
     return new RocketEntity(self,data)
   }
 
 
+  _ship?: ShipEntity
+
+  // Idiomatic facade: `client.ship.list()` / `client.ship.load({ id })`.
+  get ship(): ShipEntity {
+    return (this._ship ??= new ShipEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.ship` instead. */
   Ship(data?: any) {
     const self = this
     return new ShipEntity(self,data)
   }
 
 
+  _starlink?: StarlinkEntity
+
+  // Idiomatic facade: `client.starlink.list()` / `client.starlink.load({ id })`.
+  get starlink(): StarlinkEntity {
+    return (this._starlink ??= new StarlinkEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.starlink` instead. */
   Starlink(data?: any) {
     const self = this
     return new StarlinkEntity(self,data)

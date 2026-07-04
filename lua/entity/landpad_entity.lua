@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch LandpadLoadMatch
+---@param ctrl? table
+---@return Landpad
+---@return string? err
 function LandpadEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch LandpadListMatch
+---@param ctrl? table
+---@return Landpad[]
+---@return string? err
 function LandpadEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

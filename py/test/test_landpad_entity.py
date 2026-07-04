@@ -50,16 +50,14 @@ class TestLandpadEntity:
         landpad_ref01_ent = client.Landpad(None)
         landpad_ref01_match = {}
 
-        landpad_ref01_list_result, err = landpad_ref01_ent.list(landpad_ref01_match, None)
-        assert err is None
+        landpad_ref01_list_result = landpad_ref01_ent.list(landpad_ref01_match, None)
         assert isinstance(landpad_ref01_list_result, list)
 
         # LOAD
         landpad_ref01_match_dt0 = {
             "id": landpad_ref01_data["id"],
         }
-        landpad_ref01_data_dt0_loaded, err = landpad_ref01_ent.load(landpad_ref01_match_dt0, None)
-        assert err is None
+        landpad_ref01_data_dt0_loaded = landpad_ref01_ent.load(landpad_ref01_match_dt0, None)
         landpad_ref01_data_dt0_load_result = helpers.to_map(landpad_ref01_data_dt0_loaded)
         assert landpad_ref01_data_dt0_load_result is not None
         assert landpad_ref01_data_dt0_load_result["id"] == landpad_ref01_data["id"]
@@ -102,7 +100,6 @@ def _landpad_basic_setup(extra):
         "SPACEXREST_TEST_LANDPAD_ENTID": idmap,
         "SPACEXREST_TEST_LIVE": "FALSE",
         "SPACEXREST_TEST_EXPLAIN": "FALSE",
-        "SPACEXREST_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _landpad_basic_setup(extra):
     if env.get("SPACEXREST_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SPACEXREST_APIKEY"),
             },
             extra or {},
         ])

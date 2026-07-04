@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Payload,
+  PayloadLoadMatch,
+  PayloadListMatch,
+} from '../SpacexRestTypes'
 
 // TODO: needs Entity superclass
-class PayloadEntity extends SpacexRestEntityBase {
+class PayloadEntity extends SpacexRestEntityBase<Payload> {
 
   constructor(client: SpacexRestSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class PayloadEntity extends SpacexRestEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: PayloadLoadMatch, ctrl?: Control): Promise<Payload> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class PayloadEntity extends SpacexRestEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Payload> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: PayloadListMatch, ctrl?: Control): Promise<Payload[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class PayloadEntity extends SpacexRestEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Payload[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

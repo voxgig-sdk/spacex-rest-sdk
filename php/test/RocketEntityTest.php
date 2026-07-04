@@ -50,16 +50,14 @@ class RocketEntityTest extends TestCase
         $rocket_ref01_ent = $client->Rocket(null);
         $rocket_ref01_match = [];
 
-        [$rocket_ref01_list_result, $err] = $rocket_ref01_ent->list($rocket_ref01_match, null);
-        $this->assertNull($err);
+        $rocket_ref01_list_result = $rocket_ref01_ent->list($rocket_ref01_match, null);
         $this->assertIsArray($rocket_ref01_list_result);
 
         // LOAD
         $rocket_ref01_match_dt0 = [
             "id" => $rocket_ref01_data["id"],
         ];
-        [$rocket_ref01_data_dt0_loaded, $err] = $rocket_ref01_ent->load($rocket_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $rocket_ref01_data_dt0_loaded = $rocket_ref01_ent->load($rocket_ref01_match_dt0, null);
         $rocket_ref01_data_dt0_load_result = Helpers::to_map($rocket_ref01_data_dt0_loaded);
         $this->assertNotNull($rocket_ref01_data_dt0_load_result);
         $this->assertEquals($rocket_ref01_data_dt0_load_result["id"], $rocket_ref01_data["id"]);
@@ -96,7 +94,6 @@ function rocket_basic_setup($extra)
         "SPACEXREST_TEST_ROCKET_ENTID" => $idmap,
         "SPACEXREST_TEST_LIVE" => "FALSE",
         "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-        "SPACEXREST_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function rocket_basic_setup($extra)
     if ($env["SPACEXREST_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SPACEXREST_APIKEY"],
             ],
             $extra ?? [],
         ]);

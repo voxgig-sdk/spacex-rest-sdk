@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch CapsuleLoadMatch
+---@param ctrl? table
+---@return Capsule
+---@return string? err
 function CapsuleEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch CapsuleListMatch
+---@param ctrl? table
+---@return Capsule[]
+---@return string? err
 function CapsuleEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -50,16 +50,14 @@ class TestShipEntity:
         ship_ref01_ent = client.Ship(None)
         ship_ref01_match = {}
 
-        ship_ref01_list_result, err = ship_ref01_ent.list(ship_ref01_match, None)
-        assert err is None
+        ship_ref01_list_result = ship_ref01_ent.list(ship_ref01_match, None)
         assert isinstance(ship_ref01_list_result, list)
 
         # LOAD
         ship_ref01_match_dt0 = {
             "id": ship_ref01_data["id"],
         }
-        ship_ref01_data_dt0_loaded, err = ship_ref01_ent.load(ship_ref01_match_dt0, None)
-        assert err is None
+        ship_ref01_data_dt0_loaded = ship_ref01_ent.load(ship_ref01_match_dt0, None)
         ship_ref01_data_dt0_load_result = helpers.to_map(ship_ref01_data_dt0_loaded)
         assert ship_ref01_data_dt0_load_result is not None
         assert ship_ref01_data_dt0_load_result["id"] == ship_ref01_data["id"]
@@ -102,7 +100,6 @@ def _ship_basic_setup(extra):
         "SPACEXREST_TEST_SHIP_ENTID": idmap,
         "SPACEXREST_TEST_LIVE": "FALSE",
         "SPACEXREST_TEST_EXPLAIN": "FALSE",
-        "SPACEXREST_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _ship_basic_setup(extra):
     if env.get("SPACEXREST_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SPACEXREST_APIKEY"),
             },
             extra or {},
         ])

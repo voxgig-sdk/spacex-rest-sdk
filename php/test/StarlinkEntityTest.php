@@ -50,16 +50,14 @@ class StarlinkEntityTest extends TestCase
         $starlink_ref01_ent = $client->Starlink(null);
         $starlink_ref01_match = [];
 
-        [$starlink_ref01_list_result, $err] = $starlink_ref01_ent->list($starlink_ref01_match, null);
-        $this->assertNull($err);
+        $starlink_ref01_list_result = $starlink_ref01_ent->list($starlink_ref01_match, null);
         $this->assertIsArray($starlink_ref01_list_result);
 
         // LOAD
         $starlink_ref01_match_dt0 = [
             "id" => $starlink_ref01_data["id"],
         ];
-        [$starlink_ref01_data_dt0_loaded, $err] = $starlink_ref01_ent->load($starlink_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $starlink_ref01_data_dt0_loaded = $starlink_ref01_ent->load($starlink_ref01_match_dt0, null);
         $starlink_ref01_data_dt0_load_result = Helpers::to_map($starlink_ref01_data_dt0_loaded);
         $this->assertNotNull($starlink_ref01_data_dt0_load_result);
         $this->assertEquals($starlink_ref01_data_dt0_load_result["id"], $starlink_ref01_data["id"]);
@@ -96,7 +94,6 @@ function starlink_basic_setup($extra)
         "SPACEXREST_TEST_STARLINK_ENTID" => $idmap,
         "SPACEXREST_TEST_LIVE" => "FALSE",
         "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-        "SPACEXREST_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function starlink_basic_setup($extra)
     if ($env["SPACEXREST_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SPACEXREST_APIKEY"],
             ],
             $extra ?? [],
         ]);

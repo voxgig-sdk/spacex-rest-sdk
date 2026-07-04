@@ -45,6 +45,7 @@ class RocketEntity
     end
   end
 
+  # @return [Rocket, Hash] the current Rocket data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class RocketEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Rocket fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Rocket.
+  #
+  # @param reqmatch [RocketLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Rocket, Hash] the loaded Rocket; raises SpacexRestError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class RocketEntity
 
 
   
+  # List Rocket items matching the given filter.
+  #
+  # @param reqmatch [RocketListMatch, Hash, nil] match filter (any subset of Rocket fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Rocket>, Array] the matching Rocket items; raises SpacexRestError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

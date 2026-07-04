@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch RoadsterListMatch
+---@param ctrl? table
+---@return Roadster[]
+---@return string? err
 function RoadsterEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -50,16 +50,14 @@ class TestPayloadEntity:
         payload_ref01_ent = client.Payload(None)
         payload_ref01_match = {}
 
-        payload_ref01_list_result, err = payload_ref01_ent.list(payload_ref01_match, None)
-        assert err is None
+        payload_ref01_list_result = payload_ref01_ent.list(payload_ref01_match, None)
         assert isinstance(payload_ref01_list_result, list)
 
         # LOAD
         payload_ref01_match_dt0 = {
             "id": payload_ref01_data["id"],
         }
-        payload_ref01_data_dt0_loaded, err = payload_ref01_ent.load(payload_ref01_match_dt0, None)
-        assert err is None
+        payload_ref01_data_dt0_loaded = payload_ref01_ent.load(payload_ref01_match_dt0, None)
         payload_ref01_data_dt0_load_result = helpers.to_map(payload_ref01_data_dt0_loaded)
         assert payload_ref01_data_dt0_load_result is not None
         assert payload_ref01_data_dt0_load_result["id"] == payload_ref01_data["id"]
@@ -102,7 +100,6 @@ def _payload_basic_setup(extra):
         "SPACEXREST_TEST_PAYLOAD_ENTID": idmap,
         "SPACEXREST_TEST_LIVE": "FALSE",
         "SPACEXREST_TEST_EXPLAIN": "FALSE",
-        "SPACEXREST_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _payload_basic_setup(extra):
     if env.get("SPACEXREST_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SPACEXREST_APIKEY"),
             },
             extra or {},
         ])

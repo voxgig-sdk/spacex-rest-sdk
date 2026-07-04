@@ -55,6 +55,9 @@ class RocketEntity
         return new RocketEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Rocket|array $args Rocket data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class RocketEntity
         }
     }
 
+    /**
+     * @return Rocket|array The current Rocket data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Rocket fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class RocketEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Rocket fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class RocketEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Rocket.
+     *
+     * @param RocketLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed RocketLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Rocket|array The loaded Rocket as an assoc-array at the
+     *   SDK boundary; throws SpacexRestError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class RocketEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Rocket items matching the given filter.
+     *
+     * @param RocketListMatch|array|null $reqmatch Match filter (any subset
+     *   of Rocket fields) as an assoc-array; RocketListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Rocket[]|array A list of Rocket items as assoc-arrays at
+     *   the SDK boundary; throws SpacexRestError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class RocketEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

@@ -1,7 +1,14 @@
 # SpacexRest SDK Payload entity
 
+from __future__ import annotations
+
 from utility.voxgig_struct import voxgig_struct as vs
 from core import helpers
+from spacexrest_types import (
+    Payload,
+    PayloadLoadMatch,
+    PayloadListMatch,
+)
 
 
 class PayloadEntity:
@@ -44,7 +51,7 @@ class PayloadEntity:
             self._data = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetData")
 
-    def data_get(self):
+    def data_get(self) -> Payload:
         self._utility.feature_hook(self._entctx, "GetData")
         return vs.clone(self._data)
 
@@ -53,12 +60,12 @@ class PayloadEntity:
             self._match = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetMatch")
 
-    def match_get(self):
+    def match_get(self) -> Payload:
         self._utility.feature_hook(self._entctx, "GetMatch")
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch, ctrl=None):
+    def load(self, reqmatch: PayloadLoadMatch, ctrl=None) -> Payload:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "load",
@@ -80,7 +87,7 @@ class PayloadEntity:
 
 
     
-    def list(self, reqmatch, ctrl=None):
+    def list(self, reqmatch: PayloadListMatch, ctrl=None) -> list[Payload]:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "list",

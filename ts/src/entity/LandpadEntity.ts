@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Landpad,
+  LandpadLoadMatch,
+  LandpadListMatch,
+} from '../SpacexRestTypes'
 
 // TODO: needs Entity superclass
-class LandpadEntity extends SpacexRestEntityBase {
+class LandpadEntity extends SpacexRestEntityBase<Landpad> {
 
   constructor(client: SpacexRestSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class LandpadEntity extends SpacexRestEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: LandpadLoadMatch, ctrl?: Control): Promise<Landpad> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class LandpadEntity extends SpacexRestEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Landpad> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: LandpadListMatch, ctrl?: Control): Promise<Landpad[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class LandpadEntity extends SpacexRestEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Landpad[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

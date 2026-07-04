@@ -9,11 +9,9 @@ The Python SDK for the SpacexRest API — an entity-oriented client following Py
 
 
 ## Install
-```bash
-pip install voxgig-sdk-spacex-rest
-```
-
-Or install from source:
+This package is not yet published to PyPI. Install it from the GitHub
+release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/spacex-rest-sdk/releases)) or
+from a source checkout:
 
 ```bash
 pip install -e .
@@ -28,34 +26,31 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from spacexrest_sdk import SpacexRestSDK
 
-client = SpacexRestSDK({
-    "apikey": os.environ.get("SPACEX-REST_APIKEY"),
-})
+client = SpacexRestSDK()
 ```
 
 ### 2. List capsules
 
 ```python
-result, err = client.Capsule().list()
-if err:
-    raise Exception(err)
-
-if isinstance(result, list):
+try:
+    result = client.capsule.list()
     for item in result:
         d = item.data_get()
         print(d["id"], d["name"])
+except Exception as err:
+    print(f"list failed: {err}")
 ```
 
 ### 3. Load a capsule
 
 ```python
-result, err = client.Capsule().load({"id": "example_id"})
-if err:
-    raise Exception(err)
-print(result)
+try:
+    result = client.capsule.load({"id": "example_id"})
+    print(result)
+except Exception as err:
+    print(f"load failed: {err}")
 ```
 
 
@@ -66,29 +61,28 @@ print(result)
 For endpoints not covered by entity methods:
 
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
+else:
+    print(result["err"])     # error value
 ```
 
 ### Prepare a request without sending it
 
 ```python
-fetchdef, err = client.prepare({
+# prepare() returns the fetch definition and raises on error.
+fetchdef = client.prepare({
     "path": "/api/resource/{id}",
     "method": "DELETE",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 print(fetchdef["url"])
 print(fetchdef["method"])
@@ -102,7 +96,7 @@ Create a mock client for unit testing — no server required:
 ```python
 client = SpacexRestSDK.test()
 
-result, err = client.SpacexRest().load({"id": "test01"})
+result = client.capsule.load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -132,8 +126,7 @@ client = SpacexRestSDK({
 Create a `.env.local` file at the project root:
 
 ```
-SPACEX-REST_TEST_LIVE=TRUE
-SPACEX-REST_APIKEY=<your-key>
+SPACEX_REST_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -157,7 +150,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |
@@ -179,8 +171,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | --- | --- | --- |
 | `options_map` | `() -> dict` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> (dict, err)` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> (dict, err)` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Capsule` | `(data) -> CapsuleEntity` | Create a Capsule entity instance. |
 | `Core` | `(data) -> CoreEntity` | Create a Core entity instance. |
 | `Crew` | `(data) -> CrewEntity` | Create a Crew entity instance. |
@@ -199,11 +191,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> (any, err)` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> (any, err)` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> (any, err)` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> (any, err)` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> (any, err)` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -213,8 +205,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`dict` with these keys:
+Entity operations return the bare result data (a `dict` for single-entity
+ops, a `list` for `list`) and raise on error. Wrap calls in
+`try`/`except` to handle failures.
+
+The `direct()` escape hatch never raises — it returns a result `dict`
+you branch on via `result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -523,7 +519,7 @@ API path: `/starlink`
 
 ### Capsule
 
-Create an instance: `const capsule = client.Capsule()`
+Create an instance: `const capsule = client.capsule`
 
 #### Operations
 
@@ -549,19 +545,19 @@ Create an instance: `const capsule = client.Capsule()`
 #### Example: Load
 
 ```ts
-const capsule = await client.Capsule().load({ id: 'capsule_id' })
+const capsule = await client.capsule.load({ id: 'capsule_id' })
 ```
 
 #### Example: List
 
 ```ts
-const capsules = await client.Capsule().list()
+const capsules = await client.capsule.list()
 ```
 
 
 ### Core
 
-Create an instance: `const core = client.Core()`
+Create an instance: `const core = client.core`
 
 #### Operations
 
@@ -589,19 +585,19 @@ Create an instance: `const core = client.Core()`
 #### Example: Load
 
 ```ts
-const core = await client.Core().load({ id: 'core_id' })
+const core = await client.core.load({ id: 'core_id' })
 ```
 
 #### Example: List
 
 ```ts
-const cores = await client.Core().list()
+const cores = await client.core.list()
 ```
 
 
 ### Crew
 
-Create an instance: `const crew = client.Crew()`
+Create an instance: `const crew = client.crew`
 
 #### Operations
 
@@ -625,19 +621,19 @@ Create an instance: `const crew = client.Crew()`
 #### Example: Load
 
 ```ts
-const crew = await client.Crew().load({ id: 'crew_id' })
+const crew = await client.crew.load({ id: 'crew_id' })
 ```
 
 #### Example: List
 
 ```ts
-const crews = await client.Crew().list()
+const crews = await client.crew.list()
 ```
 
 
 ### Landpad
 
-Create an instance: `const landpad = client.Landpad()`
+Create an instance: `const landpad = client.landpad`
 
 #### Operations
 
@@ -668,19 +664,19 @@ Create an instance: `const landpad = client.Landpad()`
 #### Example: Load
 
 ```ts
-const landpad = await client.Landpad().load({ id: 'landpad_id' })
+const landpad = await client.landpad.load({ id: 'landpad_id' })
 ```
 
 #### Example: List
 
 ```ts
-const landpads = await client.Landpad().list()
+const landpads = await client.landpad.list()
 ```
 
 
 ### Launch
 
-Create an instance: `const launch = client.Launch()`
+Create an instance: `const launch = client.launch`
 
 #### Operations
 
@@ -731,19 +727,19 @@ Create an instance: `const launch = client.Launch()`
 #### Example: Load
 
 ```ts
-const launch = await client.Launch().load({ id: 'launch_id' })
+const launch = await client.launch.load({ id: 'launch_id' })
 ```
 
 #### Example: List
 
 ```ts
-const launchs = await client.Launch().list()
+const launchs = await client.launch.list()
 ```
 
 
 ### Launchpad
 
-Create an instance: `const launchpad = client.Launchpad()`
+Create an instance: `const launchpad = client.launchpad`
 
 #### Operations
 
@@ -773,19 +769,19 @@ Create an instance: `const launchpad = client.Launchpad()`
 #### Example: Load
 
 ```ts
-const launchpad = await client.Launchpad().load({ id: 'launchpad_id' })
+const launchpad = await client.launchpad.load({ id: 'launchpad_id' })
 ```
 
 #### Example: List
 
 ```ts
-const launchpads = await client.Launchpad().list()
+const launchpads = await client.launchpad.list()
 ```
 
 
 ### Payload
 
-Create an instance: `const payload = client.Payload()`
+Create an instance: `const payload = client.payload`
 
 #### Operations
 
@@ -829,19 +825,19 @@ Create an instance: `const payload = client.Payload()`
 #### Example: Load
 
 ```ts
-const payload = await client.Payload().load({ id: 'payload_id' })
+const payload = await client.payload.load({ id: 'payload_id' })
 ```
 
 #### Example: List
 
 ```ts
-const payloads = await client.Payload().list()
+const payloads = await client.payload.list()
 ```
 
 
 ### Roadster
 
-Create an instance: `const roadster = client.Roadster()`
+Create an instance: `const roadster = client.roadster`
 
 #### Operations
 
@@ -884,13 +880,13 @@ Create an instance: `const roadster = client.Roadster()`
 #### Example: List
 
 ```ts
-const roadsters = await client.Roadster().list()
+const roadsters = await client.roadster.list()
 ```
 
 
 ### Rocket
 
-Create an instance: `const rocket = client.Rocket()`
+Create an instance: `const rocket = client.rocket`
 
 #### Operations
 
@@ -924,19 +920,19 @@ Create an instance: `const rocket = client.Rocket()`
 #### Example: Load
 
 ```ts
-const rocket = await client.Rocket().load({ id: 'rocket_id' })
+const rocket = await client.rocket.load({ id: 'rocket_id' })
 ```
 
 #### Example: List
 
 ```ts
-const rockets = await client.Rocket().list()
+const rockets = await client.rocket.list()
 ```
 
 
 ### Ship
 
-Create an instance: `const ship = client.Ship()`
+Create an instance: `const ship = client.ship`
 
 #### Operations
 
@@ -976,19 +972,19 @@ Create an instance: `const ship = client.Ship()`
 #### Example: Load
 
 ```ts
-const ship = await client.Ship().load({ id: 'ship_id' })
+const ship = await client.ship.load({ id: 'ship_id' })
 ```
 
 #### Example: List
 
 ```ts
-const ships = await client.Ship().list()
+const ships = await client.ship.list()
 ```
 
 
 ### Starlink
 
-Create an instance: `const starlink = client.Starlink()`
+Create an instance: `const starlink = client.starlink`
 
 #### Operations
 
@@ -1013,13 +1009,13 @@ Create an instance: `const starlink = client.Starlink()`
 #### Example: Load
 
 ```ts
-const starlink = await client.Starlink().load({ id: 'starlink_id' })
+const starlink = await client.starlink.load({ id: 'starlink_id' })
 ```
 
 #### Example: List
 
 ```ts
-const starlinks = await client.Starlink().list()
+const starlinks = await client.starlink.list()
 ```
 
 
@@ -1093,11 +1089,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-moon = client.Moon()
-moon.load({"planet_id": "earth", "id": "luna"})
+capsule = client.capsule
+capsule.load({"id": "example_id"})
 
-# moon.data_get() now returns the loaded moon data
-# moon.match_get() returns the last match criteria
+# capsule.data_get() now returns the loaded capsule data
+# capsule.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

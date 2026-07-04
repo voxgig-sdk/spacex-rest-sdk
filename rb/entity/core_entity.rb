@@ -45,6 +45,7 @@ class CoreEntity
     end
   end
 
+  # @return [Core, Hash] the current Core data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class CoreEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Core fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Core.
+  #
+  # @param reqmatch [CoreLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Core, Hash] the loaded Core; raises SpacexRestError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class CoreEntity
 
 
   
+  # List Core items matching the given filter.
+  #
+  # @param reqmatch [CoreListMatch, Hash, nil] match filter (any subset of Core fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Core>, Array] the matching Core items; raises SpacexRestError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

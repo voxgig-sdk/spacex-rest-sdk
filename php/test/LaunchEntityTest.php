@@ -50,16 +50,14 @@ class LaunchEntityTest extends TestCase
         $launch_ref01_ent = $client->Launch(null);
         $launch_ref01_match = [];
 
-        [$launch_ref01_list_result, $err] = $launch_ref01_ent->list($launch_ref01_match, null);
-        $this->assertNull($err);
+        $launch_ref01_list_result = $launch_ref01_ent->list($launch_ref01_match, null);
         $this->assertIsArray($launch_ref01_list_result);
 
         // LOAD
         $launch_ref01_match_dt0 = [
             "id" => $launch_ref01_data["id"],
         ];
-        [$launch_ref01_data_dt0_loaded, $err] = $launch_ref01_ent->load($launch_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $launch_ref01_data_dt0_loaded = $launch_ref01_ent->load($launch_ref01_match_dt0, null);
         $launch_ref01_data_dt0_load_result = Helpers::to_map($launch_ref01_data_dt0_loaded);
         $this->assertNotNull($launch_ref01_data_dt0_load_result);
         $this->assertEquals($launch_ref01_data_dt0_load_result["id"], $launch_ref01_data["id"]);
@@ -96,7 +94,6 @@ function launch_basic_setup($extra)
         "SPACEXREST_TEST_LAUNCH_ENTID" => $idmap,
         "SPACEXREST_TEST_LIVE" => "FALSE",
         "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-        "SPACEXREST_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function launch_basic_setup($extra)
     if ($env["SPACEXREST_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SPACEXREST_APIKEY"],
             ],
             $extra ?? [],
         ]);

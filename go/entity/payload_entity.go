@@ -85,6 +85,27 @@ func (e *PayloadEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Payload; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *PayloadEntity) DataTyped(data ...Payload) Payload {
+	if len(data) > 0 {
+		return typedFrom[Payload](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Payload](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Payload (all fields
+// optional at the wire level).
+func (e *PayloadEntity) MatchTyped(match ...Payload) Payload {
+	if len(match) > 0 {
+		return typedFrom[Payload](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Payload](e.Match())
+}
+
 
 func (e *PayloadEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *PayloadEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any,
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// PayloadLoadMatch and returns an Payload. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *PayloadEntity) LoadTyped(reqmatch PayloadLoadMatch, ctrl map[string]any) (Payload, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Payload{}, err
+	}
+	return typedFrom[Payload](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *PayloadEntity) List(reqmatch map[string]any, ctrl map[string]any) (any,
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// PayloadListMatch and returns []Payload. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *PayloadEntity) ListTyped(reqmatch PayloadListMatch, ctrl map[string]any) ([]Payload, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Payload](res), nil
 }
 
 

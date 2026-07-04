@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ShipLoadMatch
+---@param ctrl? table
+---@return Ship
+---@return string? err
 function ShipEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch ShipListMatch
+---@param ctrl? table
+---@return Ship[]
+---@return string? err
 function ShipEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -50,16 +50,14 @@ class TestCrewEntity:
         crew_ref01_ent = client.Crew(None)
         crew_ref01_match = {}
 
-        crew_ref01_list_result, err = crew_ref01_ent.list(crew_ref01_match, None)
-        assert err is None
+        crew_ref01_list_result = crew_ref01_ent.list(crew_ref01_match, None)
         assert isinstance(crew_ref01_list_result, list)
 
         # LOAD
         crew_ref01_match_dt0 = {
             "id": crew_ref01_data["id"],
         }
-        crew_ref01_data_dt0_loaded, err = crew_ref01_ent.load(crew_ref01_match_dt0, None)
-        assert err is None
+        crew_ref01_data_dt0_loaded = crew_ref01_ent.load(crew_ref01_match_dt0, None)
         crew_ref01_data_dt0_load_result = helpers.to_map(crew_ref01_data_dt0_loaded)
         assert crew_ref01_data_dt0_load_result is not None
         assert crew_ref01_data_dt0_load_result["id"] == crew_ref01_data["id"]
@@ -102,7 +100,6 @@ def _crew_basic_setup(extra):
         "SPACEXREST_TEST_CREW_ENTID": idmap,
         "SPACEXREST_TEST_LIVE": "FALSE",
         "SPACEXREST_TEST_EXPLAIN": "FALSE",
-        "SPACEXREST_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _crew_basic_setup(extra):
     if env.get("SPACEXREST_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SPACEXREST_APIKEY"),
             },
             extra or {},
         ])

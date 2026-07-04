@@ -43,16 +43,14 @@ class LaunchpadEntityTest < Minitest::Test
     launchpad_ref01_ent = client.Launchpad(nil)
     launchpad_ref01_match = {}
 
-    launchpad_ref01_list_result, err = launchpad_ref01_ent.list(launchpad_ref01_match, nil)
-    assert_nil err
+    launchpad_ref01_list_result = launchpad_ref01_ent.list(launchpad_ref01_match, nil)
     assert launchpad_ref01_list_result.is_a?(Array)
 
     # LOAD
     launchpad_ref01_match_dt0 = {
       "id" => launchpad_ref01_data["id"],
     }
-    launchpad_ref01_data_dt0_loaded, err = launchpad_ref01_ent.load(launchpad_ref01_match_dt0, nil)
-    assert_nil err
+    launchpad_ref01_data_dt0_loaded = launchpad_ref01_ent.load(launchpad_ref01_match_dt0, nil)
     launchpad_ref01_data_dt0_load_result = Helpers.to_map(launchpad_ref01_data_dt0_loaded)
     assert !launchpad_ref01_data_dt0_load_result.nil?
     assert_equal launchpad_ref01_data_dt0_load_result["id"], launchpad_ref01_data["id"]
@@ -93,7 +91,6 @@ def launchpad_basic_setup(extra)
     "SPACEXREST_TEST_LAUNCHPAD_ENTID" => idmap,
     "SPACEXREST_TEST_LIVE" => "FALSE",
     "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-    "SPACEXREST_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def launchpad_basic_setup(extra)
   if env["SPACEXREST_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SPACEXREST_APIKEY"],
       },
       extra || {},
     ])

@@ -50,16 +50,14 @@ class TestCapsuleEntity:
         capsule_ref01_ent = client.Capsule(None)
         capsule_ref01_match = {}
 
-        capsule_ref01_list_result, err = capsule_ref01_ent.list(capsule_ref01_match, None)
-        assert err is None
+        capsule_ref01_list_result = capsule_ref01_ent.list(capsule_ref01_match, None)
         assert isinstance(capsule_ref01_list_result, list)
 
         # LOAD
         capsule_ref01_match_dt0 = {
             "id": capsule_ref01_data["id"],
         }
-        capsule_ref01_data_dt0_loaded, err = capsule_ref01_ent.load(capsule_ref01_match_dt0, None)
-        assert err is None
+        capsule_ref01_data_dt0_loaded = capsule_ref01_ent.load(capsule_ref01_match_dt0, None)
         capsule_ref01_data_dt0_load_result = helpers.to_map(capsule_ref01_data_dt0_loaded)
         assert capsule_ref01_data_dt0_load_result is not None
         assert capsule_ref01_data_dt0_load_result["id"] == capsule_ref01_data["id"]
@@ -102,7 +100,6 @@ def _capsule_basic_setup(extra):
         "SPACEXREST_TEST_CAPSULE_ENTID": idmap,
         "SPACEXREST_TEST_LIVE": "FALSE",
         "SPACEXREST_TEST_EXPLAIN": "FALSE",
-        "SPACEXREST_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _capsule_basic_setup(extra):
     if env.get("SPACEXREST_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SPACEXREST_APIKEY"),
             },
             extra or {},
         ])

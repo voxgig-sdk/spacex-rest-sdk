@@ -50,16 +50,14 @@ class PayloadEntityTest extends TestCase
         $payload_ref01_ent = $client->Payload(null);
         $payload_ref01_match = [];
 
-        [$payload_ref01_list_result, $err] = $payload_ref01_ent->list($payload_ref01_match, null);
-        $this->assertNull($err);
+        $payload_ref01_list_result = $payload_ref01_ent->list($payload_ref01_match, null);
         $this->assertIsArray($payload_ref01_list_result);
 
         // LOAD
         $payload_ref01_match_dt0 = [
             "id" => $payload_ref01_data["id"],
         ];
-        [$payload_ref01_data_dt0_loaded, $err] = $payload_ref01_ent->load($payload_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $payload_ref01_data_dt0_loaded = $payload_ref01_ent->load($payload_ref01_match_dt0, null);
         $payload_ref01_data_dt0_load_result = Helpers::to_map($payload_ref01_data_dt0_loaded);
         $this->assertNotNull($payload_ref01_data_dt0_load_result);
         $this->assertEquals($payload_ref01_data_dt0_load_result["id"], $payload_ref01_data["id"]);
@@ -96,7 +94,6 @@ function payload_basic_setup($extra)
         "SPACEXREST_TEST_PAYLOAD_ENTID" => $idmap,
         "SPACEXREST_TEST_LIVE" => "FALSE",
         "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-        "SPACEXREST_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function payload_basic_setup($extra)
     if ($env["SPACEXREST_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SPACEXREST_APIKEY"],
             ],
             $extra ?? [],
         ]);

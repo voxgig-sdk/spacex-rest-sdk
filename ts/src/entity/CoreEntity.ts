@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Core,
+  CoreLoadMatch,
+  CoreListMatch,
+} from '../SpacexRestTypes'
 
 // TODO: needs Entity superclass
-class CoreEntity extends SpacexRestEntityBase {
+class CoreEntity extends SpacexRestEntityBase<Core> {
 
   constructor(client: SpacexRestSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class CoreEntity extends SpacexRestEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: CoreLoadMatch, ctrl?: Control): Promise<Core> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class CoreEntity extends SpacexRestEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Core> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: CoreListMatch, ctrl?: Control): Promise<Core[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class CoreEntity extends SpacexRestEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Core[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

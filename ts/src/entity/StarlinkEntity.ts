@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Starlink,
+  StarlinkLoadMatch,
+  StarlinkListMatch,
+} from '../SpacexRestTypes'
 
 // TODO: needs Entity superclass
-class StarlinkEntity extends SpacexRestEntityBase {
+class StarlinkEntity extends SpacexRestEntityBase<Starlink> {
 
   constructor(client: SpacexRestSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class StarlinkEntity extends SpacexRestEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: StarlinkLoadMatch, ctrl?: Control): Promise<Starlink> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class StarlinkEntity extends SpacexRestEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Starlink> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: StarlinkListMatch, ctrl?: Control): Promise<Starlink[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class StarlinkEntity extends SpacexRestEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Starlink[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

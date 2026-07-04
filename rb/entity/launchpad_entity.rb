@@ -45,6 +45,7 @@ class LaunchpadEntity
     end
   end
 
+  # @return [Launchpad, Hash] the current Launchpad data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class LaunchpadEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Launchpad fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Launchpad.
+  #
+  # @param reqmatch [LaunchpadLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Launchpad, Hash] the loaded Launchpad; raises SpacexRestError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class LaunchpadEntity
 
 
   
+  # List Launchpad items matching the given filter.
+  #
+  # @param reqmatch [LaunchpadListMatch, Hash, nil] match filter (any subset of Launchpad fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Launchpad>, Array] the matching Launchpad items; raises SpacexRestError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -85,6 +85,27 @@ func (e *CapsuleEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Capsule; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *CapsuleEntity) DataTyped(data ...Capsule) Capsule {
+	if len(data) > 0 {
+		return typedFrom[Capsule](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Capsule](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Capsule (all fields
+// optional at the wire level).
+func (e *CapsuleEntity) MatchTyped(match ...Capsule) Capsule {
+	if len(match) > 0 {
+		return typedFrom[Capsule](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Capsule](e.Match())
+}
+
 
 func (e *CapsuleEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *CapsuleEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any,
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// CapsuleLoadMatch and returns an Capsule. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *CapsuleEntity) LoadTyped(reqmatch CapsuleLoadMatch, ctrl map[string]any) (Capsule, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Capsule{}, err
+	}
+	return typedFrom[Capsule](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *CapsuleEntity) List(reqmatch map[string]any, ctrl map[string]any) (any,
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// CapsuleListMatch and returns []Capsule. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *CapsuleEntity) ListTyped(reqmatch CapsuleListMatch, ctrl map[string]any) ([]Capsule, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Capsule](res), nil
 }
 
 

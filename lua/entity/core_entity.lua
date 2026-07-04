@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch CoreLoadMatch
+---@param ctrl? table
+---@return Core
+---@return string? err
 function CoreEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch CoreListMatch
+---@param ctrl? table
+---@return Core[]
+---@return string? err
 function CoreEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

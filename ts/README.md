@@ -9,9 +9,12 @@ The TypeScript SDK for the SpacexRest API — a type-safe, entity-oriented clien
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/spacex-rest
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/spacex-rest-sdk/releases](https://github.com/voxgig-sdk/spacex-rest-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { SpacexRestSDK } from 'spacex-rest'
+import { SpacexRestSDK } from '@voxgig-sdk/spacex-rest'
 
-const client = new SpacexRestSDK({
-  apikey: process.env.SPACEX-REST_APIKEY,
-})
+const client = new SpacexRestSDK()
 ```
 
 ### 2. List capsules
 
 ```ts
-const result = await client.Capsule().list()
+const result = await client.capsule.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -42,7 +43,7 @@ if (result.ok) {
 ### 3. Load a capsule
 
 ```ts
-const result = await client.Capsule().load({ id: 'example_id' })
+const result = await client.capsule.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -91,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = SpacexRestSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.capsule.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -99,7 +100,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new SpacexRestSDK({ apikey: '...' })
+const client = new SpacexRestSDK()
 const testClient = client.tester()
 ```
 
@@ -108,7 +109,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.capsule
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -135,7 +136,6 @@ const logger = {
 }
 
 const client = new SpacexRestSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -145,8 +145,7 @@ const client = new SpacexRestSDK({
 Create a `.env.local` file at the project root:
 
 ```
-SPACEX-REST_TEST_LIVE=TRUE
-SPACEX-REST_APIKEY=<your-key>
+SPACEX_REST_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -164,7 +163,6 @@ cd ts && npm test
 
 ```ts
 new SpacexRestSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -175,7 +173,6 @@ new SpacexRestSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -567,7 +564,7 @@ API path: `/starlink`
 
 ### Capsule
 
-Create an instance: `const capsule = client.Capsule()`
+Create an instance: `const capsule = client.capsule`
 
 #### Operations
 
@@ -593,19 +590,19 @@ Create an instance: `const capsule = client.Capsule()`
 #### Example: Load
 
 ```ts
-const capsule = await client.Capsule().load({ id: 'capsule_id' })
+const capsule = await client.capsule.load({ id: 'capsule_id' })
 ```
 
 #### Example: List
 
 ```ts
-const capsules = await client.Capsule().list()
+const capsules = await client.capsule.list()
 ```
 
 
 ### Core
 
-Create an instance: `const core = client.Core()`
+Create an instance: `const core = client.core`
 
 #### Operations
 
@@ -633,19 +630,19 @@ Create an instance: `const core = client.Core()`
 #### Example: Load
 
 ```ts
-const core = await client.Core().load({ id: 'core_id' })
+const core = await client.core.load({ id: 'core_id' })
 ```
 
 #### Example: List
 
 ```ts
-const cores = await client.Core().list()
+const cores = await client.core.list()
 ```
 
 
 ### Crew
 
-Create an instance: `const crew = client.Crew()`
+Create an instance: `const crew = client.crew`
 
 #### Operations
 
@@ -669,19 +666,19 @@ Create an instance: `const crew = client.Crew()`
 #### Example: Load
 
 ```ts
-const crew = await client.Crew().load({ id: 'crew_id' })
+const crew = await client.crew.load({ id: 'crew_id' })
 ```
 
 #### Example: List
 
 ```ts
-const crews = await client.Crew().list()
+const crews = await client.crew.list()
 ```
 
 
 ### Landpad
 
-Create an instance: `const landpad = client.Landpad()`
+Create an instance: `const landpad = client.landpad`
 
 #### Operations
 
@@ -712,19 +709,19 @@ Create an instance: `const landpad = client.Landpad()`
 #### Example: Load
 
 ```ts
-const landpad = await client.Landpad().load({ id: 'landpad_id' })
+const landpad = await client.landpad.load({ id: 'landpad_id' })
 ```
 
 #### Example: List
 
 ```ts
-const landpads = await client.Landpad().list()
+const landpads = await client.landpad.list()
 ```
 
 
 ### Launch
 
-Create an instance: `const launch = client.Launch()`
+Create an instance: `const launch = client.launch`
 
 #### Operations
 
@@ -775,19 +772,19 @@ Create an instance: `const launch = client.Launch()`
 #### Example: Load
 
 ```ts
-const launch = await client.Launch().load({ id: 'launch_id' })
+const launch = await client.launch.load({ id: 'launch_id' })
 ```
 
 #### Example: List
 
 ```ts
-const launchs = await client.Launch().list()
+const launchs = await client.launch.list()
 ```
 
 
 ### Launchpad
 
-Create an instance: `const launchpad = client.Launchpad()`
+Create an instance: `const launchpad = client.launchpad`
 
 #### Operations
 
@@ -817,19 +814,19 @@ Create an instance: `const launchpad = client.Launchpad()`
 #### Example: Load
 
 ```ts
-const launchpad = await client.Launchpad().load({ id: 'launchpad_id' })
+const launchpad = await client.launchpad.load({ id: 'launchpad_id' })
 ```
 
 #### Example: List
 
 ```ts
-const launchpads = await client.Launchpad().list()
+const launchpads = await client.launchpad.list()
 ```
 
 
 ### Payload
 
-Create an instance: `const payload = client.Payload()`
+Create an instance: `const payload = client.payload`
 
 #### Operations
 
@@ -873,19 +870,19 @@ Create an instance: `const payload = client.Payload()`
 #### Example: Load
 
 ```ts
-const payload = await client.Payload().load({ id: 'payload_id' })
+const payload = await client.payload.load({ id: 'payload_id' })
 ```
 
 #### Example: List
 
 ```ts
-const payloads = await client.Payload().list()
+const payloads = await client.payload.list()
 ```
 
 
 ### Roadster
 
-Create an instance: `const roadster = client.Roadster()`
+Create an instance: `const roadster = client.roadster`
 
 #### Operations
 
@@ -928,13 +925,13 @@ Create an instance: `const roadster = client.Roadster()`
 #### Example: List
 
 ```ts
-const roadsters = await client.Roadster().list()
+const roadsters = await client.roadster.list()
 ```
 
 
 ### Rocket
 
-Create an instance: `const rocket = client.Rocket()`
+Create an instance: `const rocket = client.rocket`
 
 #### Operations
 
@@ -968,19 +965,19 @@ Create an instance: `const rocket = client.Rocket()`
 #### Example: Load
 
 ```ts
-const rocket = await client.Rocket().load({ id: 'rocket_id' })
+const rocket = await client.rocket.load({ id: 'rocket_id' })
 ```
 
 #### Example: List
 
 ```ts
-const rockets = await client.Rocket().list()
+const rockets = await client.rocket.list()
 ```
 
 
 ### Ship
 
-Create an instance: `const ship = client.Ship()`
+Create an instance: `const ship = client.ship`
 
 #### Operations
 
@@ -1020,19 +1017,19 @@ Create an instance: `const ship = client.Ship()`
 #### Example: Load
 
 ```ts
-const ship = await client.Ship().load({ id: 'ship_id' })
+const ship = await client.ship.load({ id: 'ship_id' })
 ```
 
 #### Example: List
 
 ```ts
-const ships = await client.Ship().list()
+const ships = await client.ship.list()
 ```
 
 
 ### Starlink
 
-Create an instance: `const starlink = client.Starlink()`
+Create an instance: `const starlink = client.starlink`
 
 #### Operations
 
@@ -1057,13 +1054,13 @@ Create an instance: `const starlink = client.Starlink()`
 #### Example: Load
 
 ```ts
-const starlink = await client.Starlink().load({ id: 'starlink_id' })
+const starlink = await client.starlink.load({ id: 'starlink_id' })
 ```
 
 #### Example: List
 
 ```ts
-const starlinks = await client.Starlink().list()
+const starlinks = await client.starlink.list()
 ```
 
 
@@ -1124,7 +1121,7 @@ spacex-rest/
 Import the SDK from the package root:
 
 ```ts
-import { SpacexRestSDK } from 'spacex-rest'
+import { SpacexRestSDK } from '@voxgig-sdk/spacex-rest'
 ```
 
 ### Entity state
@@ -1134,11 +1131,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const capsule = client.capsule
+await capsule.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// capsule.data() now returns the loaded capsule data
+// capsule.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

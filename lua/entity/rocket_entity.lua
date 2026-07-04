@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch RocketLoadMatch
+---@param ctrl? table
+---@return Rocket
+---@return string? err
 function RocketEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch RocketListMatch
+---@param ctrl? table
+---@return Rocket[]
+---@return string? err
 function RocketEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

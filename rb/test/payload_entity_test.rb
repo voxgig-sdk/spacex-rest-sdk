@@ -43,16 +43,14 @@ class PayloadEntityTest < Minitest::Test
     payload_ref01_ent = client.Payload(nil)
     payload_ref01_match = {}
 
-    payload_ref01_list_result, err = payload_ref01_ent.list(payload_ref01_match, nil)
-    assert_nil err
+    payload_ref01_list_result = payload_ref01_ent.list(payload_ref01_match, nil)
     assert payload_ref01_list_result.is_a?(Array)
 
     # LOAD
     payload_ref01_match_dt0 = {
       "id" => payload_ref01_data["id"],
     }
-    payload_ref01_data_dt0_loaded, err = payload_ref01_ent.load(payload_ref01_match_dt0, nil)
-    assert_nil err
+    payload_ref01_data_dt0_loaded = payload_ref01_ent.load(payload_ref01_match_dt0, nil)
     payload_ref01_data_dt0_load_result = Helpers.to_map(payload_ref01_data_dt0_loaded)
     assert !payload_ref01_data_dt0_load_result.nil?
     assert_equal payload_ref01_data_dt0_load_result["id"], payload_ref01_data["id"]
@@ -93,7 +91,6 @@ def payload_basic_setup(extra)
     "SPACEXREST_TEST_PAYLOAD_ENTID" => idmap,
     "SPACEXREST_TEST_LIVE" => "FALSE",
     "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-    "SPACEXREST_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def payload_basic_setup(extra)
   if env["SPACEXREST_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SPACEXREST_APIKEY"],
       },
       extra || {},
     ])

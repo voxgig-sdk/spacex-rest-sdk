@@ -43,16 +43,14 @@ class ShipEntityTest < Minitest::Test
     ship_ref01_ent = client.Ship(nil)
     ship_ref01_match = {}
 
-    ship_ref01_list_result, err = ship_ref01_ent.list(ship_ref01_match, nil)
-    assert_nil err
+    ship_ref01_list_result = ship_ref01_ent.list(ship_ref01_match, nil)
     assert ship_ref01_list_result.is_a?(Array)
 
     # LOAD
     ship_ref01_match_dt0 = {
       "id" => ship_ref01_data["id"],
     }
-    ship_ref01_data_dt0_loaded, err = ship_ref01_ent.load(ship_ref01_match_dt0, nil)
-    assert_nil err
+    ship_ref01_data_dt0_loaded = ship_ref01_ent.load(ship_ref01_match_dt0, nil)
     ship_ref01_data_dt0_load_result = Helpers.to_map(ship_ref01_data_dt0_loaded)
     assert !ship_ref01_data_dt0_load_result.nil?
     assert_equal ship_ref01_data_dt0_load_result["id"], ship_ref01_data["id"]
@@ -93,7 +91,6 @@ def ship_basic_setup(extra)
     "SPACEXREST_TEST_SHIP_ENTID" => idmap,
     "SPACEXREST_TEST_LIVE" => "FALSE",
     "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-    "SPACEXREST_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def ship_basic_setup(extra)
   if env["SPACEXREST_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SPACEXREST_APIKEY"],
       },
       extra || {},
     ])

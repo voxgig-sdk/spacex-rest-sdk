@@ -50,16 +50,14 @@ class TestRocketEntity:
         rocket_ref01_ent = client.Rocket(None)
         rocket_ref01_match = {}
 
-        rocket_ref01_list_result, err = rocket_ref01_ent.list(rocket_ref01_match, None)
-        assert err is None
+        rocket_ref01_list_result = rocket_ref01_ent.list(rocket_ref01_match, None)
         assert isinstance(rocket_ref01_list_result, list)
 
         # LOAD
         rocket_ref01_match_dt0 = {
             "id": rocket_ref01_data["id"],
         }
-        rocket_ref01_data_dt0_loaded, err = rocket_ref01_ent.load(rocket_ref01_match_dt0, None)
-        assert err is None
+        rocket_ref01_data_dt0_loaded = rocket_ref01_ent.load(rocket_ref01_match_dt0, None)
         rocket_ref01_data_dt0_load_result = helpers.to_map(rocket_ref01_data_dt0_loaded)
         assert rocket_ref01_data_dt0_load_result is not None
         assert rocket_ref01_data_dt0_load_result["id"] == rocket_ref01_data["id"]
@@ -102,7 +100,6 @@ def _rocket_basic_setup(extra):
         "SPACEXREST_TEST_ROCKET_ENTID": idmap,
         "SPACEXREST_TEST_LIVE": "FALSE",
         "SPACEXREST_TEST_EXPLAIN": "FALSE",
-        "SPACEXREST_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _rocket_basic_setup(extra):
     if env.get("SPACEXREST_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SPACEXREST_APIKEY"),
             },
             extra or {},
         ])

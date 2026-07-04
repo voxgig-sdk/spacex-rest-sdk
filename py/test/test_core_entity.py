@@ -50,16 +50,14 @@ class TestCoreEntity:
         core_ref01_ent = client.Core(None)
         core_ref01_match = {}
 
-        core_ref01_list_result, err = core_ref01_ent.list(core_ref01_match, None)
-        assert err is None
+        core_ref01_list_result = core_ref01_ent.list(core_ref01_match, None)
         assert isinstance(core_ref01_list_result, list)
 
         # LOAD
         core_ref01_match_dt0 = {
             "id": core_ref01_data["id"],
         }
-        core_ref01_data_dt0_loaded, err = core_ref01_ent.load(core_ref01_match_dt0, None)
-        assert err is None
+        core_ref01_data_dt0_loaded = core_ref01_ent.load(core_ref01_match_dt0, None)
         core_ref01_data_dt0_load_result = helpers.to_map(core_ref01_data_dt0_loaded)
         assert core_ref01_data_dt0_load_result is not None
         assert core_ref01_data_dt0_load_result["id"] == core_ref01_data["id"]
@@ -102,7 +100,6 @@ def _core_basic_setup(extra):
         "SPACEXREST_TEST_CORE_ENTID": idmap,
         "SPACEXREST_TEST_LIVE": "FALSE",
         "SPACEXREST_TEST_EXPLAIN": "FALSE",
-        "SPACEXREST_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _core_basic_setup(extra):
     if env.get("SPACEXREST_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SPACEXREST_APIKEY"),
             },
             extra or {},
         ])

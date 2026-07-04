@@ -1,7 +1,14 @@
 # SpacexRest SDK Rocket entity
 
+from __future__ import annotations
+
 from utility.voxgig_struct import voxgig_struct as vs
 from core import helpers
+from spacexrest_types import (
+    Rocket,
+    RocketLoadMatch,
+    RocketListMatch,
+)
 
 
 class RocketEntity:
@@ -44,7 +51,7 @@ class RocketEntity:
             self._data = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetData")
 
-    def data_get(self):
+    def data_get(self) -> Rocket:
         self._utility.feature_hook(self._entctx, "GetData")
         return vs.clone(self._data)
 
@@ -53,12 +60,12 @@ class RocketEntity:
             self._match = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetMatch")
 
-    def match_get(self):
+    def match_get(self) -> Rocket:
         self._utility.feature_hook(self._entctx, "GetMatch")
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch, ctrl=None):
+    def load(self, reqmatch: RocketLoadMatch, ctrl=None) -> Rocket:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "load",
@@ -80,7 +87,7 @@ class RocketEntity:
 
 
     
-    def list(self, reqmatch, ctrl=None):
+    def list(self, reqmatch: RocketListMatch, ctrl=None) -> list[Rocket]:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "list",

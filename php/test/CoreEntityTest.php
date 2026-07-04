@@ -50,16 +50,14 @@ class CoreEntityTest extends TestCase
         $core_ref01_ent = $client->Core(null);
         $core_ref01_match = [];
 
-        [$core_ref01_list_result, $err] = $core_ref01_ent->list($core_ref01_match, null);
-        $this->assertNull($err);
+        $core_ref01_list_result = $core_ref01_ent->list($core_ref01_match, null);
         $this->assertIsArray($core_ref01_list_result);
 
         // LOAD
         $core_ref01_match_dt0 = [
             "id" => $core_ref01_data["id"],
         ];
-        [$core_ref01_data_dt0_loaded, $err] = $core_ref01_ent->load($core_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $core_ref01_data_dt0_loaded = $core_ref01_ent->load($core_ref01_match_dt0, null);
         $core_ref01_data_dt0_load_result = Helpers::to_map($core_ref01_data_dt0_loaded);
         $this->assertNotNull($core_ref01_data_dt0_load_result);
         $this->assertEquals($core_ref01_data_dt0_load_result["id"], $core_ref01_data["id"]);
@@ -96,7 +94,6 @@ function core_basic_setup($extra)
         "SPACEXREST_TEST_CORE_ENTID" => $idmap,
         "SPACEXREST_TEST_LIVE" => "FALSE",
         "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-        "SPACEXREST_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function core_basic_setup($extra)
     if ($env["SPACEXREST_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SPACEXREST_APIKEY"],
             ],
             $extra ?? [],
         ]);

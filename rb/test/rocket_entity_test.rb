@@ -43,16 +43,14 @@ class RocketEntityTest < Minitest::Test
     rocket_ref01_ent = client.Rocket(nil)
     rocket_ref01_match = {}
 
-    rocket_ref01_list_result, err = rocket_ref01_ent.list(rocket_ref01_match, nil)
-    assert_nil err
+    rocket_ref01_list_result = rocket_ref01_ent.list(rocket_ref01_match, nil)
     assert rocket_ref01_list_result.is_a?(Array)
 
     # LOAD
     rocket_ref01_match_dt0 = {
       "id" => rocket_ref01_data["id"],
     }
-    rocket_ref01_data_dt0_loaded, err = rocket_ref01_ent.load(rocket_ref01_match_dt0, nil)
-    assert_nil err
+    rocket_ref01_data_dt0_loaded = rocket_ref01_ent.load(rocket_ref01_match_dt0, nil)
     rocket_ref01_data_dt0_load_result = Helpers.to_map(rocket_ref01_data_dt0_loaded)
     assert !rocket_ref01_data_dt0_load_result.nil?
     assert_equal rocket_ref01_data_dt0_load_result["id"], rocket_ref01_data["id"]
@@ -93,7 +91,6 @@ def rocket_basic_setup(extra)
     "SPACEXREST_TEST_ROCKET_ENTID" => idmap,
     "SPACEXREST_TEST_LIVE" => "FALSE",
     "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-    "SPACEXREST_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def rocket_basic_setup(extra)
   if env["SPACEXREST_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SPACEXREST_APIKEY"],
       },
       extra || {},
     ])

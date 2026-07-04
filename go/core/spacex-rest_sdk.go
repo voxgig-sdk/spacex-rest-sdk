@@ -245,56 +245,89 @@ func (sdk *SpacexRestSDK) Direct(fetchargs map[string]any) (map[string]any, erro
 }
 
 
+// Capsule returns a Capsule entity bound to this client.
+// Idiomatic usage: client.Capsule(nil).List(nil, nil) or
+// client.Capsule(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SpacexRestSDK) Capsule(data map[string]any) SpacexRestEntity {
 	return NewCapsuleEntityFunc(sdk, data)
 }
 
 
+// Core returns a Core entity bound to this client.
+// Idiomatic usage: client.Core(nil).List(nil, nil) or
+// client.Core(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SpacexRestSDK) Core(data map[string]any) SpacexRestEntity {
 	return NewCoreEntityFunc(sdk, data)
 }
 
 
+// Crew returns a Crew entity bound to this client.
+// Idiomatic usage: client.Crew(nil).List(nil, nil) or
+// client.Crew(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SpacexRestSDK) Crew(data map[string]any) SpacexRestEntity {
 	return NewCrewEntityFunc(sdk, data)
 }
 
 
+// Landpad returns a Landpad entity bound to this client.
+// Idiomatic usage: client.Landpad(nil).List(nil, nil) or
+// client.Landpad(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SpacexRestSDK) Landpad(data map[string]any) SpacexRestEntity {
 	return NewLandpadEntityFunc(sdk, data)
 }
 
 
+// Launch returns a Launch entity bound to this client.
+// Idiomatic usage: client.Launch(nil).List(nil, nil) or
+// client.Launch(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SpacexRestSDK) Launch(data map[string]any) SpacexRestEntity {
 	return NewLaunchEntityFunc(sdk, data)
 }
 
 
+// Launchpad returns a Launchpad entity bound to this client.
+// Idiomatic usage: client.Launchpad(nil).List(nil, nil) or
+// client.Launchpad(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SpacexRestSDK) Launchpad(data map[string]any) SpacexRestEntity {
 	return NewLaunchpadEntityFunc(sdk, data)
 }
 
 
+// Payload returns a Payload entity bound to this client.
+// Idiomatic usage: client.Payload(nil).List(nil, nil) or
+// client.Payload(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SpacexRestSDK) Payload(data map[string]any) SpacexRestEntity {
 	return NewPayloadEntityFunc(sdk, data)
 }
 
 
+// Roadster returns a Roadster entity bound to this client.
+// Idiomatic usage: client.Roadster(nil).List(nil, nil) or
+// client.Roadster(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SpacexRestSDK) Roadster(data map[string]any) SpacexRestEntity {
 	return NewRoadsterEntityFunc(sdk, data)
 }
 
 
+// Rocket returns a Rocket entity bound to this client.
+// Idiomatic usage: client.Rocket(nil).List(nil, nil) or
+// client.Rocket(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SpacexRestSDK) Rocket(data map[string]any) SpacexRestEntity {
 	return NewRocketEntityFunc(sdk, data)
 }
 
 
+// Ship returns a Ship entity bound to this client.
+// Idiomatic usage: client.Ship(nil).List(nil, nil) or
+// client.Ship(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SpacexRestSDK) Ship(data map[string]any) SpacexRestEntity {
 	return NewShipEntityFunc(sdk, data)
 }
 
 
+// Starlink returns a Starlink entity bound to this client.
+// Idiomatic usage: client.Starlink(nil).List(nil, nil) or
+// client.Starlink(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SpacexRestSDK) Starlink(data map[string]any) SpacexRestEntity {
 	return NewStarlinkEntityFunc(sdk, data)
 }

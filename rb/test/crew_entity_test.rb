@@ -43,16 +43,14 @@ class CrewEntityTest < Minitest::Test
     crew_ref01_ent = client.Crew(nil)
     crew_ref01_match = {}
 
-    crew_ref01_list_result, err = crew_ref01_ent.list(crew_ref01_match, nil)
-    assert_nil err
+    crew_ref01_list_result = crew_ref01_ent.list(crew_ref01_match, nil)
     assert crew_ref01_list_result.is_a?(Array)
 
     # LOAD
     crew_ref01_match_dt0 = {
       "id" => crew_ref01_data["id"],
     }
-    crew_ref01_data_dt0_loaded, err = crew_ref01_ent.load(crew_ref01_match_dt0, nil)
-    assert_nil err
+    crew_ref01_data_dt0_loaded = crew_ref01_ent.load(crew_ref01_match_dt0, nil)
     crew_ref01_data_dt0_load_result = Helpers.to_map(crew_ref01_data_dt0_loaded)
     assert !crew_ref01_data_dt0_load_result.nil?
     assert_equal crew_ref01_data_dt0_load_result["id"], crew_ref01_data["id"]
@@ -93,7 +91,6 @@ def crew_basic_setup(extra)
     "SPACEXREST_TEST_CREW_ENTID" => idmap,
     "SPACEXREST_TEST_LIVE" => "FALSE",
     "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-    "SPACEXREST_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def crew_basic_setup(extra)
   if env["SPACEXREST_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SPACEXREST_APIKEY"],
       },
       extra || {},
     ])

@@ -9,21 +9,10 @@ The Ruby SDK for the SpacexRest API — an entity-oriented client using idiomati
 
 
 ## Install
-```bash
-gem install voxgig-sdk-spacex-rest
-```
+This package is not yet published to RubyGems. Install it from the
+GitHub release tag (`rb/vX.Y.Z`):
 
-Or add to your `Gemfile`:
-
-```ruby
-gem "voxgig-sdk-spacex-rest"
-```
-
-Then run:
-
-```bash
-bundle install
-```
+- Releases: [https://github.com/voxgig-sdk/spacex-rest-sdk/releases](https://github.com/voxgig-sdk/spacex-rest-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -36,31 +25,34 @@ loading a specific record.
 ```ruby
 require_relative "SpacexRest_sdk"
 
-client = SpacexRestSDK.new({
-  "apikey" => ENV["SPACEX-REST_APIKEY"],
-})
+client = SpacexRestSDK.new
 ```
 
 ### 2. List capsules
 
 ```ruby
-result, err = client.Capsule().list
-raise err if err
-
-if result.is_a?(Array)
-  result.each do |item|
-    d = item.data_get
-    puts "#{d["id"]} #{d["name"]}"
+begin
+  result = client.capsule.list
+  if result.is_a?(Array)
+    result.each do |item|
+      d = item.data_get
+      puts "#{d["id"]} #{d["name"]}"
+    end
   end
+rescue => err
+  warn "list failed: #{err}"
 end
 ```
 
 ### 3. Load a capsule
 
 ```ruby
-result, err = client.Capsule().load({ "id" => "example_id" })
-raise err if err
-puts result
+begin
+  result = client.capsule.load({ "id" => "example_id" })
+  puts result
+rescue => err
+  warn "load failed: #{err}"
+end
 ```
 
 
@@ -71,32 +63,35 @@ puts result
 For endpoints not covered by entity methods:
 
 ```ruby
-result, err = client.direct({
+result = client.direct({
   "path" => "/api/resource/{id}",
   "method" => "GET",
   "params" => { "id" => "example" },
 })
-raise err if err
 
 if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
+else
+  warn result["err"]
 end
 ```
 
 ### Prepare a request without sending it
 
 ```ruby
-fetchdef, err = client.prepare({
-  "path" => "/api/resource/{id}",
-  "method" => "DELETE",
-  "params" => { "id" => "example" },
-})
-raise err if err
-
-puts fetchdef["url"]
-puts fetchdef["method"]
-puts fetchdef["headers"]
+begin
+  fetchdef = client.prepare({
+    "path" => "/api/resource/{id}",
+    "method" => "DELETE",
+    "params" => { "id" => "example" },
+  })
+  puts fetchdef["url"]
+  puts fetchdef["method"]
+  puts fetchdef["headers"]
+rescue => err
+  warn "prepare failed: #{err}"
+end
 ```
 
 ### Use test mode
@@ -106,7 +101,7 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = SpacexRestSDK.test
 
-result, err = client.SpacexRest().load({ "id" => "test01" })
+result = client.capsule.load({ "id" => "test01" })
 # result contains mock response data
 ```
 
@@ -137,8 +132,7 @@ client = SpacexRestSDK.new({
 Create a `.env.local` file at the project root:
 
 ```
-SPACEX-REST_TEST_LIVE=TRUE
-SPACEX-REST_APIKEY=<your-key>
+SPACEX_REST_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -161,7 +155,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |
@@ -183,8 +176,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | --- | --- | --- |
 | `options_map` | `() -> Hash` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> [Hash, err]` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> [Hash, err]` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `Capsule` | `(data) -> CapsuleEntity` | Create a Capsule entity instance. |
 | `Core` | `(data) -> CoreEntity` | Create a Core entity instance. |
 | `Crew` | `(data) -> CrewEntity` | Create a Crew entity instance. |
@@ -203,11 +196,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> [any, err]` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> [any, err]` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> [any, err]` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> [any, err]` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> [any, err]` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -217,8 +210,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[any, err]`. The first value is a
-`Hash` with these keys:
+Entity operations return the result data directly. On failure they
+raise a `SpacexRestError` (a `StandardError` subclass), so wrap
+calls in `begin`/`rescue` where you need to handle errors.
+
+The `direct` escape hatch is the exception: it never raises and instead
+returns a result `Hash` with these keys:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -226,8 +223,7 @@ Entity operations return `[any, err]`. The first value is a
 | `status` | `Integer` | HTTP status code. |
 | `headers` | `Hash` | Response headers. |
 | `data` | `any` | Parsed JSON response body. |
-
-On error, `ok` is `false` and `err` contains the error value.
+| `err` | `Error` | Present when `ok` is `false`. |
 
 ### Entities
 
@@ -527,7 +523,7 @@ API path: `/starlink`
 
 ### Capsule
 
-Create an instance: `const capsule = client.Capsule()`
+Create an instance: `const capsule = client.capsule`
 
 #### Operations
 
@@ -553,19 +549,19 @@ Create an instance: `const capsule = client.Capsule()`
 #### Example: Load
 
 ```ts
-const capsule = await client.Capsule().load({ id: 'capsule_id' })
+const capsule = await client.capsule.load({ id: 'capsule_id' })
 ```
 
 #### Example: List
 
 ```ts
-const capsules = await client.Capsule().list()
+const capsules = await client.capsule.list()
 ```
 
 
 ### Core
 
-Create an instance: `const core = client.Core()`
+Create an instance: `const core = client.core`
 
 #### Operations
 
@@ -593,19 +589,19 @@ Create an instance: `const core = client.Core()`
 #### Example: Load
 
 ```ts
-const core = await client.Core().load({ id: 'core_id' })
+const core = await client.core.load({ id: 'core_id' })
 ```
 
 #### Example: List
 
 ```ts
-const cores = await client.Core().list()
+const cores = await client.core.list()
 ```
 
 
 ### Crew
 
-Create an instance: `const crew = client.Crew()`
+Create an instance: `const crew = client.crew`
 
 #### Operations
 
@@ -629,19 +625,19 @@ Create an instance: `const crew = client.Crew()`
 #### Example: Load
 
 ```ts
-const crew = await client.Crew().load({ id: 'crew_id' })
+const crew = await client.crew.load({ id: 'crew_id' })
 ```
 
 #### Example: List
 
 ```ts
-const crews = await client.Crew().list()
+const crews = await client.crew.list()
 ```
 
 
 ### Landpad
 
-Create an instance: `const landpad = client.Landpad()`
+Create an instance: `const landpad = client.landpad`
 
 #### Operations
 
@@ -672,19 +668,19 @@ Create an instance: `const landpad = client.Landpad()`
 #### Example: Load
 
 ```ts
-const landpad = await client.Landpad().load({ id: 'landpad_id' })
+const landpad = await client.landpad.load({ id: 'landpad_id' })
 ```
 
 #### Example: List
 
 ```ts
-const landpads = await client.Landpad().list()
+const landpads = await client.landpad.list()
 ```
 
 
 ### Launch
 
-Create an instance: `const launch = client.Launch()`
+Create an instance: `const launch = client.launch`
 
 #### Operations
 
@@ -735,19 +731,19 @@ Create an instance: `const launch = client.Launch()`
 #### Example: Load
 
 ```ts
-const launch = await client.Launch().load({ id: 'launch_id' })
+const launch = await client.launch.load({ id: 'launch_id' })
 ```
 
 #### Example: List
 
 ```ts
-const launchs = await client.Launch().list()
+const launchs = await client.launch.list()
 ```
 
 
 ### Launchpad
 
-Create an instance: `const launchpad = client.Launchpad()`
+Create an instance: `const launchpad = client.launchpad`
 
 #### Operations
 
@@ -777,19 +773,19 @@ Create an instance: `const launchpad = client.Launchpad()`
 #### Example: Load
 
 ```ts
-const launchpad = await client.Launchpad().load({ id: 'launchpad_id' })
+const launchpad = await client.launchpad.load({ id: 'launchpad_id' })
 ```
 
 #### Example: List
 
 ```ts
-const launchpads = await client.Launchpad().list()
+const launchpads = await client.launchpad.list()
 ```
 
 
 ### Payload
 
-Create an instance: `const payload = client.Payload()`
+Create an instance: `const payload = client.payload`
 
 #### Operations
 
@@ -833,19 +829,19 @@ Create an instance: `const payload = client.Payload()`
 #### Example: Load
 
 ```ts
-const payload = await client.Payload().load({ id: 'payload_id' })
+const payload = await client.payload.load({ id: 'payload_id' })
 ```
 
 #### Example: List
 
 ```ts
-const payloads = await client.Payload().list()
+const payloads = await client.payload.list()
 ```
 
 
 ### Roadster
 
-Create an instance: `const roadster = client.Roadster()`
+Create an instance: `const roadster = client.roadster`
 
 #### Operations
 
@@ -888,13 +884,13 @@ Create an instance: `const roadster = client.Roadster()`
 #### Example: List
 
 ```ts
-const roadsters = await client.Roadster().list()
+const roadsters = await client.roadster.list()
 ```
 
 
 ### Rocket
 
-Create an instance: `const rocket = client.Rocket()`
+Create an instance: `const rocket = client.rocket`
 
 #### Operations
 
@@ -928,19 +924,19 @@ Create an instance: `const rocket = client.Rocket()`
 #### Example: Load
 
 ```ts
-const rocket = await client.Rocket().load({ id: 'rocket_id' })
+const rocket = await client.rocket.load({ id: 'rocket_id' })
 ```
 
 #### Example: List
 
 ```ts
-const rockets = await client.Rocket().list()
+const rockets = await client.rocket.list()
 ```
 
 
 ### Ship
 
-Create an instance: `const ship = client.Ship()`
+Create an instance: `const ship = client.ship`
 
 #### Operations
 
@@ -980,19 +976,19 @@ Create an instance: `const ship = client.Ship()`
 #### Example: Load
 
 ```ts
-const ship = await client.Ship().load({ id: 'ship_id' })
+const ship = await client.ship.load({ id: 'ship_id' })
 ```
 
 #### Example: List
 
 ```ts
-const ships = await client.Ship().list()
+const ships = await client.ship.list()
 ```
 
 
 ### Starlink
 
-Create an instance: `const starlink = client.Starlink()`
+Create an instance: `const starlink = client.starlink`
 
 #### Operations
 
@@ -1017,13 +1013,13 @@ Create an instance: `const starlink = client.Starlink()`
 #### Example: Load
 
 ```ts
-const starlink = await client.Starlink().load({ id: 'starlink_id' })
+const starlink = await client.starlink.load({ id: 'starlink_id' })
 ```
 
 #### Example: List
 
 ```ts
-const starlinks = await client.Starlink().list()
+const starlinks = await client.starlink.list()
 ```
 
 
@@ -1098,11 +1094,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-moon = client.Moon
-moon.load({ "planet_id" => "earth", "id" => "luna" })
+capsule = client.capsule
+capsule.load({ "id" => "example_id" })
 
-# moon.data_get now returns the loaded moon data
-# moon.match_get returns the last match criteria
+# capsule.data_get now returns the loaded capsule data
+# capsule.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

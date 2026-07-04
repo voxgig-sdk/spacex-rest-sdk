@@ -50,16 +50,14 @@ class ShipEntityTest extends TestCase
         $ship_ref01_ent = $client->Ship(null);
         $ship_ref01_match = [];
 
-        [$ship_ref01_list_result, $err] = $ship_ref01_ent->list($ship_ref01_match, null);
-        $this->assertNull($err);
+        $ship_ref01_list_result = $ship_ref01_ent->list($ship_ref01_match, null);
         $this->assertIsArray($ship_ref01_list_result);
 
         // LOAD
         $ship_ref01_match_dt0 = [
             "id" => $ship_ref01_data["id"],
         ];
-        [$ship_ref01_data_dt0_loaded, $err] = $ship_ref01_ent->load($ship_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $ship_ref01_data_dt0_loaded = $ship_ref01_ent->load($ship_ref01_match_dt0, null);
         $ship_ref01_data_dt0_load_result = Helpers::to_map($ship_ref01_data_dt0_loaded);
         $this->assertNotNull($ship_ref01_data_dt0_load_result);
         $this->assertEquals($ship_ref01_data_dt0_load_result["id"], $ship_ref01_data["id"]);
@@ -96,7 +94,6 @@ function ship_basic_setup($extra)
         "SPACEXREST_TEST_SHIP_ENTID" => $idmap,
         "SPACEXREST_TEST_LIVE" => "FALSE",
         "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-        "SPACEXREST_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function ship_basic_setup($extra)
     if ($env["SPACEXREST_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SPACEXREST_APIKEY"],
             ],
             $extra ?? [],
         ]);

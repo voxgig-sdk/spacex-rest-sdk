@@ -50,8 +50,7 @@ class TestRoadsterEntity:
         roadster_ref01_ent = client.Roadster(None)
         roadster_ref01_match = {}
 
-        roadster_ref01_list_result, err = roadster_ref01_ent.list(roadster_ref01_match, None)
-        assert err is None
+        roadster_ref01_list_result = roadster_ref01_ent.list(roadster_ref01_match, None)
         assert isinstance(roadster_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _roadster_basic_setup(extra):
         "SPACEXREST_TEST_ROADSTER_ENTID": idmap,
         "SPACEXREST_TEST_LIVE": "FALSE",
         "SPACEXREST_TEST_EXPLAIN": "FALSE",
-        "SPACEXREST_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _roadster_basic_setup(extra):
     if env.get("SPACEXREST_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SPACEXREST_APIKEY"),
             },
             extra or {},
         ])

@@ -43,16 +43,14 @@ class StarlinkEntityTest < Minitest::Test
     starlink_ref01_ent = client.Starlink(nil)
     starlink_ref01_match = {}
 
-    starlink_ref01_list_result, err = starlink_ref01_ent.list(starlink_ref01_match, nil)
-    assert_nil err
+    starlink_ref01_list_result = starlink_ref01_ent.list(starlink_ref01_match, nil)
     assert starlink_ref01_list_result.is_a?(Array)
 
     # LOAD
     starlink_ref01_match_dt0 = {
       "id" => starlink_ref01_data["id"],
     }
-    starlink_ref01_data_dt0_loaded, err = starlink_ref01_ent.load(starlink_ref01_match_dt0, nil)
-    assert_nil err
+    starlink_ref01_data_dt0_loaded = starlink_ref01_ent.load(starlink_ref01_match_dt0, nil)
     starlink_ref01_data_dt0_load_result = Helpers.to_map(starlink_ref01_data_dt0_loaded)
     assert !starlink_ref01_data_dt0_load_result.nil?
     assert_equal starlink_ref01_data_dt0_load_result["id"], starlink_ref01_data["id"]
@@ -93,7 +91,6 @@ def starlink_basic_setup(extra)
     "SPACEXREST_TEST_STARLINK_ENTID" => idmap,
     "SPACEXREST_TEST_LIVE" => "FALSE",
     "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-    "SPACEXREST_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def starlink_basic_setup(extra)
   if env["SPACEXREST_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SPACEXREST_APIKEY"],
       },
       extra || {},
     ])

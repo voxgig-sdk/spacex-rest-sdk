@@ -43,8 +43,7 @@ class RoadsterEntityTest < Minitest::Test
     roadster_ref01_ent = client.Roadster(nil)
     roadster_ref01_match = {}
 
-    roadster_ref01_list_result, err = roadster_ref01_ent.list(roadster_ref01_match, nil)
-    assert_nil err
+    roadster_ref01_list_result = roadster_ref01_ent.list(roadster_ref01_match, nil)
     assert roadster_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def roadster_basic_setup(extra)
     "SPACEXREST_TEST_ROADSTER_ENTID" => idmap,
     "SPACEXREST_TEST_LIVE" => "FALSE",
     "SPACEXREST_TEST_EXPLAIN" => "FALSE",
-    "SPACEXREST_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def roadster_basic_setup(extra)
   if env["SPACEXREST_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SPACEXREST_APIKEY"],
       },
       extra || {},
     ])
