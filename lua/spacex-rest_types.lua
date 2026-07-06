@@ -21,6 +21,15 @@
 ---@field id string
 
 ---@class CapsuleListMatch
+---@field id? string
+---@field land_landing? number
+---@field last_update? string
+---@field launch? table
+---@field reuse_count? number
+---@field serial? string
+---@field status? string
+---@field type? string
+---@field water_landing? number
 
 ---@class Core
 ---@field asds_attempt? number
@@ -39,6 +48,17 @@
 ---@field id string
 
 ---@class CoreListMatch
+---@field asds_attempt? number
+---@field asds_landing? number
+---@field block? number
+---@field id? string
+---@field last_update? string
+---@field launch? table
+---@field reuse_count? number
+---@field rtls_attempt? number
+---@field rtls_landing? number
+---@field serial? string
+---@field status? string
 
 ---@class Crew
 ---@field agency? string
@@ -53,6 +73,13 @@
 ---@field id string
 
 ---@class CrewListMatch
+---@field agency? string
+---@field id? string
+---@field image? string
+---@field launch? table
+---@field name? string
+---@field status? string
+---@field wikipedia? string
 
 ---@class Landpad
 ---@field detail? string
@@ -74,6 +101,20 @@
 ---@field id string
 
 ---@class LandpadListMatch
+---@field detail? string
+---@field full_name? string
+---@field id? string
+---@field landing_attempt? number
+---@field landing_success? number
+---@field latitude? number
+---@field launch? table
+---@field locality? string
+---@field longitude? number
+---@field name? string
+---@field region? string
+---@field status? string
+---@field type? string
+---@field wikipedia? string
 
 ---@class Launch
 ---@field auto_update? boolean
@@ -115,6 +156,40 @@
 ---@field id string
 
 ---@class LaunchListMatch
+---@field auto_update? boolean
+---@field capsule? table
+---@field core? table
+---@field crew? table
+---@field date_local? string
+---@field date_precision? string
+---@field date_unix? number
+---@field date_utc? string
+---@field detail? string
+---@field failure? table
+---@field fairing? table
+---@field flight? number
+---@field flight_number? number
+---@field gridfin? boolean
+---@field id? string
+---@field landing_attempt? boolean
+---@field landing_success? boolean
+---@field landing_type? string
+---@field landpad? string
+---@field launchpad? string
+---@field leg? boolean
+---@field link? table
+---@field name? string
+---@field net? boolean
+---@field payload? table
+---@field reused? boolean
+---@field rocket? string
+---@field ship? table
+---@field static_fire_date_unix? number
+---@field static_fire_date_utc? string
+---@field success? boolean
+---@field tdb? boolean
+---@field upcoming? boolean
+---@field window? number
 
 ---@class Launchpad
 ---@field detail? string
@@ -135,6 +210,19 @@
 ---@field id string
 
 ---@class LaunchpadListMatch
+---@field detail? string
+---@field full_name? string
+---@field id? string
+---@field latitude? number
+---@field launch? table
+---@field launch_attempt? number
+---@field launch_success? number
+---@field locality? string
+---@field longitude? number
+---@field name? string
+---@field region? string
+---@field rocket? table
+---@field status? string
 
 ---@class Payload
 ---@field apoapsis_km? number
@@ -169,6 +257,33 @@
 ---@field id string
 
 ---@class PayloadListMatch
+---@field apoapsis_km? number
+---@field arg_of_pericenter? number
+---@field customer? table
+---@field eccentricity? number
+---@field epoch? string
+---@field id? string
+---@field inclination_deg? number
+---@field launch? string
+---@field lifespan_year? number
+---@field longitude? number
+---@field manufacturer? table
+---@field mass_kg? number
+---@field mass_lb? number
+---@field mean_anomaly? number
+---@field mean_motion? number
+---@field name? string
+---@field nationality? table
+---@field norad_id? table
+---@field orbit? string
+---@field periapsis_km? number
+---@field period_min? number
+---@field raan? number
+---@field reference_system? string
+---@field regime? string
+---@field reused? boolean
+---@field semi_major_axis_km? number
+---@field type? string
 
 ---@class Roadster
 ---@field apoapsis_au? number
@@ -200,6 +315,33 @@
 ---@field wikipedia? string
 
 ---@class RoadsterListMatch
+---@field apoapsis_au? number
+---@field detail? string
+---@field earth_distance_km? number
+---@field earth_distance_mi? number
+---@field eccentricity? number
+---@field epoch_jd? number
+---@field flickr_image? table
+---@field id? string
+---@field inclination? number
+---@field launch_date_unix? number
+---@field launch_date_utc? string
+---@field launch_mass_kg? number
+---@field launch_mass_lb? number
+---@field longitude? number
+---@field mars_distance_km? number
+---@field mars_distance_mi? number
+---@field name? string
+---@field norad_id? number
+---@field orbit_type? string
+---@field periapsis_arg? number
+---@field periapsis_au? number
+---@field period_day? number
+---@field semi_major_axis_au? number
+---@field speed_kph? number
+---@field speed_mph? number
+---@field video? string
+---@field wikipedia? string
 
 ---@class Rocket
 ---@field active? boolean
@@ -224,6 +366,23 @@
 ---@field id string
 
 ---@class RocketListMatch
+---@field active? boolean
+---@field booster? number
+---@field company? string
+---@field cost_per_launch? number
+---@field country? string
+---@field description? string
+---@field diameter? table
+---@field first_flight? string
+---@field flickr_image? table
+---@field height? table
+---@field id? string
+---@field mass? table
+---@field name? string
+---@field stage? number
+---@field success_rate_pct? number
+---@field type? string
+---@field wikipedia? string
 
 ---@class Ship
 ---@field abs? number
@@ -254,6 +413,29 @@
 ---@field id string
 
 ---@class ShipListMatch
+---@field abs? number
+---@field class? number
+---@field course_deg? number
+---@field home_port? string
+---@field id? string
+---@field image? string
+---@field imo? number
+---@field last_ais_update? string
+---@field latitude? number
+---@field launch? table
+---@field legacy_id? string
+---@field link? string
+---@field longitude? number
+---@field mass_kg? number
+---@field mass_lb? number
+---@field mmsi? number
+---@field model? string
+---@field name? string
+---@field role? table
+---@field speed_kn? number
+---@field status? string
+---@field type? string
+---@field year_built? number
 
 ---@class Starlink
 ---@field height_km? number
@@ -269,6 +451,14 @@
 ---@field id string
 
 ---@class StarlinkListMatch
+---@field height_km? number
+---@field id? string
+---@field latitude? number
+---@field launch? string
+---@field longitude? number
+---@field space_track? table
+---@field velocity_km? number
+---@field version? string
 
 local M = {}
 

@@ -32,7 +32,7 @@ class CapsuleLoadMatch
     public string $id;
 }
 
-/** Match filter for Capsule#list (any subset of Capsule fields). */
+/** Request payload for Capsule#list. */
 class CapsuleListMatch
 {
     public ?string $id = null;
@@ -68,7 +68,7 @@ class CoreLoadMatch
     public string $id;
 }
 
-/** Match filter for Core#list (any subset of Core fields). */
+/** Request payload for Core#list. */
 class CoreListMatch
 {
     public ?int $asds_attempt = null;
@@ -102,7 +102,7 @@ class CrewLoadMatch
     public string $id;
 }
 
-/** Match filter for Crew#list (any subset of Crew fields). */
+/** Request payload for Crew#list. */
 class CrewListMatch
 {
     public ?string $agency = null;
@@ -139,7 +139,7 @@ class LandpadLoadMatch
     public string $id;
 }
 
-/** Match filter for Landpad#list (any subset of Landpad fields). */
+/** Request payload for Landpad#list. */
 class LandpadListMatch
 {
     public ?string $detail = null;
@@ -203,7 +203,7 @@ class LaunchLoadMatch
     public string $id;
 }
 
-/** Match filter for Launch#list (any subset of Launch fields). */
+/** Request payload for Launch#list. */
 class LaunchListMatch
 {
     public ?bool $auto_update = null;
@@ -266,7 +266,7 @@ class LaunchpadLoadMatch
     public string $id;
 }
 
-/** Match filter for Launchpad#list (any subset of Launchpad fields). */
+/** Request payload for Launchpad#list. */
 class LaunchpadListMatch
 {
     public ?string $detail = null;
@@ -322,7 +322,7 @@ class PayloadLoadMatch
     public string $id;
 }
 
-/** Match filter for Payload#list (any subset of Payload fields). */
+/** Request payload for Payload#list. */
 class PayloadListMatch
 {
     public ?float $apoapsis_km = null;
@@ -386,7 +386,7 @@ class Roadster
     public ?string $wikipedia = null;
 }
 
-/** Match filter for Roadster#list (any subset of Roadster fields). */
+/** Request payload for Roadster#list. */
 class RoadsterListMatch
 {
     public ?float $apoapsis_au = null;
@@ -446,7 +446,7 @@ class RocketLoadMatch
     public string $id;
 }
 
-/** Match filter for Rocket#list (any subset of Rocket fields). */
+/** Request payload for Rocket#list. */
 class RocketListMatch
 {
     public ?bool $active = null;
@@ -502,7 +502,7 @@ class ShipLoadMatch
     public string $id;
 }
 
-/** Match filter for Ship#list (any subset of Ship fields). */
+/** Request payload for Ship#list. */
 class ShipListMatch
 {
     public ?int $abs = null;
@@ -549,7 +549,7 @@ class StarlinkLoadMatch
     public string $id;
 }
 
-/** Match filter for Starlink#list (any subset of Starlink fields). */
+/** Request payload for Starlink#list. */
 class StarlinkListMatch
 {
     public ?float $height_km = null;

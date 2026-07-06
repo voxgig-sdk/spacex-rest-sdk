@@ -4,6 +4,11 @@
 
 The Python SDK for the SpacexRest API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Capsule()` — each
+carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,7 +43,7 @@ error — iterate it directly.
 
 ```python
 try:
-    capsules = client.Capsule().list({})
+    capsules = client.Capsule().list()
     for capsule in capsules:
         print(capsule)
 except Exception as err:
@@ -55,6 +60,34 @@ try:
     print(capsule)
 except Exception as err:
     print(f"load failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    capsules = client.Capsule().list()
+    print(capsules)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -75,7 +108,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -101,7 +137,7 @@ Create a mock client for unit testing — no server required:
 client = SpacexRestSDK.test()
 
 # Entity ops return the bare record and raise on error.
-capsule = client.Capsule().load({"id": "test01"})
+capsule = client.Capsule().list()
 # capsule contains the mock response record
 ```
 
@@ -198,9 +234,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -530,22 +563,22 @@ Create an instance: `capsule = client.Capsule()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$STRING`` |  |
-| `land_landing` | ``$INTEGER`` |  |
-| `last_update` | ``$STRING`` |  |
-| `launch` | ``$ARRAY`` |  |
-| `reuse_count` | ``$INTEGER`` |  |
-| `serial` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `water_landing` | ``$INTEGER`` |  |
+| `id` | `str` |  |
+| `land_landing` | `int` |  |
+| `last_update` | `str` |  |
+| `launch` | `list` |  |
+| `reuse_count` | `int` |  |
+| `serial` | `str` |  |
+| `status` | `str` |  |
+| `type` | `str` |  |
+| `water_landing` | `int` |  |
 
 #### Example: Load
 
@@ -556,7 +589,7 @@ capsule = client.Capsule().load({"id": "capsule_id"})
 #### Example: List
 
 ```python
-capsules = client.Capsule().list({})
+capsules = client.Capsule().list()
 ```
 
 
@@ -568,24 +601,24 @@ Create an instance: `core = client.Core()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asds_attempt` | ``$INTEGER`` |  |
-| `asds_landing` | ``$INTEGER`` |  |
-| `block` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `last_update` | ``$STRING`` |  |
-| `launch` | ``$ARRAY`` |  |
-| `reuse_count` | ``$INTEGER`` |  |
-| `rtls_attempt` | ``$INTEGER`` |  |
-| `rtls_landing` | ``$INTEGER`` |  |
-| `serial` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
+| `asds_attempt` | `int` |  |
+| `asds_landing` | `int` |  |
+| `block` | `int` |  |
+| `id` | `str` |  |
+| `last_update` | `str` |  |
+| `launch` | `list` |  |
+| `reuse_count` | `int` |  |
+| `rtls_attempt` | `int` |  |
+| `rtls_landing` | `int` |  |
+| `serial` | `str` |  |
+| `status` | `str` |  |
 
 #### Example: Load
 
@@ -596,7 +629,7 @@ core = client.Core().load({"id": "core_id"})
 #### Example: List
 
 ```python
-cores = client.Core().list({})
+cores = client.Core().list()
 ```
 
 
@@ -608,20 +641,20 @@ Create an instance: `crew = client.Crew()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agency` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$STRING`` |  |
-| `launch` | ``$ARRAY`` |  |
-| `name` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `wikipedia` | ``$STRING`` |  |
+| `agency` | `str` |  |
+| `id` | `str` |  |
+| `image` | `str` |  |
+| `launch` | `list` |  |
+| `name` | `str` |  |
+| `status` | `str` |  |
+| `wikipedia` | `str` |  |
 
 #### Example: Load
 
@@ -632,7 +665,7 @@ crew = client.Crew().load({"id": "crew_id"})
 #### Example: List
 
 ```python
-crews = client.Crew().list({})
+crews = client.Crew().list()
 ```
 
 
@@ -644,27 +677,27 @@ Create an instance: `landpad = client.Landpad()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `detail` | ``$STRING`` |  |
-| `full_name` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `landing_attempt` | ``$INTEGER`` |  |
-| `landing_success` | ``$INTEGER`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `launch` | ``$ARRAY`` |  |
-| `locality` | ``$STRING`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `region` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `wikipedia` | ``$STRING`` |  |
+| `detail` | `str` |  |
+| `full_name` | `str` |  |
+| `id` | `str` |  |
+| `landing_attempt` | `int` |  |
+| `landing_success` | `int` |  |
+| `latitude` | `float` |  |
+| `launch` | `list` |  |
+| `locality` | `str` |  |
+| `longitude` | `float` |  |
+| `name` | `str` |  |
+| `region` | `str` |  |
+| `status` | `str` |  |
+| `type` | `str` |  |
+| `wikipedia` | `str` |  |
 
 #### Example: Load
 
@@ -675,7 +708,7 @@ landpad = client.Landpad().load({"id": "landpad_id"})
 #### Example: List
 
 ```python
-landpads = client.Landpad().list({})
+landpads = client.Landpad().list()
 ```
 
 
@@ -687,47 +720,47 @@ Create an instance: `launch = client.Launch()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `auto_update` | ``$BOOLEAN`` |  |
-| `capsule` | ``$ARRAY`` |  |
-| `core` | ``$ARRAY`` |  |
-| `crew` | ``$ARRAY`` |  |
-| `date_local` | ``$STRING`` |  |
-| `date_precision` | ``$STRING`` |  |
-| `date_unix` | ``$INTEGER`` |  |
-| `date_utc` | ``$STRING`` |  |
-| `detail` | ``$STRING`` |  |
-| `failure` | ``$ARRAY`` |  |
-| `fairing` | ``$OBJECT`` |  |
-| `flight` | ``$INTEGER`` |  |
-| `flight_number` | ``$INTEGER`` |  |
-| `gridfin` | ``$BOOLEAN`` |  |
-| `id` | ``$STRING`` |  |
-| `landing_attempt` | ``$BOOLEAN`` |  |
-| `landing_success` | ``$BOOLEAN`` |  |
-| `landing_type` | ``$STRING`` |  |
-| `landpad` | ``$STRING`` |  |
-| `launchpad` | ``$STRING`` |  |
-| `leg` | ``$BOOLEAN`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `net` | ``$BOOLEAN`` |  |
-| `payload` | ``$ARRAY`` |  |
-| `reused` | ``$BOOLEAN`` |  |
-| `rocket` | ``$STRING`` |  |
-| `ship` | ``$ARRAY`` |  |
-| `static_fire_date_unix` | ``$INTEGER`` |  |
-| `static_fire_date_utc` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `tdb` | ``$BOOLEAN`` |  |
-| `upcoming` | ``$BOOLEAN`` |  |
-| `window` | ``$INTEGER`` |  |
+| `auto_update` | `bool` |  |
+| `capsule` | `list` |  |
+| `core` | `list` |  |
+| `crew` | `list` |  |
+| `date_local` | `str` |  |
+| `date_precision` | `str` |  |
+| `date_unix` | `int` |  |
+| `date_utc` | `str` |  |
+| `detail` | `str` |  |
+| `failure` | `list` |  |
+| `fairing` | `dict` |  |
+| `flight` | `int` |  |
+| `flight_number` | `int` |  |
+| `gridfin` | `bool` |  |
+| `id` | `str` |  |
+| `landing_attempt` | `bool` |  |
+| `landing_success` | `bool` |  |
+| `landing_type` | `str` |  |
+| `landpad` | `str` |  |
+| `launchpad` | `str` |  |
+| `leg` | `bool` |  |
+| `link` | `dict` |  |
+| `name` | `str` |  |
+| `net` | `bool` |  |
+| `payload` | `list` |  |
+| `reused` | `bool` |  |
+| `rocket` | `str` |  |
+| `ship` | `list` |  |
+| `static_fire_date_unix` | `int` |  |
+| `static_fire_date_utc` | `str` |  |
+| `success` | `bool` |  |
+| `tdb` | `bool` |  |
+| `upcoming` | `bool` |  |
+| `window` | `int` |  |
 
 #### Example: Load
 
@@ -738,7 +771,7 @@ launch = client.Launch().load({"id": "launch_id"})
 #### Example: List
 
 ```python
-launchs = client.Launch().list({})
+launchs = client.Launch().list()
 ```
 
 
@@ -750,26 +783,26 @@ Create an instance: `launchpad = client.Launchpad()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `detail` | ``$STRING`` |  |
-| `full_name` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `launch` | ``$ARRAY`` |  |
-| `launch_attempt` | ``$INTEGER`` |  |
-| `launch_success` | ``$INTEGER`` |  |
-| `locality` | ``$STRING`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `region` | ``$STRING`` |  |
-| `rocket` | ``$ARRAY`` |  |
-| `status` | ``$STRING`` |  |
+| `detail` | `str` |  |
+| `full_name` | `str` |  |
+| `id` | `str` |  |
+| `latitude` | `float` |  |
+| `launch` | `list` |  |
+| `launch_attempt` | `int` |  |
+| `launch_success` | `int` |  |
+| `locality` | `str` |  |
+| `longitude` | `float` |  |
+| `name` | `str` |  |
+| `region` | `str` |  |
+| `rocket` | `list` |  |
+| `status` | `str` |  |
 
 #### Example: Load
 
@@ -780,7 +813,7 @@ launchpad = client.Launchpad().load({"id": "launchpad_id"})
 #### Example: List
 
 ```python
-launchpads = client.Launchpad().list({})
+launchpads = client.Launchpad().list()
 ```
 
 
@@ -792,40 +825,40 @@ Create an instance: `payload = client.Payload()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `apoapsis_km` | ``$NUMBER`` |  |
-| `arg_of_pericenter` | ``$NUMBER`` |  |
-| `customer` | ``$ARRAY`` |  |
-| `eccentricity` | ``$NUMBER`` |  |
-| `epoch` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `inclination_deg` | ``$NUMBER`` |  |
-| `launch` | ``$STRING`` |  |
-| `lifespan_year` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `manufacturer` | ``$ARRAY`` |  |
-| `mass_kg` | ``$NUMBER`` |  |
-| `mass_lb` | ``$NUMBER`` |  |
-| `mean_anomaly` | ``$NUMBER`` |  |
-| `mean_motion` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `nationality` | ``$ARRAY`` |  |
-| `norad_id` | ``$ARRAY`` |  |
-| `orbit` | ``$STRING`` |  |
-| `periapsis_km` | ``$NUMBER`` |  |
-| `period_min` | ``$NUMBER`` |  |
-| `raan` | ``$NUMBER`` |  |
-| `reference_system` | ``$STRING`` |  |
-| `regime` | ``$STRING`` |  |
-| `reused` | ``$BOOLEAN`` |  |
-| `semi_major_axis_km` | ``$NUMBER`` |  |
-| `type` | ``$STRING`` |  |
+| `apoapsis_km` | `float` |  |
+| `arg_of_pericenter` | `float` |  |
+| `customer` | `list` |  |
+| `eccentricity` | `float` |  |
+| `epoch` | `str` |  |
+| `id` | `str` |  |
+| `inclination_deg` | `float` |  |
+| `launch` | `str` |  |
+| `lifespan_year` | `float` |  |
+| `longitude` | `float` |  |
+| `manufacturer` | `list` |  |
+| `mass_kg` | `float` |  |
+| `mass_lb` | `float` |  |
+| `mean_anomaly` | `float` |  |
+| `mean_motion` | `float` |  |
+| `name` | `str` |  |
+| `nationality` | `list` |  |
+| `norad_id` | `list` |  |
+| `orbit` | `str` |  |
+| `periapsis_km` | `float` |  |
+| `period_min` | `float` |  |
+| `raan` | `float` |  |
+| `reference_system` | `str` |  |
+| `regime` | `str` |  |
+| `reused` | `bool` |  |
+| `semi_major_axis_km` | `float` |  |
+| `type` | `str` |  |
 
 #### Example: Load
 
@@ -836,7 +869,7 @@ payload = client.Payload().load({"id": "payload_id"})
 #### Example: List
 
 ```python
-payloads = client.Payload().list({})
+payloads = client.Payload().list()
 ```
 
 
@@ -848,44 +881,44 @@ Create an instance: `roadster = client.Roadster()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `apoapsis_au` | ``$NUMBER`` |  |
-| `detail` | ``$STRING`` |  |
-| `earth_distance_km` | ``$NUMBER`` |  |
-| `earth_distance_mi` | ``$NUMBER`` |  |
-| `eccentricity` | ``$NUMBER`` |  |
-| `epoch_jd` | ``$NUMBER`` |  |
-| `flickr_image` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `inclination` | ``$NUMBER`` |  |
-| `launch_date_unix` | ``$INTEGER`` |  |
-| `launch_date_utc` | ``$STRING`` |  |
-| `launch_mass_kg` | ``$INTEGER`` |  |
-| `launch_mass_lb` | ``$INTEGER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `mars_distance_km` | ``$NUMBER`` |  |
-| `mars_distance_mi` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `norad_id` | ``$INTEGER`` |  |
-| `orbit_type` | ``$STRING`` |  |
-| `periapsis_arg` | ``$NUMBER`` |  |
-| `periapsis_au` | ``$NUMBER`` |  |
-| `period_day` | ``$NUMBER`` |  |
-| `semi_major_axis_au` | ``$NUMBER`` |  |
-| `speed_kph` | ``$NUMBER`` |  |
-| `speed_mph` | ``$NUMBER`` |  |
-| `video` | ``$STRING`` |  |
-| `wikipedia` | ``$STRING`` |  |
+| `apoapsis_au` | `float` |  |
+| `detail` | `str` |  |
+| `earth_distance_km` | `float` |  |
+| `earth_distance_mi` | `float` |  |
+| `eccentricity` | `float` |  |
+| `epoch_jd` | `float` |  |
+| `flickr_image` | `list` |  |
+| `id` | `str` |  |
+| `inclination` | `float` |  |
+| `launch_date_unix` | `int` |  |
+| `launch_date_utc` | `str` |  |
+| `launch_mass_kg` | `int` |  |
+| `launch_mass_lb` | `int` |  |
+| `longitude` | `float` |  |
+| `mars_distance_km` | `float` |  |
+| `mars_distance_mi` | `float` |  |
+| `name` | `str` |  |
+| `norad_id` | `int` |  |
+| `orbit_type` | `str` |  |
+| `periapsis_arg` | `float` |  |
+| `periapsis_au` | `float` |  |
+| `period_day` | `float` |  |
+| `semi_major_axis_au` | `float` |  |
+| `speed_kph` | `float` |  |
+| `speed_mph` | `float` |  |
+| `video` | `str` |  |
+| `wikipedia` | `str` |  |
 
 #### Example: List
 
 ```python
-roadsters = client.Roadster().list({})
+roadsters = client.Roadster().list()
 ```
 
 
@@ -897,30 +930,30 @@ Create an instance: `rocket = client.Rocket()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `active` | ``$BOOLEAN`` |  |
-| `booster` | ``$INTEGER`` |  |
-| `company` | ``$STRING`` |  |
-| `cost_per_launch` | ``$INTEGER`` |  |
-| `country` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `diameter` | ``$OBJECT`` |  |
-| `first_flight` | ``$STRING`` |  |
-| `flickr_image` | ``$ARRAY`` |  |
-| `height` | ``$OBJECT`` |  |
-| `id` | ``$STRING`` |  |
-| `mass` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `stage` | ``$INTEGER`` |  |
-| `success_rate_pct` | ``$NUMBER`` |  |
-| `type` | ``$STRING`` |  |
-| `wikipedia` | ``$STRING`` |  |
+| `active` | `bool` |  |
+| `booster` | `int` |  |
+| `company` | `str` |  |
+| `cost_per_launch` | `int` |  |
+| `country` | `str` |  |
+| `description` | `str` |  |
+| `diameter` | `dict` |  |
+| `first_flight` | `str` |  |
+| `flickr_image` | `list` |  |
+| `height` | `dict` |  |
+| `id` | `str` |  |
+| `mass` | `dict` |  |
+| `name` | `str` |  |
+| `stage` | `int` |  |
+| `success_rate_pct` | `float` |  |
+| `type` | `str` |  |
+| `wikipedia` | `str` |  |
 
 #### Example: Load
 
@@ -931,7 +964,7 @@ rocket = client.Rocket().load({"id": "rocket_id"})
 #### Example: List
 
 ```python
-rockets = client.Rocket().list({})
+rockets = client.Rocket().list()
 ```
 
 
@@ -943,36 +976,36 @@ Create an instance: `ship = client.Ship()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `abs` | ``$INTEGER`` |  |
-| `class` | ``$INTEGER`` |  |
-| `course_deg` | ``$NUMBER`` |  |
-| `home_port` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$STRING`` |  |
-| `imo` | ``$INTEGER`` |  |
-| `last_ais_update` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `launch` | ``$ARRAY`` |  |
-| `legacy_id` | ``$STRING`` |  |
-| `link` | ``$STRING`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `mass_kg` | ``$INTEGER`` |  |
-| `mass_lb` | ``$INTEGER`` |  |
-| `mmsi` | ``$INTEGER`` |  |
-| `model` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `role` | ``$ARRAY`` |  |
-| `speed_kn` | ``$NUMBER`` |  |
-| `status` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `year_built` | ``$INTEGER`` |  |
+| `abs` | `int` |  |
+| `class` | `int` |  |
+| `course_deg` | `float` |  |
+| `home_port` | `str` |  |
+| `id` | `str` |  |
+| `image` | `str` |  |
+| `imo` | `int` |  |
+| `last_ais_update` | `str` |  |
+| `latitude` | `float` |  |
+| `launch` | `list` |  |
+| `legacy_id` | `str` |  |
+| `link` | `str` |  |
+| `longitude` | `float` |  |
+| `mass_kg` | `int` |  |
+| `mass_lb` | `int` |  |
+| `mmsi` | `int` |  |
+| `model` | `str` |  |
+| `name` | `str` |  |
+| `role` | `list` |  |
+| `speed_kn` | `float` |  |
+| `status` | `str` |  |
+| `type` | `str` |  |
+| `year_built` | `int` |  |
 
 #### Example: Load
 
@@ -983,7 +1016,7 @@ ship = client.Ship().load({"id": "ship_id"})
 #### Example: List
 
 ```python
-ships = client.Ship().list({})
+ships = client.Ship().list()
 ```
 
 
@@ -995,21 +1028,21 @@ Create an instance: `starlink = client.Starlink()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `height_km` | ``$NUMBER`` |  |
-| `id` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `launch` | ``$STRING`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `space_track` | ``$OBJECT`` |  |
-| `velocity_km` | ``$NUMBER`` |  |
-| `version` | ``$STRING`` |  |
+| `height_km` | `float` |  |
+| `id` | `str` |  |
+| `latitude` | `float` |  |
+| `launch` | `str` |  |
+| `longitude` | `float` |  |
+| `space_track` | `dict` |  |
+| `velocity_km` | `float` |  |
+| `version` | `str` |  |
 
 #### Example: Load
 
@@ -1020,16 +1053,20 @@ starlink = client.Starlink().load({"id": "starlink_id"})
 #### Example: List
 
 ```python
-starlinks = client.Starlink().list({})
+starlinks = client.Starlink().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1046,8 +1083,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1090,14 +1128,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 capsule = client.Capsule()
-capsule.load({"id": "example_id"})
+capsule.list()
 
-# capsule.data_get() now returns the loaded capsule data
+# capsule.data_get() now returns the capsule data from the last list
 # capsule.match_get() returns the last match criteria
 ```
 

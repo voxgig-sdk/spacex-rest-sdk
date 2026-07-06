@@ -221,67 +221,67 @@ class SpacexRestSDK:
 
 
     def Capsule(self, data=None) -> "CapsuleEntity":
-        """Entity factory: client.Capsule().list({}) / client.Capsule().load({"id": ...})."""
+        """Entity factory: client.Capsule().list() / client.Capsule().load({"id": ...})."""
         from entity.capsule_entity import CapsuleEntity
         return CapsuleEntity(self, data)
 
 
     def Core(self, data=None) -> "CoreEntity":
-        """Entity factory: client.Core().list({}) / client.Core().load({"id": ...})."""
+        """Entity factory: client.Core().list() / client.Core().load({"id": ...})."""
         from entity.core_entity import CoreEntity
         return CoreEntity(self, data)
 
 
     def Crew(self, data=None) -> "CrewEntity":
-        """Entity factory: client.Crew().list({}) / client.Crew().load({"id": ...})."""
+        """Entity factory: client.Crew().list() / client.Crew().load({"id": ...})."""
         from entity.crew_entity import CrewEntity
         return CrewEntity(self, data)
 
 
     def Landpad(self, data=None) -> "LandpadEntity":
-        """Entity factory: client.Landpad().list({}) / client.Landpad().load({"id": ...})."""
+        """Entity factory: client.Landpad().list() / client.Landpad().load({"id": ...})."""
         from entity.landpad_entity import LandpadEntity
         return LandpadEntity(self, data)
 
 
     def Launch(self, data=None) -> "LaunchEntity":
-        """Entity factory: client.Launch().list({}) / client.Launch().load({"id": ...})."""
+        """Entity factory: client.Launch().list() / client.Launch().load({"id": ...})."""
         from entity.launch_entity import LaunchEntity
         return LaunchEntity(self, data)
 
 
     def Launchpad(self, data=None) -> "LaunchpadEntity":
-        """Entity factory: client.Launchpad().list({}) / client.Launchpad().load({"id": ...})."""
+        """Entity factory: client.Launchpad().list() / client.Launchpad().load({"id": ...})."""
         from entity.launchpad_entity import LaunchpadEntity
         return LaunchpadEntity(self, data)
 
 
     def Payload(self, data=None) -> "PayloadEntity":
-        """Entity factory: client.Payload().list({}) / client.Payload().load({"id": ...})."""
+        """Entity factory: client.Payload().list() / client.Payload().load({"id": ...})."""
         from entity.payload_entity import PayloadEntity
         return PayloadEntity(self, data)
 
 
     def Roadster(self, data=None) -> "RoadsterEntity":
-        """Entity factory: client.Roadster().list({}) / client.Roadster().load({"id": ...})."""
+        """Entity factory: client.Roadster().list() / client.Roadster().load({"id": ...})."""
         from entity.roadster_entity import RoadsterEntity
         return RoadsterEntity(self, data)
 
 
     def Rocket(self, data=None) -> "RocketEntity":
-        """Entity factory: client.Rocket().list({}) / client.Rocket().load({"id": ...})."""
+        """Entity factory: client.Rocket().list() / client.Rocket().load({"id": ...})."""
         from entity.rocket_entity import RocketEntity
         return RocketEntity(self, data)
 
 
     def Ship(self, data=None) -> "ShipEntity":
-        """Entity factory: client.Ship().list({}) / client.Ship().load({"id": ...})."""
+        """Entity factory: client.Ship().list() / client.Ship().load({"id": ...})."""
         from entity.ship_entity import ShipEntity
         return ShipEntity(self, data)
 
 
     def Starlink(self, data=None) -> "StarlinkEntity":
-        """Entity factory: client.Starlink().list({}) / client.Starlink().load({"id": ...})."""
+        """Entity factory: client.Starlink().list() / client.Starlink().load({"id": ...})."""
         from entity.starlink_entity import StarlinkEntity
         return StarlinkEntity(self, data)
 

@@ -8,7 +8,7 @@ Complete API reference for the SpacexRest Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'spacex-rest_sdk'
+require_relative 'SpacexRest_sdk'
 
 client = SpacexRestSDK.new(options)
 ```
@@ -133,24 +133,24 @@ capsule = client.Capsule
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$STRING`` | No |  |
-| `land_landing` | ``$INTEGER`` | No |  |
-| `last_update` | ``$STRING`` | No |  |
-| `launch` | ``$ARRAY`` | No |  |
-| `reuse_count` | ``$INTEGER`` | No |  |
-| `serial` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `water_landing` | ``$INTEGER`` | No |  |
+| `id` | `String` | No |  |
+| `land_landing` | `Integer` | No |  |
+| `last_update` | `String` | No |  |
+| `launch` | `Array` | No |  |
+| `reuse_count` | `Integer` | No |  |
+| `serial` | `String` | No |  |
+| `status` | `String` | No |  |
+| `type` | `String` | No |  |
+| `water_landing` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Capsule.list(nil)
+results = client.Capsule.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -201,26 +201,26 @@ core = client.Core
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asds_attempt` | ``$INTEGER`` | No |  |
-| `asds_landing` | ``$INTEGER`` | No |  |
-| `block` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `last_update` | ``$STRING`` | No |  |
-| `launch` | ``$ARRAY`` | No |  |
-| `reuse_count` | ``$INTEGER`` | No |  |
-| `rtls_attempt` | ``$INTEGER`` | No |  |
-| `rtls_landing` | ``$INTEGER`` | No |  |
-| `serial` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `asds_attempt` | `Integer` | No |  |
+| `asds_landing` | `Integer` | No |  |
+| `block` | `Integer` | No |  |
+| `id` | `String` | No |  |
+| `last_update` | `String` | No |  |
+| `launch` | `Array` | No |  |
+| `reuse_count` | `Integer` | No |  |
+| `rtls_attempt` | `Integer` | No |  |
+| `rtls_landing` | `Integer` | No |  |
+| `serial` | `String` | No |  |
+| `status` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Core.list(nil)
+results = client.Core.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -271,22 +271,22 @@ crew = client.Crew
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agency` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `launch` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `wikipedia` | ``$STRING`` | No |  |
+| `agency` | `String` | No |  |
+| `id` | `String` | No |  |
+| `image` | `String` | No |  |
+| `launch` | `Array` | No |  |
+| `name` | `String` | No |  |
+| `status` | `String` | No |  |
+| `wikipedia` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Crew.list(nil)
+results = client.Crew.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -337,29 +337,29 @@ landpad = client.Landpad
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `detail` | ``$STRING`` | No |  |
-| `full_name` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `landing_attempt` | ``$INTEGER`` | No |  |
-| `landing_success` | ``$INTEGER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `launch` | ``$ARRAY`` | No |  |
-| `locality` | ``$STRING`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `wikipedia` | ``$STRING`` | No |  |
+| `detail` | `String` | No |  |
+| `full_name` | `String` | No |  |
+| `id` | `String` | No |  |
+| `landing_attempt` | `Integer` | No |  |
+| `landing_success` | `Integer` | No |  |
+| `latitude` | `Float` | No |  |
+| `launch` | `Array` | No |  |
+| `locality` | `String` | No |  |
+| `longitude` | `Float` | No |  |
+| `name` | `String` | No |  |
+| `region` | `String` | No |  |
+| `status` | `String` | No |  |
+| `type` | `String` | No |  |
+| `wikipedia` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Landpad.list(nil)
+results = client.Landpad.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -410,49 +410,49 @@ launch = client.Launch
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `auto_update` | ``$BOOLEAN`` | No |  |
-| `capsule` | ``$ARRAY`` | No |  |
-| `core` | ``$ARRAY`` | No |  |
-| `crew` | ``$ARRAY`` | No |  |
-| `date_local` | ``$STRING`` | No |  |
-| `date_precision` | ``$STRING`` | No |  |
-| `date_unix` | ``$INTEGER`` | No |  |
-| `date_utc` | ``$STRING`` | No |  |
-| `detail` | ``$STRING`` | No |  |
-| `failure` | ``$ARRAY`` | No |  |
-| `fairing` | ``$OBJECT`` | No |  |
-| `flight` | ``$INTEGER`` | No |  |
-| `flight_number` | ``$INTEGER`` | No |  |
-| `gridfin` | ``$BOOLEAN`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `landing_attempt` | ``$BOOLEAN`` | No |  |
-| `landing_success` | ``$BOOLEAN`` | No |  |
-| `landing_type` | ``$STRING`` | No |  |
-| `landpad` | ``$STRING`` | No |  |
-| `launchpad` | ``$STRING`` | No |  |
-| `leg` | ``$BOOLEAN`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `net` | ``$BOOLEAN`` | No |  |
-| `payload` | ``$ARRAY`` | No |  |
-| `reused` | ``$BOOLEAN`` | No |  |
-| `rocket` | ``$STRING`` | No |  |
-| `ship` | ``$ARRAY`` | No |  |
-| `static_fire_date_unix` | ``$INTEGER`` | No |  |
-| `static_fire_date_utc` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `tdb` | ``$BOOLEAN`` | No |  |
-| `upcoming` | ``$BOOLEAN`` | No |  |
-| `window` | ``$INTEGER`` | No |  |
+| `auto_update` | `Boolean` | No |  |
+| `capsule` | `Array` | No |  |
+| `core` | `Array` | No |  |
+| `crew` | `Array` | No |  |
+| `date_local` | `String` | No |  |
+| `date_precision` | `String` | No |  |
+| `date_unix` | `Integer` | No |  |
+| `date_utc` | `String` | No |  |
+| `detail` | `String` | No |  |
+| `failure` | `Array` | No |  |
+| `fairing` | `Hash` | No |  |
+| `flight` | `Integer` | No |  |
+| `flight_number` | `Integer` | No |  |
+| `gridfin` | `Boolean` | No |  |
+| `id` | `String` | No |  |
+| `landing_attempt` | `Boolean` | No |  |
+| `landing_success` | `Boolean` | No |  |
+| `landing_type` | `String` | No |  |
+| `landpad` | `String` | No |  |
+| `launchpad` | `String` | No |  |
+| `leg` | `Boolean` | No |  |
+| `link` | `Hash` | No |  |
+| `name` | `String` | No |  |
+| `net` | `Boolean` | No |  |
+| `payload` | `Array` | No |  |
+| `reused` | `Boolean` | No |  |
+| `rocket` | `String` | No |  |
+| `ship` | `Array` | No |  |
+| `static_fire_date_unix` | `Integer` | No |  |
+| `static_fire_date_utc` | `String` | No |  |
+| `success` | `Boolean` | No |  |
+| `tdb` | `Boolean` | No |  |
+| `upcoming` | `Boolean` | No |  |
+| `window` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Launch.list(nil)
+results = client.Launch.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -503,28 +503,28 @@ launchpad = client.Launchpad
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `detail` | ``$STRING`` | No |  |
-| `full_name` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `launch` | ``$ARRAY`` | No |  |
-| `launch_attempt` | ``$INTEGER`` | No |  |
-| `launch_success` | ``$INTEGER`` | No |  |
-| `locality` | ``$STRING`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `rocket` | ``$ARRAY`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `detail` | `String` | No |  |
+| `full_name` | `String` | No |  |
+| `id` | `String` | No |  |
+| `latitude` | `Float` | No |  |
+| `launch` | `Array` | No |  |
+| `launch_attempt` | `Integer` | No |  |
+| `launch_success` | `Integer` | No |  |
+| `locality` | `String` | No |  |
+| `longitude` | `Float` | No |  |
+| `name` | `String` | No |  |
+| `region` | `String` | No |  |
+| `rocket` | `Array` | No |  |
+| `status` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Launchpad.list(nil)
+results = client.Launchpad.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -575,42 +575,42 @@ payload = client.Payload
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `apoapsis_km` | ``$NUMBER`` | No |  |
-| `arg_of_pericenter` | ``$NUMBER`` | No |  |
-| `customer` | ``$ARRAY`` | No |  |
-| `eccentricity` | ``$NUMBER`` | No |  |
-| `epoch` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `inclination_deg` | ``$NUMBER`` | No |  |
-| `launch` | ``$STRING`` | No |  |
-| `lifespan_year` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `manufacturer` | ``$ARRAY`` | No |  |
-| `mass_kg` | ``$NUMBER`` | No |  |
-| `mass_lb` | ``$NUMBER`` | No |  |
-| `mean_anomaly` | ``$NUMBER`` | No |  |
-| `mean_motion` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nationality` | ``$ARRAY`` | No |  |
-| `norad_id` | ``$ARRAY`` | No |  |
-| `orbit` | ``$STRING`` | No |  |
-| `periapsis_km` | ``$NUMBER`` | No |  |
-| `period_min` | ``$NUMBER`` | No |  |
-| `raan` | ``$NUMBER`` | No |  |
-| `reference_system` | ``$STRING`` | No |  |
-| `regime` | ``$STRING`` | No |  |
-| `reused` | ``$BOOLEAN`` | No |  |
-| `semi_major_axis_km` | ``$NUMBER`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `apoapsis_km` | `Float` | No |  |
+| `arg_of_pericenter` | `Float` | No |  |
+| `customer` | `Array` | No |  |
+| `eccentricity` | `Float` | No |  |
+| `epoch` | `String` | No |  |
+| `id` | `String` | No |  |
+| `inclination_deg` | `Float` | No |  |
+| `launch` | `String` | No |  |
+| `lifespan_year` | `Float` | No |  |
+| `longitude` | `Float` | No |  |
+| `manufacturer` | `Array` | No |  |
+| `mass_kg` | `Float` | No |  |
+| `mass_lb` | `Float` | No |  |
+| `mean_anomaly` | `Float` | No |  |
+| `mean_motion` | `Float` | No |  |
+| `name` | `String` | No |  |
+| `nationality` | `Array` | No |  |
+| `norad_id` | `Array` | No |  |
+| `orbit` | `String` | No |  |
+| `periapsis_km` | `Float` | No |  |
+| `period_min` | `Float` | No |  |
+| `raan` | `Float` | No |  |
+| `reference_system` | `String` | No |  |
+| `regime` | `String` | No |  |
+| `reused` | `Boolean` | No |  |
+| `semi_major_axis_km` | `Float` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Payload.list(nil)
+results = client.Payload.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -661,42 +661,42 @@ roadster = client.Roadster
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `apoapsis_au` | ``$NUMBER`` | No |  |
-| `detail` | ``$STRING`` | No |  |
-| `earth_distance_km` | ``$NUMBER`` | No |  |
-| `earth_distance_mi` | ``$NUMBER`` | No |  |
-| `eccentricity` | ``$NUMBER`` | No |  |
-| `epoch_jd` | ``$NUMBER`` | No |  |
-| `flickr_image` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `inclination` | ``$NUMBER`` | No |  |
-| `launch_date_unix` | ``$INTEGER`` | No |  |
-| `launch_date_utc` | ``$STRING`` | No |  |
-| `launch_mass_kg` | ``$INTEGER`` | No |  |
-| `launch_mass_lb` | ``$INTEGER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `mars_distance_km` | ``$NUMBER`` | No |  |
-| `mars_distance_mi` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `norad_id` | ``$INTEGER`` | No |  |
-| `orbit_type` | ``$STRING`` | No |  |
-| `periapsis_arg` | ``$NUMBER`` | No |  |
-| `periapsis_au` | ``$NUMBER`` | No |  |
-| `period_day` | ``$NUMBER`` | No |  |
-| `semi_major_axis_au` | ``$NUMBER`` | No |  |
-| `speed_kph` | ``$NUMBER`` | No |  |
-| `speed_mph` | ``$NUMBER`` | No |  |
-| `video` | ``$STRING`` | No |  |
-| `wikipedia` | ``$STRING`` | No |  |
+| `apoapsis_au` | `Float` | No |  |
+| `detail` | `String` | No |  |
+| `earth_distance_km` | `Float` | No |  |
+| `earth_distance_mi` | `Float` | No |  |
+| `eccentricity` | `Float` | No |  |
+| `epoch_jd` | `Float` | No |  |
+| `flickr_image` | `Array` | No |  |
+| `id` | `String` | No |  |
+| `inclination` | `Float` | No |  |
+| `launch_date_unix` | `Integer` | No |  |
+| `launch_date_utc` | `String` | No |  |
+| `launch_mass_kg` | `Integer` | No |  |
+| `launch_mass_lb` | `Integer` | No |  |
+| `longitude` | `Float` | No |  |
+| `mars_distance_km` | `Float` | No |  |
+| `mars_distance_mi` | `Float` | No |  |
+| `name` | `String` | No |  |
+| `norad_id` | `Integer` | No |  |
+| `orbit_type` | `String` | No |  |
+| `periapsis_arg` | `Float` | No |  |
+| `periapsis_au` | `Float` | No |  |
+| `period_day` | `Float` | No |  |
+| `semi_major_axis_au` | `Float` | No |  |
+| `speed_kph` | `Float` | No |  |
+| `speed_mph` | `Float` | No |  |
+| `video` | `String` | No |  |
+| `wikipedia` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Roadster.list(nil)
+results = client.Roadster.list
 ```
 
 ### Common Methods
@@ -739,32 +739,32 @@ rocket = client.Rocket
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `active` | ``$BOOLEAN`` | No |  |
-| `booster` | ``$INTEGER`` | No |  |
-| `company` | ``$STRING`` | No |  |
-| `cost_per_launch` | ``$INTEGER`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `diameter` | ``$OBJECT`` | No |  |
-| `first_flight` | ``$STRING`` | No |  |
-| `flickr_image` | ``$ARRAY`` | No |  |
-| `height` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `mass` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `stage` | ``$INTEGER`` | No |  |
-| `success_rate_pct` | ``$NUMBER`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `wikipedia` | ``$STRING`` | No |  |
+| `active` | `Boolean` | No |  |
+| `booster` | `Integer` | No |  |
+| `company` | `String` | No |  |
+| `cost_per_launch` | `Integer` | No |  |
+| `country` | `String` | No |  |
+| `description` | `String` | No |  |
+| `diameter` | `Hash` | No |  |
+| `first_flight` | `String` | No |  |
+| `flickr_image` | `Array` | No |  |
+| `height` | `Hash` | No |  |
+| `id` | `String` | No |  |
+| `mass` | `Hash` | No |  |
+| `name` | `String` | No |  |
+| `stage` | `Integer` | No |  |
+| `success_rate_pct` | `Float` | No |  |
+| `type` | `String` | No |  |
+| `wikipedia` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Rocket.list(nil)
+results = client.Rocket.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -815,38 +815,38 @@ ship = client.Ship
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `abs` | ``$INTEGER`` | No |  |
-| `class` | ``$INTEGER`` | No |  |
-| `course_deg` | ``$NUMBER`` | No |  |
-| `home_port` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `imo` | ``$INTEGER`` | No |  |
-| `last_ais_update` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `launch` | ``$ARRAY`` | No |  |
-| `legacy_id` | ``$STRING`` | No |  |
-| `link` | ``$STRING`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `mass_kg` | ``$INTEGER`` | No |  |
-| `mass_lb` | ``$INTEGER`` | No |  |
-| `mmsi` | ``$INTEGER`` | No |  |
-| `model` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `role` | ``$ARRAY`` | No |  |
-| `speed_kn` | ``$NUMBER`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `year_built` | ``$INTEGER`` | No |  |
+| `abs` | `Integer` | No |  |
+| `class` | `Integer` | No |  |
+| `course_deg` | `Float` | No |  |
+| `home_port` | `String` | No |  |
+| `id` | `String` | No |  |
+| `image` | `String` | No |  |
+| `imo` | `Integer` | No |  |
+| `last_ais_update` | `String` | No |  |
+| `latitude` | `Float` | No |  |
+| `launch` | `Array` | No |  |
+| `legacy_id` | `String` | No |  |
+| `link` | `String` | No |  |
+| `longitude` | `Float` | No |  |
+| `mass_kg` | `Integer` | No |  |
+| `mass_lb` | `Integer` | No |  |
+| `mmsi` | `Integer` | No |  |
+| `model` | `String` | No |  |
+| `name` | `String` | No |  |
+| `role` | `Array` | No |  |
+| `speed_kn` | `Float` | No |  |
+| `status` | `String` | No |  |
+| `type` | `String` | No |  |
+| `year_built` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Ship.list(nil)
+results = client.Ship.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -897,23 +897,23 @@ starlink = client.Starlink
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `height_km` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `launch` | ``$STRING`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `space_track` | ``$OBJECT`` | No |  |
-| `velocity_km` | ``$NUMBER`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `height_km` | `Float` | No |  |
+| `id` | `String` | No |  |
+| `latitude` | `Float` | No |  |
+| `launch` | `String` | No |  |
+| `longitude` | `Float` | No |  |
+| `space_track` | `Hash` | No |  |
+| `velocity_km` | `Float` | No |  |
+| `version` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Starlink.list(nil)
+results = client.Starlink.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`

@@ -65,8 +65,13 @@ class LandpadEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: LandpadLoadMatch, ctrl=None) -> Landpad:
+    def load(self, reqmatch=None, ctrl=None) -> Landpad:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Landpad().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class LandpadEntity:
 
 
     
-    def list(self, reqmatch: LandpadListMatch, ctrl=None) -> list[Landpad]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Landpad]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Landpad().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

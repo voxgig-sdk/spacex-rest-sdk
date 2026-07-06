@@ -137,15 +137,15 @@ capsule := client.Capsule(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$STRING`` | No |  |
-| `land_landing` | ``$INTEGER`` | No |  |
-| `last_update` | ``$STRING`` | No |  |
-| `launch` | ``$ARRAY`` | No |  |
-| `reuse_count` | ``$INTEGER`` | No |  |
-| `serial` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `water_landing` | ``$INTEGER`` | No |  |
+| `id` | `string` | No |  |
+| `land_landing` | `int` | No |  |
+| `last_update` | `string` | No |  |
+| `launch` | `[]any` | No |  |
+| `reuse_count` | `int` | No |  |
+| `serial` | `string` | No |  |
+| `status` | `string` | No |  |
+| `type` | `string` | No |  |
+| `water_landing` | `int` | No |  |
 
 ### Operations
 
@@ -199,17 +199,17 @@ core := client.Core(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asds_attempt` | ``$INTEGER`` | No |  |
-| `asds_landing` | ``$INTEGER`` | No |  |
-| `block` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `last_update` | ``$STRING`` | No |  |
-| `launch` | ``$ARRAY`` | No |  |
-| `reuse_count` | ``$INTEGER`` | No |  |
-| `rtls_attempt` | ``$INTEGER`` | No |  |
-| `rtls_landing` | ``$INTEGER`` | No |  |
-| `serial` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `asds_attempt` | `int` | No |  |
+| `asds_landing` | `int` | No |  |
+| `block` | `int` | No |  |
+| `id` | `string` | No |  |
+| `last_update` | `string` | No |  |
+| `launch` | `[]any` | No |  |
+| `reuse_count` | `int` | No |  |
+| `rtls_attempt` | `int` | No |  |
+| `rtls_landing` | `int` | No |  |
+| `serial` | `string` | No |  |
+| `status` | `string` | No |  |
 
 ### Operations
 
@@ -263,13 +263,13 @@ crew := client.Crew(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agency` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `launch` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `wikipedia` | ``$STRING`` | No |  |
+| `agency` | `string` | No |  |
+| `id` | `string` | No |  |
+| `image` | `string` | No |  |
+| `launch` | `[]any` | No |  |
+| `name` | `string` | No |  |
+| `status` | `string` | No |  |
+| `wikipedia` | `string` | No |  |
 
 ### Operations
 
@@ -323,20 +323,20 @@ landpad := client.Landpad(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `detail` | ``$STRING`` | No |  |
-| `full_name` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `landing_attempt` | ``$INTEGER`` | No |  |
-| `landing_success` | ``$INTEGER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `launch` | ``$ARRAY`` | No |  |
-| `locality` | ``$STRING`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `wikipedia` | ``$STRING`` | No |  |
+| `detail` | `string` | No |  |
+| `full_name` | `string` | No |  |
+| `id` | `string` | No |  |
+| `landing_attempt` | `int` | No |  |
+| `landing_success` | `int` | No |  |
+| `latitude` | `float64` | No |  |
+| `launch` | `[]any` | No |  |
+| `locality` | `string` | No |  |
+| `longitude` | `float64` | No |  |
+| `name` | `string` | No |  |
+| `region` | `string` | No |  |
+| `status` | `string` | No |  |
+| `type` | `string` | No |  |
+| `wikipedia` | `string` | No |  |
 
 ### Operations
 
@@ -390,40 +390,40 @@ launch := client.Launch(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `auto_update` | ``$BOOLEAN`` | No |  |
-| `capsule` | ``$ARRAY`` | No |  |
-| `core` | ``$ARRAY`` | No |  |
-| `crew` | ``$ARRAY`` | No |  |
-| `date_local` | ``$STRING`` | No |  |
-| `date_precision` | ``$STRING`` | No |  |
-| `date_unix` | ``$INTEGER`` | No |  |
-| `date_utc` | ``$STRING`` | No |  |
-| `detail` | ``$STRING`` | No |  |
-| `failure` | ``$ARRAY`` | No |  |
-| `fairing` | ``$OBJECT`` | No |  |
-| `flight` | ``$INTEGER`` | No |  |
-| `flight_number` | ``$INTEGER`` | No |  |
-| `gridfin` | ``$BOOLEAN`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `landing_attempt` | ``$BOOLEAN`` | No |  |
-| `landing_success` | ``$BOOLEAN`` | No |  |
-| `landing_type` | ``$STRING`` | No |  |
-| `landpad` | ``$STRING`` | No |  |
-| `launchpad` | ``$STRING`` | No |  |
-| `leg` | ``$BOOLEAN`` | No |  |
-| `link` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `net` | ``$BOOLEAN`` | No |  |
-| `payload` | ``$ARRAY`` | No |  |
-| `reused` | ``$BOOLEAN`` | No |  |
-| `rocket` | ``$STRING`` | No |  |
-| `ship` | ``$ARRAY`` | No |  |
-| `static_fire_date_unix` | ``$INTEGER`` | No |  |
-| `static_fire_date_utc` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `tdb` | ``$BOOLEAN`` | No |  |
-| `upcoming` | ``$BOOLEAN`` | No |  |
-| `window` | ``$INTEGER`` | No |  |
+| `auto_update` | `bool` | No |  |
+| `capsule` | `[]any` | No |  |
+| `core` | `[]any` | No |  |
+| `crew` | `[]any` | No |  |
+| `date_local` | `string` | No |  |
+| `date_precision` | `string` | No |  |
+| `date_unix` | `int` | No |  |
+| `date_utc` | `string` | No |  |
+| `detail` | `string` | No |  |
+| `failure` | `[]any` | No |  |
+| `fairing` | `map[string]any` | No |  |
+| `flight` | `int` | No |  |
+| `flight_number` | `int` | No |  |
+| `gridfin` | `bool` | No |  |
+| `id` | `string` | No |  |
+| `landing_attempt` | `bool` | No |  |
+| `landing_success` | `bool` | No |  |
+| `landing_type` | `string` | No |  |
+| `landpad` | `string` | No |  |
+| `launchpad` | `string` | No |  |
+| `leg` | `bool` | No |  |
+| `link` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `net` | `bool` | No |  |
+| `payload` | `[]any` | No |  |
+| `reused` | `bool` | No |  |
+| `rocket` | `string` | No |  |
+| `ship` | `[]any` | No |  |
+| `static_fire_date_unix` | `int` | No |  |
+| `static_fire_date_utc` | `string` | No |  |
+| `success` | `bool` | No |  |
+| `tdb` | `bool` | No |  |
+| `upcoming` | `bool` | No |  |
+| `window` | `int` | No |  |
 
 ### Operations
 
@@ -477,19 +477,19 @@ launchpad := client.Launchpad(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `detail` | ``$STRING`` | No |  |
-| `full_name` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `launch` | ``$ARRAY`` | No |  |
-| `launch_attempt` | ``$INTEGER`` | No |  |
-| `launch_success` | ``$INTEGER`` | No |  |
-| `locality` | ``$STRING`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `rocket` | ``$ARRAY`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `detail` | `string` | No |  |
+| `full_name` | `string` | No |  |
+| `id` | `string` | No |  |
+| `latitude` | `float64` | No |  |
+| `launch` | `[]any` | No |  |
+| `launch_attempt` | `int` | No |  |
+| `launch_success` | `int` | No |  |
+| `locality` | `string` | No |  |
+| `longitude` | `float64` | No |  |
+| `name` | `string` | No |  |
+| `region` | `string` | No |  |
+| `rocket` | `[]any` | No |  |
+| `status` | `string` | No |  |
 
 ### Operations
 
@@ -543,33 +543,33 @@ payload := client.Payload(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `apoapsis_km` | ``$NUMBER`` | No |  |
-| `arg_of_pericenter` | ``$NUMBER`` | No |  |
-| `customer` | ``$ARRAY`` | No |  |
-| `eccentricity` | ``$NUMBER`` | No |  |
-| `epoch` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `inclination_deg` | ``$NUMBER`` | No |  |
-| `launch` | ``$STRING`` | No |  |
-| `lifespan_year` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `manufacturer` | ``$ARRAY`` | No |  |
-| `mass_kg` | ``$NUMBER`` | No |  |
-| `mass_lb` | ``$NUMBER`` | No |  |
-| `mean_anomaly` | ``$NUMBER`` | No |  |
-| `mean_motion` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nationality` | ``$ARRAY`` | No |  |
-| `norad_id` | ``$ARRAY`` | No |  |
-| `orbit` | ``$STRING`` | No |  |
-| `periapsis_km` | ``$NUMBER`` | No |  |
-| `period_min` | ``$NUMBER`` | No |  |
-| `raan` | ``$NUMBER`` | No |  |
-| `reference_system` | ``$STRING`` | No |  |
-| `regime` | ``$STRING`` | No |  |
-| `reused` | ``$BOOLEAN`` | No |  |
-| `semi_major_axis_km` | ``$NUMBER`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `apoapsis_km` | `float64` | No |  |
+| `arg_of_pericenter` | `float64` | No |  |
+| `customer` | `[]any` | No |  |
+| `eccentricity` | `float64` | No |  |
+| `epoch` | `string` | No |  |
+| `id` | `string` | No |  |
+| `inclination_deg` | `float64` | No |  |
+| `launch` | `string` | No |  |
+| `lifespan_year` | `float64` | No |  |
+| `longitude` | `float64` | No |  |
+| `manufacturer` | `[]any` | No |  |
+| `mass_kg` | `float64` | No |  |
+| `mass_lb` | `float64` | No |  |
+| `mean_anomaly` | `float64` | No |  |
+| `mean_motion` | `float64` | No |  |
+| `name` | `string` | No |  |
+| `nationality` | `[]any` | No |  |
+| `norad_id` | `[]any` | No |  |
+| `orbit` | `string` | No |  |
+| `periapsis_km` | `float64` | No |  |
+| `period_min` | `float64` | No |  |
+| `raan` | `float64` | No |  |
+| `reference_system` | `string` | No |  |
+| `regime` | `string` | No |  |
+| `reused` | `bool` | No |  |
+| `semi_major_axis_km` | `float64` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -623,33 +623,33 @@ roadster := client.Roadster(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `apoapsis_au` | ``$NUMBER`` | No |  |
-| `detail` | ``$STRING`` | No |  |
-| `earth_distance_km` | ``$NUMBER`` | No |  |
-| `earth_distance_mi` | ``$NUMBER`` | No |  |
-| `eccentricity` | ``$NUMBER`` | No |  |
-| `epoch_jd` | ``$NUMBER`` | No |  |
-| `flickr_image` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `inclination` | ``$NUMBER`` | No |  |
-| `launch_date_unix` | ``$INTEGER`` | No |  |
-| `launch_date_utc` | ``$STRING`` | No |  |
-| `launch_mass_kg` | ``$INTEGER`` | No |  |
-| `launch_mass_lb` | ``$INTEGER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `mars_distance_km` | ``$NUMBER`` | No |  |
-| `mars_distance_mi` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `norad_id` | ``$INTEGER`` | No |  |
-| `orbit_type` | ``$STRING`` | No |  |
-| `periapsis_arg` | ``$NUMBER`` | No |  |
-| `periapsis_au` | ``$NUMBER`` | No |  |
-| `period_day` | ``$NUMBER`` | No |  |
-| `semi_major_axis_au` | ``$NUMBER`` | No |  |
-| `speed_kph` | ``$NUMBER`` | No |  |
-| `speed_mph` | ``$NUMBER`` | No |  |
-| `video` | ``$STRING`` | No |  |
-| `wikipedia` | ``$STRING`` | No |  |
+| `apoapsis_au` | `float64` | No |  |
+| `detail` | `string` | No |  |
+| `earth_distance_km` | `float64` | No |  |
+| `earth_distance_mi` | `float64` | No |  |
+| `eccentricity` | `float64` | No |  |
+| `epoch_jd` | `float64` | No |  |
+| `flickr_image` | `[]any` | No |  |
+| `id` | `string` | No |  |
+| `inclination` | `float64` | No |  |
+| `launch_date_unix` | `int` | No |  |
+| `launch_date_utc` | `string` | No |  |
+| `launch_mass_kg` | `int` | No |  |
+| `launch_mass_lb` | `int` | No |  |
+| `longitude` | `float64` | No |  |
+| `mars_distance_km` | `float64` | No |  |
+| `mars_distance_mi` | `float64` | No |  |
+| `name` | `string` | No |  |
+| `norad_id` | `int` | No |  |
+| `orbit_type` | `string` | No |  |
+| `periapsis_arg` | `float64` | No |  |
+| `periapsis_au` | `float64` | No |  |
+| `period_day` | `float64` | No |  |
+| `semi_major_axis_au` | `float64` | No |  |
+| `speed_kph` | `float64` | No |  |
+| `speed_mph` | `float64` | No |  |
+| `video` | `string` | No |  |
+| `wikipedia` | `string` | No |  |
 
 ### Operations
 
@@ -695,23 +695,23 @@ rocket := client.Rocket(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `active` | ``$BOOLEAN`` | No |  |
-| `booster` | ``$INTEGER`` | No |  |
-| `company` | ``$STRING`` | No |  |
-| `cost_per_launch` | ``$INTEGER`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `diameter` | ``$OBJECT`` | No |  |
-| `first_flight` | ``$STRING`` | No |  |
-| `flickr_image` | ``$ARRAY`` | No |  |
-| `height` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `mass` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `stage` | ``$INTEGER`` | No |  |
-| `success_rate_pct` | ``$NUMBER`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `wikipedia` | ``$STRING`` | No |  |
+| `active` | `bool` | No |  |
+| `booster` | `int` | No |  |
+| `company` | `string` | No |  |
+| `cost_per_launch` | `int` | No |  |
+| `country` | `string` | No |  |
+| `description` | `string` | No |  |
+| `diameter` | `map[string]any` | No |  |
+| `first_flight` | `string` | No |  |
+| `flickr_image` | `[]any` | No |  |
+| `height` | `map[string]any` | No |  |
+| `id` | `string` | No |  |
+| `mass` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `stage` | `int` | No |  |
+| `success_rate_pct` | `float64` | No |  |
+| `type` | `string` | No |  |
+| `wikipedia` | `string` | No |  |
 
 ### Operations
 
@@ -765,29 +765,29 @@ ship := client.Ship(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `abs` | ``$INTEGER`` | No |  |
-| `class` | ``$INTEGER`` | No |  |
-| `course_deg` | ``$NUMBER`` | No |  |
-| `home_port` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `imo` | ``$INTEGER`` | No |  |
-| `last_ais_update` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `launch` | ``$ARRAY`` | No |  |
-| `legacy_id` | ``$STRING`` | No |  |
-| `link` | ``$STRING`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `mass_kg` | ``$INTEGER`` | No |  |
-| `mass_lb` | ``$INTEGER`` | No |  |
-| `mmsi` | ``$INTEGER`` | No |  |
-| `model` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `role` | ``$ARRAY`` | No |  |
-| `speed_kn` | ``$NUMBER`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `year_built` | ``$INTEGER`` | No |  |
+| `abs` | `int` | No |  |
+| `class` | `int` | No |  |
+| `course_deg` | `float64` | No |  |
+| `home_port` | `string` | No |  |
+| `id` | `string` | No |  |
+| `image` | `string` | No |  |
+| `imo` | `int` | No |  |
+| `last_ais_update` | `string` | No |  |
+| `latitude` | `float64` | No |  |
+| `launch` | `[]any` | No |  |
+| `legacy_id` | `string` | No |  |
+| `link` | `string` | No |  |
+| `longitude` | `float64` | No |  |
+| `mass_kg` | `int` | No |  |
+| `mass_lb` | `int` | No |  |
+| `mmsi` | `int` | No |  |
+| `model` | `string` | No |  |
+| `name` | `string` | No |  |
+| `role` | `[]any` | No |  |
+| `speed_kn` | `float64` | No |  |
+| `status` | `string` | No |  |
+| `type` | `string` | No |  |
+| `year_built` | `int` | No |  |
 
 ### Operations
 
@@ -841,14 +841,14 @@ starlink := client.Starlink(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `height_km` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `launch` | ``$STRING`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `space_track` | ``$OBJECT`` | No |  |
-| `velocity_km` | ``$NUMBER`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `height_km` | `float64` | No |  |
+| `id` | `string` | No |  |
+| `latitude` | `float64` | No |  |
+| `launch` | `string` | No |  |
+| `longitude` | `float64` | No |  |
+| `space_track` | `map[string]any` | No |  |
+| `velocity_km` | `float64` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 

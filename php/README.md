@@ -4,6 +4,8 @@
 
 The PHP SDK for the SpacexRest API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Capsule()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,7 +38,7 @@ try {
     // list() returns an array of Capsule records — iterate directly.
     $capsules = $client->Capsule()->list();
     foreach ($capsules as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["id"] . " " . $item["land_landing"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -52,6 +54,37 @@ try {
     print_r($capsule);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $capsules = $client->Capsule()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -75,7 +108,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -104,8 +140,8 @@ $client = SpacexRestSDK::test([
     "entity" => ["capsule" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// load() returns the bare mock record (throws on error).
-$capsule = $client->Capsule()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$capsule = $client->Capsule()->list();
 print_r($capsule);
 ```
 
@@ -204,10 +240,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -544,15 +577,15 @@ Create an instance: `$capsule = $client->Capsule();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$STRING`` |  |
-| `land_landing` | ``$INTEGER`` |  |
-| `last_update` | ``$STRING`` |  |
-| `launch` | ``$ARRAY`` |  |
-| `reuse_count` | ``$INTEGER`` |  |
-| `serial` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `water_landing` | ``$INTEGER`` |  |
+| `id` | `string` |  |
+| `land_landing` | `int` |  |
+| `last_update` | `string` |  |
+| `launch` | `array` |  |
+| `reuse_count` | `int` |  |
+| `serial` | `string` |  |
+| `status` | `string` |  |
+| `type` | `string` |  |
+| `water_landing` | `int` |  |
 
 #### Example: Load
 
@@ -584,17 +617,17 @@ Create an instance: `$core = $client->Core();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asds_attempt` | ``$INTEGER`` |  |
-| `asds_landing` | ``$INTEGER`` |  |
-| `block` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `last_update` | ``$STRING`` |  |
-| `launch` | ``$ARRAY`` |  |
-| `reuse_count` | ``$INTEGER`` |  |
-| `rtls_attempt` | ``$INTEGER`` |  |
-| `rtls_landing` | ``$INTEGER`` |  |
-| `serial` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
+| `asds_attempt` | `int` |  |
+| `asds_landing` | `int` |  |
+| `block` | `int` |  |
+| `id` | `string` |  |
+| `last_update` | `string` |  |
+| `launch` | `array` |  |
+| `reuse_count` | `int` |  |
+| `rtls_attempt` | `int` |  |
+| `rtls_landing` | `int` |  |
+| `serial` | `string` |  |
+| `status` | `string` |  |
 
 #### Example: Load
 
@@ -626,13 +659,13 @@ Create an instance: `$crew = $client->Crew();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agency` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$STRING`` |  |
-| `launch` | ``$ARRAY`` |  |
-| `name` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `wikipedia` | ``$STRING`` |  |
+| `agency` | `string` |  |
+| `id` | `string` |  |
+| `image` | `string` |  |
+| `launch` | `array` |  |
+| `name` | `string` |  |
+| `status` | `string` |  |
+| `wikipedia` | `string` |  |
 
 #### Example: Load
 
@@ -664,20 +697,20 @@ Create an instance: `$landpad = $client->Landpad();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `detail` | ``$STRING`` |  |
-| `full_name` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `landing_attempt` | ``$INTEGER`` |  |
-| `landing_success` | ``$INTEGER`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `launch` | ``$ARRAY`` |  |
-| `locality` | ``$STRING`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `region` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `wikipedia` | ``$STRING`` |  |
+| `detail` | `string` |  |
+| `full_name` | `string` |  |
+| `id` | `string` |  |
+| `landing_attempt` | `int` |  |
+| `landing_success` | `int` |  |
+| `latitude` | `float` |  |
+| `launch` | `array` |  |
+| `locality` | `string` |  |
+| `longitude` | `float` |  |
+| `name` | `string` |  |
+| `region` | `string` |  |
+| `status` | `string` |  |
+| `type` | `string` |  |
+| `wikipedia` | `string` |  |
 
 #### Example: Load
 
@@ -709,40 +742,40 @@ Create an instance: `$launch = $client->Launch();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `auto_update` | ``$BOOLEAN`` |  |
-| `capsule` | ``$ARRAY`` |  |
-| `core` | ``$ARRAY`` |  |
-| `crew` | ``$ARRAY`` |  |
-| `date_local` | ``$STRING`` |  |
-| `date_precision` | ``$STRING`` |  |
-| `date_unix` | ``$INTEGER`` |  |
-| `date_utc` | ``$STRING`` |  |
-| `detail` | ``$STRING`` |  |
-| `failure` | ``$ARRAY`` |  |
-| `fairing` | ``$OBJECT`` |  |
-| `flight` | ``$INTEGER`` |  |
-| `flight_number` | ``$INTEGER`` |  |
-| `gridfin` | ``$BOOLEAN`` |  |
-| `id` | ``$STRING`` |  |
-| `landing_attempt` | ``$BOOLEAN`` |  |
-| `landing_success` | ``$BOOLEAN`` |  |
-| `landing_type` | ``$STRING`` |  |
-| `landpad` | ``$STRING`` |  |
-| `launchpad` | ``$STRING`` |  |
-| `leg` | ``$BOOLEAN`` |  |
-| `link` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `net` | ``$BOOLEAN`` |  |
-| `payload` | ``$ARRAY`` |  |
-| `reused` | ``$BOOLEAN`` |  |
-| `rocket` | ``$STRING`` |  |
-| `ship` | ``$ARRAY`` |  |
-| `static_fire_date_unix` | ``$INTEGER`` |  |
-| `static_fire_date_utc` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `tdb` | ``$BOOLEAN`` |  |
-| `upcoming` | ``$BOOLEAN`` |  |
-| `window` | ``$INTEGER`` |  |
+| `auto_update` | `bool` |  |
+| `capsule` | `array` |  |
+| `core` | `array` |  |
+| `crew` | `array` |  |
+| `date_local` | `string` |  |
+| `date_precision` | `string` |  |
+| `date_unix` | `int` |  |
+| `date_utc` | `string` |  |
+| `detail` | `string` |  |
+| `failure` | `array` |  |
+| `fairing` | `array` |  |
+| `flight` | `int` |  |
+| `flight_number` | `int` |  |
+| `gridfin` | `bool` |  |
+| `id` | `string` |  |
+| `landing_attempt` | `bool` |  |
+| `landing_success` | `bool` |  |
+| `landing_type` | `string` |  |
+| `landpad` | `string` |  |
+| `launchpad` | `string` |  |
+| `leg` | `bool` |  |
+| `link` | `array` |  |
+| `name` | `string` |  |
+| `net` | `bool` |  |
+| `payload` | `array` |  |
+| `reused` | `bool` |  |
+| `rocket` | `string` |  |
+| `ship` | `array` |  |
+| `static_fire_date_unix` | `int` |  |
+| `static_fire_date_utc` | `string` |  |
+| `success` | `bool` |  |
+| `tdb` | `bool` |  |
+| `upcoming` | `bool` |  |
+| `window` | `int` |  |
 
 #### Example: Load
 
@@ -774,19 +807,19 @@ Create an instance: `$launchpad = $client->Launchpad();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `detail` | ``$STRING`` |  |
-| `full_name` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `launch` | ``$ARRAY`` |  |
-| `launch_attempt` | ``$INTEGER`` |  |
-| `launch_success` | ``$INTEGER`` |  |
-| `locality` | ``$STRING`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `region` | ``$STRING`` |  |
-| `rocket` | ``$ARRAY`` |  |
-| `status` | ``$STRING`` |  |
+| `detail` | `string` |  |
+| `full_name` | `string` |  |
+| `id` | `string` |  |
+| `latitude` | `float` |  |
+| `launch` | `array` |  |
+| `launch_attempt` | `int` |  |
+| `launch_success` | `int` |  |
+| `locality` | `string` |  |
+| `longitude` | `float` |  |
+| `name` | `string` |  |
+| `region` | `string` |  |
+| `rocket` | `array` |  |
+| `status` | `string` |  |
 
 #### Example: Load
 
@@ -818,33 +851,33 @@ Create an instance: `$payload = $client->Payload();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `apoapsis_km` | ``$NUMBER`` |  |
-| `arg_of_pericenter` | ``$NUMBER`` |  |
-| `customer` | ``$ARRAY`` |  |
-| `eccentricity` | ``$NUMBER`` |  |
-| `epoch` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `inclination_deg` | ``$NUMBER`` |  |
-| `launch` | ``$STRING`` |  |
-| `lifespan_year` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `manufacturer` | ``$ARRAY`` |  |
-| `mass_kg` | ``$NUMBER`` |  |
-| `mass_lb` | ``$NUMBER`` |  |
-| `mean_anomaly` | ``$NUMBER`` |  |
-| `mean_motion` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `nationality` | ``$ARRAY`` |  |
-| `norad_id` | ``$ARRAY`` |  |
-| `orbit` | ``$STRING`` |  |
-| `periapsis_km` | ``$NUMBER`` |  |
-| `period_min` | ``$NUMBER`` |  |
-| `raan` | ``$NUMBER`` |  |
-| `reference_system` | ``$STRING`` |  |
-| `regime` | ``$STRING`` |  |
-| `reused` | ``$BOOLEAN`` |  |
-| `semi_major_axis_km` | ``$NUMBER`` |  |
-| `type` | ``$STRING`` |  |
+| `apoapsis_km` | `float` |  |
+| `arg_of_pericenter` | `float` |  |
+| `customer` | `array` |  |
+| `eccentricity` | `float` |  |
+| `epoch` | `string` |  |
+| `id` | `string` |  |
+| `inclination_deg` | `float` |  |
+| `launch` | `string` |  |
+| `lifespan_year` | `float` |  |
+| `longitude` | `float` |  |
+| `manufacturer` | `array` |  |
+| `mass_kg` | `float` |  |
+| `mass_lb` | `float` |  |
+| `mean_anomaly` | `float` |  |
+| `mean_motion` | `float` |  |
+| `name` | `string` |  |
+| `nationality` | `array` |  |
+| `norad_id` | `array` |  |
+| `orbit` | `string` |  |
+| `periapsis_km` | `float` |  |
+| `period_min` | `float` |  |
+| `raan` | `float` |  |
+| `reference_system` | `string` |  |
+| `regime` | `string` |  |
+| `reused` | `bool` |  |
+| `semi_major_axis_km` | `float` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -875,33 +908,33 @@ Create an instance: `$roadster = $client->Roadster();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `apoapsis_au` | ``$NUMBER`` |  |
-| `detail` | ``$STRING`` |  |
-| `earth_distance_km` | ``$NUMBER`` |  |
-| `earth_distance_mi` | ``$NUMBER`` |  |
-| `eccentricity` | ``$NUMBER`` |  |
-| `epoch_jd` | ``$NUMBER`` |  |
-| `flickr_image` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `inclination` | ``$NUMBER`` |  |
-| `launch_date_unix` | ``$INTEGER`` |  |
-| `launch_date_utc` | ``$STRING`` |  |
-| `launch_mass_kg` | ``$INTEGER`` |  |
-| `launch_mass_lb` | ``$INTEGER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `mars_distance_km` | ``$NUMBER`` |  |
-| `mars_distance_mi` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `norad_id` | ``$INTEGER`` |  |
-| `orbit_type` | ``$STRING`` |  |
-| `periapsis_arg` | ``$NUMBER`` |  |
-| `periapsis_au` | ``$NUMBER`` |  |
-| `period_day` | ``$NUMBER`` |  |
-| `semi_major_axis_au` | ``$NUMBER`` |  |
-| `speed_kph` | ``$NUMBER`` |  |
-| `speed_mph` | ``$NUMBER`` |  |
-| `video` | ``$STRING`` |  |
-| `wikipedia` | ``$STRING`` |  |
+| `apoapsis_au` | `float` |  |
+| `detail` | `string` |  |
+| `earth_distance_km` | `float` |  |
+| `earth_distance_mi` | `float` |  |
+| `eccentricity` | `float` |  |
+| `epoch_jd` | `float` |  |
+| `flickr_image` | `array` |  |
+| `id` | `string` |  |
+| `inclination` | `float` |  |
+| `launch_date_unix` | `int` |  |
+| `launch_date_utc` | `string` |  |
+| `launch_mass_kg` | `int` |  |
+| `launch_mass_lb` | `int` |  |
+| `longitude` | `float` |  |
+| `mars_distance_km` | `float` |  |
+| `mars_distance_mi` | `float` |  |
+| `name` | `string` |  |
+| `norad_id` | `int` |  |
+| `orbit_type` | `string` |  |
+| `periapsis_arg` | `float` |  |
+| `periapsis_au` | `float` |  |
+| `period_day` | `float` |  |
+| `semi_major_axis_au` | `float` |  |
+| `speed_kph` | `float` |  |
+| `speed_mph` | `float` |  |
+| `video` | `string` |  |
+| `wikipedia` | `string` |  |
 
 #### Example: List
 
@@ -926,23 +959,23 @@ Create an instance: `$rocket = $client->Rocket();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `active` | ``$BOOLEAN`` |  |
-| `booster` | ``$INTEGER`` |  |
-| `company` | ``$STRING`` |  |
-| `cost_per_launch` | ``$INTEGER`` |  |
-| `country` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `diameter` | ``$OBJECT`` |  |
-| `first_flight` | ``$STRING`` |  |
-| `flickr_image` | ``$ARRAY`` |  |
-| `height` | ``$OBJECT`` |  |
-| `id` | ``$STRING`` |  |
-| `mass` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `stage` | ``$INTEGER`` |  |
-| `success_rate_pct` | ``$NUMBER`` |  |
-| `type` | ``$STRING`` |  |
-| `wikipedia` | ``$STRING`` |  |
+| `active` | `bool` |  |
+| `booster` | `int` |  |
+| `company` | `string` |  |
+| `cost_per_launch` | `int` |  |
+| `country` | `string` |  |
+| `description` | `string` |  |
+| `diameter` | `array` |  |
+| `first_flight` | `string` |  |
+| `flickr_image` | `array` |  |
+| `height` | `array` |  |
+| `id` | `string` |  |
+| `mass` | `array` |  |
+| `name` | `string` |  |
+| `stage` | `int` |  |
+| `success_rate_pct` | `float` |  |
+| `type` | `string` |  |
+| `wikipedia` | `string` |  |
 
 #### Example: Load
 
@@ -974,29 +1007,29 @@ Create an instance: `$ship = $client->Ship();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `abs` | ``$INTEGER`` |  |
-| `class` | ``$INTEGER`` |  |
-| `course_deg` | ``$NUMBER`` |  |
-| `home_port` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$STRING`` |  |
-| `imo` | ``$INTEGER`` |  |
-| `last_ais_update` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `launch` | ``$ARRAY`` |  |
-| `legacy_id` | ``$STRING`` |  |
-| `link` | ``$STRING`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `mass_kg` | ``$INTEGER`` |  |
-| `mass_lb` | ``$INTEGER`` |  |
-| `mmsi` | ``$INTEGER`` |  |
-| `model` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `role` | ``$ARRAY`` |  |
-| `speed_kn` | ``$NUMBER`` |  |
-| `status` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `year_built` | ``$INTEGER`` |  |
+| `abs` | `int` |  |
+| `class` | `int` |  |
+| `course_deg` | `float` |  |
+| `home_port` | `string` |  |
+| `id` | `string` |  |
+| `image` | `string` |  |
+| `imo` | `int` |  |
+| `last_ais_update` | `string` |  |
+| `latitude` | `float` |  |
+| `launch` | `array` |  |
+| `legacy_id` | `string` |  |
+| `link` | `string` |  |
+| `longitude` | `float` |  |
+| `mass_kg` | `int` |  |
+| `mass_lb` | `int` |  |
+| `mmsi` | `int` |  |
+| `model` | `string` |  |
+| `name` | `string` |  |
+| `role` | `array` |  |
+| `speed_kn` | `float` |  |
+| `status` | `string` |  |
+| `type` | `string` |  |
+| `year_built` | `int` |  |
 
 #### Example: Load
 
@@ -1028,14 +1061,14 @@ Create an instance: `$starlink = $client->Starlink();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `height_km` | ``$NUMBER`` |  |
-| `id` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `launch` | ``$STRING`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `space_track` | ``$OBJECT`` |  |
-| `velocity_km` | ``$NUMBER`` |  |
-| `version` | ``$STRING`` |  |
+| `height_km` | `float` |  |
+| `id` | `string` |  |
+| `latitude` | `float` |  |
+| `launch` | `string` |  |
+| `longitude` | `float` |  |
+| `space_track` | `array` |  |
+| `velocity_km` | `float` |  |
+| `version` | `string` |  |
 
 #### Example: Load
 
@@ -1052,12 +1085,16 @@ $starlinks = $client->Starlink()->list();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1074,8 +1111,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1119,15 +1157,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $capsule = $client->Capsule();
-$capsule->load(["id" => "example_id"]);
+$capsule->list();
 
-// $capsule->dataGet() now returns the loaded capsule data
-// $capsule->matchGet() returns the last match criteria
+// $capsule->data_get() now returns the capsule data from the last list
+// $capsule->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

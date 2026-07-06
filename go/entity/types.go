@@ -26,8 +26,7 @@ type CapsuleLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// CapsuleListMatch mirrors the capsule fields as an all-optional match
-// filter (Go analog of Partial<Capsule>).
+// CapsuleListMatch is the typed request payload for Capsule.ListTyped.
 type CapsuleListMatch struct {
 	Id *string `json:"id,omitempty"`
 	LandLanding *int `json:"land_landing,omitempty"`
@@ -60,8 +59,7 @@ type CoreLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// CoreListMatch mirrors the core fields as an all-optional match
-// filter (Go analog of Partial<Core>).
+// CoreListMatch is the typed request payload for Core.ListTyped.
 type CoreListMatch struct {
 	AsdsAttempt *int `json:"asds_attempt,omitempty"`
 	AsdsLanding *int `json:"asds_landing,omitempty"`
@@ -92,8 +90,7 @@ type CrewLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// CrewListMatch mirrors the crew fields as an all-optional match
-// filter (Go analog of Partial<Crew>).
+// CrewListMatch is the typed request payload for Crew.ListTyped.
 type CrewListMatch struct {
 	Agency *string `json:"agency,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -127,8 +124,7 @@ type LandpadLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// LandpadListMatch mirrors the landpad fields as an all-optional match
-// filter (Go analog of Partial<Landpad>).
+// LandpadListMatch is the typed request payload for Landpad.ListTyped.
 type LandpadListMatch struct {
 	Detail *string `json:"detail,omitempty"`
 	FullName *string `json:"full_name,omitempty"`
@@ -189,8 +185,7 @@ type LaunchLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// LaunchListMatch mirrors the launch fields as an all-optional match
-// filter (Go analog of Partial<Launch>).
+// LaunchListMatch is the typed request payload for Launch.ListTyped.
 type LaunchListMatch struct {
 	AutoUpdate *bool `json:"auto_update,omitempty"`
 	Capsule *[]any `json:"capsule,omitempty"`
@@ -250,8 +245,7 @@ type LaunchpadLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// LaunchpadListMatch mirrors the launchpad fields as an all-optional match
-// filter (Go analog of Partial<Launchpad>).
+// LaunchpadListMatch is the typed request payload for Launchpad.ListTyped.
 type LaunchpadListMatch struct {
 	Detail *string `json:"detail,omitempty"`
 	FullName *string `json:"full_name,omitempty"`
@@ -304,8 +298,7 @@ type PayloadLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// PayloadListMatch mirrors the payload fields as an all-optional match
-// filter (Go analog of Partial<Payload>).
+// PayloadListMatch is the typed request payload for Payload.ListTyped.
 type PayloadListMatch struct {
 	ApoapsisKm *float64 `json:"apoapsis_km,omitempty"`
 	ArgOfPericenter *float64 `json:"arg_of_pericenter,omitempty"`
@@ -367,8 +360,7 @@ type Roadster struct {
 	Wikipedia *string `json:"wikipedia,omitempty"`
 }
 
-// RoadsterListMatch mirrors the roadster fields as an all-optional match
-// filter (Go analog of Partial<Roadster>).
+// RoadsterListMatch is the typed request payload for Roadster.ListTyped.
 type RoadsterListMatch struct {
 	ApoapsisAu *float64 `json:"apoapsis_au,omitempty"`
 	Detail *string `json:"detail,omitempty"`
@@ -425,8 +417,7 @@ type RocketLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// RocketListMatch mirrors the rocket fields as an all-optional match
-// filter (Go analog of Partial<Rocket>).
+// RocketListMatch is the typed request payload for Rocket.ListTyped.
 type RocketListMatch struct {
 	Active *bool `json:"active,omitempty"`
 	Booster *int `json:"booster,omitempty"`
@@ -479,8 +470,7 @@ type ShipLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// ShipListMatch mirrors the ship fields as an all-optional match
-// filter (Go analog of Partial<Ship>).
+// ShipListMatch is the typed request payload for Ship.ListTyped.
 type ShipListMatch struct {
 	Abs *int `json:"abs,omitempty"`
 	Class *int `json:"class,omitempty"`
@@ -524,8 +514,7 @@ type StarlinkLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// StarlinkListMatch mirrors the starlink fields as an all-optional match
-// filter (Go analog of Partial<Starlink>).
+// StarlinkListMatch is the typed request payload for Starlink.ListTyped.
 type StarlinkListMatch struct {
 	HeightKm *float64 `json:"height_km,omitempty"`
 	Id *string `json:"id,omitempty"`

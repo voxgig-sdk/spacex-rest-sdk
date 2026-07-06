@@ -58,7 +58,7 @@ CapsuleLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Capsule#list (any subset of Capsule fields).
+# Request payload for Capsule#list.
 #
 # @!attribute [rw] id
 #   @return [String, nil]
@@ -157,7 +157,7 @@ CoreLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Core#list (any subset of Core fields).
+# Request payload for Core#list.
 #
 # @!attribute [rw] asds_attempt
 #   @return [Integer, nil]
@@ -248,7 +248,7 @@ CrewLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Crew#list (any subset of Crew fields).
+# Request payload for Crew#list.
 #
 # @!attribute [rw] agency
 #   @return [String, nil]
@@ -351,7 +351,7 @@ LandpadLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Landpad#list (any subset of Landpad fields).
+# Request payload for Landpad#list.
 #
 # @!attribute [rw] detail
 #   @return [String, nil]
@@ -562,7 +562,7 @@ LaunchLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Launch#list (any subset of Launch fields).
+# Request payload for Launch#list.
 #
 # @!attribute [rw] auto_update
 #   @return [Boolean, nil]
@@ -769,7 +769,7 @@ LaunchpadLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Launchpad#list (any subset of Launchpad fields).
+# Request payload for Launchpad#list.
 #
 # @!attribute [rw] detail
 #   @return [String, nil]
@@ -948,7 +948,7 @@ PayloadLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Payload#list (any subset of Payload fields).
+# Request payload for Payload#list.
 #
 # @!attribute [rw] apoapsis_km
 #   @return [Float, nil]
@@ -1174,7 +1174,7 @@ Roadster = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Roadster#list (any subset of Roadster fields).
+# Request payload for Roadster#list.
 #
 # @!attribute [rw] apoapsis_au
 #   @return [Float, nil]
@@ -1369,7 +1369,7 @@ RocketLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Rocket#list (any subset of Rocket fields).
+# Request payload for Rocket#list.
 #
 # @!attribute [rw] active
 #   @return [Boolean, nil]
@@ -1548,7 +1548,7 @@ ShipLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Ship#list (any subset of Ship fields).
+# Request payload for Ship#list.
 #
 # @!attribute [rw] abs
 #   @return [Integer, nil]
@@ -1691,7 +1691,7 @@ StarlinkLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Starlink#list (any subset of Starlink fields).
+# Request payload for Starlink#list.
 #
 # @!attribute [rw] height_km
 #   @return [Float, nil]
