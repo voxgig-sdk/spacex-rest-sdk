@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -2603,14 +2600,17 @@
           "name": "Apache 2.0",
           "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server (v5)",
             "url": "https://api.spacexdata.com/v5"
           }
         ],
+        "summary": "Open Source REST API for launch, rocket, core, capsule, starlink, launchpad, and landing pad data.",
         "title": "SpaceX REST API",
-        "version": "5.0.0"
+        "version": "5.0.0",
+        "website": "https://spacexdata.com"
       },
       "option": {},
       "target": {
@@ -2663,6 +2663,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -2713,6 +2716,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

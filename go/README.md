@@ -60,7 +60,7 @@ func main() {
     }
 
     // Load a single capsule — the value is the loaded record.
-    capsule, err := client.Capsule(nil).Load(map[string]any{"id": "example"}, nil)
+    capsule, err := client.Capsule(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
