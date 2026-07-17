@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- SpacexRest SDK exists test
 
 local sdk = require("spacex-rest_sdk")
 
