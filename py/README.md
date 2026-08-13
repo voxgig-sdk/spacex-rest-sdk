@@ -52,7 +52,7 @@ except Exception as err:
 
 ### 3. Load a capsule
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -69,8 +69,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    capsules = client.Capsule().list()
-    print(capsules)
+    landpads = client.Landpad().list()
+    print(landpads)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -136,9 +136,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = SpacexRestSDK.test()
 
-# Entity ops return the bare record and raise on error.
-capsule = client.Capsule().list()
-# capsule contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+landpad = client.Landpad().list()
+# landpad contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -243,7 +244,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -266,14 +267,14 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `land_landing` |  |
+| `land_landings` |  |
 | `last_update` |  |
-| `launch` |  |
+| `launches` |  |
 | `reuse_count` |  |
 | `serial` |  |
 | `status` |  |
 | `type` |  |
-| `water_landing` |  |
+| `water_landings` |  |
 
 Operations: List, Load.
 
@@ -283,15 +284,15 @@ API path: `/capsules`
 
 | Field | Description |
 | --- | --- |
-| `asds_attempt` |  |
-| `asds_landing` |  |
+| `asds_attempts` |  |
+| `asds_landings` |  |
 | `block` |  |
 | `id` |  |
 | `last_update` |  |
-| `launch` |  |
+| `launches` |  |
 | `reuse_count` |  |
-| `rtls_attempt` |  |
-| `rtls_landing` |  |
+| `rtls_attempts` |  |
+| `rtls_landings` |  |
 | `serial` |  |
 | `status` |  |
 
@@ -306,7 +307,7 @@ API path: `/cores`
 | `agency` |  |
 | `id` |  |
 | `image` |  |
-| `launch` |  |
+| `launches` |  |
 | `name` |  |
 | `status` |  |
 | `wikipedia` |  |
@@ -319,13 +320,13 @@ API path: `/crew`
 
 | Field | Description |
 | --- | --- |
-| `detail` |  |
+| `details` |  |
 | `full_name` |  |
 | `id` |  |
-| `landing_attempt` |  |
-| `landing_success` |  |
+| `landing_attempts` |  |
+| `landing_successes` |  |
 | `latitude` |  |
-| `launch` |  |
+| `launches` |  |
 | `locality` |  |
 | `longitude` |  |
 | `name` |  |
@@ -343,33 +344,34 @@ API path: `/landpads`
 | Field | Description |
 | --- | --- |
 | `auto_update` |  |
-| `capsule` |  |
+| `capsules` |  |
 | `core` |  |
+| `cores` |  |
 | `crew` |  |
 | `date_local` |  |
 | `date_precision` |  |
 | `date_unix` |  |
 | `date_utc` |  |
-| `detail` |  |
-| `failure` |  |
-| `fairing` |  |
+| `details` |  |
+| `failures` |  |
+| `fairings` |  |
 | `flight` |  |
 | `flight_number` |  |
-| `gridfin` |  |
+| `gridfins` |  |
 | `id` |  |
 | `landing_attempt` |  |
 | `landing_success` |  |
 | `landing_type` |  |
 | `landpad` |  |
 | `launchpad` |  |
-| `leg` |  |
-| `link` |  |
+| `legs` |  |
+| `links` |  |
 | `name` |  |
 | `net` |  |
-| `payload` |  |
+| `payloads` |  |
 | `reused` |  |
 | `rocket` |  |
-| `ship` |  |
+| `ships` |  |
 | `static_fire_date_unix` |  |
 | `static_fire_date_utc` |  |
 | `success` |  |
@@ -385,18 +387,18 @@ API path: `/launches`
 
 | Field | Description |
 | --- | --- |
-| `detail` |  |
+| `details` |  |
 | `full_name` |  |
 | `id` |  |
 | `latitude` |  |
-| `launch` |  |
-| `launch_attempt` |  |
-| `launch_success` |  |
+| `launch_attempts` |  |
+| `launch_successes` |  |
+| `launches` |  |
 | `locality` |  |
 | `longitude` |  |
 | `name` |  |
 | `region` |  |
-| `rocket` |  |
+| `rockets` |  |
 | `status` |  |
 
 Operations: List, Load.
@@ -409,22 +411,22 @@ API path: `/launchpads`
 | --- | --- |
 | `apoapsis_km` |  |
 | `arg_of_pericenter` |  |
-| `customer` |  |
+| `customers` |  |
 | `eccentricity` |  |
 | `epoch` |  |
 | `id` |  |
 | `inclination_deg` |  |
 | `launch` |  |
-| `lifespan_year` |  |
+| `lifespan_years` |  |
 | `longitude` |  |
-| `manufacturer` |  |
+| `manufacturers` |  |
 | `mass_kg` |  |
-| `mass_lb` |  |
+| `mass_lbs` |  |
 | `mean_anomaly` |  |
 | `mean_motion` |  |
 | `name` |  |
-| `nationality` |  |
-| `norad_id` |  |
+| `nationalities` |  |
+| `norad_ids` |  |
 | `orbit` |  |
 | `periapsis_km` |  |
 | `period_min` |  |
@@ -444,18 +446,18 @@ API path: `/payloads`
 | Field | Description |
 | --- | --- |
 | `apoapsis_au` |  |
-| `detail` |  |
+| `details` |  |
 | `earth_distance_km` |  |
 | `earth_distance_mi` |  |
 | `eccentricity` |  |
 | `epoch_jd` |  |
-| `flickr_image` |  |
+| `flickr_images` |  |
 | `id` |  |
 | `inclination` |  |
 | `launch_date_unix` |  |
 | `launch_date_utc` |  |
 | `launch_mass_kg` |  |
-| `launch_mass_lb` |  |
+| `launch_mass_lbs` |  |
 | `longitude` |  |
 | `mars_distance_km` |  |
 | `mars_distance_mi` |  |
@@ -464,7 +466,7 @@ API path: `/payloads`
 | `orbit_type` |  |
 | `periapsis_arg` |  |
 | `periapsis_au` |  |
-| `period_day` |  |
+| `period_days` |  |
 | `semi_major_axis_au` |  |
 | `speed_kph` |  |
 | `speed_mph` |  |
@@ -480,19 +482,19 @@ API path: `/roadster`
 | Field | Description |
 | --- | --- |
 | `active` |  |
-| `booster` |  |
+| `boosters` |  |
 | `company` |  |
 | `cost_per_launch` |  |
 | `country` |  |
 | `description` |  |
 | `diameter` |  |
 | `first_flight` |  |
-| `flickr_image` |  |
+| `flickr_images` |  |
 | `height` |  |
 | `id` |  |
 | `mass` |  |
 | `name` |  |
-| `stage` |  |
+| `stages` |  |
 | `success_rate_pct` |  |
 | `type` |  |
 | `wikipedia` |  |
@@ -514,16 +516,16 @@ API path: `/rockets`
 | `imo` |  |
 | `last_ais_update` |  |
 | `latitude` |  |
-| `launch` |  |
+| `launches` |  |
 | `legacy_id` |  |
 | `link` |  |
 | `longitude` |  |
 | `mass_kg` |  |
-| `mass_lb` |  |
+| `mass_lbs` |  |
 | `mmsi` |  |
 | `model` |  |
 | `name` |  |
-| `role` |  |
+| `roles` |  |
 | `speed_kn` |  |
 | `status` |  |
 | `type` |  |
@@ -542,8 +544,8 @@ API path: `/ships`
 | `latitude` |  |
 | `launch` |  |
 | `longitude` |  |
-| `space_track` |  |
-| `velocity_km` |  |
+| `spaceTrack` |  |
+| `velocity_kms` |  |
 | `version` |  |
 
 Operations: List, Load.
@@ -571,14 +573,14 @@ Create an instance: `capsule = client.Capsule()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `str` |  |
-| `land_landing` | `int` |  |
+| `land_landings` | `int` |  |
 | `last_update` | `str` |  |
-| `launch` | `list` |  |
+| `launches` | `list` |  |
 | `reuse_count` | `int` |  |
 | `serial` | `str` |  |
 | `status` | `str` |  |
 | `type` | `str` |  |
-| `water_landing` | `int` |  |
+| `water_landings` | `int` |  |
 
 #### Example: Load
 
@@ -608,15 +610,15 @@ Create an instance: `core = client.Core()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asds_attempt` | `int` |  |
-| `asds_landing` | `int` |  |
+| `asds_attempts` | `int` |  |
+| `asds_landings` | `int` |  |
 | `block` | `int` |  |
 | `id` | `str` |  |
 | `last_update` | `str` |  |
-| `launch` | `list` |  |
+| `launches` | `list` |  |
 | `reuse_count` | `int` |  |
-| `rtls_attempt` | `int` |  |
-| `rtls_landing` | `int` |  |
+| `rtls_attempts` | `int` |  |
+| `rtls_landings` | `int` |  |
 | `serial` | `str` |  |
 | `status` | `str` |  |
 
@@ -651,7 +653,7 @@ Create an instance: `crew = client.Crew()`
 | `agency` | `str` |  |
 | `id` | `str` |  |
 | `image` | `str` |  |
-| `launch` | `list` |  |
+| `launches` | `list` |  |
 | `name` | `str` |  |
 | `status` | `str` |  |
 | `wikipedia` | `str` |  |
@@ -684,13 +686,13 @@ Create an instance: `landpad = client.Landpad()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `detail` | `str` |  |
+| `details` | `str` |  |
 | `full_name` | `str` |  |
 | `id` | `str` |  |
-| `landing_attempt` | `int` |  |
-| `landing_success` | `int` |  |
+| `landing_attempts` | `int` |  |
+| `landing_successes` | `int` |  |
 | `latitude` | `float` |  |
-| `launch` | `list` |  |
+| `launches` | `list` |  |
 | `locality` | `str` |  |
 | `longitude` | `float` |  |
 | `name` | `str` |  |
@@ -728,33 +730,34 @@ Create an instance: `launch = client.Launch()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `auto_update` | `bool` |  |
-| `capsule` | `list` |  |
-| `core` | `list` |  |
+| `capsules` | `list` |  |
+| `core` | `str` |  |
+| `cores` | `list` |  |
 | `crew` | `list` |  |
 | `date_local` | `str` |  |
 | `date_precision` | `str` |  |
 | `date_unix` | `int` |  |
 | `date_utc` | `str` |  |
-| `detail` | `str` |  |
-| `failure` | `list` |  |
-| `fairing` | `dict` |  |
+| `details` | `str` |  |
+| `failures` | `list` |  |
+| `fairings` | `dict` |  |
 | `flight` | `int` |  |
 | `flight_number` | `int` |  |
-| `gridfin` | `bool` |  |
+| `gridfins` | `bool` |  |
 | `id` | `str` |  |
 | `landing_attempt` | `bool` |  |
 | `landing_success` | `bool` |  |
 | `landing_type` | `str` |  |
 | `landpad` | `str` |  |
 | `launchpad` | `str` |  |
-| `leg` | `bool` |  |
-| `link` | `dict` |  |
+| `legs` | `bool` |  |
+| `links` | `dict` |  |
 | `name` | `str` |  |
 | `net` | `bool` |  |
-| `payload` | `list` |  |
+| `payloads` | `list` |  |
 | `reused` | `bool` |  |
 | `rocket` | `str` |  |
-| `ship` | `list` |  |
+| `ships` | `list` |  |
 | `static_fire_date_unix` | `int` |  |
 | `static_fire_date_utc` | `str` |  |
 | `success` | `bool` |  |
@@ -790,18 +793,18 @@ Create an instance: `launchpad = client.Launchpad()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `detail` | `str` |  |
+| `details` | `str` |  |
 | `full_name` | `str` |  |
 | `id` | `str` |  |
 | `latitude` | `float` |  |
-| `launch` | `list` |  |
-| `launch_attempt` | `int` |  |
-| `launch_success` | `int` |  |
+| `launch_attempts` | `int` |  |
+| `launch_successes` | `int` |  |
+| `launches` | `list` |  |
 | `locality` | `str` |  |
 | `longitude` | `float` |  |
 | `name` | `str` |  |
 | `region` | `str` |  |
-| `rocket` | `list` |  |
+| `rockets` | `list` |  |
 | `status` | `str` |  |
 
 #### Example: Load
@@ -834,22 +837,22 @@ Create an instance: `payload = client.Payload()`
 | --- | --- | --- |
 | `apoapsis_km` | `float` |  |
 | `arg_of_pericenter` | `float` |  |
-| `customer` | `list` |  |
+| `customers` | `list` |  |
 | `eccentricity` | `float` |  |
 | `epoch` | `str` |  |
 | `id` | `str` |  |
 | `inclination_deg` | `float` |  |
 | `launch` | `str` |  |
-| `lifespan_year` | `float` |  |
+| `lifespan_years` | `float` |  |
 | `longitude` | `float` |  |
-| `manufacturer` | `list` |  |
+| `manufacturers` | `list` |  |
 | `mass_kg` | `float` |  |
-| `mass_lb` | `float` |  |
+| `mass_lbs` | `float` |  |
 | `mean_anomaly` | `float` |  |
 | `mean_motion` | `float` |  |
 | `name` | `str` |  |
-| `nationality` | `list` |  |
-| `norad_id` | `list` |  |
+| `nationalities` | `list` |  |
+| `norad_ids` | `list` |  |
 | `orbit` | `str` |  |
 | `periapsis_km` | `float` |  |
 | `period_min` | `float` |  |
@@ -888,18 +891,18 @@ Create an instance: `roadster = client.Roadster()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `apoapsis_au` | `float` |  |
-| `detail` | `str` |  |
+| `details` | `str` |  |
 | `earth_distance_km` | `float` |  |
 | `earth_distance_mi` | `float` |  |
 | `eccentricity` | `float` |  |
 | `epoch_jd` | `float` |  |
-| `flickr_image` | `list` |  |
+| `flickr_images` | `list` |  |
 | `id` | `str` |  |
 | `inclination` | `float` |  |
 | `launch_date_unix` | `int` |  |
 | `launch_date_utc` | `str` |  |
 | `launch_mass_kg` | `int` |  |
-| `launch_mass_lb` | `int` |  |
+| `launch_mass_lbs` | `int` |  |
 | `longitude` | `float` |  |
 | `mars_distance_km` | `float` |  |
 | `mars_distance_mi` | `float` |  |
@@ -908,7 +911,7 @@ Create an instance: `roadster = client.Roadster()`
 | `orbit_type` | `str` |  |
 | `periapsis_arg` | `float` |  |
 | `periapsis_au` | `float` |  |
-| `period_day` | `float` |  |
+| `period_days` | `float` |  |
 | `semi_major_axis_au` | `float` |  |
 | `speed_kph` | `float` |  |
 | `speed_mph` | `float` |  |
@@ -938,19 +941,19 @@ Create an instance: `rocket = client.Rocket()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `active` | `bool` |  |
-| `booster` | `int` |  |
+| `boosters` | `int` |  |
 | `company` | `str` |  |
 | `cost_per_launch` | `int` |  |
 | `country` | `str` |  |
 | `description` | `str` |  |
 | `diameter` | `dict` |  |
 | `first_flight` | `str` |  |
-| `flickr_image` | `list` |  |
+| `flickr_images` | `list` |  |
 | `height` | `dict` |  |
 | `id` | `str` |  |
 | `mass` | `dict` |  |
 | `name` | `str` |  |
-| `stage` | `int` |  |
+| `stages` | `int` |  |
 | `success_rate_pct` | `float` |  |
 | `type` | `str` |  |
 | `wikipedia` | `str` |  |
@@ -992,16 +995,16 @@ Create an instance: `ship = client.Ship()`
 | `imo` | `int` |  |
 | `last_ais_update` | `str` |  |
 | `latitude` | `float` |  |
-| `launch` | `list` |  |
+| `launches` | `list` |  |
 | `legacy_id` | `str` |  |
 | `link` | `str` |  |
 | `longitude` | `float` |  |
 | `mass_kg` | `int` |  |
-| `mass_lb` | `int` |  |
+| `mass_lbs` | `int` |  |
 | `mmsi` | `int` |  |
 | `model` | `str` |  |
 | `name` | `str` |  |
-| `role` | `list` |  |
+| `roles` | `list` |  |
 | `speed_kn` | `float` |  |
 | `status` | `str` |  |
 | `type` | `str` |  |
@@ -1040,8 +1043,8 @@ Create an instance: `starlink = client.Starlink()`
 | `latitude` | `float` |  |
 | `launch` | `str` |  |
 | `longitude` | `float` |  |
-| `space_track` | `dict` |  |
-| `velocity_km` | `float` |  |
+| `spaceTrack` | `dict` |  |
+| `velocity_kms` | `float` |  |
 | `version` | `str` |  |
 
 #### Example: Load
@@ -1132,11 +1135,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-capsule = client.Capsule()
-capsule.list()
+landpad = client.Landpad()
+landpad.list()
 
-# capsule.data_get() now returns the capsule data from the last list
-# capsule.match_get() returns the last match criteria
+# landpad.data_get() now returns the landpad data from the last list
+# landpad.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

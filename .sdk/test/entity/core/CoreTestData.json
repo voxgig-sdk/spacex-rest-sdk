@@ -2,41 +2,41 @@
   "existing": {
     "core": {
       "CORE00": {
-        "asds_attempt": "s6e",
-        "asds_landing": "s6f",
+        "asds_attempts": "s6e",
+        "asds_landings": "s6f",
         "block": "s70",
         "id": "CORE00",
         "last_update": "s72",
-        "launch": [],
+        "launches": [],
         "reuse_count": "s74",
-        "rtls_attempt": "s75",
-        "rtls_landing": "s76",
+        "rtls_attempts": "s75",
+        "rtls_landings": "s76",
         "serial": "s77",
         "status": "s78"
       },
       "CORE01": {
-        "asds_attempt": "sdc",
-        "asds_landing": "sdd",
+        "asds_attempts": "sdc",
+        "asds_landings": "sdd",
         "block": "sde",
         "id": "CORE01",
         "last_update": "se0",
-        "launch": [],
+        "launches": [],
         "reuse_count": "se2",
-        "rtls_attempt": "se3",
-        "rtls_landing": "se4",
+        "rtls_attempts": "se3",
+        "rtls_landings": "se4",
         "serial": "se5",
         "status": "se6"
       },
       "CORE02": {
-        "asds_attempt": "s14a",
-        "asds_landing": "s14b",
+        "asds_attempts": "s14a",
+        "asds_landings": "s14b",
         "block": "s14c",
         "id": "CORE02",
         "last_update": "s14e",
-        "launch": [],
+        "launches": [],
         "reuse_count": "s150",
-        "rtls_attempt": "s151",
-        "rtls_landing": "s152",
+        "rtls_attempts": "s151",
+        "rtls_landings": "s152",
         "serial": "s153",
         "status": "s154"
       }
@@ -45,14 +45,14 @@
   "new": {
     "core": {
       "core_ref01": {
-        "asds_attempt": "s1b8",
-        "asds_landing": "s1b9",
+        "asds_attempts": "s1b8",
+        "asds_landings": "s1b9",
         "block": "s1ba",
         "last_update": "s1bc",
-        "launch": [],
+        "launches": [],
         "reuse_count": "s1be",
-        "rtls_attempt": "s1bf",
-        "rtls_landing": "s1c0",
+        "rtls_attempts": "s1bf",
+        "rtls_landings": "s1c0",
         "serial": "s1c1",
         "status": "s1c2"
       }

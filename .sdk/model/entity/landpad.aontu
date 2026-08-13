@@ -6,7 +6,7 @@ main: kit: entity: landpad: {
 
   fields: [
     {
-      name: "detail"
+      name: "details"
       req: false
       type: "`$STRING`"
     }
@@ -21,12 +21,12 @@ main: kit: entity: landpad: {
       type: "`$STRING`"
     }
     {
-      name: "landing_attempt"
+      name: "landing_attempts"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "landing_success"
+      name: "landing_successes"
       req: false
       type: "`$INTEGER`"
     }
@@ -36,7 +36,7 @@ main: kit: entity: landpad: {
       type: "`$NUMBER`"
     }
     {
-      name: "launch"
+      name: "launches"
       req: false
       type: "`$ARRAY`"
     }

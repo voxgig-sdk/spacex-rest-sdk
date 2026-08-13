@@ -11,7 +11,7 @@ main: kit: entity: rocket: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "booster"
+      name: "boosters"
       req: false
       type: "`$INTEGER`"
     }
@@ -46,7 +46,7 @@ main: kit: entity: rocket: {
       type: "`$STRING`"
     }
     {
-      name: "flickr_image"
+      name: "flickr_images"
       req: false
       type: "`$ARRAY`"
     }
@@ -71,7 +71,7 @@ main: kit: entity: rocket: {
       type: "`$STRING`"
     }
     {
-      name: "stage"
+      name: "stages"
       req: false
       type: "`$INTEGER`"
     }

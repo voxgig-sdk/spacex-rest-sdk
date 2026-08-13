@@ -38,7 +38,7 @@ try {
     // list() returns an array of Capsule records — iterate directly.
     $capsules = $client->Capsule()->list();
     foreach ($capsules as $item) {
-        echo $item["id"] . " " . $item["land_landing"] . "\n";
+        echo $item["id"] . " " . $item["land_landings"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -49,7 +49,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare Capsule record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Capsule record (throws on error).
     $capsule = $client->Capsule()->load(["id" => "example_id"]);
     print_r($capsule);
 } catch (\Throwable $err) {
@@ -65,7 +65,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $capsules = $client->Capsule()->list();
+    $landpads = $client->Landpad()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -137,12 +137,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```php
 $client = SpacexRestSDK::test([
-    "entity" => ["capsule" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["landpad" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
-$capsule = $client->Capsule()->list();
-print_r($capsule);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$landpad = $client->Landpad()->list();
+print_r($landpad);
 ```
 
 ### Use a custom fetch function
@@ -250,7 +251,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -273,14 +274,14 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `land_landing` |  |
+| `land_landings` |  |
 | `last_update` |  |
-| `launch` |  |
+| `launches` |  |
 | `reuse_count` |  |
 | `serial` |  |
 | `status` |  |
 | `type` |  |
-| `water_landing` |  |
+| `water_landings` |  |
 
 Operations: List, Load.
 
@@ -290,15 +291,15 @@ API path: `/capsules`
 
 | Field | Description |
 | --- | --- |
-| `asds_attempt` |  |
-| `asds_landing` |  |
+| `asds_attempts` |  |
+| `asds_landings` |  |
 | `block` |  |
 | `id` |  |
 | `last_update` |  |
-| `launch` |  |
+| `launches` |  |
 | `reuse_count` |  |
-| `rtls_attempt` |  |
-| `rtls_landing` |  |
+| `rtls_attempts` |  |
+| `rtls_landings` |  |
 | `serial` |  |
 | `status` |  |
 
@@ -313,7 +314,7 @@ API path: `/cores`
 | `agency` |  |
 | `id` |  |
 | `image` |  |
-| `launch` |  |
+| `launches` |  |
 | `name` |  |
 | `status` |  |
 | `wikipedia` |  |
@@ -326,13 +327,13 @@ API path: `/crew`
 
 | Field | Description |
 | --- | --- |
-| `detail` |  |
+| `details` |  |
 | `full_name` |  |
 | `id` |  |
-| `landing_attempt` |  |
-| `landing_success` |  |
+| `landing_attempts` |  |
+| `landing_successes` |  |
 | `latitude` |  |
-| `launch` |  |
+| `launches` |  |
 | `locality` |  |
 | `longitude` |  |
 | `name` |  |
@@ -350,33 +351,34 @@ API path: `/landpads`
 | Field | Description |
 | --- | --- |
 | `auto_update` |  |
-| `capsule` |  |
+| `capsules` |  |
 | `core` |  |
+| `cores` |  |
 | `crew` |  |
 | `date_local` |  |
 | `date_precision` |  |
 | `date_unix` |  |
 | `date_utc` |  |
-| `detail` |  |
-| `failure` |  |
-| `fairing` |  |
+| `details` |  |
+| `failures` |  |
+| `fairings` |  |
 | `flight` |  |
 | `flight_number` |  |
-| `gridfin` |  |
+| `gridfins` |  |
 | `id` |  |
 | `landing_attempt` |  |
 | `landing_success` |  |
 | `landing_type` |  |
 | `landpad` |  |
 | `launchpad` |  |
-| `leg` |  |
-| `link` |  |
+| `legs` |  |
+| `links` |  |
 | `name` |  |
 | `net` |  |
-| `payload` |  |
+| `payloads` |  |
 | `reused` |  |
 | `rocket` |  |
-| `ship` |  |
+| `ships` |  |
 | `static_fire_date_unix` |  |
 | `static_fire_date_utc` |  |
 | `success` |  |
@@ -392,18 +394,18 @@ API path: `/launches`
 
 | Field | Description |
 | --- | --- |
-| `detail` |  |
+| `details` |  |
 | `full_name` |  |
 | `id` |  |
 | `latitude` |  |
-| `launch` |  |
-| `launch_attempt` |  |
-| `launch_success` |  |
+| `launch_attempts` |  |
+| `launch_successes` |  |
+| `launches` |  |
 | `locality` |  |
 | `longitude` |  |
 | `name` |  |
 | `region` |  |
-| `rocket` |  |
+| `rockets` |  |
 | `status` |  |
 
 Operations: List, Load.
@@ -416,22 +418,22 @@ API path: `/launchpads`
 | --- | --- |
 | `apoapsis_km` |  |
 | `arg_of_pericenter` |  |
-| `customer` |  |
+| `customers` |  |
 | `eccentricity` |  |
 | `epoch` |  |
 | `id` |  |
 | `inclination_deg` |  |
 | `launch` |  |
-| `lifespan_year` |  |
+| `lifespan_years` |  |
 | `longitude` |  |
-| `manufacturer` |  |
+| `manufacturers` |  |
 | `mass_kg` |  |
-| `mass_lb` |  |
+| `mass_lbs` |  |
 | `mean_anomaly` |  |
 | `mean_motion` |  |
 | `name` |  |
-| `nationality` |  |
-| `norad_id` |  |
+| `nationalities` |  |
+| `norad_ids` |  |
 | `orbit` |  |
 | `periapsis_km` |  |
 | `period_min` |  |
@@ -451,18 +453,18 @@ API path: `/payloads`
 | Field | Description |
 | --- | --- |
 | `apoapsis_au` |  |
-| `detail` |  |
+| `details` |  |
 | `earth_distance_km` |  |
 | `earth_distance_mi` |  |
 | `eccentricity` |  |
 | `epoch_jd` |  |
-| `flickr_image` |  |
+| `flickr_images` |  |
 | `id` |  |
 | `inclination` |  |
 | `launch_date_unix` |  |
 | `launch_date_utc` |  |
 | `launch_mass_kg` |  |
-| `launch_mass_lb` |  |
+| `launch_mass_lbs` |  |
 | `longitude` |  |
 | `mars_distance_km` |  |
 | `mars_distance_mi` |  |
@@ -471,7 +473,7 @@ API path: `/payloads`
 | `orbit_type` |  |
 | `periapsis_arg` |  |
 | `periapsis_au` |  |
-| `period_day` |  |
+| `period_days` |  |
 | `semi_major_axis_au` |  |
 | `speed_kph` |  |
 | `speed_mph` |  |
@@ -487,19 +489,19 @@ API path: `/roadster`
 | Field | Description |
 | --- | --- |
 | `active` |  |
-| `booster` |  |
+| `boosters` |  |
 | `company` |  |
 | `cost_per_launch` |  |
 | `country` |  |
 | `description` |  |
 | `diameter` |  |
 | `first_flight` |  |
-| `flickr_image` |  |
+| `flickr_images` |  |
 | `height` |  |
 | `id` |  |
 | `mass` |  |
 | `name` |  |
-| `stage` |  |
+| `stages` |  |
 | `success_rate_pct` |  |
 | `type` |  |
 | `wikipedia` |  |
@@ -521,16 +523,16 @@ API path: `/rockets`
 | `imo` |  |
 | `last_ais_update` |  |
 | `latitude` |  |
-| `launch` |  |
+| `launches` |  |
 | `legacy_id` |  |
 | `link` |  |
 | `longitude` |  |
 | `mass_kg` |  |
-| `mass_lb` |  |
+| `mass_lbs` |  |
 | `mmsi` |  |
 | `model` |  |
 | `name` |  |
-| `role` |  |
+| `roles` |  |
 | `speed_kn` |  |
 | `status` |  |
 | `type` |  |
@@ -549,8 +551,8 @@ API path: `/ships`
 | `latitude` |  |
 | `launch` |  |
 | `longitude` |  |
-| `space_track` |  |
-| `velocity_km` |  |
+| `spaceTrack` |  |
+| `velocity_kms` |  |
 | `version` |  |
 
 Operations: List, Load.
@@ -578,19 +580,19 @@ Create an instance: `$capsule = $client->Capsule();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `string` |  |
-| `land_landing` | `int` |  |
+| `land_landings` | `int` |  |
 | `last_update` | `string` |  |
-| `launch` | `array` |  |
+| `launches` | `array` |  |
 | `reuse_count` | `int` |  |
 | `serial` | `string` |  |
 | `status` | `string` |  |
 | `type` | `string` |  |
-| `water_landing` | `int` |  |
+| `water_landings` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Capsule record (throws on error).
+// load() returns the ENTITY — call data_get() for the Capsule record (throws on error).
 $capsule = $client->Capsule()->load(["id" => "capsule_id"]);
 ```
 
@@ -617,22 +619,22 @@ Create an instance: `$core = $client->Core();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asds_attempt` | `int` |  |
-| `asds_landing` | `int` |  |
+| `asds_attempts` | `int` |  |
+| `asds_landings` | `int` |  |
 | `block` | `int` |  |
 | `id` | `string` |  |
 | `last_update` | `string` |  |
-| `launch` | `array` |  |
+| `launches` | `array` |  |
 | `reuse_count` | `int` |  |
-| `rtls_attempt` | `int` |  |
-| `rtls_landing` | `int` |  |
+| `rtls_attempts` | `int` |  |
+| `rtls_landings` | `int` |  |
 | `serial` | `string` |  |
 | `status` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Core record (throws on error).
+// load() returns the ENTITY — call data_get() for the Core record (throws on error).
 $core = $client->Core()->load(["id" => "core_id"]);
 ```
 
@@ -662,7 +664,7 @@ Create an instance: `$crew = $client->Crew();`
 | `agency` | `string` |  |
 | `id` | `string` |  |
 | `image` | `string` |  |
-| `launch` | `array` |  |
+| `launches` | `array` |  |
 | `name` | `string` |  |
 | `status` | `string` |  |
 | `wikipedia` | `string` |  |
@@ -670,7 +672,7 @@ Create an instance: `$crew = $client->Crew();`
 #### Example: Load
 
 ```php
-// load() returns the bare Crew record (throws on error).
+// load() returns the ENTITY — call data_get() for the Crew record (throws on error).
 $crew = $client->Crew()->load(["id" => "crew_id"]);
 ```
 
@@ -697,13 +699,13 @@ Create an instance: `$landpad = $client->Landpad();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `detail` | `string` |  |
+| `details` | `string` |  |
 | `full_name` | `string` |  |
 | `id` | `string` |  |
-| `landing_attempt` | `int` |  |
-| `landing_success` | `int` |  |
+| `landing_attempts` | `int` |  |
+| `landing_successes` | `int` |  |
 | `latitude` | `float` |  |
-| `launch` | `array` |  |
+| `launches` | `array` |  |
 | `locality` | `string` |  |
 | `longitude` | `float` |  |
 | `name` | `string` |  |
@@ -715,7 +717,7 @@ Create an instance: `$landpad = $client->Landpad();`
 #### Example: Load
 
 ```php
-// load() returns the bare Landpad record (throws on error).
+// load() returns the ENTITY — call data_get() for the Landpad record (throws on error).
 $landpad = $client->Landpad()->load(["id" => "landpad_id"]);
 ```
 
@@ -743,33 +745,34 @@ Create an instance: `$launch = $client->Launch();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `auto_update` | `bool` |  |
-| `capsule` | `array` |  |
-| `core` | `array` |  |
+| `capsules` | `array` |  |
+| `core` | `string` |  |
+| `cores` | `array` |  |
 | `crew` | `array` |  |
 | `date_local` | `string` |  |
 | `date_precision` | `string` |  |
 | `date_unix` | `int` |  |
 | `date_utc` | `string` |  |
-| `detail` | `string` |  |
-| `failure` | `array` |  |
-| `fairing` | `array` |  |
+| `details` | `string` |  |
+| `failures` | `array` |  |
+| `fairings` | `array` |  |
 | `flight` | `int` |  |
 | `flight_number` | `int` |  |
-| `gridfin` | `bool` |  |
+| `gridfins` | `bool` |  |
 | `id` | `string` |  |
 | `landing_attempt` | `bool` |  |
 | `landing_success` | `bool` |  |
 | `landing_type` | `string` |  |
 | `landpad` | `string` |  |
 | `launchpad` | `string` |  |
-| `leg` | `bool` |  |
-| `link` | `array` |  |
+| `legs` | `bool` |  |
+| `links` | `array` |  |
 | `name` | `string` |  |
 | `net` | `bool` |  |
-| `payload` | `array` |  |
+| `payloads` | `array` |  |
 | `reused` | `bool` |  |
 | `rocket` | `string` |  |
-| `ship` | `array` |  |
+| `ships` | `array` |  |
 | `static_fire_date_unix` | `int` |  |
 | `static_fire_date_utc` | `string` |  |
 | `success` | `bool` |  |
@@ -780,7 +783,7 @@ Create an instance: `$launch = $client->Launch();`
 #### Example: Load
 
 ```php
-// load() returns the bare Launch record (throws on error).
+// load() returns the ENTITY — call data_get() for the Launch record (throws on error).
 $launch = $client->Launch()->load(["id" => "launch_id"]);
 ```
 
@@ -807,24 +810,24 @@ Create an instance: `$launchpad = $client->Launchpad();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `detail` | `string` |  |
+| `details` | `string` |  |
 | `full_name` | `string` |  |
 | `id` | `string` |  |
 | `latitude` | `float` |  |
-| `launch` | `array` |  |
-| `launch_attempt` | `int` |  |
-| `launch_success` | `int` |  |
+| `launch_attempts` | `int` |  |
+| `launch_successes` | `int` |  |
+| `launches` | `array` |  |
 | `locality` | `string` |  |
 | `longitude` | `float` |  |
 | `name` | `string` |  |
 | `region` | `string` |  |
-| `rocket` | `array` |  |
+| `rockets` | `array` |  |
 | `status` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Launchpad record (throws on error).
+// load() returns the ENTITY — call data_get() for the Launchpad record (throws on error).
 $launchpad = $client->Launchpad()->load(["id" => "launchpad_id"]);
 ```
 
@@ -853,22 +856,22 @@ Create an instance: `$payload = $client->Payload();`
 | --- | --- | --- |
 | `apoapsis_km` | `float` |  |
 | `arg_of_pericenter` | `float` |  |
-| `customer` | `array` |  |
+| `customers` | `array` |  |
 | `eccentricity` | `float` |  |
 | `epoch` | `string` |  |
 | `id` | `string` |  |
 | `inclination_deg` | `float` |  |
 | `launch` | `string` |  |
-| `lifespan_year` | `float` |  |
+| `lifespan_years` | `float` |  |
 | `longitude` | `float` |  |
-| `manufacturer` | `array` |  |
+| `manufacturers` | `array` |  |
 | `mass_kg` | `float` |  |
-| `mass_lb` | `float` |  |
+| `mass_lbs` | `float` |  |
 | `mean_anomaly` | `float` |  |
 | `mean_motion` | `float` |  |
 | `name` | `string` |  |
-| `nationality` | `array` |  |
-| `norad_id` | `array` |  |
+| `nationalities` | `array` |  |
+| `norad_ids` | `array` |  |
 | `orbit` | `string` |  |
 | `periapsis_km` | `float` |  |
 | `period_min` | `float` |  |
@@ -882,7 +885,7 @@ Create an instance: `$payload = $client->Payload();`
 #### Example: Load
 
 ```php
-// load() returns the bare Payload record (throws on error).
+// load() returns the ENTITY — call data_get() for the Payload record (throws on error).
 $payload = $client->Payload()->load(["id" => "payload_id"]);
 ```
 
@@ -909,18 +912,18 @@ Create an instance: `$roadster = $client->Roadster();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `apoapsis_au` | `float` |  |
-| `detail` | `string` |  |
+| `details` | `string` |  |
 | `earth_distance_km` | `float` |  |
 | `earth_distance_mi` | `float` |  |
 | `eccentricity` | `float` |  |
 | `epoch_jd` | `float` |  |
-| `flickr_image` | `array` |  |
+| `flickr_images` | `array` |  |
 | `id` | `string` |  |
 | `inclination` | `float` |  |
 | `launch_date_unix` | `int` |  |
 | `launch_date_utc` | `string` |  |
 | `launch_mass_kg` | `int` |  |
-| `launch_mass_lb` | `int` |  |
+| `launch_mass_lbs` | `int` |  |
 | `longitude` | `float` |  |
 | `mars_distance_km` | `float` |  |
 | `mars_distance_mi` | `float` |  |
@@ -929,7 +932,7 @@ Create an instance: `$roadster = $client->Roadster();`
 | `orbit_type` | `string` |  |
 | `periapsis_arg` | `float` |  |
 | `periapsis_au` | `float` |  |
-| `period_day` | `float` |  |
+| `period_days` | `float` |  |
 | `semi_major_axis_au` | `float` |  |
 | `speed_kph` | `float` |  |
 | `speed_mph` | `float` |  |
@@ -960,19 +963,19 @@ Create an instance: `$rocket = $client->Rocket();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `active` | `bool` |  |
-| `booster` | `int` |  |
+| `boosters` | `int` |  |
 | `company` | `string` |  |
 | `cost_per_launch` | `int` |  |
 | `country` | `string` |  |
 | `description` | `string` |  |
 | `diameter` | `array` |  |
 | `first_flight` | `string` |  |
-| `flickr_image` | `array` |  |
+| `flickr_images` | `array` |  |
 | `height` | `array` |  |
 | `id` | `string` |  |
 | `mass` | `array` |  |
 | `name` | `string` |  |
-| `stage` | `int` |  |
+| `stages` | `int` |  |
 | `success_rate_pct` | `float` |  |
 | `type` | `string` |  |
 | `wikipedia` | `string` |  |
@@ -980,7 +983,7 @@ Create an instance: `$rocket = $client->Rocket();`
 #### Example: Load
 
 ```php
-// load() returns the bare Rocket record (throws on error).
+// load() returns the ENTITY — call data_get() for the Rocket record (throws on error).
 $rocket = $client->Rocket()->load(["id" => "rocket_id"]);
 ```
 
@@ -1016,16 +1019,16 @@ Create an instance: `$ship = $client->Ship();`
 | `imo` | `int` |  |
 | `last_ais_update` | `string` |  |
 | `latitude` | `float` |  |
-| `launch` | `array` |  |
+| `launches` | `array` |  |
 | `legacy_id` | `string` |  |
 | `link` | `string` |  |
 | `longitude` | `float` |  |
 | `mass_kg` | `int` |  |
-| `mass_lb` | `int` |  |
+| `mass_lbs` | `int` |  |
 | `mmsi` | `int` |  |
 | `model` | `string` |  |
 | `name` | `string` |  |
-| `role` | `array` |  |
+| `roles` | `array` |  |
 | `speed_kn` | `float` |  |
 | `status` | `string` |  |
 | `type` | `string` |  |
@@ -1034,7 +1037,7 @@ Create an instance: `$ship = $client->Ship();`
 #### Example: Load
 
 ```php
-// load() returns the bare Ship record (throws on error).
+// load() returns the ENTITY — call data_get() for the Ship record (throws on error).
 $ship = $client->Ship()->load(["id" => "ship_id"]);
 ```
 
@@ -1066,14 +1069,14 @@ Create an instance: `$starlink = $client->Starlink();`
 | `latitude` | `float` |  |
 | `launch` | `string` |  |
 | `longitude` | `float` |  |
-| `space_track` | `array` |  |
-| `velocity_km` | `float` |  |
+| `spaceTrack` | `array` |  |
+| `velocity_kms` | `float` |  |
 | `version` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Starlink record (throws on error).
+// load() returns the ENTITY — call data_get() for the Starlink record (throws on error).
 $starlink = $client->Starlink()->load(["id" => "starlink_id"]);
 ```
 
@@ -1161,11 +1164,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$capsule = $client->Capsule();
-$capsule->list();
+$landpad = $client->Landpad();
+$landpad->list();
 
-// $capsule->data_get() now returns the capsule data from the last list
-// $capsule->match_get() returns the last match criteria
+// $landpad->data_get() now returns the landpad data from the last list
+// $landpad->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

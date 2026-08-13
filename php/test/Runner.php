@@ -43,8 +43,8 @@ class SpacexRestTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('SPACEXREST_TEST_LIVE');
-        $override = self::getenv('SPACEXREST_TEST_OVERRIDE');
+        $live = self::getenv('SPACEX_REST_TEST_LIVE');
+        $override = self::getenv('SPACEX_REST_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class SpacexRestTestRunner
             }
         }
 
-        $explain = self::getenv('SPACEXREST_TEST_EXPLAIN');
+        $explain = self::getenv('SPACEX_REST_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['SPACEXREST_TEST_EXPLAIN'] = $explain;
+            $m['SPACEX_REST_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

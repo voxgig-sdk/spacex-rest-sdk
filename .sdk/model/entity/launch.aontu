@@ -11,12 +11,17 @@ main: kit: entity: launch: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "capsule"
+      name: "capsules"
       req: false
       type: "`$ARRAY`"
     }
     {
       name: "core"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "cores"
       req: false
       type: "`$ARRAY`"
     }
@@ -46,17 +51,17 @@ main: kit: entity: launch: {
       type: "`$STRING`"
     }
     {
-      name: "detail"
+      name: "details"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "failure"
+      name: "failures"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "fairing"
+      name: "fairings"
       req: false
       type: "`$OBJECT`"
     }
@@ -71,7 +76,7 @@ main: kit: entity: launch: {
       type: "`$INTEGER`"
     }
     {
-      name: "gridfin"
+      name: "gridfins"
       req: false
       type: "`$BOOLEAN`"
     }
@@ -106,12 +111,12 @@ main: kit: entity: launch: {
       type: "`$STRING`"
     }
     {
-      name: "leg"
+      name: "legs"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "link"
+      name: "links"
       req: false
       type: "`$OBJECT`"
     }
@@ -126,7 +131,7 @@ main: kit: entity: launch: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "payload"
+      name: "payloads"
       req: false
       type: "`$ARRAY`"
     }
@@ -141,7 +146,7 @@ main: kit: entity: launch: {
       type: "`$STRING`"
     }
     {
-      name: "ship"
+      name: "ships"
       req: false
       type: "`$ARRAY`"
     }

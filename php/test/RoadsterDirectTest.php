@@ -66,11 +66,11 @@ function roadster_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "SPACEXREST_TEST_ROADSTER_ENTID" => [],
-        "SPACEXREST_TEST_LIVE" => "FALSE",
+        "SPACEX_REST_TEST_ROADSTER_ENTID" => [],
+        "SPACEX_REST_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["SPACEXREST_TEST_LIVE"] === "TRUE";
+    $live = $env["SPACEX_REST_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

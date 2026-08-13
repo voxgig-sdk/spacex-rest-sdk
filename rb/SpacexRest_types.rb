@@ -13,13 +13,13 @@
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] land_landing
+# @!attribute [rw] land_landings
 #   @return [Integer, nil]
 #
 # @!attribute [rw] last_update
 #   @return [String, nil]
 #
-# @!attribute [rw] launch
+# @!attribute [rw] launches
 #   @return [Array, nil]
 #
 # @!attribute [rw] reuse_count
@@ -34,18 +34,18 @@
 # @!attribute [rw] type
 #   @return [String, nil]
 #
-# @!attribute [rw] water_landing
+# @!attribute [rw] water_landings
 #   @return [Integer, nil]
 Capsule = Struct.new(
   :id,
-  :land_landing,
+  :land_landings,
   :last_update,
-  :launch,
+  :launches,
   :reuse_count,
   :serial,
   :status,
   :type,
-  :water_landing,
+  :water_landings,
   keyword_init: true
 )
 
@@ -63,13 +63,13 @@ CapsuleLoadMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] land_landing
+# @!attribute [rw] land_landings
 #   @return [Integer, nil]
 #
 # @!attribute [rw] last_update
 #   @return [String, nil]
 #
-# @!attribute [rw] launch
+# @!attribute [rw] launches
 #   @return [Array, nil]
 #
 # @!attribute [rw] reuse_count
@@ -84,27 +84,27 @@ CapsuleLoadMatch = Struct.new(
 # @!attribute [rw] type
 #   @return [String, nil]
 #
-# @!attribute [rw] water_landing
+# @!attribute [rw] water_landings
 #   @return [Integer, nil]
 CapsuleListMatch = Struct.new(
   :id,
-  :land_landing,
+  :land_landings,
   :last_update,
-  :launch,
+  :launches,
   :reuse_count,
   :serial,
   :status,
   :type,
-  :water_landing,
+  :water_landings,
   keyword_init: true
 )
 
 # Core entity data model.
 #
-# @!attribute [rw] asds_attempt
+# @!attribute [rw] asds_attempts
 #   @return [Integer, nil]
 #
-# @!attribute [rw] asds_landing
+# @!attribute [rw] asds_landings
 #   @return [Integer, nil]
 #
 # @!attribute [rw] block
@@ -116,16 +116,16 @@ CapsuleListMatch = Struct.new(
 # @!attribute [rw] last_update
 #   @return [String, nil]
 #
-# @!attribute [rw] launch
+# @!attribute [rw] launches
 #   @return [Array, nil]
 #
 # @!attribute [rw] reuse_count
 #   @return [Integer, nil]
 #
-# @!attribute [rw] rtls_attempt
+# @!attribute [rw] rtls_attempts
 #   @return [Integer, nil]
 #
-# @!attribute [rw] rtls_landing
+# @!attribute [rw] rtls_landings
 #   @return [Integer, nil]
 #
 # @!attribute [rw] serial
@@ -134,15 +134,15 @@ CapsuleListMatch = Struct.new(
 # @!attribute [rw] status
 #   @return [String, nil]
 Core = Struct.new(
-  :asds_attempt,
-  :asds_landing,
+  :asds_attempts,
+  :asds_landings,
   :block,
   :id,
   :last_update,
-  :launch,
+  :launches,
   :reuse_count,
-  :rtls_attempt,
-  :rtls_landing,
+  :rtls_attempts,
+  :rtls_landings,
   :serial,
   :status,
   keyword_init: true
@@ -159,10 +159,10 @@ CoreLoadMatch = Struct.new(
 
 # Request payload for Core#list.
 #
-# @!attribute [rw] asds_attempt
+# @!attribute [rw] asds_attempts
 #   @return [Integer, nil]
 #
-# @!attribute [rw] asds_landing
+# @!attribute [rw] asds_landings
 #   @return [Integer, nil]
 #
 # @!attribute [rw] block
@@ -174,16 +174,16 @@ CoreLoadMatch = Struct.new(
 # @!attribute [rw] last_update
 #   @return [String, nil]
 #
-# @!attribute [rw] launch
+# @!attribute [rw] launches
 #   @return [Array, nil]
 #
 # @!attribute [rw] reuse_count
 #   @return [Integer, nil]
 #
-# @!attribute [rw] rtls_attempt
+# @!attribute [rw] rtls_attempts
 #   @return [Integer, nil]
 #
-# @!attribute [rw] rtls_landing
+# @!attribute [rw] rtls_landings
 #   @return [Integer, nil]
 #
 # @!attribute [rw] serial
@@ -192,15 +192,15 @@ CoreLoadMatch = Struct.new(
 # @!attribute [rw] status
 #   @return [String, nil]
 CoreListMatch = Struct.new(
-  :asds_attempt,
-  :asds_landing,
+  :asds_attempts,
+  :asds_landings,
   :block,
   :id,
   :last_update,
-  :launch,
+  :launches,
   :reuse_count,
-  :rtls_attempt,
-  :rtls_landing,
+  :rtls_attempts,
+  :rtls_landings,
   :serial,
   :status,
   keyword_init: true
@@ -217,7 +217,7 @@ CoreListMatch = Struct.new(
 # @!attribute [rw] image
 #   @return [String, nil]
 #
-# @!attribute [rw] launch
+# @!attribute [rw] launches
 #   @return [Array, nil]
 #
 # @!attribute [rw] name
@@ -232,7 +232,7 @@ Crew = Struct.new(
   :agency,
   :id,
   :image,
-  :launch,
+  :launches,
   :name,
   :status,
   :wikipedia,
@@ -259,7 +259,7 @@ CrewLoadMatch = Struct.new(
 # @!attribute [rw] image
 #   @return [String, nil]
 #
-# @!attribute [rw] launch
+# @!attribute [rw] launches
 #   @return [Array, nil]
 #
 # @!attribute [rw] name
@@ -274,7 +274,7 @@ CrewListMatch = Struct.new(
   :agency,
   :id,
   :image,
-  :launch,
+  :launches,
   :name,
   :status,
   :wikipedia,
@@ -283,7 +283,7 @@ CrewListMatch = Struct.new(
 
 # Landpad entity data model.
 #
-# @!attribute [rw] detail
+# @!attribute [rw] details
 #   @return [String, nil]
 #
 # @!attribute [rw] full_name
@@ -292,16 +292,16 @@ CrewListMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] landing_attempt
+# @!attribute [rw] landing_attempts
 #   @return [Integer, nil]
 #
-# @!attribute [rw] landing_success
+# @!attribute [rw] landing_successes
 #   @return [Integer, nil]
 #
 # @!attribute [rw] latitude
 #   @return [Float, nil]
 #
-# @!attribute [rw] launch
+# @!attribute [rw] launches
 #   @return [Array, nil]
 #
 # @!attribute [rw] locality
@@ -325,13 +325,13 @@ CrewListMatch = Struct.new(
 # @!attribute [rw] wikipedia
 #   @return [String, nil]
 Landpad = Struct.new(
-  :detail,
+  :details,
   :full_name,
   :id,
-  :landing_attempt,
-  :landing_success,
+  :landing_attempts,
+  :landing_successes,
   :latitude,
-  :launch,
+  :launches,
   :locality,
   :longitude,
   :name,
@@ -353,7 +353,7 @@ LandpadLoadMatch = Struct.new(
 
 # Request payload for Landpad#list.
 #
-# @!attribute [rw] detail
+# @!attribute [rw] details
 #   @return [String, nil]
 #
 # @!attribute [rw] full_name
@@ -362,16 +362,16 @@ LandpadLoadMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] landing_attempt
+# @!attribute [rw] landing_attempts
 #   @return [Integer, nil]
 #
-# @!attribute [rw] landing_success
+# @!attribute [rw] landing_successes
 #   @return [Integer, nil]
 #
 # @!attribute [rw] latitude
 #   @return [Float, nil]
 #
-# @!attribute [rw] launch
+# @!attribute [rw] launches
 #   @return [Array, nil]
 #
 # @!attribute [rw] locality
@@ -395,13 +395,13 @@ LandpadLoadMatch = Struct.new(
 # @!attribute [rw] wikipedia
 #   @return [String, nil]
 LandpadListMatch = Struct.new(
-  :detail,
+  :details,
   :full_name,
   :id,
-  :landing_attempt,
-  :landing_success,
+  :landing_attempts,
+  :landing_successes,
   :latitude,
-  :launch,
+  :launches,
   :locality,
   :longitude,
   :name,
@@ -417,10 +417,13 @@ LandpadListMatch = Struct.new(
 # @!attribute [rw] auto_update
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] capsule
+# @!attribute [rw] capsules
 #   @return [Array, nil]
 #
 # @!attribute [rw] core
+#   @return [String, nil]
+#
+# @!attribute [rw] cores
 #   @return [Array, nil]
 #
 # @!attribute [rw] crew
@@ -438,13 +441,13 @@ LandpadListMatch = Struct.new(
 # @!attribute [rw] date_utc
 #   @return [String, nil]
 #
-# @!attribute [rw] detail
+# @!attribute [rw] details
 #   @return [String, nil]
 #
-# @!attribute [rw] failure
+# @!attribute [rw] failures
 #   @return [Array, nil]
 #
-# @!attribute [rw] fairing
+# @!attribute [rw] fairings
 #   @return [Hash, nil]
 #
 # @!attribute [rw] flight
@@ -453,7 +456,7 @@ LandpadListMatch = Struct.new(
 # @!attribute [rw] flight_number
 #   @return [Integer, nil]
 #
-# @!attribute [rw] gridfin
+# @!attribute [rw] gridfins
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] id
@@ -474,10 +477,10 @@ LandpadListMatch = Struct.new(
 # @!attribute [rw] launchpad
 #   @return [String, nil]
 #
-# @!attribute [rw] leg
+# @!attribute [rw] legs
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
@@ -486,7 +489,7 @@ LandpadListMatch = Struct.new(
 # @!attribute [rw] net
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] payload
+# @!attribute [rw] payloads
 #   @return [Array, nil]
 #
 # @!attribute [rw] reused
@@ -495,7 +498,7 @@ LandpadListMatch = Struct.new(
 # @!attribute [rw] rocket
 #   @return [String, nil]
 #
-# @!attribute [rw] ship
+# @!attribute [rw] ships
 #   @return [Array, nil]
 #
 # @!attribute [rw] static_fire_date_unix
@@ -517,33 +520,34 @@ LandpadListMatch = Struct.new(
 #   @return [Integer, nil]
 Launch = Struct.new(
   :auto_update,
-  :capsule,
+  :capsules,
   :core,
+  :cores,
   :crew,
   :date_local,
   :date_precision,
   :date_unix,
   :date_utc,
-  :detail,
-  :failure,
-  :fairing,
+  :details,
+  :failures,
+  :fairings,
   :flight,
   :flight_number,
-  :gridfin,
+  :gridfins,
   :id,
   :landing_attempt,
   :landing_success,
   :landing_type,
   :landpad,
   :launchpad,
-  :leg,
-  :link,
+  :legs,
+  :links,
   :name,
   :net,
-  :payload,
+  :payloads,
   :reused,
   :rocket,
-  :ship,
+  :ships,
   :static_fire_date_unix,
   :static_fire_date_utc,
   :success,
@@ -567,10 +571,13 @@ LaunchLoadMatch = Struct.new(
 # @!attribute [rw] auto_update
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] capsule
+# @!attribute [rw] capsules
 #   @return [Array, nil]
 #
 # @!attribute [rw] core
+#   @return [String, nil]
+#
+# @!attribute [rw] cores
 #   @return [Array, nil]
 #
 # @!attribute [rw] crew
@@ -588,13 +595,13 @@ LaunchLoadMatch = Struct.new(
 # @!attribute [rw] date_utc
 #   @return [String, nil]
 #
-# @!attribute [rw] detail
+# @!attribute [rw] details
 #   @return [String, nil]
 #
-# @!attribute [rw] failure
+# @!attribute [rw] failures
 #   @return [Array, nil]
 #
-# @!attribute [rw] fairing
+# @!attribute [rw] fairings
 #   @return [Hash, nil]
 #
 # @!attribute [rw] flight
@@ -603,7 +610,7 @@ LaunchLoadMatch = Struct.new(
 # @!attribute [rw] flight_number
 #   @return [Integer, nil]
 #
-# @!attribute [rw] gridfin
+# @!attribute [rw] gridfins
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] id
@@ -624,10 +631,10 @@ LaunchLoadMatch = Struct.new(
 # @!attribute [rw] launchpad
 #   @return [String, nil]
 #
-# @!attribute [rw] leg
+# @!attribute [rw] legs
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
@@ -636,7 +643,7 @@ LaunchLoadMatch = Struct.new(
 # @!attribute [rw] net
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] payload
+# @!attribute [rw] payloads
 #   @return [Array, nil]
 #
 # @!attribute [rw] reused
@@ -645,7 +652,7 @@ LaunchLoadMatch = Struct.new(
 # @!attribute [rw] rocket
 #   @return [String, nil]
 #
-# @!attribute [rw] ship
+# @!attribute [rw] ships
 #   @return [Array, nil]
 #
 # @!attribute [rw] static_fire_date_unix
@@ -667,33 +674,34 @@ LaunchLoadMatch = Struct.new(
 #   @return [Integer, nil]
 LaunchListMatch = Struct.new(
   :auto_update,
-  :capsule,
+  :capsules,
   :core,
+  :cores,
   :crew,
   :date_local,
   :date_precision,
   :date_unix,
   :date_utc,
-  :detail,
-  :failure,
-  :fairing,
+  :details,
+  :failures,
+  :fairings,
   :flight,
   :flight_number,
-  :gridfin,
+  :gridfins,
   :id,
   :landing_attempt,
   :landing_success,
   :landing_type,
   :landpad,
   :launchpad,
-  :leg,
-  :link,
+  :legs,
+  :links,
   :name,
   :net,
-  :payload,
+  :payloads,
   :reused,
   :rocket,
-  :ship,
+  :ships,
   :static_fire_date_unix,
   :static_fire_date_utc,
   :success,
@@ -705,7 +713,7 @@ LaunchListMatch = Struct.new(
 
 # Launchpad entity data model.
 #
-# @!attribute [rw] detail
+# @!attribute [rw] details
 #   @return [String, nil]
 #
 # @!attribute [rw] full_name
@@ -717,14 +725,14 @@ LaunchListMatch = Struct.new(
 # @!attribute [rw] latitude
 #   @return [Float, nil]
 #
-# @!attribute [rw] launch
+# @!attribute [rw] launch_attempts
+#   @return [Integer, nil]
+#
+# @!attribute [rw] launch_successes
+#   @return [Integer, nil]
+#
+# @!attribute [rw] launches
 #   @return [Array, nil]
-#
-# @!attribute [rw] launch_attempt
-#   @return [Integer, nil]
-#
-# @!attribute [rw] launch_success
-#   @return [Integer, nil]
 #
 # @!attribute [rw] locality
 #   @return [String, nil]
@@ -738,24 +746,24 @@ LaunchListMatch = Struct.new(
 # @!attribute [rw] region
 #   @return [String, nil]
 #
-# @!attribute [rw] rocket
+# @!attribute [rw] rockets
 #   @return [Array, nil]
 #
 # @!attribute [rw] status
 #   @return [String, nil]
 Launchpad = Struct.new(
-  :detail,
+  :details,
   :full_name,
   :id,
   :latitude,
-  :launch,
-  :launch_attempt,
-  :launch_success,
+  :launch_attempts,
+  :launch_successes,
+  :launches,
   :locality,
   :longitude,
   :name,
   :region,
-  :rocket,
+  :rockets,
   :status,
   keyword_init: true
 )
@@ -771,7 +779,7 @@ LaunchpadLoadMatch = Struct.new(
 
 # Request payload for Launchpad#list.
 #
-# @!attribute [rw] detail
+# @!attribute [rw] details
 #   @return [String, nil]
 #
 # @!attribute [rw] full_name
@@ -783,14 +791,14 @@ LaunchpadLoadMatch = Struct.new(
 # @!attribute [rw] latitude
 #   @return [Float, nil]
 #
-# @!attribute [rw] launch
+# @!attribute [rw] launch_attempts
+#   @return [Integer, nil]
+#
+# @!attribute [rw] launch_successes
+#   @return [Integer, nil]
+#
+# @!attribute [rw] launches
 #   @return [Array, nil]
-#
-# @!attribute [rw] launch_attempt
-#   @return [Integer, nil]
-#
-# @!attribute [rw] launch_success
-#   @return [Integer, nil]
 #
 # @!attribute [rw] locality
 #   @return [String, nil]
@@ -804,24 +812,24 @@ LaunchpadLoadMatch = Struct.new(
 # @!attribute [rw] region
 #   @return [String, nil]
 #
-# @!attribute [rw] rocket
+# @!attribute [rw] rockets
 #   @return [Array, nil]
 #
 # @!attribute [rw] status
 #   @return [String, nil]
 LaunchpadListMatch = Struct.new(
-  :detail,
+  :details,
   :full_name,
   :id,
   :latitude,
-  :launch,
-  :launch_attempt,
-  :launch_success,
+  :launch_attempts,
+  :launch_successes,
+  :launches,
   :locality,
   :longitude,
   :name,
   :region,
-  :rocket,
+  :rockets,
   :status,
   keyword_init: true
 )
@@ -834,7 +842,7 @@ LaunchpadListMatch = Struct.new(
 # @!attribute [rw] arg_of_pericenter
 #   @return [Float, nil]
 #
-# @!attribute [rw] customer
+# @!attribute [rw] customers
 #   @return [Array, nil]
 #
 # @!attribute [rw] eccentricity
@@ -852,19 +860,19 @@ LaunchpadListMatch = Struct.new(
 # @!attribute [rw] launch
 #   @return [String, nil]
 #
-# @!attribute [rw] lifespan_year
+# @!attribute [rw] lifespan_years
 #   @return [Float, nil]
 #
 # @!attribute [rw] longitude
 #   @return [Float, nil]
 #
-# @!attribute [rw] manufacturer
+# @!attribute [rw] manufacturers
 #   @return [Array, nil]
 #
 # @!attribute [rw] mass_kg
 #   @return [Float, nil]
 #
-# @!attribute [rw] mass_lb
+# @!attribute [rw] mass_lbs
 #   @return [Float, nil]
 #
 # @!attribute [rw] mean_anomaly
@@ -876,10 +884,10 @@ LaunchpadListMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] nationality
+# @!attribute [rw] nationalities
 #   @return [Array, nil]
 #
-# @!attribute [rw] norad_id
+# @!attribute [rw] norad_ids
 #   @return [Array, nil]
 #
 # @!attribute [rw] orbit
@@ -911,22 +919,22 @@ LaunchpadListMatch = Struct.new(
 Payload = Struct.new(
   :apoapsis_km,
   :arg_of_pericenter,
-  :customer,
+  :customers,
   :eccentricity,
   :epoch,
   :id,
   :inclination_deg,
   :launch,
-  :lifespan_year,
+  :lifespan_years,
   :longitude,
-  :manufacturer,
+  :manufacturers,
   :mass_kg,
-  :mass_lb,
+  :mass_lbs,
   :mean_anomaly,
   :mean_motion,
   :name,
-  :nationality,
-  :norad_id,
+  :nationalities,
+  :norad_ids,
   :orbit,
   :periapsis_km,
   :period_min,
@@ -956,7 +964,7 @@ PayloadLoadMatch = Struct.new(
 # @!attribute [rw] arg_of_pericenter
 #   @return [Float, nil]
 #
-# @!attribute [rw] customer
+# @!attribute [rw] customers
 #   @return [Array, nil]
 #
 # @!attribute [rw] eccentricity
@@ -974,19 +982,19 @@ PayloadLoadMatch = Struct.new(
 # @!attribute [rw] launch
 #   @return [String, nil]
 #
-# @!attribute [rw] lifespan_year
+# @!attribute [rw] lifespan_years
 #   @return [Float, nil]
 #
 # @!attribute [rw] longitude
 #   @return [Float, nil]
 #
-# @!attribute [rw] manufacturer
+# @!attribute [rw] manufacturers
 #   @return [Array, nil]
 #
 # @!attribute [rw] mass_kg
 #   @return [Float, nil]
 #
-# @!attribute [rw] mass_lb
+# @!attribute [rw] mass_lbs
 #   @return [Float, nil]
 #
 # @!attribute [rw] mean_anomaly
@@ -998,10 +1006,10 @@ PayloadLoadMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] nationality
+# @!attribute [rw] nationalities
 #   @return [Array, nil]
 #
-# @!attribute [rw] norad_id
+# @!attribute [rw] norad_ids
 #   @return [Array, nil]
 #
 # @!attribute [rw] orbit
@@ -1033,22 +1041,22 @@ PayloadLoadMatch = Struct.new(
 PayloadListMatch = Struct.new(
   :apoapsis_km,
   :arg_of_pericenter,
-  :customer,
+  :customers,
   :eccentricity,
   :epoch,
   :id,
   :inclination_deg,
   :launch,
-  :lifespan_year,
+  :lifespan_years,
   :longitude,
-  :manufacturer,
+  :manufacturers,
   :mass_kg,
-  :mass_lb,
+  :mass_lbs,
   :mean_anomaly,
   :mean_motion,
   :name,
-  :nationality,
-  :norad_id,
+  :nationalities,
+  :norad_ids,
   :orbit,
   :periapsis_km,
   :period_min,
@@ -1066,7 +1074,7 @@ PayloadListMatch = Struct.new(
 # @!attribute [rw] apoapsis_au
 #   @return [Float, nil]
 #
-# @!attribute [rw] detail
+# @!attribute [rw] details
 #   @return [String, nil]
 #
 # @!attribute [rw] earth_distance_km
@@ -1081,7 +1089,7 @@ PayloadListMatch = Struct.new(
 # @!attribute [rw] epoch_jd
 #   @return [Float, nil]
 #
-# @!attribute [rw] flickr_image
+# @!attribute [rw] flickr_images
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -1099,7 +1107,7 @@ PayloadListMatch = Struct.new(
 # @!attribute [rw] launch_mass_kg
 #   @return [Integer, nil]
 #
-# @!attribute [rw] launch_mass_lb
+# @!attribute [rw] launch_mass_lbs
 #   @return [Integer, nil]
 #
 # @!attribute [rw] longitude
@@ -1126,7 +1134,7 @@ PayloadListMatch = Struct.new(
 # @!attribute [rw] periapsis_au
 #   @return [Float, nil]
 #
-# @!attribute [rw] period_day
+# @!attribute [rw] period_days
 #   @return [Float, nil]
 #
 # @!attribute [rw] semi_major_axis_au
@@ -1145,18 +1153,18 @@ PayloadListMatch = Struct.new(
 #   @return [String, nil]
 Roadster = Struct.new(
   :apoapsis_au,
-  :detail,
+  :details,
   :earth_distance_km,
   :earth_distance_mi,
   :eccentricity,
   :epoch_jd,
-  :flickr_image,
+  :flickr_images,
   :id,
   :inclination,
   :launch_date_unix,
   :launch_date_utc,
   :launch_mass_kg,
-  :launch_mass_lb,
+  :launch_mass_lbs,
   :longitude,
   :mars_distance_km,
   :mars_distance_mi,
@@ -1165,7 +1173,7 @@ Roadster = Struct.new(
   :orbit_type,
   :periapsis_arg,
   :periapsis_au,
-  :period_day,
+  :period_days,
   :semi_major_axis_au,
   :speed_kph,
   :speed_mph,
@@ -1179,7 +1187,7 @@ Roadster = Struct.new(
 # @!attribute [rw] apoapsis_au
 #   @return [Float, nil]
 #
-# @!attribute [rw] detail
+# @!attribute [rw] details
 #   @return [String, nil]
 #
 # @!attribute [rw] earth_distance_km
@@ -1194,7 +1202,7 @@ Roadster = Struct.new(
 # @!attribute [rw] epoch_jd
 #   @return [Float, nil]
 #
-# @!attribute [rw] flickr_image
+# @!attribute [rw] flickr_images
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -1212,7 +1220,7 @@ Roadster = Struct.new(
 # @!attribute [rw] launch_mass_kg
 #   @return [Integer, nil]
 #
-# @!attribute [rw] launch_mass_lb
+# @!attribute [rw] launch_mass_lbs
 #   @return [Integer, nil]
 #
 # @!attribute [rw] longitude
@@ -1239,7 +1247,7 @@ Roadster = Struct.new(
 # @!attribute [rw] periapsis_au
 #   @return [Float, nil]
 #
-# @!attribute [rw] period_day
+# @!attribute [rw] period_days
 #   @return [Float, nil]
 #
 # @!attribute [rw] semi_major_axis_au
@@ -1258,18 +1266,18 @@ Roadster = Struct.new(
 #   @return [String, nil]
 RoadsterListMatch = Struct.new(
   :apoapsis_au,
-  :detail,
+  :details,
   :earth_distance_km,
   :earth_distance_mi,
   :eccentricity,
   :epoch_jd,
-  :flickr_image,
+  :flickr_images,
   :id,
   :inclination,
   :launch_date_unix,
   :launch_date_utc,
   :launch_mass_kg,
-  :launch_mass_lb,
+  :launch_mass_lbs,
   :longitude,
   :mars_distance_km,
   :mars_distance_mi,
@@ -1278,7 +1286,7 @@ RoadsterListMatch = Struct.new(
   :orbit_type,
   :periapsis_arg,
   :periapsis_au,
-  :period_day,
+  :period_days,
   :semi_major_axis_au,
   :speed_kph,
   :speed_mph,
@@ -1292,7 +1300,7 @@ RoadsterListMatch = Struct.new(
 # @!attribute [rw] active
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] booster
+# @!attribute [rw] boosters
 #   @return [Integer, nil]
 #
 # @!attribute [rw] company
@@ -1313,7 +1321,7 @@ RoadsterListMatch = Struct.new(
 # @!attribute [rw] first_flight
 #   @return [String, nil]
 #
-# @!attribute [rw] flickr_image
+# @!attribute [rw] flickr_images
 #   @return [Array, nil]
 #
 # @!attribute [rw] height
@@ -1328,7 +1336,7 @@ RoadsterListMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] stage
+# @!attribute [rw] stages
 #   @return [Integer, nil]
 #
 # @!attribute [rw] success_rate_pct
@@ -1341,19 +1349,19 @@ RoadsterListMatch = Struct.new(
 #   @return [String, nil]
 Rocket = Struct.new(
   :active,
-  :booster,
+  :boosters,
   :company,
   :cost_per_launch,
   :country,
   :description,
   :diameter,
   :first_flight,
-  :flickr_image,
+  :flickr_images,
   :height,
   :id,
   :mass,
   :name,
-  :stage,
+  :stages,
   :success_rate_pct,
   :type,
   :wikipedia,
@@ -1374,7 +1382,7 @@ RocketLoadMatch = Struct.new(
 # @!attribute [rw] active
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] booster
+# @!attribute [rw] boosters
 #   @return [Integer, nil]
 #
 # @!attribute [rw] company
@@ -1395,7 +1403,7 @@ RocketLoadMatch = Struct.new(
 # @!attribute [rw] first_flight
 #   @return [String, nil]
 #
-# @!attribute [rw] flickr_image
+# @!attribute [rw] flickr_images
 #   @return [Array, nil]
 #
 # @!attribute [rw] height
@@ -1410,7 +1418,7 @@ RocketLoadMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] stage
+# @!attribute [rw] stages
 #   @return [Integer, nil]
 #
 # @!attribute [rw] success_rate_pct
@@ -1423,19 +1431,19 @@ RocketLoadMatch = Struct.new(
 #   @return [String, nil]
 RocketListMatch = Struct.new(
   :active,
-  :booster,
+  :boosters,
   :company,
   :cost_per_launch,
   :country,
   :description,
   :diameter,
   :first_flight,
-  :flickr_image,
+  :flickr_images,
   :height,
   :id,
   :mass,
   :name,
-  :stage,
+  :stages,
   :success_rate_pct,
   :type,
   :wikipedia,
@@ -1471,7 +1479,7 @@ RocketListMatch = Struct.new(
 # @!attribute [rw] latitude
 #   @return [Float, nil]
 #
-# @!attribute [rw] launch
+# @!attribute [rw] launches
 #   @return [Array, nil]
 #
 # @!attribute [rw] legacy_id
@@ -1486,7 +1494,7 @@ RocketListMatch = Struct.new(
 # @!attribute [rw] mass_kg
 #   @return [Integer, nil]
 #
-# @!attribute [rw] mass_lb
+# @!attribute [rw] mass_lbs
 #   @return [Integer, nil]
 #
 # @!attribute [rw] mmsi
@@ -1498,7 +1506,7 @@ RocketListMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] role
+# @!attribute [rw] roles
 #   @return [Array, nil]
 #
 # @!attribute [rw] speed_kn
@@ -1522,16 +1530,16 @@ Ship = Struct.new(
   :imo,
   :last_ais_update,
   :latitude,
-  :launch,
+  :launches,
   :legacy_id,
   :link,
   :longitude,
   :mass_kg,
-  :mass_lb,
+  :mass_lbs,
   :mmsi,
   :model,
   :name,
-  :role,
+  :roles,
   :speed_kn,
   :status,
   :type,
@@ -1577,7 +1585,7 @@ ShipLoadMatch = Struct.new(
 # @!attribute [rw] latitude
 #   @return [Float, nil]
 #
-# @!attribute [rw] launch
+# @!attribute [rw] launches
 #   @return [Array, nil]
 #
 # @!attribute [rw] legacy_id
@@ -1592,7 +1600,7 @@ ShipLoadMatch = Struct.new(
 # @!attribute [rw] mass_kg
 #   @return [Integer, nil]
 #
-# @!attribute [rw] mass_lb
+# @!attribute [rw] mass_lbs
 #   @return [Integer, nil]
 #
 # @!attribute [rw] mmsi
@@ -1604,7 +1612,7 @@ ShipLoadMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] role
+# @!attribute [rw] roles
 #   @return [Array, nil]
 #
 # @!attribute [rw] speed_kn
@@ -1628,16 +1636,16 @@ ShipListMatch = Struct.new(
   :imo,
   :last_ais_update,
   :latitude,
-  :launch,
+  :launches,
   :legacy_id,
   :link,
   :longitude,
   :mass_kg,
-  :mass_lb,
+  :mass_lbs,
   :mmsi,
   :model,
   :name,
-  :role,
+  :roles,
   :speed_kn,
   :status,
   :type,
@@ -1662,10 +1670,10 @@ ShipListMatch = Struct.new(
 # @!attribute [rw] longitude
 #   @return [Float, nil]
 #
-# @!attribute [rw] space_track
+# @!attribute [rw] spaceTrack
 #   @return [Hash, nil]
 #
-# @!attribute [rw] velocity_km
+# @!attribute [rw] velocity_kms
 #   @return [Float, nil]
 #
 # @!attribute [rw] version
@@ -1676,8 +1684,8 @@ Starlink = Struct.new(
   :latitude,
   :launch,
   :longitude,
-  :space_track,
-  :velocity_km,
+  :spaceTrack,
+  :velocity_kms,
   :version,
   keyword_init: true
 )
@@ -1708,10 +1716,10 @@ StarlinkLoadMatch = Struct.new(
 # @!attribute [rw] longitude
 #   @return [Float, nil]
 #
-# @!attribute [rw] space_track
+# @!attribute [rw] spaceTrack
 #   @return [Hash, nil]
 #
-# @!attribute [rw] velocity_km
+# @!attribute [rw] velocity_kms
 #   @return [Float, nil]
 #
 # @!attribute [rw] version
@@ -1722,8 +1730,8 @@ StarlinkListMatch = Struct.new(
   :latitude,
   :launch,
   :longitude,
-  :space_track,
-  :velocity_km,
+  :spaceTrack,
+  :velocity_kms,
   :version,
   keyword_init: true
 )

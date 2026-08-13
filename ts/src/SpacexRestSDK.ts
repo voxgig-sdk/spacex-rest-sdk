@@ -156,8 +156,29 @@ class SpacexRestSDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('SpacexRestSDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -218,80 +239,156 @@ class SpacexRestSDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('SpacexRestSDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('SpacexRestSDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.Capsule().list()` / `client.Capsule().load({ id })`.
-  Capsule(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Capsule(entopts?: Record<string, any>) {
     const self = this
-    return new CapsuleEntity(self,data)
+    return new CapsuleEntity(self, entopts)
   }
 
 
   // Entity access: `client.Core().list()` / `client.Core().load({ id })`.
-  Core(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Core(entopts?: Record<string, any>) {
     const self = this
-    return new CoreEntity(self,data)
+    return new CoreEntity(self, entopts)
   }
 
 
   // Entity access: `client.Crew().list()` / `client.Crew().load({ id })`.
-  Crew(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Crew(entopts?: Record<string, any>) {
     const self = this
-    return new CrewEntity(self,data)
+    return new CrewEntity(self, entopts)
   }
 
 
   // Entity access: `client.Landpad().list()` / `client.Landpad().load({ id })`.
-  Landpad(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Landpad(entopts?: Record<string, any>) {
     const self = this
-    return new LandpadEntity(self,data)
+    return new LandpadEntity(self, entopts)
   }
 
 
   // Entity access: `client.Launch().list()` / `client.Launch().load({ id })`.
-  Launch(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Launch(entopts?: Record<string, any>) {
     const self = this
-    return new LaunchEntity(self,data)
+    return new LaunchEntity(self, entopts)
   }
 
 
   // Entity access: `client.Launchpad().list()` / `client.Launchpad().load({ id })`.
-  Launchpad(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Launchpad(entopts?: Record<string, any>) {
     const self = this
-    return new LaunchpadEntity(self,data)
+    return new LaunchpadEntity(self, entopts)
   }
 
 
   // Entity access: `client.Payload().list()` / `client.Payload().load({ id })`.
-  Payload(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Payload(entopts?: Record<string, any>) {
     const self = this
-    return new PayloadEntity(self,data)
+    return new PayloadEntity(self, entopts)
   }
 
 
   // Entity access: `client.Roadster().list()` / `client.Roadster().load({ id })`.
-  Roadster(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Roadster(entopts?: Record<string, any>) {
     const self = this
-    return new RoadsterEntity(self,data)
+    return new RoadsterEntity(self, entopts)
   }
 
 
   // Entity access: `client.Rocket().list()` / `client.Rocket().load({ id })`.
-  Rocket(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Rocket(entopts?: Record<string, any>) {
     const self = this
-    return new RocketEntity(self,data)
+    return new RocketEntity(self, entopts)
   }
 
 
   // Entity access: `client.Ship().list()` / `client.Ship().load({ id })`.
-  Ship(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Ship(entopts?: Record<string, any>) {
     const self = this
-    return new ShipEntity(self,data)
+    return new ShipEntity(self, entopts)
   }
 
 
   // Entity access: `client.Starlink().list()` / `client.Starlink().load({ id })`.
-  Starlink(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Starlink(entopts?: Record<string, any>) {
     const self = this
-    return new StarlinkEntity(self,data)
+    return new StarlinkEntity(self, entopts)
   }
 
 

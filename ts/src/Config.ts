@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'SpacexRest',
   }
 
 
@@ -93,7 +93,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "land_landing",
+          "name": "land_landings",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 1
@@ -107,7 +107,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "launch",
+          "name": "launches",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 3
@@ -142,7 +142,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "water_landing",
+          "name": "water_landings",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 8
@@ -157,6 +157,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/capsules",
               "parts": [
@@ -191,6 +192,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/capsules/{id}",
               "parts": [
@@ -220,14 +222,14 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "asds_attempt",
+          "name": "asds_attempts",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "asds_landing",
+          "name": "asds_landings",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 1
@@ -255,7 +257,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "launch",
+          "name": "launches",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 5
@@ -269,14 +271,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "rtls_attempt",
+          "name": "rtls_attempts",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 7
         },
         {
           "active": true,
-          "name": "rtls_landing",
+          "name": "rtls_landings",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 8
@@ -305,6 +307,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/cores",
               "parts": [
@@ -339,6 +342,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/cores/{id}",
               "parts": [
@@ -389,7 +393,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "launch",
+          "name": "launches",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 3
@@ -425,6 +429,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/crew",
               "parts": [
@@ -459,6 +464,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/crew/{id}",
               "parts": [
@@ -488,7 +494,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "detail",
+          "name": "details",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -509,14 +515,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "landing_attempt",
+          "name": "landing_attempts",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "landing_success",
+          "name": "landing_successes",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 4
@@ -530,7 +536,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "launch",
+          "name": "launches",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 6
@@ -594,6 +600,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/landpads",
               "parts": [
@@ -628,6 +635,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/landpads/{id}",
               "parts": [
@@ -664,7 +672,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "capsule",
+          "name": "capsules",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
@@ -673,225 +681,232 @@ class Config {
           "active": true,
           "name": "core",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$STRING`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "crew",
+          "name": "cores",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "date_local",
+          "name": "crew",
           "req": false,
-          "type": "`$STRING`",
+          "type": "`$ARRAY`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "date_precision",
+          "name": "date_local",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
+          "name": "date_precision",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 6
+        },
+        {
+          "active": true,
           "name": "date_unix",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 6
+          "index$": 7
         },
         {
           "active": true,
           "name": "date_utc",
           "req": false,
           "type": "`$STRING`",
-          "index$": 7
-        },
-        {
-          "active": true,
-          "name": "detail",
-          "req": false,
-          "type": "`$STRING`",
           "index$": 8
         },
         {
           "active": true,
-          "name": "failure",
+          "name": "details",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$STRING`",
           "index$": 9
         },
         {
           "active": true,
-          "name": "fairing",
+          "name": "failures",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "fairings",
           "req": false,
           "type": "`$OBJECT`",
-          "index$": 10
+          "index$": 11
         },
         {
           "active": true,
           "name": "flight",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 11
+          "index$": 12
         },
         {
           "active": true,
           "name": "flight_number",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 12
+          "index$": 13
         },
         {
           "active": true,
-          "name": "gridfin",
+          "name": "gridfins",
           "req": false,
           "type": "`$BOOLEAN`",
-          "index$": 13
+          "index$": 14
         },
         {
           "active": true,
           "name": "id",
           "req": false,
           "type": "`$STRING`",
-          "index$": 14
+          "index$": 15
         },
         {
           "active": true,
           "name": "landing_attempt",
           "req": false,
           "type": "`$BOOLEAN`",
-          "index$": 15
+          "index$": 16
         },
         {
           "active": true,
           "name": "landing_success",
           "req": false,
           "type": "`$BOOLEAN`",
-          "index$": 16
+          "index$": 17
         },
         {
           "active": true,
           "name": "landing_type",
           "req": false,
           "type": "`$STRING`",
-          "index$": 17
+          "index$": 18
         },
         {
           "active": true,
           "name": "landpad",
           "req": false,
           "type": "`$STRING`",
-          "index$": 18
+          "index$": 19
         },
         {
           "active": true,
           "name": "launchpad",
           "req": false,
           "type": "`$STRING`",
-          "index$": 19
-        },
-        {
-          "active": true,
-          "name": "leg",
-          "req": false,
-          "type": "`$BOOLEAN`",
           "index$": 20
         },
         {
           "active": true,
-          "name": "link",
+          "name": "legs",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "index$": 21
+        },
+        {
+          "active": true,
+          "name": "links",
           "req": false,
           "type": "`$OBJECT`",
-          "index$": 21
+          "index$": 22
         },
         {
           "active": true,
           "name": "name",
           "req": false,
           "type": "`$STRING`",
-          "index$": 22
+          "index$": 23
         },
         {
           "active": true,
           "name": "net",
           "req": false,
           "type": "`$BOOLEAN`",
-          "index$": 23
+          "index$": 24
         },
         {
           "active": true,
-          "name": "payload",
+          "name": "payloads",
           "req": false,
           "type": "`$ARRAY`",
-          "index$": 24
+          "index$": 25
         },
         {
           "active": true,
           "name": "reused",
           "req": false,
           "type": "`$BOOLEAN`",
-          "index$": 25
+          "index$": 26
         },
         {
           "active": true,
           "name": "rocket",
           "req": false,
           "type": "`$STRING`",
-          "index$": 26
+          "index$": 27
         },
         {
           "active": true,
-          "name": "ship",
+          "name": "ships",
           "req": false,
           "type": "`$ARRAY`",
-          "index$": 27
+          "index$": 28
         },
         {
           "active": true,
           "name": "static_fire_date_unix",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 28
+          "index$": 29
         },
         {
           "active": true,
           "name": "static_fire_date_utc",
           "req": false,
           "type": "`$STRING`",
-          "index$": 29
+          "index$": 30
         },
         {
           "active": true,
           "name": "success",
           "req": false,
           "type": "`$BOOLEAN`",
-          "index$": 30
+          "index$": 31
         },
         {
           "active": true,
           "name": "tdb",
           "req": false,
           "type": "`$BOOLEAN`",
-          "index$": 31
+          "index$": 32
         },
         {
           "active": true,
           "name": "upcoming",
           "req": false,
           "type": "`$BOOLEAN`",
-          "index$": 32
+          "index$": 33
         },
         {
           "active": true,
           "name": "window",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 33
+          "index$": 34
         }
       ],
       "name": "launch",
@@ -903,6 +918,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/launches",
               "parts": [
@@ -918,6 +934,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/launches/latest",
               "parts": [
@@ -936,6 +953,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/launches/past",
               "parts": [
@@ -954,6 +972,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/launches/upcoming",
               "parts": [
@@ -991,6 +1010,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/launches/{id}",
               "parts": [
@@ -1020,7 +1040,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "detail",
+          "name": "details",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -1048,23 +1068,23 @@ class Config {
         },
         {
           "active": true,
-          "name": "launch",
+          "name": "launch_attempts",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$INTEGER`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "launch_attempt",
+          "name": "launch_successes",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "launch_success",
+          "name": "launches",
           "req": false,
-          "type": "`$INTEGER`",
+          "type": "`$ARRAY`",
           "index$": 6
         },
         {
@@ -1097,7 +1117,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "rocket",
+          "name": "rockets",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 11
@@ -1119,6 +1139,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/launchpads",
               "parts": [
@@ -1153,6 +1174,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/launchpads/{id}",
               "parts": [
@@ -1196,7 +1218,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "customer",
+          "name": "customers",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 2
@@ -1238,7 +1260,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "lifespan_year",
+          "name": "lifespan_years",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 8
@@ -1252,7 +1274,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "manufacturer",
+          "name": "manufacturers",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 10
@@ -1266,7 +1288,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "mass_lb",
+          "name": "mass_lbs",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 12
@@ -1294,14 +1316,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "nationality",
+          "name": "nationalities",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 16
         },
         {
           "active": true,
-          "name": "norad_id",
+          "name": "norad_ids",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 17
@@ -1379,6 +1401,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/payloads",
               "parts": [
@@ -1413,6 +1436,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/payloads/{id}",
               "parts": [
@@ -1449,7 +1473,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "detail",
+          "name": "details",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
@@ -1484,7 +1508,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "flickr_image",
+          "name": "flickr_images",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 6
@@ -1526,7 +1550,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "launch_mass_lb",
+          "name": "launch_mass_lbs",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 12
@@ -1589,7 +1613,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "period_day",
+          "name": "period_days",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 21
@@ -1639,6 +1663,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/roadster",
               "parts": [
@@ -1647,7 +1672,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.flickr_images`"
               },
               "index$": 0
             }
@@ -1670,7 +1695,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "booster",
+          "name": "boosters",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 1
@@ -1719,7 +1744,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "flickr_image",
+          "name": "flickr_images",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 8
@@ -1754,7 +1779,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "stage",
+          "name": "stages",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 13
@@ -1790,6 +1815,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/rockets",
               "parts": [
@@ -1824,6 +1850,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/rockets/{id}",
               "parts": [
@@ -1916,7 +1943,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "launch",
+          "name": "launches",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 9
@@ -1951,7 +1978,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "mass_lb",
+          "name": "mass_lbs",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 14
@@ -1979,7 +2006,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "role",
+          "name": "roles",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 18
@@ -2022,6 +2049,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/ships",
               "parts": [
@@ -2056,6 +2084,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/ships/{id}",
               "parts": [
@@ -2120,14 +2149,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "space_track",
+          "name": "spaceTrack",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "velocity_km",
+          "name": "velocity_kms",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 6
@@ -2149,6 +2178,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/starlink",
               "parts": [
@@ -2183,6 +2213,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/starlink/{id}",
               "parts": [
@@ -2196,7 +2227,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.spaceTrack`"
               },
               "index$": 0
             }

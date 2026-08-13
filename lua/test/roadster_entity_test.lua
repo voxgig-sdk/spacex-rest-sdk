@@ -70,7 +70,7 @@ describe("RoadsterEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set SPACEXREST_TEST_ROADSTER_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set SPACEX_REST_TEST_ROADSTER_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -126,22 +126,22 @@ function roadster_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("SPACEXREST_TEST_ROADSTER_ENTID")
+  local entid_env_raw = os.getenv("SPACEX_REST_TEST_ROADSTER_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["SPACEXREST_TEST_ROADSTER_ENTID"] = idmap,
-    ["SPACEXREST_TEST_LIVE"] = "FALSE",
-    ["SPACEXREST_TEST_EXPLAIN"] = "FALSE",
+    ["SPACEX_REST_TEST_ROADSTER_ENTID"] = idmap,
+    ["SPACEX_REST_TEST_LIVE"] = "FALSE",
+    ["SPACEX_REST_TEST_EXPLAIN"] = "FALSE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["SPACEXREST_TEST_ROADSTER_ENTID"])
+    env["SPACEX_REST_TEST_ROADSTER_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["SPACEXREST_TEST_LIVE"] == "TRUE" then
+  if env["SPACEX_REST_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
       },
@@ -150,13 +150,13 @@ function roadster_basic_setup(extra)
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["SPACEXREST_TEST_LIVE"] == "TRUE"
+  local live = env["SPACEX_REST_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["SPACEXREST_TEST_EXPLAIN"] == "TRUE",
+    explain = env["SPACEX_REST_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

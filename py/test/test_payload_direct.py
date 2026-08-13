@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from spacexrest_sdk.utility.voxgig_struct import voxgig_struct as vs
 from spacexrest_sdk import SpacexRestSDK
-from core import helpers
+from spacexrest_sdk.core import helpers
 from test import runner
 
 
@@ -105,11 +105,11 @@ def _payload_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "SPACEXREST_TEST_PAYLOAD_ENTID": {},
-        "SPACEXREST_TEST_LIVE": "FALSE",
+        "SPACEX_REST_TEST_PAYLOAD_ENTID": {},
+        "SPACEX_REST_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("SPACEXREST_TEST_LIVE") == "TRUE"
+    live = env.get("SPACEX_REST_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

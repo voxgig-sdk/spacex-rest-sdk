@@ -8,39 +8,39 @@
 
 ---@class Capsule
 ---@field id? string
----@field land_landing? number
+---@field land_landings? number
 ---@field last_update? string
----@field launch? table
+---@field launches? table
 ---@field reuse_count? number
 ---@field serial? string
 ---@field status? string
 ---@field type? string
----@field water_landing? number
+---@field water_landings? number
 
 ---@class CapsuleLoadMatch
 ---@field id string
 
 ---@class CapsuleListMatch
 ---@field id? string
----@field land_landing? number
+---@field land_landings? number
 ---@field last_update? string
----@field launch? table
+---@field launches? table
 ---@field reuse_count? number
 ---@field serial? string
 ---@field status? string
 ---@field type? string
----@field water_landing? number
+---@field water_landings? number
 
 ---@class Core
----@field asds_attempt? number
----@field asds_landing? number
+---@field asds_attempts? number
+---@field asds_landings? number
 ---@field block? number
 ---@field id? string
 ---@field last_update? string
----@field launch? table
+---@field launches? table
 ---@field reuse_count? number
----@field rtls_attempt? number
----@field rtls_landing? number
+---@field rtls_attempts? number
+---@field rtls_landings? number
 ---@field serial? string
 ---@field status? string
 
@@ -48,15 +48,15 @@
 ---@field id string
 
 ---@class CoreListMatch
----@field asds_attempt? number
----@field asds_landing? number
+---@field asds_attempts? number
+---@field asds_landings? number
 ---@field block? number
 ---@field id? string
 ---@field last_update? string
----@field launch? table
+---@field launches? table
 ---@field reuse_count? number
----@field rtls_attempt? number
----@field rtls_landing? number
+---@field rtls_attempts? number
+---@field rtls_landings? number
 ---@field serial? string
 ---@field status? string
 
@@ -64,7 +64,7 @@
 ---@field agency? string
 ---@field id? string
 ---@field image? string
----@field launch? table
+---@field launches? table
 ---@field name? string
 ---@field status? string
 ---@field wikipedia? string
@@ -76,19 +76,19 @@
 ---@field agency? string
 ---@field id? string
 ---@field image? string
----@field launch? table
+---@field launches? table
 ---@field name? string
 ---@field status? string
 ---@field wikipedia? string
 
 ---@class Landpad
----@field detail? string
+---@field details? string
 ---@field full_name? string
 ---@field id? string
----@field landing_attempt? number
----@field landing_success? number
+---@field landing_attempts? number
+---@field landing_successes? number
 ---@field latitude? number
----@field launch? table
+---@field launches? table
 ---@field locality? string
 ---@field longitude? number
 ---@field name? string
@@ -101,13 +101,13 @@
 ---@field id string
 
 ---@class LandpadListMatch
----@field detail? string
+---@field details? string
 ---@field full_name? string
 ---@field id? string
----@field landing_attempt? number
----@field landing_success? number
+---@field landing_attempts? number
+---@field landing_successes? number
 ---@field latitude? number
----@field launch? table
+---@field launches? table
 ---@field locality? string
 ---@field longitude? number
 ---@field name? string
@@ -118,33 +118,34 @@
 
 ---@class Launch
 ---@field auto_update? boolean
----@field capsule? table
----@field core? table
+---@field capsules? table
+---@field core? string
+---@field cores? table
 ---@field crew? table
 ---@field date_local? string
 ---@field date_precision? string
 ---@field date_unix? number
 ---@field date_utc? string
----@field detail? string
----@field failure? table
----@field fairing? table
+---@field details? string
+---@field failures? table
+---@field fairings? table
 ---@field flight? number
 ---@field flight_number? number
----@field gridfin? boolean
+---@field gridfins? boolean
 ---@field id? string
 ---@field landing_attempt? boolean
 ---@field landing_success? boolean
 ---@field landing_type? string
 ---@field landpad? string
 ---@field launchpad? string
----@field leg? boolean
----@field link? table
+---@field legs? boolean
+---@field links? table
 ---@field name? string
 ---@field net? boolean
----@field payload? table
+---@field payloads? table
 ---@field reused? boolean
 ---@field rocket? string
----@field ship? table
+---@field ships? table
 ---@field static_fire_date_unix? number
 ---@field static_fire_date_utc? string
 ---@field success? boolean
@@ -157,33 +158,34 @@
 
 ---@class LaunchListMatch
 ---@field auto_update? boolean
----@field capsule? table
----@field core? table
+---@field capsules? table
+---@field core? string
+---@field cores? table
 ---@field crew? table
 ---@field date_local? string
 ---@field date_precision? string
 ---@field date_unix? number
 ---@field date_utc? string
----@field detail? string
----@field failure? table
----@field fairing? table
+---@field details? string
+---@field failures? table
+---@field fairings? table
 ---@field flight? number
 ---@field flight_number? number
----@field gridfin? boolean
+---@field gridfins? boolean
 ---@field id? string
 ---@field landing_attempt? boolean
 ---@field landing_success? boolean
 ---@field landing_type? string
 ---@field landpad? string
 ---@field launchpad? string
----@field leg? boolean
----@field link? table
+---@field legs? boolean
+---@field links? table
 ---@field name? string
 ---@field net? boolean
----@field payload? table
+---@field payloads? table
 ---@field reused? boolean
 ---@field rocket? string
----@field ship? table
+---@field ships? table
 ---@field static_fire_date_unix? number
 ---@field static_fire_date_utc? string
 ---@field success? boolean
@@ -192,57 +194,57 @@
 ---@field window? number
 
 ---@class Launchpad
----@field detail? string
+---@field details? string
 ---@field full_name? string
 ---@field id? string
 ---@field latitude? number
----@field launch? table
----@field launch_attempt? number
----@field launch_success? number
+---@field launch_attempts? number
+---@field launch_successes? number
+---@field launches? table
 ---@field locality? string
 ---@field longitude? number
 ---@field name? string
 ---@field region? string
----@field rocket? table
+---@field rockets? table
 ---@field status? string
 
 ---@class LaunchpadLoadMatch
 ---@field id string
 
 ---@class LaunchpadListMatch
----@field detail? string
+---@field details? string
 ---@field full_name? string
 ---@field id? string
 ---@field latitude? number
----@field launch? table
----@field launch_attempt? number
----@field launch_success? number
+---@field launch_attempts? number
+---@field launch_successes? number
+---@field launches? table
 ---@field locality? string
 ---@field longitude? number
 ---@field name? string
 ---@field region? string
----@field rocket? table
+---@field rockets? table
 ---@field status? string
 
 ---@class Payload
 ---@field apoapsis_km? number
 ---@field arg_of_pericenter? number
----@field customer? table
+---@field customers? table
 ---@field eccentricity? number
 ---@field epoch? string
 ---@field id? string
 ---@field inclination_deg? number
 ---@field launch? string
----@field lifespan_year? number
+---@field lifespan_years? number
 ---@field longitude? number
----@field manufacturer? table
+---@field manufacturers? table
 ---@field mass_kg? number
----@field mass_lb? number
+---@field mass_lbs? number
 ---@field mean_anomaly? number
 ---@field mean_motion? number
 ---@field name? string
----@field nationality? table
----@field norad_id? table
+---@field nationalities? table
+---@field norad_ids? table
 ---@field orbit? string
 ---@field periapsis_km? number
 ---@field period_min? number
@@ -259,22 +261,22 @@
 ---@class PayloadListMatch
 ---@field apoapsis_km? number
 ---@field arg_of_pericenter? number
----@field customer? table
+---@field customers? table
 ---@field eccentricity? number
 ---@field epoch? string
 ---@field id? string
 ---@field inclination_deg? number
 ---@field launch? string
----@field lifespan_year? number
+---@field lifespan_years? number
 ---@field longitude? number
----@field manufacturer? table
+---@field manufacturers? table
 ---@field mass_kg? number
----@field mass_lb? number
+---@field mass_lbs? number
 ---@field mean_anomaly? number
 ---@field mean_motion? number
 ---@field name? string
----@field nationality? table
----@field norad_id? table
+---@field nationalities? table
+---@field norad_ids? table
 ---@field orbit? string
 ---@field periapsis_km? number
 ---@field period_min? number
@@ -287,18 +289,18 @@
 
 ---@class Roadster
 ---@field apoapsis_au? number
----@field detail? string
+---@field details? string
 ---@field earth_distance_km? number
 ---@field earth_distance_mi? number
 ---@field eccentricity? number
 ---@field epoch_jd? number
----@field flickr_image? table
+---@field flickr_images? table
 ---@field id? string
 ---@field inclination? number
 ---@field launch_date_unix? number
 ---@field launch_date_utc? string
 ---@field launch_mass_kg? number
----@field launch_mass_lb? number
+---@field launch_mass_lbs? number
 ---@field longitude? number
 ---@field mars_distance_km? number
 ---@field mars_distance_mi? number
@@ -307,7 +309,7 @@
 ---@field orbit_type? string
 ---@field periapsis_arg? number
 ---@field periapsis_au? number
----@field period_day? number
+---@field period_days? number
 ---@field semi_major_axis_au? number
 ---@field speed_kph? number
 ---@field speed_mph? number
@@ -316,18 +318,18 @@
 
 ---@class RoadsterListMatch
 ---@field apoapsis_au? number
----@field detail? string
+---@field details? string
 ---@field earth_distance_km? number
 ---@field earth_distance_mi? number
 ---@field eccentricity? number
 ---@field epoch_jd? number
----@field flickr_image? table
+---@field flickr_images? table
 ---@field id? string
 ---@field inclination? number
 ---@field launch_date_unix? number
 ---@field launch_date_utc? string
 ---@field launch_mass_kg? number
----@field launch_mass_lb? number
+---@field launch_mass_lbs? number
 ---@field longitude? number
 ---@field mars_distance_km? number
 ---@field mars_distance_mi? number
@@ -336,7 +338,7 @@
 ---@field orbit_type? string
 ---@field periapsis_arg? number
 ---@field periapsis_au? number
----@field period_day? number
+---@field period_days? number
 ---@field semi_major_axis_au? number
 ---@field speed_kph? number
 ---@field speed_mph? number
@@ -345,19 +347,19 @@
 
 ---@class Rocket
 ---@field active? boolean
----@field booster? number
+---@field boosters? number
 ---@field company? string
 ---@field cost_per_launch? number
 ---@field country? string
 ---@field description? string
 ---@field diameter? table
 ---@field first_flight? string
----@field flickr_image? table
+---@field flickr_images? table
 ---@field height? table
 ---@field id? string
 ---@field mass? table
 ---@field name? string
----@field stage? number
+---@field stages? number
 ---@field success_rate_pct? number
 ---@field type? string
 ---@field wikipedia? string
@@ -367,19 +369,19 @@
 
 ---@class RocketListMatch
 ---@field active? boolean
----@field booster? number
+---@field boosters? number
 ---@field company? string
 ---@field cost_per_launch? number
 ---@field country? string
 ---@field description? string
 ---@field diameter? table
 ---@field first_flight? string
----@field flickr_image? table
+---@field flickr_images? table
 ---@field height? table
 ---@field id? string
 ---@field mass? table
 ---@field name? string
----@field stage? number
+---@field stages? number
 ---@field success_rate_pct? number
 ---@field type? string
 ---@field wikipedia? string
@@ -394,16 +396,16 @@
 ---@field imo? number
 ---@field last_ais_update? string
 ---@field latitude? number
----@field launch? table
+---@field launches? table
 ---@field legacy_id? string
 ---@field link? string
 ---@field longitude? number
 ---@field mass_kg? number
----@field mass_lb? number
+---@field mass_lbs? number
 ---@field mmsi? number
 ---@field model? string
 ---@field name? string
----@field role? table
+---@field roles? table
 ---@field speed_kn? number
 ---@field status? string
 ---@field type? string
@@ -422,16 +424,16 @@
 ---@field imo? number
 ---@field last_ais_update? string
 ---@field latitude? number
----@field launch? table
+---@field launches? table
 ---@field legacy_id? string
 ---@field link? string
 ---@field longitude? number
 ---@field mass_kg? number
----@field mass_lb? number
+---@field mass_lbs? number
 ---@field mmsi? number
 ---@field model? string
 ---@field name? string
----@field role? table
+---@field roles? table
 ---@field speed_kn? number
 ---@field status? string
 ---@field type? string
@@ -443,8 +445,8 @@
 ---@field latitude? number
 ---@field launch? string
 ---@field longitude? number
----@field space_track? table
----@field velocity_km? number
+---@field spaceTrack? table
+---@field velocity_kms? number
 ---@field version? string
 
 ---@class StarlinkLoadMatch
@@ -456,8 +458,8 @@
 ---@field latitude? number
 ---@field launch? string
 ---@field longitude? number
----@field space_track? table
----@field velocity_km? number
+---@field spaceTrack? table
+---@field velocity_kms? number
 ---@field version? string
 
 local M = {}

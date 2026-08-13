@@ -26,8 +26,8 @@ import {
 describe('LaunchpadEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when SPACEXREST_TEST_LIVE=TRUE.
-  afterEach(liveDelay('SPACEXREST_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when SPACEX_REST_TEST_LIVE=TRUE.
+  afterEach(liveDelay('SPACEX_REST_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = SpacexRestSDK.test()
@@ -63,13 +63,13 @@ describe('LaunchpadEntity', async () => {
     const launchpad_ref01_ent = client.Launchpad()
     const launchpad_ref01_match: any = {}
 
-    const launchpad_ref01_list = await launchpad_ref01_ent.list(launchpad_ref01_match)
+    const launchpad_ref01_list = (await launchpad_ref01_ent.list(launchpad_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const launchpad_ref01_match_dt0: any = {}
     launchpad_ref01_match_dt0.id = launchpad_ref01_data.id
-    const launchpad_ref01_data_dt0 = await launchpad_ref01_ent.load(launchpad_ref01_match_dt0)
+    const launchpad_ref01_data_dt0 = (await launchpad_ref01_ent.load(launchpad_ref01_match_dt0)).data()
     assert(launchpad_ref01_data_dt0.id === launchpad_ref01_data.id)
 
 

@@ -2,48 +2,48 @@
   "existing": {
     "launchpad": {
       "LAUNCHPAD00": {
-        "detail": "s82",
+        "details": "s82",
         "full_name": "s83",
         "id": "LAUNCHPAD00",
         "latitude": 133,
-        "launch": [],
-        "launch_attempt": "s87",
-        "launch_success": "s88",
+        "launch_attempts": "s86",
+        "launch_successes": "s87",
+        "launches": [],
         "locality": "s89",
         "longitude": 138,
         "name": "s8b",
         "region": "s8c",
-        "rocket": [],
+        "rockets": [],
         "status": "s8e"
       },
       "LAUNCHPAD01": {
-        "detail": "s104",
+        "details": "s104",
         "full_name": "s105",
         "id": "LAUNCHPAD01",
         "latitude": 263,
-        "launch": [],
-        "launch_attempt": "s109",
-        "launch_success": "s10a",
+        "launch_attempts": "s108",
+        "launch_successes": "s109",
+        "launches": [],
         "locality": "s10b",
         "longitude": 268,
         "name": "s10d",
         "region": "s10e",
-        "rocket": [],
+        "rockets": [],
         "status": "s110"
       },
       "LAUNCHPAD02": {
-        "detail": "s186",
+        "details": "s186",
         "full_name": "s187",
         "id": "LAUNCHPAD02",
         "latitude": 393,
-        "launch": [],
-        "launch_attempt": "s18b",
-        "launch_success": "s18c",
+        "launch_attempts": "s18a",
+        "launch_successes": "s18b",
+        "launches": [],
         "locality": "s18d",
         "longitude": 398,
         "name": "s18f",
         "region": "s190",
-        "rocket": [],
+        "rockets": [],
         "status": "s192"
       }
     }
@@ -51,17 +51,17 @@
   "new": {
     "launchpad": {
       "launchpad_ref01": {
-        "detail": "s208",
+        "details": "s208",
         "full_name": "s209",
         "latitude": 523,
-        "launch": [],
-        "launch_attempt": "s20d",
-        "launch_success": "s20e",
+        "launch_attempts": "s20c",
+        "launch_successes": "s20d",
+        "launches": [],
         "locality": "s20f",
         "longitude": 528,
         "name": "s211",
         "region": "s212",
-        "rocket": [],
+        "rockets": [],
         "status": "s214"
       }
     }

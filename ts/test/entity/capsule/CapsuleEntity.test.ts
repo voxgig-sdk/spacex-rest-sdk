@@ -26,8 +26,8 @@ import {
 describe('CapsuleEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when SPACEXREST_TEST_LIVE=TRUE.
-  afterEach(liveDelay('SPACEXREST_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when SPACEX_REST_TEST_LIVE=TRUE.
+  afterEach(liveDelay('SPACEX_REST_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = SpacexRestSDK.test()
@@ -63,13 +63,13 @@ describe('CapsuleEntity', async () => {
     const capsule_ref01_ent = client.Capsule()
     const capsule_ref01_match: any = {}
 
-    const capsule_ref01_list = await capsule_ref01_ent.list(capsule_ref01_match)
+    const capsule_ref01_list = (await capsule_ref01_ent.list(capsule_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const capsule_ref01_match_dt0: any = {}
     capsule_ref01_match_dt0.id = capsule_ref01_data.id
-    const capsule_ref01_data_dt0 = await capsule_ref01_ent.load(capsule_ref01_match_dt0)
+    const capsule_ref01_data_dt0 = (await capsule_ref01_ent.load(capsule_ref01_match_dt0)).data()
     assert(capsule_ref01_data_dt0.id === capsule_ref01_data.id)
 
 

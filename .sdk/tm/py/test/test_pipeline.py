@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import SpacexRestSDK
-from core.error import SpacexRestError
-from core.result import SpacexRestResult
-from core.response import SpacexRestResponse
-from core.spec import SpacexRestSpec
-from feature.base_feature import SpacexRestBaseFeature
+from projectname_sdk.core.error import SpacexRestError
+from projectname_sdk.core.result import SpacexRestResult
+from projectname_sdk.core.response import SpacexRestResponse
+from projectname_sdk.core.spec import SpacexRestSpec
+from projectname_sdk.feature.base_feature import SpacexRestBaseFeature
 
 
 def _client():

@@ -139,14 +139,14 @@ fmt.Println(capsule.GetName()) // "capsule"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `string` | No |  |
-| `land_landing` | `int` | No |  |
+| `land_landings` | `int` | No |  |
 | `last_update` | `string` | No |  |
-| `launch` | `[]any` | No |  |
+| `launches` | `[]any` | No |  |
 | `reuse_count` | `int` | No |  |
 | `serial` | `string` | No |  |
 | `status` | `string` | No |  |
 | `type` | `string` | No |  |
-| `water_landing` | `int` | No |  |
+| `water_landings` | `int` | No |  |
 
 ### Operations
 
@@ -209,15 +209,15 @@ fmt.Println(core.GetName()) // "core"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asds_attempt` | `int` | No |  |
-| `asds_landing` | `int` | No |  |
+| `asds_attempts` | `int` | No |  |
+| `asds_landings` | `int` | No |  |
 | `block` | `int` | No |  |
 | `id` | `string` | No |  |
 | `last_update` | `string` | No |  |
-| `launch` | `[]any` | No |  |
+| `launches` | `[]any` | No |  |
 | `reuse_count` | `int` | No |  |
-| `rtls_attempt` | `int` | No |  |
-| `rtls_landing` | `int` | No |  |
+| `rtls_attempts` | `int` | No |  |
+| `rtls_landings` | `int` | No |  |
 | `serial` | `string` | No |  |
 | `status` | `string` | No |  |
 
@@ -285,7 +285,7 @@ fmt.Println(crew.GetName()) // "crew"
 | `agency` | `string` | No |  |
 | `id` | `string` | No |  |
 | `image` | `string` | No |  |
-| `launch` | `[]any` | No |  |
+| `launches` | `[]any` | No |  |
 | `name` | `string` | No |  |
 | `status` | `string` | No |  |
 | `wikipedia` | `string` | No |  |
@@ -351,13 +351,13 @@ fmt.Println(landpad.GetName()) // "landpad"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `detail` | `string` | No |  |
+| `details` | `string` | No |  |
 | `full_name` | `string` | No |  |
 | `id` | `string` | No |  |
-| `landing_attempt` | `int` | No |  |
-| `landing_success` | `int` | No |  |
+| `landing_attempts` | `int` | No |  |
+| `landing_successes` | `int` | No |  |
 | `latitude` | `float64` | No |  |
-| `launch` | `[]any` | No |  |
+| `launches` | `[]any` | No |  |
 | `locality` | `string` | No |  |
 | `longitude` | `float64` | No |  |
 | `name` | `string` | No |  |
@@ -428,33 +428,34 @@ fmt.Println(launch.GetName()) // "launch"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `auto_update` | `bool` | No |  |
-| `capsule` | `[]any` | No |  |
-| `core` | `[]any` | No |  |
+| `capsules` | `[]any` | No |  |
+| `core` | `string` | No |  |
+| `cores` | `[]any` | No |  |
 | `crew` | `[]any` | No |  |
 | `date_local` | `string` | No |  |
 | `date_precision` | `string` | No |  |
 | `date_unix` | `int` | No |  |
 | `date_utc` | `string` | No |  |
-| `detail` | `string` | No |  |
-| `failure` | `[]any` | No |  |
-| `fairing` | `map[string]any` | No |  |
+| `details` | `string` | No |  |
+| `failures` | `[]any` | No |  |
+| `fairings` | `map[string]any` | No |  |
 | `flight` | `int` | No |  |
 | `flight_number` | `int` | No |  |
-| `gridfin` | `bool` | No |  |
+| `gridfins` | `bool` | No |  |
 | `id` | `string` | No |  |
 | `landing_attempt` | `bool` | No |  |
 | `landing_success` | `bool` | No |  |
 | `landing_type` | `string` | No |  |
 | `landpad` | `string` | No |  |
 | `launchpad` | `string` | No |  |
-| `leg` | `bool` | No |  |
-| `link` | `map[string]any` | No |  |
+| `legs` | `bool` | No |  |
+| `links` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
 | `net` | `bool` | No |  |
-| `payload` | `[]any` | No |  |
+| `payloads` | `[]any` | No |  |
 | `reused` | `bool` | No |  |
 | `rocket` | `string` | No |  |
-| `ship` | `[]any` | No |  |
+| `ships` | `[]any` | No |  |
 | `static_fire_date_unix` | `int` | No |  |
 | `static_fire_date_utc` | `string` | No |  |
 | `success` | `bool` | No |  |
@@ -523,18 +524,18 @@ fmt.Println(launchpad.GetName()) // "launchpad"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `detail` | `string` | No |  |
+| `details` | `string` | No |  |
 | `full_name` | `string` | No |  |
 | `id` | `string` | No |  |
 | `latitude` | `float64` | No |  |
-| `launch` | `[]any` | No |  |
-| `launch_attempt` | `int` | No |  |
-| `launch_success` | `int` | No |  |
+| `launch_attempts` | `int` | No |  |
+| `launch_successes` | `int` | No |  |
+| `launches` | `[]any` | No |  |
 | `locality` | `string` | No |  |
 | `longitude` | `float64` | No |  |
 | `name` | `string` | No |  |
 | `region` | `string` | No |  |
-| `rocket` | `[]any` | No |  |
+| `rockets` | `[]any` | No |  |
 | `status` | `string` | No |  |
 
 ### Operations
@@ -600,22 +601,22 @@ fmt.Println(payload.GetName()) // "payload"
 | --- | --- | --- | --- |
 | `apoapsis_km` | `float64` | No |  |
 | `arg_of_pericenter` | `float64` | No |  |
-| `customer` | `[]any` | No |  |
+| `customers` | `[]any` | No |  |
 | `eccentricity` | `float64` | No |  |
 | `epoch` | `string` | No |  |
 | `id` | `string` | No |  |
 | `inclination_deg` | `float64` | No |  |
 | `launch` | `string` | No |  |
-| `lifespan_year` | `float64` | No |  |
+| `lifespan_years` | `float64` | No |  |
 | `longitude` | `float64` | No |  |
-| `manufacturer` | `[]any` | No |  |
+| `manufacturers` | `[]any` | No |  |
 | `mass_kg` | `float64` | No |  |
-| `mass_lb` | `float64` | No |  |
+| `mass_lbs` | `float64` | No |  |
 | `mean_anomaly` | `float64` | No |  |
 | `mean_motion` | `float64` | No |  |
 | `name` | `string` | No |  |
-| `nationality` | `[]any` | No |  |
-| `norad_id` | `[]any` | No |  |
+| `nationalities` | `[]any` | No |  |
+| `norad_ids` | `[]any` | No |  |
 | `orbit` | `string` | No |  |
 | `periapsis_km` | `float64` | No |  |
 | `period_min` | `float64` | No |  |
@@ -688,18 +689,18 @@ fmt.Println(roadster.GetName()) // "roadster"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `apoapsis_au` | `float64` | No |  |
-| `detail` | `string` | No |  |
+| `details` | `string` | No |  |
 | `earth_distance_km` | `float64` | No |  |
 | `earth_distance_mi` | `float64` | No |  |
 | `eccentricity` | `float64` | No |  |
 | `epoch_jd` | `float64` | No |  |
-| `flickr_image` | `[]any` | No |  |
+| `flickr_images` | `[]any` | No |  |
 | `id` | `string` | No |  |
 | `inclination` | `float64` | No |  |
 | `launch_date_unix` | `int` | No |  |
 | `launch_date_utc` | `string` | No |  |
 | `launch_mass_kg` | `int` | No |  |
-| `launch_mass_lb` | `int` | No |  |
+| `launch_mass_lbs` | `int` | No |  |
 | `longitude` | `float64` | No |  |
 | `mars_distance_km` | `float64` | No |  |
 | `mars_distance_mi` | `float64` | No |  |
@@ -708,7 +709,7 @@ fmt.Println(roadster.GetName()) // "roadster"
 | `orbit_type` | `string` | No |  |
 | `periapsis_arg` | `float64` | No |  |
 | `periapsis_au` | `float64` | No |  |
-| `period_day` | `float64` | No |  |
+| `period_days` | `float64` | No |  |
 | `semi_major_axis_au` | `float64` | No |  |
 | `speed_kph` | `float64` | No |  |
 | `speed_mph` | `float64` | No |  |
@@ -765,19 +766,19 @@ fmt.Println(rocket.GetName()) // "rocket"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `active` | `bool` | No |  |
-| `booster` | `int` | No |  |
+| `boosters` | `int` | No |  |
 | `company` | `string` | No |  |
 | `cost_per_launch` | `int` | No |  |
 | `country` | `string` | No |  |
 | `description` | `string` | No |  |
 | `diameter` | `map[string]any` | No |  |
 | `first_flight` | `string` | No |  |
-| `flickr_image` | `[]any` | No |  |
+| `flickr_images` | `[]any` | No |  |
 | `height` | `map[string]any` | No |  |
 | `id` | `string` | No |  |
 | `mass` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
-| `stage` | `int` | No |  |
+| `stages` | `int` | No |  |
 | `success_rate_pct` | `float64` | No |  |
 | `type` | `string` | No |  |
 | `wikipedia` | `string` | No |  |
@@ -852,16 +853,16 @@ fmt.Println(ship.GetName()) // "ship"
 | `imo` | `int` | No |  |
 | `last_ais_update` | `string` | No |  |
 | `latitude` | `float64` | No |  |
-| `launch` | `[]any` | No |  |
+| `launches` | `[]any` | No |  |
 | `legacy_id` | `string` | No |  |
 | `link` | `string` | No |  |
 | `longitude` | `float64` | No |  |
 | `mass_kg` | `int` | No |  |
-| `mass_lb` | `int` | No |  |
+| `mass_lbs` | `int` | No |  |
 | `mmsi` | `int` | No |  |
 | `model` | `string` | No |  |
 | `name` | `string` | No |  |
-| `role` | `[]any` | No |  |
+| `roles` | `[]any` | No |  |
 | `speed_kn` | `float64` | No |  |
 | `status` | `string` | No |  |
 | `type` | `string` | No |  |
@@ -933,8 +934,8 @@ fmt.Println(starlink.GetName()) // "starlink"
 | `latitude` | `float64` | No |  |
 | `launch` | `string` | No |  |
 | `longitude` | `float64` | No |  |
-| `space_track` | `map[string]any` | No |  |
-| `velocity_km` | `float64` | No |  |
+| `spaceTrack` | `map[string]any` | No |  |
+| `velocity_kms` | `float64` | No |  |
 | `version` | `string` | No |  |
 
 ### Operations

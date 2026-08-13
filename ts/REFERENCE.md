@@ -237,14 +237,14 @@ const capsule = client.Capsule()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `string` | No |  |
-| `land_landing` | `number` | No |  |
+| `land_landings` | `number` | No |  |
 | `last_update` | `string` | No |  |
-| `launch` | `any[]` | No |  |
+| `launches` | `any[]` | No |  |
 | `reuse_count` | `number` | No |  |
 | `serial` | `string` | No |  |
 | `status` | `string` | No |  |
 | `type` | `string` | No |  |
-| `water_landing` | `number` | No |  |
+| `water_landings` | `number` | No |  |
 
 ### Operations
 
@@ -302,15 +302,15 @@ const core = client.Core()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asds_attempt` | `number` | No |  |
-| `asds_landing` | `number` | No |  |
+| `asds_attempts` | `number` | No |  |
+| `asds_landings` | `number` | No |  |
 | `block` | `number` | No |  |
 | `id` | `string` | No |  |
 | `last_update` | `string` | No |  |
-| `launch` | `any[]` | No |  |
+| `launches` | `any[]` | No |  |
 | `reuse_count` | `number` | No |  |
-| `rtls_attempt` | `number` | No |  |
-| `rtls_landing` | `number` | No |  |
+| `rtls_attempts` | `number` | No |  |
+| `rtls_landings` | `number` | No |  |
 | `serial` | `string` | No |  |
 | `status` | `string` | No |  |
 
@@ -373,7 +373,7 @@ const crew = client.Crew()
 | `agency` | `string` | No |  |
 | `id` | `string` | No |  |
 | `image` | `string` | No |  |
-| `launch` | `any[]` | No |  |
+| `launches` | `any[]` | No |  |
 | `name` | `string` | No |  |
 | `status` | `string` | No |  |
 | `wikipedia` | `string` | No |  |
@@ -434,13 +434,13 @@ const landpad = client.Landpad()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `detail` | `string` | No |  |
+| `details` | `string` | No |  |
 | `full_name` | `string` | No |  |
 | `id` | `string` | No |  |
-| `landing_attempt` | `number` | No |  |
-| `landing_success` | `number` | No |  |
+| `landing_attempts` | `number` | No |  |
+| `landing_successes` | `number` | No |  |
 | `latitude` | `number` | No |  |
-| `launch` | `any[]` | No |  |
+| `launches` | `any[]` | No |  |
 | `locality` | `string` | No |  |
 | `longitude` | `number` | No |  |
 | `name` | `string` | No |  |
@@ -506,39 +506,62 @@ const launch = client.Launch()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `auto_update` | `boolean` | No |  |
-| `capsule` | `any[]` | No |  |
-| `core` | `any[]` | No |  |
+| `capsules` | `any[]` | No |  |
+| `core` | `string` | No |  |
+| `cores` | `any[]` | No |  |
 | `crew` | `any[]` | No |  |
 | `date_local` | `string` | No |  |
 | `date_precision` | `string` | No |  |
 | `date_unix` | `number` | No |  |
 | `date_utc` | `string` | No |  |
-| `detail` | `string` | No |  |
-| `failure` | `any[]` | No |  |
-| `fairing` | `Record<string, any>` | No |  |
+| `details` | `string` | No |  |
+| `failures` | `any[]` | No |  |
+| `fairings` | `Record<string, any>` | No |  |
 | `flight` | `number` | No |  |
 | `flight_number` | `number` | No |  |
-| `gridfin` | `boolean` | No |  |
+| `gridfins` | `boolean` | No |  |
 | `id` | `string` | No |  |
 | `landing_attempt` | `boolean` | No |  |
 | `landing_success` | `boolean` | No |  |
 | `landing_type` | `string` | No |  |
 | `landpad` | `string` | No |  |
 | `launchpad` | `string` | No |  |
-| `leg` | `boolean` | No |  |
-| `link` | `Record<string, any>` | No |  |
+| `legs` | `boolean` | No |  |
+| `links` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
 | `net` | `boolean` | No |  |
-| `payload` | `any[]` | No |  |
+| `payloads` | `any[]` | No |  |
 | `reused` | `boolean` | No |  |
 | `rocket` | `string` | No |  |
-| `ship` | `any[]` | No |  |
+| `ships` | `any[]` | No |  |
 | `static_fire_date_unix` | `number` | No |  |
 | `static_fire_date_utc` | `string` | No |  |
 | `success` | `boolean` | No |  |
 | `tdb` | `boolean` | No |  |
 | `upcoming` | `boolean` | No |  |
 | `window` | `number` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `latest` | `/launches/latest` | `client.Launch().list({ $action: 'latest', ... })` |
+| `past` | `/launches/past` | `client.Launch().list({ $action: 'past', ... })` |
+| `upcoming` | `/launches/upcoming` | `client.Launch().list({ $action: 'upcoming', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Launch record — check the API definition for its shape.
+
+```ts
+const result = await client.Launch().list({
+  $action: 'latest',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -596,18 +619,18 @@ const launchpad = client.Launchpad()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `detail` | `string` | No |  |
+| `details` | `string` | No |  |
 | `full_name` | `string` | No |  |
 | `id` | `string` | No |  |
 | `latitude` | `number` | No |  |
-| `launch` | `any[]` | No |  |
-| `launch_attempt` | `number` | No |  |
-| `launch_success` | `number` | No |  |
+| `launch_attempts` | `number` | No |  |
+| `launch_successes` | `number` | No |  |
+| `launches` | `any[]` | No |  |
 | `locality` | `string` | No |  |
 | `longitude` | `number` | No |  |
 | `name` | `string` | No |  |
 | `region` | `string` | No |  |
-| `rocket` | `any[]` | No |  |
+| `rockets` | `any[]` | No |  |
 | `status` | `string` | No |  |
 
 ### Operations
@@ -668,22 +691,22 @@ const payload = client.Payload()
 | --- | --- | --- | --- |
 | `apoapsis_km` | `number` | No |  |
 | `arg_of_pericenter` | `number` | No |  |
-| `customer` | `any[]` | No |  |
+| `customers` | `any[]` | No |  |
 | `eccentricity` | `number` | No |  |
 | `epoch` | `string` | No |  |
 | `id` | `string` | No |  |
 | `inclination_deg` | `number` | No |  |
 | `launch` | `string` | No |  |
-| `lifespan_year` | `number` | No |  |
+| `lifespan_years` | `number` | No |  |
 | `longitude` | `number` | No |  |
-| `manufacturer` | `any[]` | No |  |
+| `manufacturers` | `any[]` | No |  |
 | `mass_kg` | `number` | No |  |
-| `mass_lb` | `number` | No |  |
+| `mass_lbs` | `number` | No |  |
 | `mean_anomaly` | `number` | No |  |
 | `mean_motion` | `number` | No |  |
 | `name` | `string` | No |  |
-| `nationality` | `any[]` | No |  |
-| `norad_id` | `any[]` | No |  |
+| `nationalities` | `any[]` | No |  |
+| `norad_ids` | `any[]` | No |  |
 | `orbit` | `string` | No |  |
 | `periapsis_km` | `number` | No |  |
 | `period_min` | `number` | No |  |
@@ -751,18 +774,18 @@ const roadster = client.Roadster()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `apoapsis_au` | `number` | No |  |
-| `detail` | `string` | No |  |
+| `details` | `string` | No |  |
 | `earth_distance_km` | `number` | No |  |
 | `earth_distance_mi` | `number` | No |  |
 | `eccentricity` | `number` | No |  |
 | `epoch_jd` | `number` | No |  |
-| `flickr_image` | `any[]` | No |  |
+| `flickr_images` | `any[]` | No |  |
 | `id` | `string` | No |  |
 | `inclination` | `number` | No |  |
 | `launch_date_unix` | `number` | No |  |
 | `launch_date_utc` | `string` | No |  |
 | `launch_mass_kg` | `number` | No |  |
-| `launch_mass_lb` | `number` | No |  |
+| `launch_mass_lbs` | `number` | No |  |
 | `longitude` | `number` | No |  |
 | `mars_distance_km` | `number` | No |  |
 | `mars_distance_mi` | `number` | No |  |
@@ -771,7 +794,7 @@ const roadster = client.Roadster()
 | `orbit_type` | `string` | No |  |
 | `periapsis_arg` | `number` | No |  |
 | `periapsis_au` | `number` | No |  |
-| `period_day` | `number` | No |  |
+| `period_days` | `number` | No |  |
 | `semi_major_axis_au` | `number` | No |  |
 | `speed_kph` | `number` | No |  |
 | `speed_mph` | `number` | No |  |
@@ -827,19 +850,19 @@ const rocket = client.Rocket()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `active` | `boolean` | No |  |
-| `booster` | `number` | No |  |
+| `boosters` | `number` | No |  |
 | `company` | `string` | No |  |
 | `cost_per_launch` | `number` | No |  |
 | `country` | `string` | No |  |
 | `description` | `string` | No |  |
 | `diameter` | `Record<string, any>` | No |  |
 | `first_flight` | `string` | No |  |
-| `flickr_image` | `any[]` | No |  |
+| `flickr_images` | `any[]` | No |  |
 | `height` | `Record<string, any>` | No |  |
 | `id` | `string` | No |  |
 | `mass` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
-| `stage` | `number` | No |  |
+| `stages` | `number` | No |  |
 | `success_rate_pct` | `number` | No |  |
 | `type` | `string` | No |  |
 | `wikipedia` | `string` | No |  |
@@ -909,16 +932,16 @@ const ship = client.Ship()
 | `imo` | `number` | No |  |
 | `last_ais_update` | `string` | No |  |
 | `latitude` | `number` | No |  |
-| `launch` | `any[]` | No |  |
+| `launches` | `any[]` | No |  |
 | `legacy_id` | `string` | No |  |
 | `link` | `string` | No |  |
 | `longitude` | `number` | No |  |
 | `mass_kg` | `number` | No |  |
-| `mass_lb` | `number` | No |  |
+| `mass_lbs` | `number` | No |  |
 | `mmsi` | `number` | No |  |
 | `model` | `string` | No |  |
 | `name` | `string` | No |  |
-| `role` | `any[]` | No |  |
+| `roles` | `any[]` | No |  |
 | `speed_kn` | `number` | No |  |
 | `status` | `string` | No |  |
 | `type` | `string` | No |  |
@@ -985,8 +1008,8 @@ const starlink = client.Starlink()
 | `latitude` | `number` | No |  |
 | `launch` | `string` | No |  |
 | `longitude` | `number` | No |  |
-| `space_track` | `Record<string, any>` | No |  |
-| `velocity_km` | `number` | No |  |
+| `spaceTrack` | `Record<string, any>` | No |  |
+| `velocity_kms` | `number` | No |  |
 | `version` | `string` | No |  |
 
 ### Operations

@@ -62,7 +62,7 @@ class CoreEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set SPACEXREST_TEST_CORE_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set SPACEX_REST_TEST_CORE_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -87,7 +87,7 @@ class CoreEntityTest < Minitest::Test
       "id" => core_ref01_data["id"],
     }
     core_ref01_data_dt0_loaded = core_ref01_ent.load(core_ref01_match_dt0, nil)
-    core_ref01_data_dt0_load_result = Helpers.to_map(core_ref01_data_dt0_loaded)
+    core_ref01_data_dt0_load_result = Helpers.to_map(core_ref01_data_dt0_loaded.respond_to?(:data_get) ? core_ref01_data_dt0_loaded.data_get : core_ref01_data_dt0_loaded)
     assert !core_ref01_data_dt0_load_result.nil?
     assert_equal core_ref01_data_dt0_load_result["id"], core_ref01_data["id"]
 
@@ -120,22 +120,22 @@ def core_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["SPACEXREST_TEST_CORE_ENTID"]
+  entid_env_raw = ENV["SPACEX_REST_TEST_CORE_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "SPACEXREST_TEST_CORE_ENTID" => idmap,
-    "SPACEXREST_TEST_LIVE" => "FALSE",
-    "SPACEXREST_TEST_EXPLAIN" => "FALSE",
+    "SPACEX_REST_TEST_CORE_ENTID" => idmap,
+    "SPACEX_REST_TEST_LIVE" => "FALSE",
+    "SPACEX_REST_TEST_EXPLAIN" => "FALSE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["SPACEXREST_TEST_CORE_ENTID"])
+    env["SPACEX_REST_TEST_CORE_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["SPACEXREST_TEST_LIVE"] == "TRUE"
+  if env["SPACEX_REST_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
       },
@@ -144,13 +144,13 @@ def core_basic_setup(extra)
     client = SpacexRestSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["SPACEXREST_TEST_LIVE"] == "TRUE"
+  live = env["SPACEX_REST_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["SPACEXREST_TEST_EXPLAIN"] == "TRUE",
+    explain: env["SPACEX_REST_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

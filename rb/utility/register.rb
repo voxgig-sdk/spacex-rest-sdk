@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ SpacexRestUtility.registrar = ->(u) {
   u.prepare_params = SpacexRestUtilities::PrepareParams
   u.prepare_path = SpacexRestUtilities::PreparePath
   u.prepare_query = SpacexRestUtilities::PrepareQuery
+  u.graphql_body = SpacexRestUtilities::GraphqlBody
+  u.graphql_errors = SpacexRestUtilities::GraphqlErrors
   u.result_basic = SpacexRestUtilities::ResultBasic
   u.result_body = SpacexRestUtilities::ResultBody
   u.result_headers = SpacexRestUtilities::ResultHeaders

@@ -114,11 +114,11 @@ def core_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "SPACEXREST_TEST_CORE_ENTID" => {},
-    "SPACEXREST_TEST_LIVE" => "FALSE",
+    "SPACEX_REST_TEST_CORE_ENTID" => {},
+    "SPACEX_REST_TEST_LIVE" => "FALSE",
   })
 
-  live = env["SPACEXREST_TEST_LIVE"] == "TRUE"
+  live = env["SPACEX_REST_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

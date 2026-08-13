@@ -131,14 +131,14 @@ local capsule = client:Capsule(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `string` | No |  |
-| `land_landing` | `number` | No |  |
+| `land_landings` | `number` | No |  |
 | `last_update` | `string` | No |  |
-| `launch` | `table` | No |  |
+| `launches` | `table` | No |  |
 | `reuse_count` | `number` | No |  |
 | `serial` | `string` | No |  |
 | `status` | `string` | No |  |
 | `type` | `string` | No |  |
-| `water_landing` | `number` | No |  |
+| `water_landings` | `number` | No |  |
 
 ### Operations
 
@@ -198,15 +198,15 @@ local core = client:Core(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asds_attempt` | `number` | No |  |
-| `asds_landing` | `number` | No |  |
+| `asds_attempts` | `number` | No |  |
+| `asds_landings` | `number` | No |  |
 | `block` | `number` | No |  |
 | `id` | `string` | No |  |
 | `last_update` | `string` | No |  |
-| `launch` | `table` | No |  |
+| `launches` | `table` | No |  |
 | `reuse_count` | `number` | No |  |
-| `rtls_attempt` | `number` | No |  |
-| `rtls_landing` | `number` | No |  |
+| `rtls_attempts` | `number` | No |  |
+| `rtls_landings` | `number` | No |  |
 | `serial` | `string` | No |  |
 | `status` | `string` | No |  |
 
@@ -271,7 +271,7 @@ local crew = client:Crew(nil)
 | `agency` | `string` | No |  |
 | `id` | `string` | No |  |
 | `image` | `string` | No |  |
-| `launch` | `table` | No |  |
+| `launches` | `table` | No |  |
 | `name` | `string` | No |  |
 | `status` | `string` | No |  |
 | `wikipedia` | `string` | No |  |
@@ -334,13 +334,13 @@ local landpad = client:Landpad(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `detail` | `string` | No |  |
+| `details` | `string` | No |  |
 | `full_name` | `string` | No |  |
 | `id` | `string` | No |  |
-| `landing_attempt` | `number` | No |  |
-| `landing_success` | `number` | No |  |
+| `landing_attempts` | `number` | No |  |
+| `landing_successes` | `number` | No |  |
 | `latitude` | `number` | No |  |
-| `launch` | `table` | No |  |
+| `launches` | `table` | No |  |
 | `locality` | `string` | No |  |
 | `longitude` | `number` | No |  |
 | `name` | `string` | No |  |
@@ -408,33 +408,34 @@ local launch = client:Launch(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `auto_update` | `boolean` | No |  |
-| `capsule` | `table` | No |  |
-| `core` | `table` | No |  |
+| `capsules` | `table` | No |  |
+| `core` | `string` | No |  |
+| `cores` | `table` | No |  |
 | `crew` | `table` | No |  |
 | `date_local` | `string` | No |  |
 | `date_precision` | `string` | No |  |
 | `date_unix` | `number` | No |  |
 | `date_utc` | `string` | No |  |
-| `detail` | `string` | No |  |
-| `failure` | `table` | No |  |
-| `fairing` | `table` | No |  |
+| `details` | `string` | No |  |
+| `failures` | `table` | No |  |
+| `fairings` | `table` | No |  |
 | `flight` | `number` | No |  |
 | `flight_number` | `number` | No |  |
-| `gridfin` | `boolean` | No |  |
+| `gridfins` | `boolean` | No |  |
 | `id` | `string` | No |  |
 | `landing_attempt` | `boolean` | No |  |
 | `landing_success` | `boolean` | No |  |
 | `landing_type` | `string` | No |  |
 | `landpad` | `string` | No |  |
 | `launchpad` | `string` | No |  |
-| `leg` | `boolean` | No |  |
-| `link` | `table` | No |  |
+| `legs` | `boolean` | No |  |
+| `links` | `table` | No |  |
 | `name` | `string` | No |  |
 | `net` | `boolean` | No |  |
-| `payload` | `table` | No |  |
+| `payloads` | `table` | No |  |
 | `reused` | `boolean` | No |  |
 | `rocket` | `string` | No |  |
-| `ship` | `table` | No |  |
+| `ships` | `table` | No |  |
 | `static_fire_date_unix` | `number` | No |  |
 | `static_fire_date_utc` | `string` | No |  |
 | `success` | `boolean` | No |  |
@@ -500,18 +501,18 @@ local launchpad = client:Launchpad(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `detail` | `string` | No |  |
+| `details` | `string` | No |  |
 | `full_name` | `string` | No |  |
 | `id` | `string` | No |  |
 | `latitude` | `number` | No |  |
-| `launch` | `table` | No |  |
-| `launch_attempt` | `number` | No |  |
-| `launch_success` | `number` | No |  |
+| `launch_attempts` | `number` | No |  |
+| `launch_successes` | `number` | No |  |
+| `launches` | `table` | No |  |
 | `locality` | `string` | No |  |
 | `longitude` | `number` | No |  |
 | `name` | `string` | No |  |
 | `region` | `string` | No |  |
-| `rocket` | `table` | No |  |
+| `rockets` | `table` | No |  |
 | `status` | `string` | No |  |
 
 ### Operations
@@ -574,22 +575,22 @@ local payload = client:Payload(nil)
 | --- | --- | --- | --- |
 | `apoapsis_km` | `number` | No |  |
 | `arg_of_pericenter` | `number` | No |  |
-| `customer` | `table` | No |  |
+| `customers` | `table` | No |  |
 | `eccentricity` | `number` | No |  |
 | `epoch` | `string` | No |  |
 | `id` | `string` | No |  |
 | `inclination_deg` | `number` | No |  |
 | `launch` | `string` | No |  |
-| `lifespan_year` | `number` | No |  |
+| `lifespan_years` | `number` | No |  |
 | `longitude` | `number` | No |  |
-| `manufacturer` | `table` | No |  |
+| `manufacturers` | `table` | No |  |
 | `mass_kg` | `number` | No |  |
-| `mass_lb` | `number` | No |  |
+| `mass_lbs` | `number` | No |  |
 | `mean_anomaly` | `number` | No |  |
 | `mean_motion` | `number` | No |  |
 | `name` | `string` | No |  |
-| `nationality` | `table` | No |  |
-| `norad_id` | `table` | No |  |
+| `nationalities` | `table` | No |  |
+| `norad_ids` | `table` | No |  |
 | `orbit` | `string` | No |  |
 | `periapsis_km` | `number` | No |  |
 | `period_min` | `number` | No |  |
@@ -659,18 +660,18 @@ local roadster = client:Roadster(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `apoapsis_au` | `number` | No |  |
-| `detail` | `string` | No |  |
+| `details` | `string` | No |  |
 | `earth_distance_km` | `number` | No |  |
 | `earth_distance_mi` | `number` | No |  |
 | `eccentricity` | `number` | No |  |
 | `epoch_jd` | `number` | No |  |
-| `flickr_image` | `table` | No |  |
+| `flickr_images` | `table` | No |  |
 | `id` | `string` | No |  |
 | `inclination` | `number` | No |  |
 | `launch_date_unix` | `number` | No |  |
 | `launch_date_utc` | `string` | No |  |
 | `launch_mass_kg` | `number` | No |  |
-| `launch_mass_lb` | `number` | No |  |
+| `launch_mass_lbs` | `number` | No |  |
 | `longitude` | `number` | No |  |
 | `mars_distance_km` | `number` | No |  |
 | `mars_distance_mi` | `number` | No |  |
@@ -679,7 +680,7 @@ local roadster = client:Roadster(nil)
 | `orbit_type` | `string` | No |  |
 | `periapsis_arg` | `number` | No |  |
 | `periapsis_au` | `number` | No |  |
-| `period_day` | `number` | No |  |
+| `period_days` | `number` | No |  |
 | `semi_major_axis_au` | `number` | No |  |
 | `speed_kph` | `number` | No |  |
 | `speed_mph` | `number` | No |  |
@@ -737,19 +738,19 @@ local rocket = client:Rocket(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `active` | `boolean` | No |  |
-| `booster` | `number` | No |  |
+| `boosters` | `number` | No |  |
 | `company` | `string` | No |  |
 | `cost_per_launch` | `number` | No |  |
 | `country` | `string` | No |  |
 | `description` | `string` | No |  |
 | `diameter` | `table` | No |  |
 | `first_flight` | `string` | No |  |
-| `flickr_image` | `table` | No |  |
+| `flickr_images` | `table` | No |  |
 | `height` | `table` | No |  |
 | `id` | `string` | No |  |
 | `mass` | `table` | No |  |
 | `name` | `string` | No |  |
-| `stage` | `number` | No |  |
+| `stages` | `number` | No |  |
 | `success_rate_pct` | `number` | No |  |
 | `type` | `string` | No |  |
 | `wikipedia` | `string` | No |  |
@@ -821,16 +822,16 @@ local ship = client:Ship(nil)
 | `imo` | `number` | No |  |
 | `last_ais_update` | `string` | No |  |
 | `latitude` | `number` | No |  |
-| `launch` | `table` | No |  |
+| `launches` | `table` | No |  |
 | `legacy_id` | `string` | No |  |
 | `link` | `string` | No |  |
 | `longitude` | `number` | No |  |
 | `mass_kg` | `number` | No |  |
-| `mass_lb` | `number` | No |  |
+| `mass_lbs` | `number` | No |  |
 | `mmsi` | `number` | No |  |
 | `model` | `string` | No |  |
 | `name` | `string` | No |  |
-| `role` | `table` | No |  |
+| `roles` | `table` | No |  |
 | `speed_kn` | `number` | No |  |
 | `status` | `string` | No |  |
 | `type` | `string` | No |  |
@@ -899,8 +900,8 @@ local starlink = client:Starlink(nil)
 | `latitude` | `number` | No |  |
 | `launch` | `string` | No |  |
 | `longitude` | `number` | No |  |
-| `space_track` | `table` | No |  |
-| `velocity_km` | `number` | No |  |
+| `spaceTrack` | `table` | No |  |
+| `velocity_kms` | `number` | No |  |
 | `version` | `string` | No |  |
 
 ### Operations

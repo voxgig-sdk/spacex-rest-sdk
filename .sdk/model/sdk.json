@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "capsule": {
           "active": true,
@@ -33,7 +38,7 @@
             },
             {
               "active": true,
-              "name": "land_landing",
+              "name": "land_landings",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -45,7 +50,7 @@
             },
             {
               "active": true,
-              "name": "launch",
+              "name": "launches",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -75,7 +80,7 @@
             },
             {
               "active": true,
-              "name": "water_landing",
+              "name": "water_landings",
               "req": false,
               "type": "`$INTEGER`"
             }
@@ -93,6 +98,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/capsules",
                   "parts": [
@@ -124,6 +130,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/capsules/{id}",
                   "parts": [
@@ -155,13 +162,13 @@
           "fields": [
             {
               "active": true,
-              "name": "asds_attempt",
+              "name": "asds_attempts",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "asds_landing",
+              "name": "asds_landings",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -185,7 +192,7 @@
             },
             {
               "active": true,
-              "name": "launch",
+              "name": "launches",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -197,13 +204,13 @@
             },
             {
               "active": true,
-              "name": "rtls_attempt",
+              "name": "rtls_attempts",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "rtls_landing",
+              "name": "rtls_landings",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -233,6 +240,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/cores",
                   "parts": [
@@ -264,6 +272,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/cores/{id}",
                   "parts": [
@@ -313,7 +322,7 @@
             },
             {
               "active": true,
-              "name": "launch",
+              "name": "launches",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -349,6 +358,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/crew",
                   "parts": [
@@ -380,6 +390,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/crew/{id}",
                   "parts": [
@@ -411,7 +422,7 @@
           "fields": [
             {
               "active": true,
-              "name": "detail",
+              "name": "details",
               "req": false,
               "type": "`$STRING`"
             },
@@ -429,13 +440,13 @@
             },
             {
               "active": true,
-              "name": "landing_attempt",
+              "name": "landing_attempts",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "landing_success",
+              "name": "landing_successes",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -447,7 +458,7 @@
             },
             {
               "active": true,
-              "name": "launch",
+              "name": "launches",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -507,6 +518,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/landpads",
                   "parts": [
@@ -538,6 +550,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/landpads/{id}",
                   "parts": [
@@ -575,13 +588,19 @@
             },
             {
               "active": true,
-              "name": "capsule",
+              "name": "capsules",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "core",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "cores",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -617,19 +636,19 @@
             },
             {
               "active": true,
-              "name": "detail",
+              "name": "details",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "failure",
+              "name": "failures",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "fairing",
+              "name": "fairings",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -647,7 +666,7 @@
             },
             {
               "active": true,
-              "name": "gridfin",
+              "name": "gridfins",
               "req": false,
               "type": "`$BOOLEAN`"
             },
@@ -689,13 +708,13 @@
             },
             {
               "active": true,
-              "name": "leg",
+              "name": "legs",
               "req": false,
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
-              "name": "link",
+              "name": "links",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -713,7 +732,7 @@
             },
             {
               "active": true,
-              "name": "payload",
+              "name": "payloads",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -731,7 +750,7 @@
             },
             {
               "active": true,
-              "name": "ship",
+              "name": "ships",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -785,6 +804,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/launches",
                   "parts": [
@@ -799,6 +819,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/launches/latest",
                   "parts": [
@@ -816,6 +837,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/launches/past",
                   "parts": [
@@ -833,6 +855,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/launches/upcoming",
                   "parts": [
@@ -867,6 +890,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/launches/{id}",
                   "parts": [
@@ -898,7 +922,7 @@
           "fields": [
             {
               "active": true,
-              "name": "detail",
+              "name": "details",
               "req": false,
               "type": "`$STRING`"
             },
@@ -922,21 +946,21 @@
             },
             {
               "active": true,
-              "name": "launch",
+              "name": "launch_attempts",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "launch_successes",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "launches",
               "req": false,
               "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "launch_attempt",
-              "req": false,
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "launch_success",
-              "req": false,
-              "type": "`$INTEGER`"
             },
             {
               "active": true,
@@ -964,7 +988,7 @@
             },
             {
               "active": true,
-              "name": "rocket",
+              "name": "rockets",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -988,6 +1012,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/launchpads",
                   "parts": [
@@ -1019,6 +1044,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/launchpads/{id}",
                   "parts": [
@@ -1062,7 +1088,7 @@
             },
             {
               "active": true,
-              "name": "customer",
+              "name": "customers",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -1098,7 +1124,7 @@
             },
             {
               "active": true,
-              "name": "lifespan_year",
+              "name": "lifespan_years",
               "req": false,
               "type": "`$NUMBER`"
             },
@@ -1110,7 +1136,7 @@
             },
             {
               "active": true,
-              "name": "manufacturer",
+              "name": "manufacturers",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -1122,7 +1148,7 @@
             },
             {
               "active": true,
-              "name": "mass_lb",
+              "name": "mass_lbs",
               "req": false,
               "type": "`$NUMBER`"
             },
@@ -1146,13 +1172,13 @@
             },
             {
               "active": true,
-              "name": "nationality",
+              "name": "nationalities",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "norad_id",
+              "name": "norad_ids",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -1224,6 +1250,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/payloads",
                   "parts": [
@@ -1255,6 +1282,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/payloads/{id}",
                   "parts": [
@@ -1292,7 +1320,7 @@
             },
             {
               "active": true,
-              "name": "detail",
+              "name": "details",
               "req": false,
               "type": "`$STRING`"
             },
@@ -1322,7 +1350,7 @@
             },
             {
               "active": true,
-              "name": "flickr_image",
+              "name": "flickr_images",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -1358,7 +1386,7 @@
             },
             {
               "active": true,
-              "name": "launch_mass_lb",
+              "name": "launch_mass_lbs",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -1412,7 +1440,7 @@
             },
             {
               "active": true,
-              "name": "period_day",
+              "name": "period_days",
               "req": false,
               "type": "`$NUMBER`"
             },
@@ -1460,6 +1488,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/roadster",
                   "parts": [
@@ -1468,7 +1497,7 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.flickr_images`"
                   }
                 }
               ]
@@ -1492,7 +1521,7 @@
             },
             {
               "active": true,
-              "name": "booster",
+              "name": "boosters",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -1534,7 +1563,7 @@
             },
             {
               "active": true,
-              "name": "flickr_image",
+              "name": "flickr_images",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -1564,7 +1593,7 @@
             },
             {
               "active": true,
-              "name": "stage",
+              "name": "stages",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -1600,6 +1629,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/rockets",
                   "parts": [
@@ -1631,6 +1661,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/rockets/{id}",
                   "parts": [
@@ -1716,7 +1747,7 @@
             },
             {
               "active": true,
-              "name": "launch",
+              "name": "launches",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -1746,7 +1777,7 @@
             },
             {
               "active": true,
-              "name": "mass_lb",
+              "name": "mass_lbs",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -1770,7 +1801,7 @@
             },
             {
               "active": true,
-              "name": "role",
+              "name": "roles",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -1812,6 +1843,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/ships",
                   "parts": [
@@ -1843,6 +1875,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/ships/{id}",
                   "parts": [
@@ -1904,13 +1937,13 @@
             },
             {
               "active": true,
-              "name": "space_track",
+              "name": "spaceTrack",
               "req": false,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "velocity_km",
+              "name": "velocity_kms",
               "req": false,
               "type": "`$NUMBER`"
             },
@@ -1934,6 +1967,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/starlink",
                   "parts": [
@@ -1965,6 +1999,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/starlink/{id}",
                   "parts": [
@@ -1978,7 +2013,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.spaceTrack`"
                   }
                 }
               ]
@@ -2613,18 +2648,41 @@
         "website": "https://spacexdata.com"
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "spacex-rest"
+            "goversion": "",
+            "name": "spacex-rest",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2646,22 +2704,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "spacex-rest"
+            "goversion": "",
+            "name": "spacex-rest",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -2700,21 +2776,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "spacex-rest"
+            "goversion": "",
+            "name": "spacex-rest",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -2753,12 +2847,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -2770,10 +2869,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "spacex-rest"
+            "goversion": "",
+            "name": "spacex-rest",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2795,22 +2907,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "spacex-rest"
+            "goversion": "",
+            "name": "spacex-rest",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2832,13 +2962,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -2850,10 +2985,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "spacex-rest"
+            "goversion": "",
+            "name": "spacex-rest",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2875,13 +3023,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -2898,10 +3051,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "spacex-rest"
+            "goversion": "",
+            "name": "spacex-rest",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2923,13 +3089,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -2952,10 +3123,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "spacex-rest"
+            "goversion": "",
+            "name": "spacex-rest",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2977,9 +3161,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

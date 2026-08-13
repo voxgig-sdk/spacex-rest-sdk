@@ -23,8 +23,8 @@ module SpacexRestTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("SPACEXREST_TEST_LIVE")
-    override = getenv("SPACEXREST_TEST_OVERRIDE")
+    live = getenv("SPACEX_REST_TEST_LIVE")
+    override = getenv("SPACEX_REST_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module SpacexRestTestRunner
       end
     end
 
-    explain = getenv("SPACEXREST_TEST_EXPLAIN")
-    m["SPACEXREST_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("SPACEX_REST_TEST_EXPLAIN")
+    m["SPACEX_REST_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

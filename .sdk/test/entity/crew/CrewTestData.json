@@ -5,7 +5,7 @@
         "agency": "s46",
         "id": "CREW00",
         "image": "s48",
-        "launch": [],
+        "launches": [],
         "name": "s4a",
         "status": "s4b",
         "wikipedia": "s4c"
@@ -14,7 +14,7 @@
         "agency": "s8c",
         "id": "CREW01",
         "image": "s8e",
-        "launch": [],
+        "launches": [],
         "name": "s90",
         "status": "s91",
         "wikipedia": "s92"
@@ -23,7 +23,7 @@
         "agency": "sd2",
         "id": "CREW02",
         "image": "sd4",
-        "launch": [],
+        "launches": [],
         "name": "sd6",
         "status": "sd7",
         "wikipedia": "sd8"
@@ -35,7 +35,7 @@
       "crew_ref01": {
         "agency": "s118",
         "image": "s11a",
-        "launch": [],
+        "launches": [],
         "name": "s11c",
         "status": "s11d",
         "wikipedia": "s11e"

@@ -128,14 +128,14 @@ capsule = client.Capsule()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `str` | No |  |
-| `land_landing` | `int` | No |  |
+| `land_landings` | `int` | No |  |
 | `last_update` | `str` | No |  |
-| `launch` | `list` | No |  |
+| `launches` | `list` | No |  |
 | `reuse_count` | `int` | No |  |
 | `serial` | `str` | No |  |
 | `status` | `str` | No |  |
 | `type` | `str` | No |  |
-| `water_landing` | `int` | No |  |
+| `water_landings` | `int` | No |  |
 
 ### Operations
 
@@ -196,15 +196,15 @@ core = client.Core()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asds_attempt` | `int` | No |  |
-| `asds_landing` | `int` | No |  |
+| `asds_attempts` | `int` | No |  |
+| `asds_landings` | `int` | No |  |
 | `block` | `int` | No |  |
 | `id` | `str` | No |  |
 | `last_update` | `str` | No |  |
-| `launch` | `list` | No |  |
+| `launches` | `list` | No |  |
 | `reuse_count` | `int` | No |  |
-| `rtls_attempt` | `int` | No |  |
-| `rtls_landing` | `int` | No |  |
+| `rtls_attempts` | `int` | No |  |
+| `rtls_landings` | `int` | No |  |
 | `serial` | `str` | No |  |
 | `status` | `str` | No |  |
 
@@ -270,7 +270,7 @@ crew = client.Crew()
 | `agency` | `str` | No |  |
 | `id` | `str` | No |  |
 | `image` | `str` | No |  |
-| `launch` | `list` | No |  |
+| `launches` | `list` | No |  |
 | `name` | `str` | No |  |
 | `status` | `str` | No |  |
 | `wikipedia` | `str` | No |  |
@@ -334,13 +334,13 @@ landpad = client.Landpad()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `detail` | `str` | No |  |
+| `details` | `str` | No |  |
 | `full_name` | `str` | No |  |
 | `id` | `str` | No |  |
-| `landing_attempt` | `int` | No |  |
-| `landing_success` | `int` | No |  |
+| `landing_attempts` | `int` | No |  |
+| `landing_successes` | `int` | No |  |
 | `latitude` | `float` | No |  |
-| `launch` | `list` | No |  |
+| `launches` | `list` | No |  |
 | `locality` | `str` | No |  |
 | `longitude` | `float` | No |  |
 | `name` | `str` | No |  |
@@ -409,33 +409,34 @@ launch = client.Launch()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `auto_update` | `bool` | No |  |
-| `capsule` | `list` | No |  |
-| `core` | `list` | No |  |
+| `capsules` | `list` | No |  |
+| `core` | `str` | No |  |
+| `cores` | `list` | No |  |
 | `crew` | `list` | No |  |
 | `date_local` | `str` | No |  |
 | `date_precision` | `str` | No |  |
 | `date_unix` | `int` | No |  |
 | `date_utc` | `str` | No |  |
-| `detail` | `str` | No |  |
-| `failure` | `list` | No |  |
-| `fairing` | `dict` | No |  |
+| `details` | `str` | No |  |
+| `failures` | `list` | No |  |
+| `fairings` | `dict` | No |  |
 | `flight` | `int` | No |  |
 | `flight_number` | `int` | No |  |
-| `gridfin` | `bool` | No |  |
+| `gridfins` | `bool` | No |  |
 | `id` | `str` | No |  |
 | `landing_attempt` | `bool` | No |  |
 | `landing_success` | `bool` | No |  |
 | `landing_type` | `str` | No |  |
 | `landpad` | `str` | No |  |
 | `launchpad` | `str` | No |  |
-| `leg` | `bool` | No |  |
-| `link` | `dict` | No |  |
+| `legs` | `bool` | No |  |
+| `links` | `dict` | No |  |
 | `name` | `str` | No |  |
 | `net` | `bool` | No |  |
-| `payload` | `list` | No |  |
+| `payloads` | `list` | No |  |
 | `reused` | `bool` | No |  |
 | `rocket` | `str` | No |  |
-| `ship` | `list` | No |  |
+| `ships` | `list` | No |  |
 | `static_fire_date_unix` | `int` | No |  |
 | `static_fire_date_utc` | `str` | No |  |
 | `success` | `bool` | No |  |
@@ -502,18 +503,18 @@ launchpad = client.Launchpad()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `detail` | `str` | No |  |
+| `details` | `str` | No |  |
 | `full_name` | `str` | No |  |
 | `id` | `str` | No |  |
 | `latitude` | `float` | No |  |
-| `launch` | `list` | No |  |
-| `launch_attempt` | `int` | No |  |
-| `launch_success` | `int` | No |  |
+| `launch_attempts` | `int` | No |  |
+| `launch_successes` | `int` | No |  |
+| `launches` | `list` | No |  |
 | `locality` | `str` | No |  |
 | `longitude` | `float` | No |  |
 | `name` | `str` | No |  |
 | `region` | `str` | No |  |
-| `rocket` | `list` | No |  |
+| `rockets` | `list` | No |  |
 | `status` | `str` | No |  |
 
 ### Operations
@@ -577,22 +578,22 @@ payload = client.Payload()
 | --- | --- | --- | --- |
 | `apoapsis_km` | `float` | No |  |
 | `arg_of_pericenter` | `float` | No |  |
-| `customer` | `list` | No |  |
+| `customers` | `list` | No |  |
 | `eccentricity` | `float` | No |  |
 | `epoch` | `str` | No |  |
 | `id` | `str` | No |  |
 | `inclination_deg` | `float` | No |  |
 | `launch` | `str` | No |  |
-| `lifespan_year` | `float` | No |  |
+| `lifespan_years` | `float` | No |  |
 | `longitude` | `float` | No |  |
-| `manufacturer` | `list` | No |  |
+| `manufacturers` | `list` | No |  |
 | `mass_kg` | `float` | No |  |
-| `mass_lb` | `float` | No |  |
+| `mass_lbs` | `float` | No |  |
 | `mean_anomaly` | `float` | No |  |
 | `mean_motion` | `float` | No |  |
 | `name` | `str` | No |  |
-| `nationality` | `list` | No |  |
-| `norad_id` | `list` | No |  |
+| `nationalities` | `list` | No |  |
+| `norad_ids` | `list` | No |  |
 | `orbit` | `str` | No |  |
 | `periapsis_km` | `float` | No |  |
 | `period_min` | `float` | No |  |
@@ -663,18 +664,18 @@ roadster = client.Roadster()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `apoapsis_au` | `float` | No |  |
-| `detail` | `str` | No |  |
+| `details` | `str` | No |  |
 | `earth_distance_km` | `float` | No |  |
 | `earth_distance_mi` | `float` | No |  |
 | `eccentricity` | `float` | No |  |
 | `epoch_jd` | `float` | No |  |
-| `flickr_image` | `list` | No |  |
+| `flickr_images` | `list` | No |  |
 | `id` | `str` | No |  |
 | `inclination` | `float` | No |  |
 | `launch_date_unix` | `int` | No |  |
 | `launch_date_utc` | `str` | No |  |
 | `launch_mass_kg` | `int` | No |  |
-| `launch_mass_lb` | `int` | No |  |
+| `launch_mass_lbs` | `int` | No |  |
 | `longitude` | `float` | No |  |
 | `mars_distance_km` | `float` | No |  |
 | `mars_distance_mi` | `float` | No |  |
@@ -683,7 +684,7 @@ roadster = client.Roadster()
 | `orbit_type` | `str` | No |  |
 | `periapsis_arg` | `float` | No |  |
 | `periapsis_au` | `float` | No |  |
-| `period_day` | `float` | No |  |
+| `period_days` | `float` | No |  |
 | `semi_major_axis_au` | `float` | No |  |
 | `speed_kph` | `float` | No |  |
 | `speed_mph` | `float` | No |  |
@@ -742,19 +743,19 @@ rocket = client.Rocket()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `active` | `bool` | No |  |
-| `booster` | `int` | No |  |
+| `boosters` | `int` | No |  |
 | `company` | `str` | No |  |
 | `cost_per_launch` | `int` | No |  |
 | `country` | `str` | No |  |
 | `description` | `str` | No |  |
 | `diameter` | `dict` | No |  |
 | `first_flight` | `str` | No |  |
-| `flickr_image` | `list` | No |  |
+| `flickr_images` | `list` | No |  |
 | `height` | `dict` | No |  |
 | `id` | `str` | No |  |
 | `mass` | `dict` | No |  |
 | `name` | `str` | No |  |
-| `stage` | `int` | No |  |
+| `stages` | `int` | No |  |
 | `success_rate_pct` | `float` | No |  |
 | `type` | `str` | No |  |
 | `wikipedia` | `str` | No |  |
@@ -827,16 +828,16 @@ ship = client.Ship()
 | `imo` | `int` | No |  |
 | `last_ais_update` | `str` | No |  |
 | `latitude` | `float` | No |  |
-| `launch` | `list` | No |  |
+| `launches` | `list` | No |  |
 | `legacy_id` | `str` | No |  |
 | `link` | `str` | No |  |
 | `longitude` | `float` | No |  |
 | `mass_kg` | `int` | No |  |
-| `mass_lb` | `int` | No |  |
+| `mass_lbs` | `int` | No |  |
 | `mmsi` | `int` | No |  |
 | `model` | `str` | No |  |
 | `name` | `str` | No |  |
-| `role` | `list` | No |  |
+| `roles` | `list` | No |  |
 | `speed_kn` | `float` | No |  |
 | `status` | `str` | No |  |
 | `type` | `str` | No |  |
@@ -906,8 +907,8 @@ starlink = client.Starlink()
 | `latitude` | `float` | No |  |
 | `launch` | `str` | No |  |
 | `longitude` | `float` | No |  |
-| `space_track` | `dict` | No |  |
-| `velocity_km` | `float` | No |  |
+| `spaceTrack` | `dict` | No |  |
+| `velocity_kms` | `float` | No |  |
 | `version` | `str` | No |  |
 
 ### Operations

@@ -6,12 +6,12 @@ main: kit: entity: core: {
 
   fields: [
     {
-      name: "asds_attempt"
+      name: "asds_attempts"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "asds_landing"
+      name: "asds_landings"
       req: false
       type: "`$INTEGER`"
     }
@@ -31,7 +31,7 @@ main: kit: entity: core: {
       type: "`$STRING`"
     }
     {
-      name: "launch"
+      name: "launches"
       req: false
       type: "`$ARRAY`"
     }
@@ -41,12 +41,12 @@ main: kit: entity: core: {
       type: "`$INTEGER`"
     }
     {
-      name: "rtls_attempt"
+      name: "rtls_attempts"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "rtls_landing"
+      name: "rtls_landings"
       req: false
       type: "`$INTEGER`"
     }

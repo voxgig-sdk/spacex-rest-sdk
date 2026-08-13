@@ -26,8 +26,8 @@ import {
 describe('RoadsterEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when SPACEXREST_TEST_LIVE=TRUE.
-  afterEach(liveDelay('SPACEXREST_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when SPACEX_REST_TEST_LIVE=TRUE.
+  afterEach(liveDelay('SPACEX_REST_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = SpacexRestSDK.test()
@@ -63,7 +63,7 @@ describe('RoadsterEntity', async () => {
     const roadster_ref01_ent = client.Roadster()
     const roadster_ref01_match: any = {}
 
-    const roadster_ref01_list = await roadster_ref01_ent.list(roadster_ref01_match)
+    const roadster_ref01_list = (await roadster_ref01_ent.list(roadster_ref01_match)).map((e: any) => e.data())
 
 
   })

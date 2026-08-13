@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = SpacexRestSDK.test()
-const capsules = await client.Capsule().list()
-// capsules is an array of bare Capsule records populated with mock data
-console.log(capsules)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = SpacexRestSDK.test({
+  entity: {
+    landpad: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const landpads = await client.Landpad().list()
+// landpads is an array of Landpad entities, populated with mock data
+// — call landpads[0].data() for the record itself
+console.log(landpads)
 ```
 
 ### Python
 
 ```python
 client = SpacexRestSDK.test()
-capsules = client.Capsule().list()
-print(capsules)
+landpads = client.Landpad().list()
+print(landpads)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(capsules)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = SpacexRestSDK::test([
-    "entity" => ["capsule" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["landpad" => ["test01" => ["id" => "test01"]]],
 ]);
-$capsules = $client->Capsule()->list();
+$landpads = $client->Landpad()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Capsule(nil).List(
+result, err := client.Landpad(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Capsule(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = SpacexRestSDK.test({
-  "entity" => { "capsule" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "landpad" => { "test01" => { "id" => "test01" } } },
 })
-capsules = client.Capsule.list()
+landpads = client.Landpad.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Capsule():list()
+local results, err = client:Landpad():list()
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { SpacexRestSDK } from '@voxgig-sdk/spacex-rest'
 
 const client = new SpacexRestSDK()
 
-// List all capsules (returns Capsule[])
+// List all capsules (returns CapsuleEntity[] — .data() for the record)
 const capsules = await client.Capsule().list()
 for (const capsule of capsules) {
   console.log(capsule)
@@ -201,7 +210,7 @@ $client = new SpacexRestSDK();
 $capsules = $client->Capsule()->list();
 print_r($capsules);
 
-// Load a specific capsule (returns the bare record; throws on error)
+// Load a specific capsule (returns the ENTITY; call data_get() for the record; throws on error)
 $capsule = $client->Capsule()->load(["id" => "example_id"]);
 print_r($capsule);
 ```
@@ -232,7 +241,7 @@ client = SpacexRestSDK.new
 capsules = client.Capsule.list
 puts capsules
 
-# Load a specific capsule (returns the bare record; raises on error)
+# Load a specific capsule (returns the ENTITY; call data_get for the record)
 capsule = client.Capsule.load({ "id" => "example_id" })
 puts capsule
 ```
@@ -369,6 +378,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://github.com/r-spacex/SpaceX-API](https://github.com/r-spacex/SpaceX-API)
 

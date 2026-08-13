@@ -16,7 +16,7 @@ main: kit: entity: payload: {
       type: "`$NUMBER`"
     }
     {
-      name: "customer"
+      name: "customers"
       req: false
       type: "`$ARRAY`"
     }
@@ -46,7 +46,7 @@ main: kit: entity: payload: {
       type: "`$STRING`"
     }
     {
-      name: "lifespan_year"
+      name: "lifespan_years"
       req: false
       type: "`$NUMBER`"
     }
@@ -56,7 +56,7 @@ main: kit: entity: payload: {
       type: "`$NUMBER`"
     }
     {
-      name: "manufacturer"
+      name: "manufacturers"
       req: false
       type: "`$ARRAY`"
     }
@@ -66,7 +66,7 @@ main: kit: entity: payload: {
       type: "`$NUMBER`"
     }
     {
-      name: "mass_lb"
+      name: "mass_lbs"
       req: false
       type: "`$NUMBER`"
     }
@@ -86,12 +86,12 @@ main: kit: entity: payload: {
       type: "`$STRING`"
     }
     {
-      name: "nationality"
+      name: "nationalities"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "norad_id"
+      name: "norad_ids"
       req: false
       type: "`$ARRAY`"
     }

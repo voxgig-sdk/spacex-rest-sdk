@@ -7,8 +7,8 @@
         "latitude": 82,
         "launch": "s53",
         "longitude": 84,
-        "space_track": {},
-        "velocity_km": 86,
+        "spaceTrack": {},
+        "velocity_kms": 86,
         "version": "s57"
       },
       "STARLINK01": {
@@ -17,8 +17,8 @@
         "latitude": 162,
         "launch": "sa3",
         "longitude": 164,
-        "space_track": {},
-        "velocity_km": 166,
+        "spaceTrack": {},
+        "velocity_kms": 166,
         "version": "sa7"
       },
       "STARLINK02": {
@@ -27,8 +27,8 @@
         "latitude": 242,
         "launch": "sf3",
         "longitude": 244,
-        "space_track": {},
-        "velocity_km": 246,
+        "spaceTrack": {},
+        "velocity_kms": 246,
         "version": "sf7"
       }
     }
@@ -40,8 +40,8 @@
         "latitude": 322,
         "launch": "s143",
         "longitude": 324,
-        "space_track": {},
-        "velocity_km": 326,
+        "spaceTrack": {},
+        "velocity_kms": 326,
         "version": "s147"
       }
     }

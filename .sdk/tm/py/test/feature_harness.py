@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import SpacexRestControl
-from core.error import SpacexRestError
-from core.result import SpacexRestResult
-from core.spec import SpacexRestSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import SpacexRestControl
+from projectname_sdk.core.error import SpacexRestError
+from projectname_sdk.core.result import SpacexRestResult
+from projectname_sdk.core.spec import SpacexRestSpec
 
 
 # True when this SDK was generated with the named feature.

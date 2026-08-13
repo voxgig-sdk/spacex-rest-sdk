@@ -26,8 +26,8 @@ import {
 describe('ShipEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when SPACEXREST_TEST_LIVE=TRUE.
-  afterEach(liveDelay('SPACEXREST_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when SPACEX_REST_TEST_LIVE=TRUE.
+  afterEach(liveDelay('SPACEX_REST_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = SpacexRestSDK.test()
@@ -63,13 +63,13 @@ describe('ShipEntity', async () => {
     const ship_ref01_ent = client.Ship()
     const ship_ref01_match: any = {}
 
-    const ship_ref01_list = await ship_ref01_ent.list(ship_ref01_match)
+    const ship_ref01_list = (await ship_ref01_ent.list(ship_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const ship_ref01_match_dt0: any = {}
     ship_ref01_match_dt0.id = ship_ref01_data.id
-    const ship_ref01_data_dt0 = await ship_ref01_ent.load(ship_ref01_match_dt0)
+    const ship_ref01_data_dt0 = (await ship_ref01_ent.load(ship_ref01_match_dt0)).data()
     assert(ship_ref01_data_dt0.id === ship_ref01_data.id)
 
 

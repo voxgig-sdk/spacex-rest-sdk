@@ -2,13 +2,13 @@
   "existing": {
     "landpad": {
       "LANDPAD00": {
-        "detail": "s8c",
+        "details": "s8c",
         "full_name": "s8d",
         "id": "LANDPAD00",
-        "landing_attempt": "s8f",
-        "landing_success": "s90",
+        "landing_attempts": "s8f",
+        "landing_successes": "s90",
         "latitude": 145,
-        "launch": [],
+        "launches": [],
         "locality": "s93",
         "longitude": 148,
         "name": "s95",
@@ -18,13 +18,13 @@
         "wikipedia": "s99"
       },
       "LANDPAD01": {
-        "detail": "s118",
+        "details": "s118",
         "full_name": "s119",
         "id": "LANDPAD01",
-        "landing_attempt": "s11b",
-        "landing_success": "s11c",
+        "landing_attempts": "s11b",
+        "landing_successes": "s11c",
         "latitude": 285,
-        "launch": [],
+        "launches": [],
         "locality": "s11f",
         "longitude": 288,
         "name": "s121",
@@ -34,13 +34,13 @@
         "wikipedia": "s125"
       },
       "LANDPAD02": {
-        "detail": "s1a4",
+        "details": "s1a4",
         "full_name": "s1a5",
         "id": "LANDPAD02",
-        "landing_attempt": "s1a7",
-        "landing_success": "s1a8",
+        "landing_attempts": "s1a7",
+        "landing_successes": "s1a8",
         "latitude": 425,
-        "launch": [],
+        "launches": [],
         "locality": "s1ab",
         "longitude": 428,
         "name": "s1ad",
@@ -54,12 +54,12 @@
   "new": {
     "landpad": {
       "landpad_ref01": {
-        "detail": "s230",
+        "details": "s230",
         "full_name": "s231",
-        "landing_attempt": "s233",
-        "landing_success": "s234",
+        "landing_attempts": "s233",
+        "landing_successes": "s234",
         "latitude": 565,
-        "launch": [],
+        "launches": [],
         "locality": "s237",
         "longitude": 568,
         "name": "s239",

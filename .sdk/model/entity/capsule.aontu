@@ -11,7 +11,7 @@ main: kit: entity: capsule: {
       type: "`$STRING`"
     }
     {
-      name: "land_landing"
+      name: "land_landings"
       req: false
       type: "`$INTEGER`"
     }
@@ -21,7 +21,7 @@ main: kit: entity: capsule: {
       type: "`$STRING`"
     }
     {
-      name: "launch"
+      name: "launches"
       req: false
       type: "`$ARRAY`"
     }
@@ -46,7 +46,7 @@ main: kit: entity: capsule: {
       type: "`$STRING`"
     }
     {
-      name: "water_landing"
+      name: "water_landings"
       req: false
       type: "`$INTEGER`"
     }

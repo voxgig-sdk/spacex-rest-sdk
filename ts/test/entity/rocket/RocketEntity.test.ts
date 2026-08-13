@@ -26,8 +26,8 @@ import {
 describe('RocketEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when SPACEXREST_TEST_LIVE=TRUE.
-  afterEach(liveDelay('SPACEXREST_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when SPACEX_REST_TEST_LIVE=TRUE.
+  afterEach(liveDelay('SPACEX_REST_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = SpacexRestSDK.test()
@@ -63,13 +63,13 @@ describe('RocketEntity', async () => {
     const rocket_ref01_ent = client.Rocket()
     const rocket_ref01_match: any = {}
 
-    const rocket_ref01_list = await rocket_ref01_ent.list(rocket_ref01_match)
+    const rocket_ref01_list = (await rocket_ref01_ent.list(rocket_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const rocket_ref01_match_dt0: any = {}
     rocket_ref01_match_dt0.id = rocket_ref01_data.id
-    const rocket_ref01_data_dt0 = await rocket_ref01_ent.load(rocket_ref01_match_dt0)
+    const rocket_ref01_data_dt0 = (await rocket_ref01_ent.load(rocket_ref01_match_dt0)).data()
     assert(rocket_ref01_data_dt0.id === rocket_ref01_data.id)
 
 

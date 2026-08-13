@@ -75,12 +75,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-capsules, err := client.Capsule(nil).List(nil, nil)
+landpads, err := client.Landpad(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = capsules
+_ = landpads
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -144,13 +144,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-capsule, err := client.Capsule(nil).List(
+landpad, err := client.Landpad(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(capsule) // the returned mock data
+fmt.Println(landpad) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -280,14 +280,14 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"id"` |  |
-| `"land_landing"` |  |
+| `"land_landings"` |  |
 | `"last_update"` |  |
-| `"launch"` |  |
+| `"launches"` |  |
 | `"reuse_count"` |  |
 | `"serial"` |  |
 | `"status"` |  |
 | `"type"` |  |
-| `"water_landing"` |  |
+| `"water_landings"` |  |
 
 Operations: List, Load.
 
@@ -297,15 +297,15 @@ API path: `/capsules`
 
 | Field | Description |
 | --- | --- |
-| `"asds_attempt"` |  |
-| `"asds_landing"` |  |
+| `"asds_attempts"` |  |
+| `"asds_landings"` |  |
 | `"block"` |  |
 | `"id"` |  |
 | `"last_update"` |  |
-| `"launch"` |  |
+| `"launches"` |  |
 | `"reuse_count"` |  |
-| `"rtls_attempt"` |  |
-| `"rtls_landing"` |  |
+| `"rtls_attempts"` |  |
+| `"rtls_landings"` |  |
 | `"serial"` |  |
 | `"status"` |  |
 
@@ -320,7 +320,7 @@ API path: `/cores`
 | `"agency"` |  |
 | `"id"` |  |
 | `"image"` |  |
-| `"launch"` |  |
+| `"launches"` |  |
 | `"name"` |  |
 | `"status"` |  |
 | `"wikipedia"` |  |
@@ -333,13 +333,13 @@ API path: `/crew`
 
 | Field | Description |
 | --- | --- |
-| `"detail"` |  |
+| `"details"` |  |
 | `"full_name"` |  |
 | `"id"` |  |
-| `"landing_attempt"` |  |
-| `"landing_success"` |  |
+| `"landing_attempts"` |  |
+| `"landing_successes"` |  |
 | `"latitude"` |  |
-| `"launch"` |  |
+| `"launches"` |  |
 | `"locality"` |  |
 | `"longitude"` |  |
 | `"name"` |  |
@@ -357,33 +357,34 @@ API path: `/landpads`
 | Field | Description |
 | --- | --- |
 | `"auto_update"` |  |
-| `"capsule"` |  |
+| `"capsules"` |  |
 | `"core"` |  |
+| `"cores"` |  |
 | `"crew"` |  |
 | `"date_local"` |  |
 | `"date_precision"` |  |
 | `"date_unix"` |  |
 | `"date_utc"` |  |
-| `"detail"` |  |
-| `"failure"` |  |
-| `"fairing"` |  |
+| `"details"` |  |
+| `"failures"` |  |
+| `"fairings"` |  |
 | `"flight"` |  |
 | `"flight_number"` |  |
-| `"gridfin"` |  |
+| `"gridfins"` |  |
 | `"id"` |  |
 | `"landing_attempt"` |  |
 | `"landing_success"` |  |
 | `"landing_type"` |  |
 | `"landpad"` |  |
 | `"launchpad"` |  |
-| `"leg"` |  |
-| `"link"` |  |
+| `"legs"` |  |
+| `"links"` |  |
 | `"name"` |  |
 | `"net"` |  |
-| `"payload"` |  |
+| `"payloads"` |  |
 | `"reused"` |  |
 | `"rocket"` |  |
-| `"ship"` |  |
+| `"ships"` |  |
 | `"static_fire_date_unix"` |  |
 | `"static_fire_date_utc"` |  |
 | `"success"` |  |
@@ -399,18 +400,18 @@ API path: `/launches`
 
 | Field | Description |
 | --- | --- |
-| `"detail"` |  |
+| `"details"` |  |
 | `"full_name"` |  |
 | `"id"` |  |
 | `"latitude"` |  |
-| `"launch"` |  |
-| `"launch_attempt"` |  |
-| `"launch_success"` |  |
+| `"launch_attempts"` |  |
+| `"launch_successes"` |  |
+| `"launches"` |  |
 | `"locality"` |  |
 | `"longitude"` |  |
 | `"name"` |  |
 | `"region"` |  |
-| `"rocket"` |  |
+| `"rockets"` |  |
 | `"status"` |  |
 
 Operations: List, Load.
@@ -423,22 +424,22 @@ API path: `/launchpads`
 | --- | --- |
 | `"apoapsis_km"` |  |
 | `"arg_of_pericenter"` |  |
-| `"customer"` |  |
+| `"customers"` |  |
 | `"eccentricity"` |  |
 | `"epoch"` |  |
 | `"id"` |  |
 | `"inclination_deg"` |  |
 | `"launch"` |  |
-| `"lifespan_year"` |  |
+| `"lifespan_years"` |  |
 | `"longitude"` |  |
-| `"manufacturer"` |  |
+| `"manufacturers"` |  |
 | `"mass_kg"` |  |
-| `"mass_lb"` |  |
+| `"mass_lbs"` |  |
 | `"mean_anomaly"` |  |
 | `"mean_motion"` |  |
 | `"name"` |  |
-| `"nationality"` |  |
-| `"norad_id"` |  |
+| `"nationalities"` |  |
+| `"norad_ids"` |  |
 | `"orbit"` |  |
 | `"periapsis_km"` |  |
 | `"period_min"` |  |
@@ -458,18 +459,18 @@ API path: `/payloads`
 | Field | Description |
 | --- | --- |
 | `"apoapsis_au"` |  |
-| `"detail"` |  |
+| `"details"` |  |
 | `"earth_distance_km"` |  |
 | `"earth_distance_mi"` |  |
 | `"eccentricity"` |  |
 | `"epoch_jd"` |  |
-| `"flickr_image"` |  |
+| `"flickr_images"` |  |
 | `"id"` |  |
 | `"inclination"` |  |
 | `"launch_date_unix"` |  |
 | `"launch_date_utc"` |  |
 | `"launch_mass_kg"` |  |
-| `"launch_mass_lb"` |  |
+| `"launch_mass_lbs"` |  |
 | `"longitude"` |  |
 | `"mars_distance_km"` |  |
 | `"mars_distance_mi"` |  |
@@ -478,7 +479,7 @@ API path: `/payloads`
 | `"orbit_type"` |  |
 | `"periapsis_arg"` |  |
 | `"periapsis_au"` |  |
-| `"period_day"` |  |
+| `"period_days"` |  |
 | `"semi_major_axis_au"` |  |
 | `"speed_kph"` |  |
 | `"speed_mph"` |  |
@@ -494,19 +495,19 @@ API path: `/roadster`
 | Field | Description |
 | --- | --- |
 | `"active"` |  |
-| `"booster"` |  |
+| `"boosters"` |  |
 | `"company"` |  |
 | `"cost_per_launch"` |  |
 | `"country"` |  |
 | `"description"` |  |
 | `"diameter"` |  |
 | `"first_flight"` |  |
-| `"flickr_image"` |  |
+| `"flickr_images"` |  |
 | `"height"` |  |
 | `"id"` |  |
 | `"mass"` |  |
 | `"name"` |  |
-| `"stage"` |  |
+| `"stages"` |  |
 | `"success_rate_pct"` |  |
 | `"type"` |  |
 | `"wikipedia"` |  |
@@ -528,16 +529,16 @@ API path: `/rockets`
 | `"imo"` |  |
 | `"last_ais_update"` |  |
 | `"latitude"` |  |
-| `"launch"` |  |
+| `"launches"` |  |
 | `"legacy_id"` |  |
 | `"link"` |  |
 | `"longitude"` |  |
 | `"mass_kg"` |  |
-| `"mass_lb"` |  |
+| `"mass_lbs"` |  |
 | `"mmsi"` |  |
 | `"model"` |  |
 | `"name"` |  |
-| `"role"` |  |
+| `"roles"` |  |
 | `"speed_kn"` |  |
 | `"status"` |  |
 | `"type"` |  |
@@ -556,8 +557,8 @@ API path: `/ships`
 | `"latitude"` |  |
 | `"launch"` |  |
 | `"longitude"` |  |
-| `"space_track"` |  |
-| `"velocity_km"` |  |
+| `"spaceTrack"` |  |
+| `"velocity_kms"` |  |
 | `"version"` |  |
 
 Operations: List, Load.
@@ -585,14 +586,14 @@ Create an instance: `capsule := client.Capsule(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `string` |  |
-| `land_landing` | `int` |  |
+| `land_landings` | `int` |  |
 | `last_update` | `string` |  |
-| `launch` | `[]any` |  |
+| `launches` | `[]any` |  |
 | `reuse_count` | `int` |  |
 | `serial` | `string` |  |
 | `status` | `string` |  |
 | `type` | `string` |  |
-| `water_landing` | `int` |  |
+| `water_landings` | `int` |  |
 
 #### Example: Load
 
@@ -630,15 +631,15 @@ Create an instance: `core := client.Core(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asds_attempt` | `int` |  |
-| `asds_landing` | `int` |  |
+| `asds_attempts` | `int` |  |
+| `asds_landings` | `int` |  |
 | `block` | `int` |  |
 | `id` | `string` |  |
 | `last_update` | `string` |  |
-| `launch` | `[]any` |  |
+| `launches` | `[]any` |  |
 | `reuse_count` | `int` |  |
-| `rtls_attempt` | `int` |  |
-| `rtls_landing` | `int` |  |
+| `rtls_attempts` | `int` |  |
+| `rtls_landings` | `int` |  |
 | `serial` | `string` |  |
 | `status` | `string` |  |
 
@@ -681,7 +682,7 @@ Create an instance: `crew := client.Crew(nil)`
 | `agency` | `string` |  |
 | `id` | `string` |  |
 | `image` | `string` |  |
-| `launch` | `[]any` |  |
+| `launches` | `[]any` |  |
 | `name` | `string` |  |
 | `status` | `string` |  |
 | `wikipedia` | `string` |  |
@@ -722,13 +723,13 @@ Create an instance: `landpad := client.Landpad(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `detail` | `string` |  |
+| `details` | `string` |  |
 | `full_name` | `string` |  |
 | `id` | `string` |  |
-| `landing_attempt` | `int` |  |
-| `landing_success` | `int` |  |
+| `landing_attempts` | `int` |  |
+| `landing_successes` | `int` |  |
 | `latitude` | `float64` |  |
-| `launch` | `[]any` |  |
+| `launches` | `[]any` |  |
 | `locality` | `string` |  |
 | `longitude` | `float64` |  |
 | `name` | `string` |  |
@@ -774,33 +775,34 @@ Create an instance: `launch := client.Launch(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `auto_update` | `bool` |  |
-| `capsule` | `[]any` |  |
-| `core` | `[]any` |  |
+| `capsules` | `[]any` |  |
+| `core` | `string` |  |
+| `cores` | `[]any` |  |
 | `crew` | `[]any` |  |
 | `date_local` | `string` |  |
 | `date_precision` | `string` |  |
 | `date_unix` | `int` |  |
 | `date_utc` | `string` |  |
-| `detail` | `string` |  |
-| `failure` | `[]any` |  |
-| `fairing` | `map[string]any` |  |
+| `details` | `string` |  |
+| `failures` | `[]any` |  |
+| `fairings` | `map[string]any` |  |
 | `flight` | `int` |  |
 | `flight_number` | `int` |  |
-| `gridfin` | `bool` |  |
+| `gridfins` | `bool` |  |
 | `id` | `string` |  |
 | `landing_attempt` | `bool` |  |
 | `landing_success` | `bool` |  |
 | `landing_type` | `string` |  |
 | `landpad` | `string` |  |
 | `launchpad` | `string` |  |
-| `leg` | `bool` |  |
-| `link` | `map[string]any` |  |
+| `legs` | `bool` |  |
+| `links` | `map[string]any` |  |
 | `name` | `string` |  |
 | `net` | `bool` |  |
-| `payload` | `[]any` |  |
+| `payloads` | `[]any` |  |
 | `reused` | `bool` |  |
 | `rocket` | `string` |  |
-| `ship` | `[]any` |  |
+| `ships` | `[]any` |  |
 | `static_fire_date_unix` | `int` |  |
 | `static_fire_date_utc` | `string` |  |
 | `success` | `bool` |  |
@@ -844,18 +846,18 @@ Create an instance: `launchpad := client.Launchpad(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `detail` | `string` |  |
+| `details` | `string` |  |
 | `full_name` | `string` |  |
 | `id` | `string` |  |
 | `latitude` | `float64` |  |
-| `launch` | `[]any` |  |
-| `launch_attempt` | `int` |  |
-| `launch_success` | `int` |  |
+| `launch_attempts` | `int` |  |
+| `launch_successes` | `int` |  |
+| `launches` | `[]any` |  |
 | `locality` | `string` |  |
 | `longitude` | `float64` |  |
 | `name` | `string` |  |
 | `region` | `string` |  |
-| `rocket` | `[]any` |  |
+| `rockets` | `[]any` |  |
 | `status` | `string` |  |
 
 #### Example: Load
@@ -896,22 +898,22 @@ Create an instance: `payload := client.Payload(nil)`
 | --- | --- | --- |
 | `apoapsis_km` | `float64` |  |
 | `arg_of_pericenter` | `float64` |  |
-| `customer` | `[]any` |  |
+| `customers` | `[]any` |  |
 | `eccentricity` | `float64` |  |
 | `epoch` | `string` |  |
 | `id` | `string` |  |
 | `inclination_deg` | `float64` |  |
 | `launch` | `string` |  |
-| `lifespan_year` | `float64` |  |
+| `lifespan_years` | `float64` |  |
 | `longitude` | `float64` |  |
-| `manufacturer` | `[]any` |  |
+| `manufacturers` | `[]any` |  |
 | `mass_kg` | `float64` |  |
-| `mass_lb` | `float64` |  |
+| `mass_lbs` | `float64` |  |
 | `mean_anomaly` | `float64` |  |
 | `mean_motion` | `float64` |  |
 | `name` | `string` |  |
-| `nationality` | `[]any` |  |
-| `norad_id` | `[]any` |  |
+| `nationalities` | `[]any` |  |
+| `norad_ids` | `[]any` |  |
 | `orbit` | `string` |  |
 | `periapsis_km` | `float64` |  |
 | `period_min` | `float64` |  |
@@ -958,18 +960,18 @@ Create an instance: `roadster := client.Roadster(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `apoapsis_au` | `float64` |  |
-| `detail` | `string` |  |
+| `details` | `string` |  |
 | `earth_distance_km` | `float64` |  |
 | `earth_distance_mi` | `float64` |  |
 | `eccentricity` | `float64` |  |
 | `epoch_jd` | `float64` |  |
-| `flickr_image` | `[]any` |  |
+| `flickr_images` | `[]any` |  |
 | `id` | `string` |  |
 | `inclination` | `float64` |  |
 | `launch_date_unix` | `int` |  |
 | `launch_date_utc` | `string` |  |
 | `launch_mass_kg` | `int` |  |
-| `launch_mass_lb` | `int` |  |
+| `launch_mass_lbs` | `int` |  |
 | `longitude` | `float64` |  |
 | `mars_distance_km` | `float64` |  |
 | `mars_distance_mi` | `float64` |  |
@@ -978,7 +980,7 @@ Create an instance: `roadster := client.Roadster(nil)`
 | `orbit_type` | `string` |  |
 | `periapsis_arg` | `float64` |  |
 | `periapsis_au` | `float64` |  |
-| `period_day` | `float64` |  |
+| `period_days` | `float64` |  |
 | `semi_major_axis_au` | `float64` |  |
 | `speed_kph` | `float64` |  |
 | `speed_mph` | `float64` |  |
@@ -1012,19 +1014,19 @@ Create an instance: `rocket := client.Rocket(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `active` | `bool` |  |
-| `booster` | `int` |  |
+| `boosters` | `int` |  |
 | `company` | `string` |  |
 | `cost_per_launch` | `int` |  |
 | `country` | `string` |  |
 | `description` | `string` |  |
 | `diameter` | `map[string]any` |  |
 | `first_flight` | `string` |  |
-| `flickr_image` | `[]any` |  |
+| `flickr_images` | `[]any` |  |
 | `height` | `map[string]any` |  |
 | `id` | `string` |  |
 | `mass` | `map[string]any` |  |
 | `name` | `string` |  |
-| `stage` | `int` |  |
+| `stages` | `int` |  |
 | `success_rate_pct` | `float64` |  |
 | `type` | `string` |  |
 | `wikipedia` | `string` |  |
@@ -1074,16 +1076,16 @@ Create an instance: `ship := client.Ship(nil)`
 | `imo` | `int` |  |
 | `last_ais_update` | `string` |  |
 | `latitude` | `float64` |  |
-| `launch` | `[]any` |  |
+| `launches` | `[]any` |  |
 | `legacy_id` | `string` |  |
 | `link` | `string` |  |
 | `longitude` | `float64` |  |
 | `mass_kg` | `int` |  |
-| `mass_lb` | `int` |  |
+| `mass_lbs` | `int` |  |
 | `mmsi` | `int` |  |
 | `model` | `string` |  |
 | `name` | `string` |  |
-| `role` | `[]any` |  |
+| `roles` | `[]any` |  |
 | `speed_kn` | `float64` |  |
 | `status` | `string` |  |
 | `type` | `string` |  |
@@ -1130,8 +1132,8 @@ Create an instance: `starlink := client.Starlink(nil)`
 | `latitude` | `float64` |  |
 | `launch` | `string` |  |
 | `longitude` | `float64` |  |
-| `space_track` | `map[string]any` |  |
-| `velocity_km` | `float64` |  |
+| `spaceTrack` | `map[string]any` |  |
+| `velocity_kms` | `float64` |  |
 | `version` | `string` |  |
 
 #### Example: Load
@@ -1228,11 +1230,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-capsule := client.Capsule(nil)
-capsule.List(nil, nil)
+landpad := client.Landpad(nil)
+landpad.List(nil, nil)
 
-// capsule.Data() now returns the capsule data from the last list
-// capsule.Match() returns the last match criteria
+// landpad.Data() now returns the landpad data from the last list
+// landpad.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

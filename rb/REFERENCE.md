@@ -134,14 +134,14 @@ capsule = client.Capsule
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `String` | No |  |
-| `land_landing` | `Integer` | No |  |
+| `land_landings` | `Integer` | No |  |
 | `last_update` | `String` | No |  |
-| `launch` | `Array` | No |  |
+| `launches` | `Array` | No |  |
 | `reuse_count` | `Integer` | No |  |
 | `serial` | `String` | No |  |
 | `status` | `String` | No |  |
 | `type` | `String` | No |  |
-| `water_landing` | `Integer` | No |  |
+| `water_landings` | `Integer` | No |  |
 
 ### Operations
 
@@ -201,15 +201,15 @@ core = client.Core
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asds_attempt` | `Integer` | No |  |
-| `asds_landing` | `Integer` | No |  |
+| `asds_attempts` | `Integer` | No |  |
+| `asds_landings` | `Integer` | No |  |
 | `block` | `Integer` | No |  |
 | `id` | `String` | No |  |
 | `last_update` | `String` | No |  |
-| `launch` | `Array` | No |  |
+| `launches` | `Array` | No |  |
 | `reuse_count` | `Integer` | No |  |
-| `rtls_attempt` | `Integer` | No |  |
-| `rtls_landing` | `Integer` | No |  |
+| `rtls_attempts` | `Integer` | No |  |
+| `rtls_landings` | `Integer` | No |  |
 | `serial` | `String` | No |  |
 | `status` | `String` | No |  |
 
@@ -274,7 +274,7 @@ crew = client.Crew
 | `agency` | `String` | No |  |
 | `id` | `String` | No |  |
 | `image` | `String` | No |  |
-| `launch` | `Array` | No |  |
+| `launches` | `Array` | No |  |
 | `name` | `String` | No |  |
 | `status` | `String` | No |  |
 | `wikipedia` | `String` | No |  |
@@ -337,13 +337,13 @@ landpad = client.Landpad
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `detail` | `String` | No |  |
+| `details` | `String` | No |  |
 | `full_name` | `String` | No |  |
 | `id` | `String` | No |  |
-| `landing_attempt` | `Integer` | No |  |
-| `landing_success` | `Integer` | No |  |
+| `landing_attempts` | `Integer` | No |  |
+| `landing_successes` | `Integer` | No |  |
 | `latitude` | `Float` | No |  |
-| `launch` | `Array` | No |  |
+| `launches` | `Array` | No |  |
 | `locality` | `String` | No |  |
 | `longitude` | `Float` | No |  |
 | `name` | `String` | No |  |
@@ -411,33 +411,34 @@ launch = client.Launch
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `auto_update` | `Boolean` | No |  |
-| `capsule` | `Array` | No |  |
-| `core` | `Array` | No |  |
+| `capsules` | `Array` | No |  |
+| `core` | `String` | No |  |
+| `cores` | `Array` | No |  |
 | `crew` | `Array` | No |  |
 | `date_local` | `String` | No |  |
 | `date_precision` | `String` | No |  |
 | `date_unix` | `Integer` | No |  |
 | `date_utc` | `String` | No |  |
-| `detail` | `String` | No |  |
-| `failure` | `Array` | No |  |
-| `fairing` | `Hash` | No |  |
+| `details` | `String` | No |  |
+| `failures` | `Array` | No |  |
+| `fairings` | `Hash` | No |  |
 | `flight` | `Integer` | No |  |
 | `flight_number` | `Integer` | No |  |
-| `gridfin` | `Boolean` | No |  |
+| `gridfins` | `Boolean` | No |  |
 | `id` | `String` | No |  |
 | `landing_attempt` | `Boolean` | No |  |
 | `landing_success` | `Boolean` | No |  |
 | `landing_type` | `String` | No |  |
 | `landpad` | `String` | No |  |
 | `launchpad` | `String` | No |  |
-| `leg` | `Boolean` | No |  |
-| `link` | `Hash` | No |  |
+| `legs` | `Boolean` | No |  |
+| `links` | `Hash` | No |  |
 | `name` | `String` | No |  |
 | `net` | `Boolean` | No |  |
-| `payload` | `Array` | No |  |
+| `payloads` | `Array` | No |  |
 | `reused` | `Boolean` | No |  |
 | `rocket` | `String` | No |  |
-| `ship` | `Array` | No |  |
+| `ships` | `Array` | No |  |
 | `static_fire_date_unix` | `Integer` | No |  |
 | `static_fire_date_utc` | `String` | No |  |
 | `success` | `Boolean` | No |  |
@@ -503,18 +504,18 @@ launchpad = client.Launchpad
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `detail` | `String` | No |  |
+| `details` | `String` | No |  |
 | `full_name` | `String` | No |  |
 | `id` | `String` | No |  |
 | `latitude` | `Float` | No |  |
-| `launch` | `Array` | No |  |
-| `launch_attempt` | `Integer` | No |  |
-| `launch_success` | `Integer` | No |  |
+| `launch_attempts` | `Integer` | No |  |
+| `launch_successes` | `Integer` | No |  |
+| `launches` | `Array` | No |  |
 | `locality` | `String` | No |  |
 | `longitude` | `Float` | No |  |
 | `name` | `String` | No |  |
 | `region` | `String` | No |  |
-| `rocket` | `Array` | No |  |
+| `rockets` | `Array` | No |  |
 | `status` | `String` | No |  |
 
 ### Operations
@@ -577,22 +578,22 @@ payload = client.Payload
 | --- | --- | --- | --- |
 | `apoapsis_km` | `Float` | No |  |
 | `arg_of_pericenter` | `Float` | No |  |
-| `customer` | `Array` | No |  |
+| `customers` | `Array` | No |  |
 | `eccentricity` | `Float` | No |  |
 | `epoch` | `String` | No |  |
 | `id` | `String` | No |  |
 | `inclination_deg` | `Float` | No |  |
 | `launch` | `String` | No |  |
-| `lifespan_year` | `Float` | No |  |
+| `lifespan_years` | `Float` | No |  |
 | `longitude` | `Float` | No |  |
-| `manufacturer` | `Array` | No |  |
+| `manufacturers` | `Array` | No |  |
 | `mass_kg` | `Float` | No |  |
-| `mass_lb` | `Float` | No |  |
+| `mass_lbs` | `Float` | No |  |
 | `mean_anomaly` | `Float` | No |  |
 | `mean_motion` | `Float` | No |  |
 | `name` | `String` | No |  |
-| `nationality` | `Array` | No |  |
-| `norad_id` | `Array` | No |  |
+| `nationalities` | `Array` | No |  |
+| `norad_ids` | `Array` | No |  |
 | `orbit` | `String` | No |  |
 | `periapsis_km` | `Float` | No |  |
 | `period_min` | `Float` | No |  |
@@ -662,18 +663,18 @@ roadster = client.Roadster
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `apoapsis_au` | `Float` | No |  |
-| `detail` | `String` | No |  |
+| `details` | `String` | No |  |
 | `earth_distance_km` | `Float` | No |  |
 | `earth_distance_mi` | `Float` | No |  |
 | `eccentricity` | `Float` | No |  |
 | `epoch_jd` | `Float` | No |  |
-| `flickr_image` | `Array` | No |  |
+| `flickr_images` | `Array` | No |  |
 | `id` | `String` | No |  |
 | `inclination` | `Float` | No |  |
 | `launch_date_unix` | `Integer` | No |  |
 | `launch_date_utc` | `String` | No |  |
 | `launch_mass_kg` | `Integer` | No |  |
-| `launch_mass_lb` | `Integer` | No |  |
+| `launch_mass_lbs` | `Integer` | No |  |
 | `longitude` | `Float` | No |  |
 | `mars_distance_km` | `Float` | No |  |
 | `mars_distance_mi` | `Float` | No |  |
@@ -682,7 +683,7 @@ roadster = client.Roadster
 | `orbit_type` | `String` | No |  |
 | `periapsis_arg` | `Float` | No |  |
 | `periapsis_au` | `Float` | No |  |
-| `period_day` | `Float` | No |  |
+| `period_days` | `Float` | No |  |
 | `semi_major_axis_au` | `Float` | No |  |
 | `speed_kph` | `Float` | No |  |
 | `speed_mph` | `Float` | No |  |
@@ -740,19 +741,19 @@ rocket = client.Rocket
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `active` | `Boolean` | No |  |
-| `booster` | `Integer` | No |  |
+| `boosters` | `Integer` | No |  |
 | `company` | `String` | No |  |
 | `cost_per_launch` | `Integer` | No |  |
 | `country` | `String` | No |  |
 | `description` | `String` | No |  |
 | `diameter` | `Hash` | No |  |
 | `first_flight` | `String` | No |  |
-| `flickr_image` | `Array` | No |  |
+| `flickr_images` | `Array` | No |  |
 | `height` | `Hash` | No |  |
 | `id` | `String` | No |  |
 | `mass` | `Hash` | No |  |
 | `name` | `String` | No |  |
-| `stage` | `Integer` | No |  |
+| `stages` | `Integer` | No |  |
 | `success_rate_pct` | `Float` | No |  |
 | `type` | `String` | No |  |
 | `wikipedia` | `String` | No |  |
@@ -824,16 +825,16 @@ ship = client.Ship
 | `imo` | `Integer` | No |  |
 | `last_ais_update` | `String` | No |  |
 | `latitude` | `Float` | No |  |
-| `launch` | `Array` | No |  |
+| `launches` | `Array` | No |  |
 | `legacy_id` | `String` | No |  |
 | `link` | `String` | No |  |
 | `longitude` | `Float` | No |  |
 | `mass_kg` | `Integer` | No |  |
-| `mass_lb` | `Integer` | No |  |
+| `mass_lbs` | `Integer` | No |  |
 | `mmsi` | `Integer` | No |  |
 | `model` | `String` | No |  |
 | `name` | `String` | No |  |
-| `role` | `Array` | No |  |
+| `roles` | `Array` | No |  |
 | `speed_kn` | `Float` | No |  |
 | `status` | `String` | No |  |
 | `type` | `String` | No |  |
@@ -902,8 +903,8 @@ starlink = client.Starlink
 | `latitude` | `Float` | No |  |
 | `launch` | `String` | No |  |
 | `longitude` | `Float` | No |  |
-| `space_track` | `Hash` | No |  |
-| `velocity_km` | `Float` | No |  |
+| `spaceTrack` | `Hash` | No |  |
+| `velocity_kms` | `Float` | No |  |
 | `version` | `String` | No |  |
 
 ### Operations

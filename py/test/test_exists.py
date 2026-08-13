@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# SpacexRest SDK exists test
 
 import pytest
 from spacexrest_sdk import SpacexRestSDK

@@ -37,7 +37,7 @@ class RoadsterEntity extends SpacexRestEntityBase<Roadster> {
 
 
 
-  async list(this: any, reqmatch?: RoadsterListMatch, ctrl?: Control): Promise<Roadster[]> {
+  async list(this: any, reqmatch?: RoadsterListMatch, ctrl?: Control): Promise<RoadsterEntity[]> {
 
     const utility = this._utility
 

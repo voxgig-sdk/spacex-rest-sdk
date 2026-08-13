@@ -6,19 +6,23 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/spacex-rest-sdk/go/core"
+)
 
 // Capsule is the typed data model for the capsule entity.
 type Capsule struct {
 	Id *string `json:"id,omitempty"`
-	LandLanding *int `json:"land_landing,omitempty"`
+	LandLandings *int `json:"land_landings,omitempty"`
 	LastUpdate *string `json:"last_update,omitempty"`
-	Launch *[]any `json:"launch,omitempty"`
+	Launches *[]any `json:"launches,omitempty"`
 	ReuseCount *int `json:"reuse_count,omitempty"`
 	Serial *string `json:"serial,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Type *string `json:"type,omitempty"`
-	WaterLanding *int `json:"water_landing,omitempty"`
+	WaterLandings *int `json:"water_landings,omitempty"`
 }
 
 // CapsuleLoadMatch is the typed request payload for Capsule.LoadTyped.
@@ -29,27 +33,27 @@ type CapsuleLoadMatch struct {
 // CapsuleListMatch is the typed request payload for Capsule.ListTyped.
 type CapsuleListMatch struct {
 	Id *string `json:"id,omitempty"`
-	LandLanding *int `json:"land_landing,omitempty"`
+	LandLandings *int `json:"land_landings,omitempty"`
 	LastUpdate *string `json:"last_update,omitempty"`
-	Launch *[]any `json:"launch,omitempty"`
+	Launches *[]any `json:"launches,omitempty"`
 	ReuseCount *int `json:"reuse_count,omitempty"`
 	Serial *string `json:"serial,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Type *string `json:"type,omitempty"`
-	WaterLanding *int `json:"water_landing,omitempty"`
+	WaterLandings *int `json:"water_landings,omitempty"`
 }
 
 // Core is the typed data model for the core entity.
 type Core struct {
-	AsdsAttempt *int `json:"asds_attempt,omitempty"`
-	AsdsLanding *int `json:"asds_landing,omitempty"`
+	AsdsAttempts *int `json:"asds_attempts,omitempty"`
+	AsdsLandings *int `json:"asds_landings,omitempty"`
 	Block *int `json:"block,omitempty"`
 	Id *string `json:"id,omitempty"`
 	LastUpdate *string `json:"last_update,omitempty"`
-	Launch *[]any `json:"launch,omitempty"`
+	Launches *[]any `json:"launches,omitempty"`
 	ReuseCount *int `json:"reuse_count,omitempty"`
-	RtlsAttempt *int `json:"rtls_attempt,omitempty"`
-	RtlsLanding *int `json:"rtls_landing,omitempty"`
+	RtlsAttempts *int `json:"rtls_attempts,omitempty"`
+	RtlsLandings *int `json:"rtls_landings,omitempty"`
 	Serial *string `json:"serial,omitempty"`
 	Status *string `json:"status,omitempty"`
 }
@@ -61,15 +65,15 @@ type CoreLoadMatch struct {
 
 // CoreListMatch is the typed request payload for Core.ListTyped.
 type CoreListMatch struct {
-	AsdsAttempt *int `json:"asds_attempt,omitempty"`
-	AsdsLanding *int `json:"asds_landing,omitempty"`
+	AsdsAttempts *int `json:"asds_attempts,omitempty"`
+	AsdsLandings *int `json:"asds_landings,omitempty"`
 	Block *int `json:"block,omitempty"`
 	Id *string `json:"id,omitempty"`
 	LastUpdate *string `json:"last_update,omitempty"`
-	Launch *[]any `json:"launch,omitempty"`
+	Launches *[]any `json:"launches,omitempty"`
 	ReuseCount *int `json:"reuse_count,omitempty"`
-	RtlsAttempt *int `json:"rtls_attempt,omitempty"`
-	RtlsLanding *int `json:"rtls_landing,omitempty"`
+	RtlsAttempts *int `json:"rtls_attempts,omitempty"`
+	RtlsLandings *int `json:"rtls_landings,omitempty"`
 	Serial *string `json:"serial,omitempty"`
 	Status *string `json:"status,omitempty"`
 }
@@ -79,7 +83,7 @@ type Crew struct {
 	Agency *string `json:"agency,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Image *string `json:"image,omitempty"`
-	Launch *[]any `json:"launch,omitempty"`
+	Launches *[]any `json:"launches,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Wikipedia *string `json:"wikipedia,omitempty"`
@@ -95,7 +99,7 @@ type CrewListMatch struct {
 	Agency *string `json:"agency,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Image *string `json:"image,omitempty"`
-	Launch *[]any `json:"launch,omitempty"`
+	Launches *[]any `json:"launches,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Wikipedia *string `json:"wikipedia,omitempty"`
@@ -103,13 +107,13 @@ type CrewListMatch struct {
 
 // Landpad is the typed data model for the landpad entity.
 type Landpad struct {
-	Detail *string `json:"detail,omitempty"`
+	Details *string `json:"details,omitempty"`
 	FullName *string `json:"full_name,omitempty"`
 	Id *string `json:"id,omitempty"`
-	LandingAttempt *int `json:"landing_attempt,omitempty"`
-	LandingSuccess *int `json:"landing_success,omitempty"`
+	LandingAttempts *int `json:"landing_attempts,omitempty"`
+	LandingSuccesses *int `json:"landing_successes,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
-	Launch *[]any `json:"launch,omitempty"`
+	Launches *[]any `json:"launches,omitempty"`
 	Locality *string `json:"locality,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -126,13 +130,13 @@ type LandpadLoadMatch struct {
 
 // LandpadListMatch is the typed request payload for Landpad.ListTyped.
 type LandpadListMatch struct {
-	Detail *string `json:"detail,omitempty"`
+	Details *string `json:"details,omitempty"`
 	FullName *string `json:"full_name,omitempty"`
 	Id *string `json:"id,omitempty"`
-	LandingAttempt *int `json:"landing_attempt,omitempty"`
-	LandingSuccess *int `json:"landing_success,omitempty"`
+	LandingAttempts *int `json:"landing_attempts,omitempty"`
+	LandingSuccesses *int `json:"landing_successes,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
-	Launch *[]any `json:"launch,omitempty"`
+	Launches *[]any `json:"launches,omitempty"`
 	Locality *string `json:"locality,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -145,33 +149,34 @@ type LandpadListMatch struct {
 // Launch is the typed data model for the launch entity.
 type Launch struct {
 	AutoUpdate *bool `json:"auto_update,omitempty"`
-	Capsule *[]any `json:"capsule,omitempty"`
-	Core *[]any `json:"core,omitempty"`
+	Capsules *[]any `json:"capsules,omitempty"`
+	Core *string `json:"core,omitempty"`
+	Cores *[]any `json:"cores,omitempty"`
 	Crew *[]any `json:"crew,omitempty"`
 	DateLocal *string `json:"date_local,omitempty"`
 	DatePrecision *string `json:"date_precision,omitempty"`
 	DateUnix *int `json:"date_unix,omitempty"`
 	DateUtc *string `json:"date_utc,omitempty"`
-	Detail *string `json:"detail,omitempty"`
-	Failure *[]any `json:"failure,omitempty"`
-	Fairing *map[string]any `json:"fairing,omitempty"`
+	Details *string `json:"details,omitempty"`
+	Failures *[]any `json:"failures,omitempty"`
+	Fairings *map[string]any `json:"fairings,omitempty"`
 	Flight *int `json:"flight,omitempty"`
 	FlightNumber *int `json:"flight_number,omitempty"`
-	Gridfin *bool `json:"gridfin,omitempty"`
+	Gridfins *bool `json:"gridfins,omitempty"`
 	Id *string `json:"id,omitempty"`
 	LandingAttempt *bool `json:"landing_attempt,omitempty"`
 	LandingSuccess *bool `json:"landing_success,omitempty"`
 	LandingType *string `json:"landing_type,omitempty"`
 	Landpad *string `json:"landpad,omitempty"`
 	Launchpad *string `json:"launchpad,omitempty"`
-	Leg *bool `json:"leg,omitempty"`
-	Link *map[string]any `json:"link,omitempty"`
+	Legs *bool `json:"legs,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Net *bool `json:"net,omitempty"`
-	Payload *[]any `json:"payload,omitempty"`
+	Payloads *[]any `json:"payloads,omitempty"`
 	Reused *bool `json:"reused,omitempty"`
 	Rocket *string `json:"rocket,omitempty"`
-	Ship *[]any `json:"ship,omitempty"`
+	Ships *[]any `json:"ships,omitempty"`
 	StaticFireDateUnix *int `json:"static_fire_date_unix,omitempty"`
 	StaticFireDateUtc *string `json:"static_fire_date_utc,omitempty"`
 	Success *bool `json:"success,omitempty"`
@@ -188,33 +193,34 @@ type LaunchLoadMatch struct {
 // LaunchListMatch is the typed request payload for Launch.ListTyped.
 type LaunchListMatch struct {
 	AutoUpdate *bool `json:"auto_update,omitempty"`
-	Capsule *[]any `json:"capsule,omitempty"`
-	Core *[]any `json:"core,omitempty"`
+	Capsules *[]any `json:"capsules,omitempty"`
+	Core *string `json:"core,omitempty"`
+	Cores *[]any `json:"cores,omitempty"`
 	Crew *[]any `json:"crew,omitempty"`
 	DateLocal *string `json:"date_local,omitempty"`
 	DatePrecision *string `json:"date_precision,omitempty"`
 	DateUnix *int `json:"date_unix,omitempty"`
 	DateUtc *string `json:"date_utc,omitempty"`
-	Detail *string `json:"detail,omitempty"`
-	Failure *[]any `json:"failure,omitempty"`
-	Fairing *map[string]any `json:"fairing,omitempty"`
+	Details *string `json:"details,omitempty"`
+	Failures *[]any `json:"failures,omitempty"`
+	Fairings *map[string]any `json:"fairings,omitempty"`
 	Flight *int `json:"flight,omitempty"`
 	FlightNumber *int `json:"flight_number,omitempty"`
-	Gridfin *bool `json:"gridfin,omitempty"`
+	Gridfins *bool `json:"gridfins,omitempty"`
 	Id *string `json:"id,omitempty"`
 	LandingAttempt *bool `json:"landing_attempt,omitempty"`
 	LandingSuccess *bool `json:"landing_success,omitempty"`
 	LandingType *string `json:"landing_type,omitempty"`
 	Landpad *string `json:"landpad,omitempty"`
 	Launchpad *string `json:"launchpad,omitempty"`
-	Leg *bool `json:"leg,omitempty"`
-	Link *map[string]any `json:"link,omitempty"`
+	Legs *bool `json:"legs,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Net *bool `json:"net,omitempty"`
-	Payload *[]any `json:"payload,omitempty"`
+	Payloads *[]any `json:"payloads,omitempty"`
 	Reused *bool `json:"reused,omitempty"`
 	Rocket *string `json:"rocket,omitempty"`
-	Ship *[]any `json:"ship,omitempty"`
+	Ships *[]any `json:"ships,omitempty"`
 	StaticFireDateUnix *int `json:"static_fire_date_unix,omitempty"`
 	StaticFireDateUtc *string `json:"static_fire_date_utc,omitempty"`
 	Success *bool `json:"success,omitempty"`
@@ -225,18 +231,18 @@ type LaunchListMatch struct {
 
 // Launchpad is the typed data model for the launchpad entity.
 type Launchpad struct {
-	Detail *string `json:"detail,omitempty"`
+	Details *string `json:"details,omitempty"`
 	FullName *string `json:"full_name,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
-	Launch *[]any `json:"launch,omitempty"`
-	LaunchAttempt *int `json:"launch_attempt,omitempty"`
-	LaunchSuccess *int `json:"launch_success,omitempty"`
+	LaunchAttempts *int `json:"launch_attempts,omitempty"`
+	LaunchSuccesses *int `json:"launch_successes,omitempty"`
+	Launches *[]any `json:"launches,omitempty"`
 	Locality *string `json:"locality,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Region *string `json:"region,omitempty"`
-	Rocket *[]any `json:"rocket,omitempty"`
+	Rockets *[]any `json:"rockets,omitempty"`
 	Status *string `json:"status,omitempty"`
 }
 
@@ -247,18 +253,18 @@ type LaunchpadLoadMatch struct {
 
 // LaunchpadListMatch is the typed request payload for Launchpad.ListTyped.
 type LaunchpadListMatch struct {
-	Detail *string `json:"detail,omitempty"`
+	Details *string `json:"details,omitempty"`
 	FullName *string `json:"full_name,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
-	Launch *[]any `json:"launch,omitempty"`
-	LaunchAttempt *int `json:"launch_attempt,omitempty"`
-	LaunchSuccess *int `json:"launch_success,omitempty"`
+	LaunchAttempts *int `json:"launch_attempts,omitempty"`
+	LaunchSuccesses *int `json:"launch_successes,omitempty"`
+	Launches *[]any `json:"launches,omitempty"`
 	Locality *string `json:"locality,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Region *string `json:"region,omitempty"`
-	Rocket *[]any `json:"rocket,omitempty"`
+	Rockets *[]any `json:"rockets,omitempty"`
 	Status *string `json:"status,omitempty"`
 }
 
@@ -266,22 +272,22 @@ type LaunchpadListMatch struct {
 type Payload struct {
 	ApoapsisKm *float64 `json:"apoapsis_km,omitempty"`
 	ArgOfPericenter *float64 `json:"arg_of_pericenter,omitempty"`
-	Customer *[]any `json:"customer,omitempty"`
+	Customers *[]any `json:"customers,omitempty"`
 	Eccentricity *float64 `json:"eccentricity,omitempty"`
 	Epoch *string `json:"epoch,omitempty"`
 	Id *string `json:"id,omitempty"`
 	InclinationDeg *float64 `json:"inclination_deg,omitempty"`
 	Launch *string `json:"launch,omitempty"`
-	LifespanYear *float64 `json:"lifespan_year,omitempty"`
+	LifespanYears *float64 `json:"lifespan_years,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
-	Manufacturer *[]any `json:"manufacturer,omitempty"`
+	Manufacturers *[]any `json:"manufacturers,omitempty"`
 	MassKg *float64 `json:"mass_kg,omitempty"`
-	MassLb *float64 `json:"mass_lb,omitempty"`
+	MassLbs *float64 `json:"mass_lbs,omitempty"`
 	MeanAnomaly *float64 `json:"mean_anomaly,omitempty"`
 	MeanMotion *float64 `json:"mean_motion,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Nationality *[]any `json:"nationality,omitempty"`
-	NoradId *[]any `json:"norad_id,omitempty"`
+	Nationalities *[]any `json:"nationalities,omitempty"`
+	NoradIds *[]any `json:"norad_ids,omitempty"`
 	Orbit *string `json:"orbit,omitempty"`
 	PeriapsisKm *float64 `json:"periapsis_km,omitempty"`
 	PeriodMin *float64 `json:"period_min,omitempty"`
@@ -302,22 +308,22 @@ type PayloadLoadMatch struct {
 type PayloadListMatch struct {
 	ApoapsisKm *float64 `json:"apoapsis_km,omitempty"`
 	ArgOfPericenter *float64 `json:"arg_of_pericenter,omitempty"`
-	Customer *[]any `json:"customer,omitempty"`
+	Customers *[]any `json:"customers,omitempty"`
 	Eccentricity *float64 `json:"eccentricity,omitempty"`
 	Epoch *string `json:"epoch,omitempty"`
 	Id *string `json:"id,omitempty"`
 	InclinationDeg *float64 `json:"inclination_deg,omitempty"`
 	Launch *string `json:"launch,omitempty"`
-	LifespanYear *float64 `json:"lifespan_year,omitempty"`
+	LifespanYears *float64 `json:"lifespan_years,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
-	Manufacturer *[]any `json:"manufacturer,omitempty"`
+	Manufacturers *[]any `json:"manufacturers,omitempty"`
 	MassKg *float64 `json:"mass_kg,omitempty"`
-	MassLb *float64 `json:"mass_lb,omitempty"`
+	MassLbs *float64 `json:"mass_lbs,omitempty"`
 	MeanAnomaly *float64 `json:"mean_anomaly,omitempty"`
 	MeanMotion *float64 `json:"mean_motion,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Nationality *[]any `json:"nationality,omitempty"`
-	NoradId *[]any `json:"norad_id,omitempty"`
+	Nationalities *[]any `json:"nationalities,omitempty"`
+	NoradIds *[]any `json:"norad_ids,omitempty"`
 	Orbit *string `json:"orbit,omitempty"`
 	PeriapsisKm *float64 `json:"periapsis_km,omitempty"`
 	PeriodMin *float64 `json:"period_min,omitempty"`
@@ -332,18 +338,18 @@ type PayloadListMatch struct {
 // Roadster is the typed data model for the roadster entity.
 type Roadster struct {
 	ApoapsisAu *float64 `json:"apoapsis_au,omitempty"`
-	Detail *string `json:"detail,omitempty"`
+	Details *string `json:"details,omitempty"`
 	EarthDistanceKm *float64 `json:"earth_distance_km,omitempty"`
 	EarthDistanceMi *float64 `json:"earth_distance_mi,omitempty"`
 	Eccentricity *float64 `json:"eccentricity,omitempty"`
 	EpochJd *float64 `json:"epoch_jd,omitempty"`
-	FlickrImage *[]any `json:"flickr_image,omitempty"`
+	FlickrImages *[]any `json:"flickr_images,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Inclination *float64 `json:"inclination,omitempty"`
 	LaunchDateUnix *int `json:"launch_date_unix,omitempty"`
 	LaunchDateUtc *string `json:"launch_date_utc,omitempty"`
 	LaunchMassKg *int `json:"launch_mass_kg,omitempty"`
-	LaunchMassLb *int `json:"launch_mass_lb,omitempty"`
+	LaunchMassLbs *int `json:"launch_mass_lbs,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
 	MarsDistanceKm *float64 `json:"mars_distance_km,omitempty"`
 	MarsDistanceMi *float64 `json:"mars_distance_mi,omitempty"`
@@ -352,7 +358,7 @@ type Roadster struct {
 	OrbitType *string `json:"orbit_type,omitempty"`
 	PeriapsisArg *float64 `json:"periapsis_arg,omitempty"`
 	PeriapsisAu *float64 `json:"periapsis_au,omitempty"`
-	PeriodDay *float64 `json:"period_day,omitempty"`
+	PeriodDays *float64 `json:"period_days,omitempty"`
 	SemiMajorAxisAu *float64 `json:"semi_major_axis_au,omitempty"`
 	SpeedKph *float64 `json:"speed_kph,omitempty"`
 	SpeedMph *float64 `json:"speed_mph,omitempty"`
@@ -363,18 +369,18 @@ type Roadster struct {
 // RoadsterListMatch is the typed request payload for Roadster.ListTyped.
 type RoadsterListMatch struct {
 	ApoapsisAu *float64 `json:"apoapsis_au,omitempty"`
-	Detail *string `json:"detail,omitempty"`
+	Details *string `json:"details,omitempty"`
 	EarthDistanceKm *float64 `json:"earth_distance_km,omitempty"`
 	EarthDistanceMi *float64 `json:"earth_distance_mi,omitempty"`
 	Eccentricity *float64 `json:"eccentricity,omitempty"`
 	EpochJd *float64 `json:"epoch_jd,omitempty"`
-	FlickrImage *[]any `json:"flickr_image,omitempty"`
+	FlickrImages *[]any `json:"flickr_images,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Inclination *float64 `json:"inclination,omitempty"`
 	LaunchDateUnix *int `json:"launch_date_unix,omitempty"`
 	LaunchDateUtc *string `json:"launch_date_utc,omitempty"`
 	LaunchMassKg *int `json:"launch_mass_kg,omitempty"`
-	LaunchMassLb *int `json:"launch_mass_lb,omitempty"`
+	LaunchMassLbs *int `json:"launch_mass_lbs,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
 	MarsDistanceKm *float64 `json:"mars_distance_km,omitempty"`
 	MarsDistanceMi *float64 `json:"mars_distance_mi,omitempty"`
@@ -383,7 +389,7 @@ type RoadsterListMatch struct {
 	OrbitType *string `json:"orbit_type,omitempty"`
 	PeriapsisArg *float64 `json:"periapsis_arg,omitempty"`
 	PeriapsisAu *float64 `json:"periapsis_au,omitempty"`
-	PeriodDay *float64 `json:"period_day,omitempty"`
+	PeriodDays *float64 `json:"period_days,omitempty"`
 	SemiMajorAxisAu *float64 `json:"semi_major_axis_au,omitempty"`
 	SpeedKph *float64 `json:"speed_kph,omitempty"`
 	SpeedMph *float64 `json:"speed_mph,omitempty"`
@@ -394,19 +400,19 @@ type RoadsterListMatch struct {
 // Rocket is the typed data model for the rocket entity.
 type Rocket struct {
 	Active *bool `json:"active,omitempty"`
-	Booster *int `json:"booster,omitempty"`
+	Boosters *int `json:"boosters,omitempty"`
 	Company *string `json:"company,omitempty"`
 	CostPerLaunch *int `json:"cost_per_launch,omitempty"`
 	Country *string `json:"country,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Diameter *map[string]any `json:"diameter,omitempty"`
 	FirstFlight *string `json:"first_flight,omitempty"`
-	FlickrImage *[]any `json:"flickr_image,omitempty"`
+	FlickrImages *[]any `json:"flickr_images,omitempty"`
 	Height *map[string]any `json:"height,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Mass *map[string]any `json:"mass,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Stage *int `json:"stage,omitempty"`
+	Stages *int `json:"stages,omitempty"`
 	SuccessRatePct *float64 `json:"success_rate_pct,omitempty"`
 	Type *string `json:"type,omitempty"`
 	Wikipedia *string `json:"wikipedia,omitempty"`
@@ -420,19 +426,19 @@ type RocketLoadMatch struct {
 // RocketListMatch is the typed request payload for Rocket.ListTyped.
 type RocketListMatch struct {
 	Active *bool `json:"active,omitempty"`
-	Booster *int `json:"booster,omitempty"`
+	Boosters *int `json:"boosters,omitempty"`
 	Company *string `json:"company,omitempty"`
 	CostPerLaunch *int `json:"cost_per_launch,omitempty"`
 	Country *string `json:"country,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Diameter *map[string]any `json:"diameter,omitempty"`
 	FirstFlight *string `json:"first_flight,omitempty"`
-	FlickrImage *[]any `json:"flickr_image,omitempty"`
+	FlickrImages *[]any `json:"flickr_images,omitempty"`
 	Height *map[string]any `json:"height,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Mass *map[string]any `json:"mass,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Stage *int `json:"stage,omitempty"`
+	Stages *int `json:"stages,omitempty"`
 	SuccessRatePct *float64 `json:"success_rate_pct,omitempty"`
 	Type *string `json:"type,omitempty"`
 	Wikipedia *string `json:"wikipedia,omitempty"`
@@ -449,16 +455,16 @@ type Ship struct {
 	Imo *int `json:"imo,omitempty"`
 	LastAisUpdate *string `json:"last_ais_update,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
-	Launch *[]any `json:"launch,omitempty"`
+	Launches *[]any `json:"launches,omitempty"`
 	LegacyId *string `json:"legacy_id,omitempty"`
 	Link *string `json:"link,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
 	MassKg *int `json:"mass_kg,omitempty"`
-	MassLb *int `json:"mass_lb,omitempty"`
+	MassLbs *int `json:"mass_lbs,omitempty"`
 	Mmsi *int `json:"mmsi,omitempty"`
 	Model *string `json:"model,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Role *[]any `json:"role,omitempty"`
+	Roles *[]any `json:"roles,omitempty"`
 	SpeedKn *float64 `json:"speed_kn,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Type *string `json:"type,omitempty"`
@@ -481,16 +487,16 @@ type ShipListMatch struct {
 	Imo *int `json:"imo,omitempty"`
 	LastAisUpdate *string `json:"last_ais_update,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
-	Launch *[]any `json:"launch,omitempty"`
+	Launches *[]any `json:"launches,omitempty"`
 	LegacyId *string `json:"legacy_id,omitempty"`
 	Link *string `json:"link,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
 	MassKg *int `json:"mass_kg,omitempty"`
-	MassLb *int `json:"mass_lb,omitempty"`
+	MassLbs *int `json:"mass_lbs,omitempty"`
 	Mmsi *int `json:"mmsi,omitempty"`
 	Model *string `json:"model,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Role *[]any `json:"role,omitempty"`
+	Roles *[]any `json:"roles,omitempty"`
 	SpeedKn *float64 `json:"speed_kn,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Type *string `json:"type,omitempty"`
@@ -504,8 +510,8 @@ type Starlink struct {
 	Latitude *float64 `json:"latitude,omitempty"`
 	Launch *string `json:"launch,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
-	SpaceTrack *map[string]any `json:"space_track,omitempty"`
-	VelocityKm *float64 `json:"velocity_km,omitempty"`
+	SpaceTrack *map[string]any `json:"spaceTrack,omitempty"`
+	VelocityKms *float64 `json:"velocity_kms,omitempty"`
 	Version *string `json:"version,omitempty"`
 }
 
@@ -521,8 +527,8 @@ type StarlinkListMatch struct {
 	Latitude *float64 `json:"latitude,omitempty"`
 	Launch *string `json:"launch,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
-	SpaceTrack *map[string]any `json:"space_track,omitempty"`
-	VelocityKm *float64 `json:"velocity_km,omitempty"`
+	SpaceTrack *map[string]any `json:"spaceTrack,omitempty"`
+	VelocityKms *float64 `json:"velocity_kms,omitempty"`
 	Version *string `json:"version,omitempty"`
 }
 
@@ -538,12 +544,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -555,12 +575,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

@@ -37,7 +37,7 @@ begin
   # list returns an Array of Capsule records — iterate directly.
   capsules = client.Capsule.list
   capsules.each do |item|
-    puts "#{item["id"]} #{item["land_landing"]}"
+    puts "#{item["id"]} #{item["land_landings"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Capsule record (raises on error).
+  # load returns the ENTITY — call data_get for the Capsule record (raises on error).
   capsule = client.Capsule.load({ "id" => "example_id" })
   puts capsule
 rescue => err
@@ -63,7 +63,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  capsules = client.Capsule.list()
+  landpads = client.Landpad.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -131,12 +131,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
 client = SpacexRestSDK.test({
-  "entity" => { "capsule" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "landpad" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
-capsule = client.Capsule.list()
-puts capsule
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+landpad = client.Landpad.list()
+puts landpad
 ```
 
 ### Use a custom fetch function
@@ -263,14 +264,14 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `land_landing` |  |
+| `land_landings` |  |
 | `last_update` |  |
-| `launch` |  |
+| `launches` |  |
 | `reuse_count` |  |
 | `serial` |  |
 | `status` |  |
 | `type` |  |
-| `water_landing` |  |
+| `water_landings` |  |
 
 Operations: List, Load.
 
@@ -280,15 +281,15 @@ API path: `/capsules`
 
 | Field | Description |
 | --- | --- |
-| `asds_attempt` |  |
-| `asds_landing` |  |
+| `asds_attempts` |  |
+| `asds_landings` |  |
 | `block` |  |
 | `id` |  |
 | `last_update` |  |
-| `launch` |  |
+| `launches` |  |
 | `reuse_count` |  |
-| `rtls_attempt` |  |
-| `rtls_landing` |  |
+| `rtls_attempts` |  |
+| `rtls_landings` |  |
 | `serial` |  |
 | `status` |  |
 
@@ -303,7 +304,7 @@ API path: `/cores`
 | `agency` |  |
 | `id` |  |
 | `image` |  |
-| `launch` |  |
+| `launches` |  |
 | `name` |  |
 | `status` |  |
 | `wikipedia` |  |
@@ -316,13 +317,13 @@ API path: `/crew`
 
 | Field | Description |
 | --- | --- |
-| `detail` |  |
+| `details` |  |
 | `full_name` |  |
 | `id` |  |
-| `landing_attempt` |  |
-| `landing_success` |  |
+| `landing_attempts` |  |
+| `landing_successes` |  |
 | `latitude` |  |
-| `launch` |  |
+| `launches` |  |
 | `locality` |  |
 | `longitude` |  |
 | `name` |  |
@@ -340,33 +341,34 @@ API path: `/landpads`
 | Field | Description |
 | --- | --- |
 | `auto_update` |  |
-| `capsule` |  |
+| `capsules` |  |
 | `core` |  |
+| `cores` |  |
 | `crew` |  |
 | `date_local` |  |
 | `date_precision` |  |
 | `date_unix` |  |
 | `date_utc` |  |
-| `detail` |  |
-| `failure` |  |
-| `fairing` |  |
+| `details` |  |
+| `failures` |  |
+| `fairings` |  |
 | `flight` |  |
 | `flight_number` |  |
-| `gridfin` |  |
+| `gridfins` |  |
 | `id` |  |
 | `landing_attempt` |  |
 | `landing_success` |  |
 | `landing_type` |  |
 | `landpad` |  |
 | `launchpad` |  |
-| `leg` |  |
-| `link` |  |
+| `legs` |  |
+| `links` |  |
 | `name` |  |
 | `net` |  |
-| `payload` |  |
+| `payloads` |  |
 | `reused` |  |
 | `rocket` |  |
-| `ship` |  |
+| `ships` |  |
 | `static_fire_date_unix` |  |
 | `static_fire_date_utc` |  |
 | `success` |  |
@@ -382,18 +384,18 @@ API path: `/launches`
 
 | Field | Description |
 | --- | --- |
-| `detail` |  |
+| `details` |  |
 | `full_name` |  |
 | `id` |  |
 | `latitude` |  |
-| `launch` |  |
-| `launch_attempt` |  |
-| `launch_success` |  |
+| `launch_attempts` |  |
+| `launch_successes` |  |
+| `launches` |  |
 | `locality` |  |
 | `longitude` |  |
 | `name` |  |
 | `region` |  |
-| `rocket` |  |
+| `rockets` |  |
 | `status` |  |
 
 Operations: List, Load.
@@ -406,22 +408,22 @@ API path: `/launchpads`
 | --- | --- |
 | `apoapsis_km` |  |
 | `arg_of_pericenter` |  |
-| `customer` |  |
+| `customers` |  |
 | `eccentricity` |  |
 | `epoch` |  |
 | `id` |  |
 | `inclination_deg` |  |
 | `launch` |  |
-| `lifespan_year` |  |
+| `lifespan_years` |  |
 | `longitude` |  |
-| `manufacturer` |  |
+| `manufacturers` |  |
 | `mass_kg` |  |
-| `mass_lb` |  |
+| `mass_lbs` |  |
 | `mean_anomaly` |  |
 | `mean_motion` |  |
 | `name` |  |
-| `nationality` |  |
-| `norad_id` |  |
+| `nationalities` |  |
+| `norad_ids` |  |
 | `orbit` |  |
 | `periapsis_km` |  |
 | `period_min` |  |
@@ -441,18 +443,18 @@ API path: `/payloads`
 | Field | Description |
 | --- | --- |
 | `apoapsis_au` |  |
-| `detail` |  |
+| `details` |  |
 | `earth_distance_km` |  |
 | `earth_distance_mi` |  |
 | `eccentricity` |  |
 | `epoch_jd` |  |
-| `flickr_image` |  |
+| `flickr_images` |  |
 | `id` |  |
 | `inclination` |  |
 | `launch_date_unix` |  |
 | `launch_date_utc` |  |
 | `launch_mass_kg` |  |
-| `launch_mass_lb` |  |
+| `launch_mass_lbs` |  |
 | `longitude` |  |
 | `mars_distance_km` |  |
 | `mars_distance_mi` |  |
@@ -461,7 +463,7 @@ API path: `/payloads`
 | `orbit_type` |  |
 | `periapsis_arg` |  |
 | `periapsis_au` |  |
-| `period_day` |  |
+| `period_days` |  |
 | `semi_major_axis_au` |  |
 | `speed_kph` |  |
 | `speed_mph` |  |
@@ -477,19 +479,19 @@ API path: `/roadster`
 | Field | Description |
 | --- | --- |
 | `active` |  |
-| `booster` |  |
+| `boosters` |  |
 | `company` |  |
 | `cost_per_launch` |  |
 | `country` |  |
 | `description` |  |
 | `diameter` |  |
 | `first_flight` |  |
-| `flickr_image` |  |
+| `flickr_images` |  |
 | `height` |  |
 | `id` |  |
 | `mass` |  |
 | `name` |  |
-| `stage` |  |
+| `stages` |  |
 | `success_rate_pct` |  |
 | `type` |  |
 | `wikipedia` |  |
@@ -511,16 +513,16 @@ API path: `/rockets`
 | `imo` |  |
 | `last_ais_update` |  |
 | `latitude` |  |
-| `launch` |  |
+| `launches` |  |
 | `legacy_id` |  |
 | `link` |  |
 | `longitude` |  |
 | `mass_kg` |  |
-| `mass_lb` |  |
+| `mass_lbs` |  |
 | `mmsi` |  |
 | `model` |  |
 | `name` |  |
-| `role` |  |
+| `roles` |  |
 | `speed_kn` |  |
 | `status` |  |
 | `type` |  |
@@ -539,8 +541,8 @@ API path: `/ships`
 | `latitude` |  |
 | `launch` |  |
 | `longitude` |  |
-| `space_track` |  |
-| `velocity_km` |  |
+| `spaceTrack` |  |
+| `velocity_kms` |  |
 | `version` |  |
 
 Operations: List, Load.
@@ -568,19 +570,19 @@ Create an instance: `capsule = client.Capsule`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `String` |  |
-| `land_landing` | `Integer` |  |
+| `land_landings` | `Integer` |  |
 | `last_update` | `String` |  |
-| `launch` | `Array` |  |
+| `launches` | `Array` |  |
 | `reuse_count` | `Integer` |  |
 | `serial` | `String` |  |
 | `status` | `String` |  |
 | `type` | `String` |  |
-| `water_landing` | `Integer` |  |
+| `water_landings` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Capsule record (raises on error).
+# load returns the ENTITY — call data_get for the Capsule record (raises on error).
 capsule = client.Capsule.load({ "id" => "capsule_id" })
 ```
 
@@ -607,22 +609,22 @@ Create an instance: `core = client.Core`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asds_attempt` | `Integer` |  |
-| `asds_landing` | `Integer` |  |
+| `asds_attempts` | `Integer` |  |
+| `asds_landings` | `Integer` |  |
 | `block` | `Integer` |  |
 | `id` | `String` |  |
 | `last_update` | `String` |  |
-| `launch` | `Array` |  |
+| `launches` | `Array` |  |
 | `reuse_count` | `Integer` |  |
-| `rtls_attempt` | `Integer` |  |
-| `rtls_landing` | `Integer` |  |
+| `rtls_attempts` | `Integer` |  |
+| `rtls_landings` | `Integer` |  |
 | `serial` | `String` |  |
 | `status` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Core record (raises on error).
+# load returns the ENTITY — call data_get for the Core record (raises on error).
 core = client.Core.load({ "id" => "core_id" })
 ```
 
@@ -652,7 +654,7 @@ Create an instance: `crew = client.Crew`
 | `agency` | `String` |  |
 | `id` | `String` |  |
 | `image` | `String` |  |
-| `launch` | `Array` |  |
+| `launches` | `Array` |  |
 | `name` | `String` |  |
 | `status` | `String` |  |
 | `wikipedia` | `String` |  |
@@ -660,7 +662,7 @@ Create an instance: `crew = client.Crew`
 #### Example: Load
 
 ```ruby
-# load returns the bare Crew record (raises on error).
+# load returns the ENTITY — call data_get for the Crew record (raises on error).
 crew = client.Crew.load({ "id" => "crew_id" })
 ```
 
@@ -687,13 +689,13 @@ Create an instance: `landpad = client.Landpad`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `detail` | `String` |  |
+| `details` | `String` |  |
 | `full_name` | `String` |  |
 | `id` | `String` |  |
-| `landing_attempt` | `Integer` |  |
-| `landing_success` | `Integer` |  |
+| `landing_attempts` | `Integer` |  |
+| `landing_successes` | `Integer` |  |
 | `latitude` | `Float` |  |
-| `launch` | `Array` |  |
+| `launches` | `Array` |  |
 | `locality` | `String` |  |
 | `longitude` | `Float` |  |
 | `name` | `String` |  |
@@ -705,7 +707,7 @@ Create an instance: `landpad = client.Landpad`
 #### Example: Load
 
 ```ruby
-# load returns the bare Landpad record (raises on error).
+# load returns the ENTITY — call data_get for the Landpad record (raises on error).
 landpad = client.Landpad.load({ "id" => "landpad_id" })
 ```
 
@@ -733,33 +735,34 @@ Create an instance: `launch = client.Launch`
 | Field | Type | Description |
 | --- | --- | --- |
 | `auto_update` | `Boolean` |  |
-| `capsule` | `Array` |  |
-| `core` | `Array` |  |
+| `capsules` | `Array` |  |
+| `core` | `String` |  |
+| `cores` | `Array` |  |
 | `crew` | `Array` |  |
 | `date_local` | `String` |  |
 | `date_precision` | `String` |  |
 | `date_unix` | `Integer` |  |
 | `date_utc` | `String` |  |
-| `detail` | `String` |  |
-| `failure` | `Array` |  |
-| `fairing` | `Hash` |  |
+| `details` | `String` |  |
+| `failures` | `Array` |  |
+| `fairings` | `Hash` |  |
 | `flight` | `Integer` |  |
 | `flight_number` | `Integer` |  |
-| `gridfin` | `Boolean` |  |
+| `gridfins` | `Boolean` |  |
 | `id` | `String` |  |
 | `landing_attempt` | `Boolean` |  |
 | `landing_success` | `Boolean` |  |
 | `landing_type` | `String` |  |
 | `landpad` | `String` |  |
 | `launchpad` | `String` |  |
-| `leg` | `Boolean` |  |
-| `link` | `Hash` |  |
+| `legs` | `Boolean` |  |
+| `links` | `Hash` |  |
 | `name` | `String` |  |
 | `net` | `Boolean` |  |
-| `payload` | `Array` |  |
+| `payloads` | `Array` |  |
 | `reused` | `Boolean` |  |
 | `rocket` | `String` |  |
-| `ship` | `Array` |  |
+| `ships` | `Array` |  |
 | `static_fire_date_unix` | `Integer` |  |
 | `static_fire_date_utc` | `String` |  |
 | `success` | `Boolean` |  |
@@ -770,7 +773,7 @@ Create an instance: `launch = client.Launch`
 #### Example: Load
 
 ```ruby
-# load returns the bare Launch record (raises on error).
+# load returns the ENTITY — call data_get for the Launch record (raises on error).
 launch = client.Launch.load({ "id" => "launch_id" })
 ```
 
@@ -797,24 +800,24 @@ Create an instance: `launchpad = client.Launchpad`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `detail` | `String` |  |
+| `details` | `String` |  |
 | `full_name` | `String` |  |
 | `id` | `String` |  |
 | `latitude` | `Float` |  |
-| `launch` | `Array` |  |
-| `launch_attempt` | `Integer` |  |
-| `launch_success` | `Integer` |  |
+| `launch_attempts` | `Integer` |  |
+| `launch_successes` | `Integer` |  |
+| `launches` | `Array` |  |
 | `locality` | `String` |  |
 | `longitude` | `Float` |  |
 | `name` | `String` |  |
 | `region` | `String` |  |
-| `rocket` | `Array` |  |
+| `rockets` | `Array` |  |
 | `status` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Launchpad record (raises on error).
+# load returns the ENTITY — call data_get for the Launchpad record (raises on error).
 launchpad = client.Launchpad.load({ "id" => "launchpad_id" })
 ```
 
@@ -843,22 +846,22 @@ Create an instance: `payload = client.Payload`
 | --- | --- | --- |
 | `apoapsis_km` | `Float` |  |
 | `arg_of_pericenter` | `Float` |  |
-| `customer` | `Array` |  |
+| `customers` | `Array` |  |
 | `eccentricity` | `Float` |  |
 | `epoch` | `String` |  |
 | `id` | `String` |  |
 | `inclination_deg` | `Float` |  |
 | `launch` | `String` |  |
-| `lifespan_year` | `Float` |  |
+| `lifespan_years` | `Float` |  |
 | `longitude` | `Float` |  |
-| `manufacturer` | `Array` |  |
+| `manufacturers` | `Array` |  |
 | `mass_kg` | `Float` |  |
-| `mass_lb` | `Float` |  |
+| `mass_lbs` | `Float` |  |
 | `mean_anomaly` | `Float` |  |
 | `mean_motion` | `Float` |  |
 | `name` | `String` |  |
-| `nationality` | `Array` |  |
-| `norad_id` | `Array` |  |
+| `nationalities` | `Array` |  |
+| `norad_ids` | `Array` |  |
 | `orbit` | `String` |  |
 | `periapsis_km` | `Float` |  |
 | `period_min` | `Float` |  |
@@ -872,7 +875,7 @@ Create an instance: `payload = client.Payload`
 #### Example: Load
 
 ```ruby
-# load returns the bare Payload record (raises on error).
+# load returns the ENTITY — call data_get for the Payload record (raises on error).
 payload = client.Payload.load({ "id" => "payload_id" })
 ```
 
@@ -899,18 +902,18 @@ Create an instance: `roadster = client.Roadster`
 | Field | Type | Description |
 | --- | --- | --- |
 | `apoapsis_au` | `Float` |  |
-| `detail` | `String` |  |
+| `details` | `String` |  |
 | `earth_distance_km` | `Float` |  |
 | `earth_distance_mi` | `Float` |  |
 | `eccentricity` | `Float` |  |
 | `epoch_jd` | `Float` |  |
-| `flickr_image` | `Array` |  |
+| `flickr_images` | `Array` |  |
 | `id` | `String` |  |
 | `inclination` | `Float` |  |
 | `launch_date_unix` | `Integer` |  |
 | `launch_date_utc` | `String` |  |
 | `launch_mass_kg` | `Integer` |  |
-| `launch_mass_lb` | `Integer` |  |
+| `launch_mass_lbs` | `Integer` |  |
 | `longitude` | `Float` |  |
 | `mars_distance_km` | `Float` |  |
 | `mars_distance_mi` | `Float` |  |
@@ -919,7 +922,7 @@ Create an instance: `roadster = client.Roadster`
 | `orbit_type` | `String` |  |
 | `periapsis_arg` | `Float` |  |
 | `periapsis_au` | `Float` |  |
-| `period_day` | `Float` |  |
+| `period_days` | `Float` |  |
 | `semi_major_axis_au` | `Float` |  |
 | `speed_kph` | `Float` |  |
 | `speed_mph` | `Float` |  |
@@ -950,19 +953,19 @@ Create an instance: `rocket = client.Rocket`
 | Field | Type | Description |
 | --- | --- | --- |
 | `active` | `Boolean` |  |
-| `booster` | `Integer` |  |
+| `boosters` | `Integer` |  |
 | `company` | `String` |  |
 | `cost_per_launch` | `Integer` |  |
 | `country` | `String` |  |
 | `description` | `String` |  |
 | `diameter` | `Hash` |  |
 | `first_flight` | `String` |  |
-| `flickr_image` | `Array` |  |
+| `flickr_images` | `Array` |  |
 | `height` | `Hash` |  |
 | `id` | `String` |  |
 | `mass` | `Hash` |  |
 | `name` | `String` |  |
-| `stage` | `Integer` |  |
+| `stages` | `Integer` |  |
 | `success_rate_pct` | `Float` |  |
 | `type` | `String` |  |
 | `wikipedia` | `String` |  |
@@ -970,7 +973,7 @@ Create an instance: `rocket = client.Rocket`
 #### Example: Load
 
 ```ruby
-# load returns the bare Rocket record (raises on error).
+# load returns the ENTITY — call data_get for the Rocket record (raises on error).
 rocket = client.Rocket.load({ "id" => "rocket_id" })
 ```
 
@@ -1006,16 +1009,16 @@ Create an instance: `ship = client.Ship`
 | `imo` | `Integer` |  |
 | `last_ais_update` | `String` |  |
 | `latitude` | `Float` |  |
-| `launch` | `Array` |  |
+| `launches` | `Array` |  |
 | `legacy_id` | `String` |  |
 | `link` | `String` |  |
 | `longitude` | `Float` |  |
 | `mass_kg` | `Integer` |  |
-| `mass_lb` | `Integer` |  |
+| `mass_lbs` | `Integer` |  |
 | `mmsi` | `Integer` |  |
 | `model` | `String` |  |
 | `name` | `String` |  |
-| `role` | `Array` |  |
+| `roles` | `Array` |  |
 | `speed_kn` | `Float` |  |
 | `status` | `String` |  |
 | `type` | `String` |  |
@@ -1024,7 +1027,7 @@ Create an instance: `ship = client.Ship`
 #### Example: Load
 
 ```ruby
-# load returns the bare Ship record (raises on error).
+# load returns the ENTITY — call data_get for the Ship record (raises on error).
 ship = client.Ship.load({ "id" => "ship_id" })
 ```
 
@@ -1056,14 +1059,14 @@ Create an instance: `starlink = client.Starlink`
 | `latitude` | `Float` |  |
 | `launch` | `String` |  |
 | `longitude` | `Float` |  |
-| `space_track` | `Hash` |  |
-| `velocity_km` | `Float` |  |
+| `spaceTrack` | `Hash` |  |
+| `velocity_kms` | `Float` |  |
 | `version` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Starlink record (raises on error).
+# load returns the ENTITY — call data_get for the Starlink record (raises on error).
 starlink = client.Starlink.load({ "id" => "starlink_id" })
 ```
 
@@ -1151,11 +1154,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-capsule = client.Capsule
-capsule.list()
+landpad = client.Landpad
+landpad.list()
 
-# capsule.data_get now returns the capsule data from the last list
-# capsule.match_get returns the last match criteria
+# landpad.data_get now returns the landpad data from the last list
+# landpad.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

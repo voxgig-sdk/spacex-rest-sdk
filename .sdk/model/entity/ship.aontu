@@ -51,7 +51,7 @@ main: kit: entity: ship: {
       type: "`$NUMBER`"
     }
     {
-      name: "launch"
+      name: "launches"
       req: false
       type: "`$ARRAY`"
     }
@@ -76,7 +76,7 @@ main: kit: entity: ship: {
       type: "`$INTEGER`"
     }
     {
-      name: "mass_lb"
+      name: "mass_lbs"
       req: false
       type: "`$INTEGER`"
     }
@@ -96,7 +96,7 @@ main: kit: entity: ship: {
       type: "`$STRING`"
     }
     {
-      name: "role"
+      name: "roles"
       req: false
       type: "`$ARRAY`"
     }

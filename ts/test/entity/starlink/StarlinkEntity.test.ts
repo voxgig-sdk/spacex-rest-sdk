@@ -26,8 +26,8 @@ import {
 describe('StarlinkEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when SPACEXREST_TEST_LIVE=TRUE.
-  afterEach(liveDelay('SPACEXREST_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when SPACEX_REST_TEST_LIVE=TRUE.
+  afterEach(liveDelay('SPACEX_REST_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = SpacexRestSDK.test()
@@ -63,13 +63,13 @@ describe('StarlinkEntity', async () => {
     const starlink_ref01_ent = client.Starlink()
     const starlink_ref01_match: any = {}
 
-    const starlink_ref01_list = await starlink_ref01_ent.list(starlink_ref01_match)
+    const starlink_ref01_list = (await starlink_ref01_ent.list(starlink_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const starlink_ref01_match_dt0: any = {}
     starlink_ref01_match_dt0.id = starlink_ref01_data.id
-    const starlink_ref01_data_dt0 = await starlink_ref01_ent.load(starlink_ref01_match_dt0)
+    const starlink_ref01_data_dt0 = (await starlink_ref01_ent.load(starlink_ref01_match_dt0)).data()
     assert(starlink_ref01_data_dt0.id === starlink_ref01_data.id)
 
 

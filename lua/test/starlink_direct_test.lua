@@ -115,11 +115,11 @@ function starlink_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["SPACEXREST_TEST_STARLINK_ENTID"] = {},
-    ["SPACEXREST_TEST_LIVE"] = "FALSE",
+    ["SPACEX_REST_TEST_STARLINK_ENTID"] = {},
+    ["SPACEX_REST_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["SPACEXREST_TEST_LIVE"] == "TRUE"
+  local live = env["SPACEX_REST_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

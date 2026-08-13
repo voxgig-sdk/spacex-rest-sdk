@@ -35,7 +35,9 @@ const client = new SpacexRestSDK()
 
 ### 2. List capsule records
 
-`list()` resolves to an array of Capsule objects — iterate it directly:
+`list()` resolves to an array of Capsule ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const capsules = await client.Capsule().list()
@@ -65,8 +67,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const capsules = await client.Capsule().list()
-  console.log(capsules)
+  const landpads = await client.Landpad().list()
+  console.log(landpads)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -132,9 +134,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = SpacexRestSDK.test()
 
-const capsule = await client.Capsule().list()
-// capsule is a bare entity populated with mock response data
-console.log(capsule)
+const landpad = await client.Landpad().list()
+// landpad is the entity, populated with mock response data
+// — call landpad.data() for the record itself
+console.log(landpad)
 ```
 
 You can also use the instance method:
@@ -149,7 +152,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Capsule()
+const entity = client.Landpad()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -310,14 +313,14 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `land_landing` |  |
+| `land_landings` |  |
 | `last_update` |  |
-| `launch` |  |
+| `launches` |  |
 | `reuse_count` |  |
 | `serial` |  |
 | `status` |  |
 | `type` |  |
-| `water_landing` |  |
+| `water_landings` |  |
 
 Operations: list, load.
 
@@ -327,15 +330,15 @@ API path: `/capsules`
 
 | Field | Description |
 | --- | --- |
-| `asds_attempt` |  |
-| `asds_landing` |  |
+| `asds_attempts` |  |
+| `asds_landings` |  |
 | `block` |  |
 | `id` |  |
 | `last_update` |  |
-| `launch` |  |
+| `launches` |  |
 | `reuse_count` |  |
-| `rtls_attempt` |  |
-| `rtls_landing` |  |
+| `rtls_attempts` |  |
+| `rtls_landings` |  |
 | `serial` |  |
 | `status` |  |
 
@@ -350,7 +353,7 @@ API path: `/cores`
 | `agency` |  |
 | `id` |  |
 | `image` |  |
-| `launch` |  |
+| `launches` |  |
 | `name` |  |
 | `status` |  |
 | `wikipedia` |  |
@@ -363,13 +366,13 @@ API path: `/crew`
 
 | Field | Description |
 | --- | --- |
-| `detail` |  |
+| `details` |  |
 | `full_name` |  |
 | `id` |  |
-| `landing_attempt` |  |
-| `landing_success` |  |
+| `landing_attempts` |  |
+| `landing_successes` |  |
 | `latitude` |  |
-| `launch` |  |
+| `launches` |  |
 | `locality` |  |
 | `longitude` |  |
 | `name` |  |
@@ -387,33 +390,34 @@ API path: `/landpads`
 | Field | Description |
 | --- | --- |
 | `auto_update` |  |
-| `capsule` |  |
+| `capsules` |  |
 | `core` |  |
+| `cores` |  |
 | `crew` |  |
 | `date_local` |  |
 | `date_precision` |  |
 | `date_unix` |  |
 | `date_utc` |  |
-| `detail` |  |
-| `failure` |  |
-| `fairing` |  |
+| `details` |  |
+| `failures` |  |
+| `fairings` |  |
 | `flight` |  |
 | `flight_number` |  |
-| `gridfin` |  |
+| `gridfins` |  |
 | `id` |  |
 | `landing_attempt` |  |
 | `landing_success` |  |
 | `landing_type` |  |
 | `landpad` |  |
 | `launchpad` |  |
-| `leg` |  |
-| `link` |  |
+| `legs` |  |
+| `links` |  |
 | `name` |  |
 | `net` |  |
-| `payload` |  |
+| `payloads` |  |
 | `reused` |  |
 | `rocket` |  |
-| `ship` |  |
+| `ships` |  |
 | `static_fire_date_unix` |  |
 | `static_fire_date_utc` |  |
 | `success` |  |
@@ -429,18 +433,18 @@ API path: `/launches`
 
 | Field | Description |
 | --- | --- |
-| `detail` |  |
+| `details` |  |
 | `full_name` |  |
 | `id` |  |
 | `latitude` |  |
-| `launch` |  |
-| `launch_attempt` |  |
-| `launch_success` |  |
+| `launch_attempts` |  |
+| `launch_successes` |  |
+| `launches` |  |
 | `locality` |  |
 | `longitude` |  |
 | `name` |  |
 | `region` |  |
-| `rocket` |  |
+| `rockets` |  |
 | `status` |  |
 
 Operations: list, load.
@@ -453,22 +457,22 @@ API path: `/launchpads`
 | --- | --- |
 | `apoapsis_km` |  |
 | `arg_of_pericenter` |  |
-| `customer` |  |
+| `customers` |  |
 | `eccentricity` |  |
 | `epoch` |  |
 | `id` |  |
 | `inclination_deg` |  |
 | `launch` |  |
-| `lifespan_year` |  |
+| `lifespan_years` |  |
 | `longitude` |  |
-| `manufacturer` |  |
+| `manufacturers` |  |
 | `mass_kg` |  |
-| `mass_lb` |  |
+| `mass_lbs` |  |
 | `mean_anomaly` |  |
 | `mean_motion` |  |
 | `name` |  |
-| `nationality` |  |
-| `norad_id` |  |
+| `nationalities` |  |
+| `norad_ids` |  |
 | `orbit` |  |
 | `periapsis_km` |  |
 | `period_min` |  |
@@ -488,18 +492,18 @@ API path: `/payloads`
 | Field | Description |
 | --- | --- |
 | `apoapsis_au` |  |
-| `detail` |  |
+| `details` |  |
 | `earth_distance_km` |  |
 | `earth_distance_mi` |  |
 | `eccentricity` |  |
 | `epoch_jd` |  |
-| `flickr_image` |  |
+| `flickr_images` |  |
 | `id` |  |
 | `inclination` |  |
 | `launch_date_unix` |  |
 | `launch_date_utc` |  |
 | `launch_mass_kg` |  |
-| `launch_mass_lb` |  |
+| `launch_mass_lbs` |  |
 | `longitude` |  |
 | `mars_distance_km` |  |
 | `mars_distance_mi` |  |
@@ -508,7 +512,7 @@ API path: `/payloads`
 | `orbit_type` |  |
 | `periapsis_arg` |  |
 | `periapsis_au` |  |
-| `period_day` |  |
+| `period_days` |  |
 | `semi_major_axis_au` |  |
 | `speed_kph` |  |
 | `speed_mph` |  |
@@ -524,19 +528,19 @@ API path: `/roadster`
 | Field | Description |
 | --- | --- |
 | `active` |  |
-| `booster` |  |
+| `boosters` |  |
 | `company` |  |
 | `cost_per_launch` |  |
 | `country` |  |
 | `description` |  |
 | `diameter` |  |
 | `first_flight` |  |
-| `flickr_image` |  |
+| `flickr_images` |  |
 | `height` |  |
 | `id` |  |
 | `mass` |  |
 | `name` |  |
-| `stage` |  |
+| `stages` |  |
 | `success_rate_pct` |  |
 | `type` |  |
 | `wikipedia` |  |
@@ -558,16 +562,16 @@ API path: `/rockets`
 | `imo` |  |
 | `last_ais_update` |  |
 | `latitude` |  |
-| `launch` |  |
+| `launches` |  |
 | `legacy_id` |  |
 | `link` |  |
 | `longitude` |  |
 | `mass_kg` |  |
-| `mass_lb` |  |
+| `mass_lbs` |  |
 | `mmsi` |  |
 | `model` |  |
 | `name` |  |
-| `role` |  |
+| `roles` |  |
 | `speed_kn` |  |
 | `status` |  |
 | `type` |  |
@@ -586,8 +590,8 @@ API path: `/ships`
 | `latitude` |  |
 | `launch` |  |
 | `longitude` |  |
-| `space_track` |  |
-| `velocity_km` |  |
+| `spaceTrack` |  |
+| `velocity_kms` |  |
 | `version` |  |
 
 Operations: list, load.
@@ -615,14 +619,14 @@ Create an instance: `const capsule = client.Capsule()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `string` |  |
-| `land_landing` | `number` |  |
+| `land_landings` | `number` |  |
 | `last_update` | `string` |  |
-| `launch` | `any[]` |  |
+| `launches` | `any[]` |  |
 | `reuse_count` | `number` |  |
 | `serial` | `string` |  |
 | `status` | `string` |  |
 | `type` | `string` |  |
-| `water_landing` | `number` |  |
+| `water_landings` | `number` |  |
 
 #### Example: Load
 
@@ -652,15 +656,15 @@ Create an instance: `const core = client.Core()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asds_attempt` | `number` |  |
-| `asds_landing` | `number` |  |
+| `asds_attempts` | `number` |  |
+| `asds_landings` | `number` |  |
 | `block` | `number` |  |
 | `id` | `string` |  |
 | `last_update` | `string` |  |
-| `launch` | `any[]` |  |
+| `launches` | `any[]` |  |
 | `reuse_count` | `number` |  |
-| `rtls_attempt` | `number` |  |
-| `rtls_landing` | `number` |  |
+| `rtls_attempts` | `number` |  |
+| `rtls_landings` | `number` |  |
 | `serial` | `string` |  |
 | `status` | `string` |  |
 
@@ -695,7 +699,7 @@ Create an instance: `const crew = client.Crew()`
 | `agency` | `string` |  |
 | `id` | `string` |  |
 | `image` | `string` |  |
-| `launch` | `any[]` |  |
+| `launches` | `any[]` |  |
 | `name` | `string` |  |
 | `status` | `string` |  |
 | `wikipedia` | `string` |  |
@@ -728,13 +732,13 @@ Create an instance: `const landpad = client.Landpad()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `detail` | `string` |  |
+| `details` | `string` |  |
 | `full_name` | `string` |  |
 | `id` | `string` |  |
-| `landing_attempt` | `number` |  |
-| `landing_success` | `number` |  |
+| `landing_attempts` | `number` |  |
+| `landing_successes` | `number` |  |
 | `latitude` | `number` |  |
-| `launch` | `any[]` |  |
+| `launches` | `any[]` |  |
 | `locality` | `string` |  |
 | `longitude` | `number` |  |
 | `name` | `string` |  |
@@ -772,33 +776,34 @@ Create an instance: `const launch = client.Launch()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `auto_update` | `boolean` |  |
-| `capsule` | `any[]` |  |
-| `core` | `any[]` |  |
+| `capsules` | `any[]` |  |
+| `core` | `string` |  |
+| `cores` | `any[]` |  |
 | `crew` | `any[]` |  |
 | `date_local` | `string` |  |
 | `date_precision` | `string` |  |
 | `date_unix` | `number` |  |
 | `date_utc` | `string` |  |
-| `detail` | `string` |  |
-| `failure` | `any[]` |  |
-| `fairing` | `Record<string, any>` |  |
+| `details` | `string` |  |
+| `failures` | `any[]` |  |
+| `fairings` | `Record<string, any>` |  |
 | `flight` | `number` |  |
 | `flight_number` | `number` |  |
-| `gridfin` | `boolean` |  |
+| `gridfins` | `boolean` |  |
 | `id` | `string` |  |
 | `landing_attempt` | `boolean` |  |
 | `landing_success` | `boolean` |  |
 | `landing_type` | `string` |  |
 | `landpad` | `string` |  |
 | `launchpad` | `string` |  |
-| `leg` | `boolean` |  |
-| `link` | `Record<string, any>` |  |
+| `legs` | `boolean` |  |
+| `links` | `Record<string, any>` |  |
 | `name` | `string` |  |
 | `net` | `boolean` |  |
-| `payload` | `any[]` |  |
+| `payloads` | `any[]` |  |
 | `reused` | `boolean` |  |
 | `rocket` | `string` |  |
-| `ship` | `any[]` |  |
+| `ships` | `any[]` |  |
 | `static_fire_date_unix` | `number` |  |
 | `static_fire_date_utc` | `string` |  |
 | `success` | `boolean` |  |
@@ -834,18 +839,18 @@ Create an instance: `const launchpad = client.Launchpad()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `detail` | `string` |  |
+| `details` | `string` |  |
 | `full_name` | `string` |  |
 | `id` | `string` |  |
 | `latitude` | `number` |  |
-| `launch` | `any[]` |  |
-| `launch_attempt` | `number` |  |
-| `launch_success` | `number` |  |
+| `launch_attempts` | `number` |  |
+| `launch_successes` | `number` |  |
+| `launches` | `any[]` |  |
 | `locality` | `string` |  |
 | `longitude` | `number` |  |
 | `name` | `string` |  |
 | `region` | `string` |  |
-| `rocket` | `any[]` |  |
+| `rockets` | `any[]` |  |
 | `status` | `string` |  |
 
 #### Example: Load
@@ -878,22 +883,22 @@ Create an instance: `const payload = client.Payload()`
 | --- | --- | --- |
 | `apoapsis_km` | `number` |  |
 | `arg_of_pericenter` | `number` |  |
-| `customer` | `any[]` |  |
+| `customers` | `any[]` |  |
 | `eccentricity` | `number` |  |
 | `epoch` | `string` |  |
 | `id` | `string` |  |
 | `inclination_deg` | `number` |  |
 | `launch` | `string` |  |
-| `lifespan_year` | `number` |  |
+| `lifespan_years` | `number` |  |
 | `longitude` | `number` |  |
-| `manufacturer` | `any[]` |  |
+| `manufacturers` | `any[]` |  |
 | `mass_kg` | `number` |  |
-| `mass_lb` | `number` |  |
+| `mass_lbs` | `number` |  |
 | `mean_anomaly` | `number` |  |
 | `mean_motion` | `number` |  |
 | `name` | `string` |  |
-| `nationality` | `any[]` |  |
-| `norad_id` | `any[]` |  |
+| `nationalities` | `any[]` |  |
+| `norad_ids` | `any[]` |  |
 | `orbit` | `string` |  |
 | `periapsis_km` | `number` |  |
 | `period_min` | `number` |  |
@@ -932,18 +937,18 @@ Create an instance: `const roadster = client.Roadster()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `apoapsis_au` | `number` |  |
-| `detail` | `string` |  |
+| `details` | `string` |  |
 | `earth_distance_km` | `number` |  |
 | `earth_distance_mi` | `number` |  |
 | `eccentricity` | `number` |  |
 | `epoch_jd` | `number` |  |
-| `flickr_image` | `any[]` |  |
+| `flickr_images` | `any[]` |  |
 | `id` | `string` |  |
 | `inclination` | `number` |  |
 | `launch_date_unix` | `number` |  |
 | `launch_date_utc` | `string` |  |
 | `launch_mass_kg` | `number` |  |
-| `launch_mass_lb` | `number` |  |
+| `launch_mass_lbs` | `number` |  |
 | `longitude` | `number` |  |
 | `mars_distance_km` | `number` |  |
 | `mars_distance_mi` | `number` |  |
@@ -952,7 +957,7 @@ Create an instance: `const roadster = client.Roadster()`
 | `orbit_type` | `string` |  |
 | `periapsis_arg` | `number` |  |
 | `periapsis_au` | `number` |  |
-| `period_day` | `number` |  |
+| `period_days` | `number` |  |
 | `semi_major_axis_au` | `number` |  |
 | `speed_kph` | `number` |  |
 | `speed_mph` | `number` |  |
@@ -982,19 +987,19 @@ Create an instance: `const rocket = client.Rocket()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `active` | `boolean` |  |
-| `booster` | `number` |  |
+| `boosters` | `number` |  |
 | `company` | `string` |  |
 | `cost_per_launch` | `number` |  |
 | `country` | `string` |  |
 | `description` | `string` |  |
 | `diameter` | `Record<string, any>` |  |
 | `first_flight` | `string` |  |
-| `flickr_image` | `any[]` |  |
+| `flickr_images` | `any[]` |  |
 | `height` | `Record<string, any>` |  |
 | `id` | `string` |  |
 | `mass` | `Record<string, any>` |  |
 | `name` | `string` |  |
-| `stage` | `number` |  |
+| `stages` | `number` |  |
 | `success_rate_pct` | `number` |  |
 | `type` | `string` |  |
 | `wikipedia` | `string` |  |
@@ -1036,16 +1041,16 @@ Create an instance: `const ship = client.Ship()`
 | `imo` | `number` |  |
 | `last_ais_update` | `string` |  |
 | `latitude` | `number` |  |
-| `launch` | `any[]` |  |
+| `launches` | `any[]` |  |
 | `legacy_id` | `string` |  |
 | `link` | `string` |  |
 | `longitude` | `number` |  |
 | `mass_kg` | `number` |  |
-| `mass_lb` | `number` |  |
+| `mass_lbs` | `number` |  |
 | `mmsi` | `number` |  |
 | `model` | `string` |  |
 | `name` | `string` |  |
-| `role` | `any[]` |  |
+| `roles` | `any[]` |  |
 | `speed_kn` | `number` |  |
 | `status` | `string` |  |
 | `type` | `string` |  |
@@ -1084,8 +1089,8 @@ Create an instance: `const starlink = client.Starlink()`
 | `latitude` | `number` |  |
 | `launch` | `string` |  |
 | `longitude` | `number` |  |
-| `space_track` | `Record<string, any>` |  |
-| `velocity_km` | `number` |  |
+| `spaceTrack` | `Record<string, any>` |  |
+| `velocity_kms` | `number` |  |
 | `version` | `string` |  |
 
 #### Example: Load
@@ -1170,11 +1175,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const capsule = client.Capsule()
-await capsule.list()
+const landpad = client.Landpad()
+await landpad.list()
 
-// capsule.data() now returns the capsule data from the last `list`
-// capsule.match() returns the last match criteria
+// landpad.data() now returns the landpad data from the last `list`
+// landpad.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

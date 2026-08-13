@@ -83,6 +83,7 @@ guide: {
   entity: roadster: {
     path: "/roadster": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.flickr_images`")|top
     }
   }
 
@@ -110,6 +111,7 @@ guide: {
     }
     path: "/starlink/{id}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.spaceTrack`")|top
     }
   }
 

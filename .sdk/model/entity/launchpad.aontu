@@ -6,7 +6,7 @@ main: kit: entity: launchpad: {
 
   fields: [
     {
-      name: "detail"
+      name: "details"
       req: false
       type: "`$STRING`"
     }
@@ -26,19 +26,19 @@ main: kit: entity: launchpad: {
       type: "`$NUMBER`"
     }
     {
-      name: "launch"
+      name: "launch_attempts"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "launch_successes"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "launches"
       req: false
       type: "`$ARRAY`"
-    }
-    {
-      name: "launch_attempt"
-      req: false
-      type: "`$INTEGER`"
-    }
-    {
-      name: "launch_success"
-      req: false
-      type: "`$INTEGER`"
     }
     {
       name: "locality"
@@ -61,7 +61,7 @@ main: kit: entity: launchpad: {
       type: "`$STRING`"
     }
     {
-      name: "rocket"
+      name: "rockets"
       req: false
       type: "`$ARRAY`"
     }
