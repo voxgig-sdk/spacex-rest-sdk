@@ -15,7 +15,7 @@ require_relative "../SpacexRest_sdk"
 module SpacexRestFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = SpacexRestConfig.make_config["feature"]
+    f = SpacexRestConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

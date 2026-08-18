@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from spacexrest_sdk.config import make_config
+from spacexrest_sdk.config import shared_config
 from spacexrest_sdk.features import _make_feature
 from spacexrest_sdk.core.control import SpacexRestControl
 from spacexrest_sdk.core.error import SpacexRestError
@@ -24,7 +24,7 @@ from spacexrest_sdk.core.spec import SpacexRestSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

@@ -40,7 +40,7 @@ class SpacexRestSDK
         $utility = new SpacexRestUtility();
         $this->_utility = $utility;
 
-        $config = SpacexRestConfig::make_config();
+        $config = SpacexRestConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

@@ -28,7 +28,7 @@ class SpacexRestSDK
     utility = SpacexRestUtility.new
     @_utility = utility
 
-    config = SpacexRestConfig.make_config
+    config = SpacexRestConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

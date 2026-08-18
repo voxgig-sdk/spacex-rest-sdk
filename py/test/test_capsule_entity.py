@@ -42,8 +42,8 @@ class TestCapsuleEntity:
         assert len(seen) == 3
 
         # Inbound: streaming active -> yields each item from the feature.
-        from spacexrest_sdk.config import make_config
-        cfg = make_config()
+        from spacexrest_sdk.config import shared_config
+        cfg = shared_config()
         if isinstance(cfg.get("feature"), dict) and "streaming" in cfg["feature"]:
             sdk = SpacexRestSDK.test(
                 seed, {"feature": {"streaming": {"active": True}}})
