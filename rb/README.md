@@ -263,15 +263,15 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
-| `land_landings` |  |
-| `last_update` |  |
-| `launches` |  |
-| `reuse_count` |  |
-| `serial` |  |
-| `status` |  |
-| `type` |  |
-| `water_landings` |  |
+| `id` | Capsule serial number |
+| `land_landings` | Number of land landings |
+| `last_update` | Last update about the capsule |
+| `launches` | Launch IDs |
+| `reuse_count` | Number of times capsule has been reused |
+| `serial` | Capsule serial number |
+| `status` | Capsule status |
+| `type` | Capsule type |
+| `water_landings` | Number of water landings |
 
 Operations: List, Load.
 
@@ -281,17 +281,17 @@ API path: `/capsules`
 
 | Field | Description |
 | --- | --- |
-| `asds_attempts` |  |
-| `asds_landings` |  |
-| `block` |  |
-| `id` |  |
-| `last_update` |  |
-| `launches` |  |
-| `reuse_count` |  |
-| `rtls_attempts` |  |
-| `rtls_landings` |  |
-| `serial` |  |
-| `status` |  |
+| `asds_attempts` | Number of autonomous spaceport drone ship landing attempts |
+| `asds_landings` | Number of successful ASDS landings |
+| `block` | Core block number |
+| `id` | Core serial number |
+| `last_update` | Last update about the core |
+| `launches` | Launch IDs |
+| `reuse_count` | Number of times core has been reused |
+| `rtls_attempts` | Number of return to launch site attempts |
+| `rtls_landings` | Number of successful RTLS landings |
+| `serial` | Core serial number |
+| `status` | Core status (active, inactive, unknown, expended, lost, retired) |
 
 Operations: List, Load.
 
@@ -301,13 +301,13 @@ API path: `/cores`
 
 | Field | Description |
 | --- | --- |
-| `agency` |  |
-| `id` |  |
-| `image` |  |
-| `launches` |  |
-| `name` |  |
-| `status` |  |
-| `wikipedia` |  |
+| `agency` | Agency |
+| `id` | Crew member ID |
+| `image` | Image URL |
+| `launches` | Launch IDs |
+| `name` | Crew member name |
+| `status` | Status (active, inactive, retired, unknown) |
+| `wikipedia` | Wikipedia URL |
 
 Operations: List, Load.
 
@@ -317,20 +317,20 @@ API path: `/crew`
 
 | Field | Description |
 | --- | --- |
-| `details` |  |
-| `full_name` |  |
-| `id` |  |
-| `landing_attempts` |  |
-| `landing_successes` |  |
-| `latitude` |  |
-| `launches` |  |
-| `locality` |  |
-| `longitude` |  |
-| `name` |  |
-| `region` |  |
-| `status` |  |
-| `type` |  |
-| `wikipedia` |  |
+| `details` | Landing pad details |
+| `full_name` | Full landing pad name |
+| `id` | Landing pad ID |
+| `landing_attempts` | Number of landing attempts |
+| `landing_successes` | Number of successful landings |
+| `latitude` | Latitude |
+| `launches` | Launch IDs |
+| `locality` | Locality |
+| `longitude` | Longitude |
+| `name` | Landing pad name |
+| `region` | Region |
+| `status` | Landing pad status (active, inactive, unknown, retired, lost, under construction) |
+| `type` | Landing pad type (ASDS, RTLS) |
+| `wikipedia` | Wikipedia URL |
 
 Operations: List, Load.
 
@@ -340,41 +340,41 @@ API path: `/landpads`
 
 | Field | Description |
 | --- | --- |
-| `auto_update` |  |
-| `capsules` |  |
-| `core` |  |
+| `auto_update` | Whether the launch data is automatically updated |
+| `capsules` | Capsule IDs |
+| `core` | Core ID |
 | `cores` |  |
-| `crew` |  |
-| `date_local` |  |
-| `date_precision` |  |
-| `date_unix` |  |
-| `date_utc` |  |
-| `details` |  |
-| `failures` |  |
+| `crew` | Crew member IDs |
+| `date_local` | Launch date in local time |
+| `date_precision` | Date precision (hour, day, month, quarter, half, year) |
+| `date_unix` | Launch date in unix timestamp |
+| `date_utc` | Launch date in UTC |
+| `details` | Launch details |
+| `failures` | Launch failures |
 | `fairings` |  |
-| `flight` |  |
-| `flight_number` |  |
-| `gridfins` |  |
-| `id` |  |
-| `landing_attempt` |  |
-| `landing_success` |  |
-| `landing_type` |  |
-| `landpad` |  |
-| `launchpad` |  |
-| `legs` |  |
+| `flight` | Core flight number |
+| `flight_number` | Flight number |
+| `gridfins` | Whether core has grid fins |
+| `id` | Launch ID |
+| `landing_attempt` | Whether landing was attempted |
+| `landing_success` | Whether landing was successful |
+| `landing_type` | Landing type (ASDS, RTLS, Ocean) |
+| `landpad` | Landing pad ID |
+| `launchpad` | Launchpad ID |
+| `legs` | Whether core has legs |
 | `links` |  |
-| `name` |  |
-| `net` |  |
-| `payloads` |  |
-| `reused` |  |
-| `rocket` |  |
-| `ships` |  |
-| `static_fire_date_unix` |  |
-| `static_fire_date_utc` |  |
-| `success` |  |
-| `tdb` |  |
-| `upcoming` |  |
-| `window` |  |
+| `name` | Launch name |
+| `net` | No earlier than |
+| `payloads` | Payload IDs |
+| `reused` | Whether core was reused |
+| `rocket` | Rocket ID |
+| `ships` | Ship IDs |
+| `static_fire_date_unix` | Static fire date in unix timestamp |
+| `static_fire_date_utc` | Static fire date in UTC |
+| `success` | Launch success status |
+| `tdb` | To be determined |
+| `upcoming` | Whether the launch is upcoming |
+| `window` | Launch window in seconds |
 
 Operations: List, Load.
 
@@ -384,19 +384,19 @@ API path: `/launches`
 
 | Field | Description |
 | --- | --- |
-| `details` |  |
-| `full_name` |  |
-| `id` |  |
-| `latitude` |  |
-| `launch_attempts` |  |
-| `launch_successes` |  |
-| `launches` |  |
-| `locality` |  |
-| `longitude` |  |
-| `name` |  |
-| `region` |  |
-| `rockets` |  |
-| `status` |  |
+| `details` | Launchpad details |
+| `full_name` | Full launchpad name |
+| `id` | Launchpad ID |
+| `latitude` | Latitude |
+| `launch_attempts` | Number of launch attempts |
+| `launch_successes` | Number of successful launches |
+| `launches` | Launch IDs |
+| `locality` | Locality |
+| `longitude` | Longitude |
+| `name` | Launchpad name |
+| `region` | Region |
+| `rockets` | Rocket IDs |
+| `status` | Launchpad status (active, inactive, unknown, retired, lost, under construction) |
 
 Operations: List, Load.
 
@@ -406,33 +406,33 @@ API path: `/launchpads`
 
 | Field | Description |
 | --- | --- |
-| `apoapsis_km` |  |
-| `arg_of_pericenter` |  |
-| `customers` |  |
-| `eccentricity` |  |
-| `epoch` |  |
-| `id` |  |
-| `inclination_deg` |  |
-| `launch` |  |
-| `lifespan_years` |  |
-| `longitude` |  |
-| `manufacturers` |  |
-| `mass_kg` |  |
-| `mass_lbs` |  |
-| `mean_anomaly` |  |
-| `mean_motion` |  |
-| `name` |  |
-| `nationalities` |  |
-| `norad_ids` |  |
-| `orbit` |  |
-| `periapsis_km` |  |
-| `period_min` |  |
-| `raan` |  |
-| `reference_system` |  |
-| `regime` |  |
-| `reused` |  |
-| `semi_major_axis_km` |  |
-| `type` |  |
+| `apoapsis_km` | Apoapsis in km |
+| `arg_of_pericenter` | Argument of pericenter |
+| `customers` | Customers |
+| `eccentricity` | Eccentricity |
+| `epoch` | Epoch |
+| `id` | Payload ID |
+| `inclination_deg` | Inclination in degrees |
+| `launch` | Launch ID |
+| `lifespan_years` | Lifespan in years |
+| `longitude` | Longitude |
+| `manufacturers` | Manufacturers |
+| `mass_kg` | Payload mass in kilograms |
+| `mass_lbs` | Payload mass in pounds |
+| `mean_anomaly` | Mean anomaly |
+| `mean_motion` | Mean motion |
+| `name` | Payload name |
+| `nationalities` | Nationalities |
+| `norad_ids` | NORAD IDs |
+| `orbit` | Orbit type |
+| `periapsis_km` | Periapsis in km |
+| `period_min` | Orbital period in minutes |
+| `raan` | Right ascension of the ascending node |
+| `reference_system` | Reference system |
+| `regime` | Orbit regime |
+| `reused` | Whether the payload was reused |
+| `semi_major_axis_km` | Semi-major axis in km |
+| `type` | Payload type |
 
 Operations: List, Load.
 
@@ -442,33 +442,33 @@ API path: `/payloads`
 
 | Field | Description |
 | --- | --- |
-| `apoapsis_au` |  |
-| `details` |  |
-| `earth_distance_km` |  |
-| `earth_distance_mi` |  |
-| `eccentricity` |  |
-| `epoch_jd` |  |
-| `flickr_images` |  |
-| `id` |  |
-| `inclination` |  |
-| `launch_date_unix` |  |
-| `launch_date_utc` |  |
-| `launch_mass_kg` |  |
-| `launch_mass_lbs` |  |
-| `longitude` |  |
-| `mars_distance_km` |  |
-| `mars_distance_mi` |  |
-| `name` |  |
-| `norad_id` |  |
-| `orbit_type` |  |
-| `periapsis_arg` |  |
-| `periapsis_au` |  |
-| `period_days` |  |
-| `semi_major_axis_au` |  |
-| `speed_kph` |  |
-| `speed_mph` |  |
-| `video` |  |
-| `wikipedia` |  |
+| `apoapsis_au` | Apoapsis in AU |
+| `details` | Details |
+| `earth_distance_km` | Distance from Earth in km |
+| `earth_distance_mi` | Distance from Earth in miles |
+| `eccentricity` | Eccentricity |
+| `epoch_jd` | Epoch in Julian Date |
+| `flickr_images` | Flickr images |
+| `id` | Roadster ID |
+| `inclination` | Inclination |
+| `launch_date_unix` | Launch date in unix timestamp |
+| `launch_date_utc` | Launch date in UTC |
+| `launch_mass_kg` | Launch mass in kilograms |
+| `launch_mass_lbs` | Launch mass in pounds |
+| `longitude` | Longitude |
+| `mars_distance_km` | Distance from Mars in km |
+| `mars_distance_mi` | Distance from Mars in miles |
+| `name` | Roadster name |
+| `norad_id` | NORAD ID |
+| `orbit_type` | Orbit type |
+| `periapsis_arg` | Argument of periapsis |
+| `periapsis_au` | Periapsis in AU |
+| `period_days` | Orbital period in days |
+| `semi_major_axis_au` | Semi-major axis in AU |
+| `speed_kph` | Speed in km/h |
+| `speed_mph` | Speed in mph |
+| `video` | Video URL |
+| `wikipedia` | Wikipedia URL |
 
 Operations: List.
 
@@ -478,22 +478,22 @@ API path: `/roadster`
 
 | Field | Description |
 | --- | --- |
-| `active` |  |
-| `boosters` |  |
-| `company` |  |
-| `cost_per_launch` |  |
-| `country` |  |
+| `active` | Whether the rocket is active |
+| `boosters` | Number of boosters |
+| `company` | Company |
+| `cost_per_launch` | Cost per launch in USD |
+| `country` | Country of origin |
 | `description` |  |
 | `diameter` |  |
-| `first_flight` |  |
+| `first_flight` | Date of first flight |
 | `flickr_images` |  |
 | `height` |  |
-| `id` |  |
+| `id` | Rocket ID |
 | `mass` |  |
-| `name` |  |
-| `stages` |  |
-| `success_rate_pct` |  |
-| `type` |  |
+| `name` | Rocket name |
+| `stages` | Number of stages |
+| `success_rate_pct` | Success rate percentage |
+| `type` | Rocket type |
 | `wikipedia` |  |
 
 Operations: List, Load.
@@ -504,29 +504,29 @@ API path: `/rockets`
 
 | Field | Description |
 | --- | --- |
-| `abs` |  |
-| `class` |  |
-| `course_deg` |  |
-| `home_port` |  |
-| `id` |  |
-| `image` |  |
-| `imo` |  |
-| `last_ais_update` |  |
-| `latitude` |  |
-| `launches` |  |
-| `legacy_id` |  |
-| `link` |  |
-| `longitude` |  |
-| `mass_kg` |  |
-| `mass_lbs` |  |
-| `mmsi` |  |
-| `model` |  |
-| `name` |  |
-| `roles` |  |
-| `speed_kn` |  |
-| `status` |  |
-| `type` |  |
-| `year_built` |  |
+| `abs` | ABS number |
+| `class` | Ship class |
+| `course_deg` | Course in degrees |
+| `home_port` | Home port |
+| `id` | Ship ID |
+| `image` | Image URL |
+| `imo` | IMO number |
+| `last_ais_update` | Last AIS update timestamp |
+| `latitude` | Latitude |
+| `launches` | Launch IDs |
+| `legacy_id` | Legacy ID |
+| `link` | Link to ship info |
+| `longitude` | Longitude |
+| `mass_kg` | Mass in kilograms |
+| `mass_lbs` | Mass in pounds |
+| `mmsi` | MMSI number |
+| `model` | Ship model |
+| `name` | Ship name |
+| `roles` | Ship roles |
+| `speed_kn` | Speed in knots |
+| `status` | Ship status |
+| `type` | Ship type |
+| `year_built` | Year built |
 
 Operations: List, Load.
 
@@ -536,14 +536,14 @@ API path: `/ships`
 
 | Field | Description |
 | --- | --- |
-| `height_km` |  |
-| `id` |  |
-| `latitude` |  |
-| `launch` |  |
-| `longitude` |  |
-| `spaceTrack` |  |
-| `velocity_kms` |  |
-| `version` |  |
+| `height_km` | Current height in kilometers |
+| `id` | Starlink satellite ID |
+| `latitude` | Current latitude |
+| `launch` | Launch ID |
+| `longitude` | Current longitude |
+| `spaceTrack` | Space-Track.org data |
+| `velocity_kms` | Current velocity in km/s |
+| `version` | Satellite version |
 
 Operations: List, Load.
 
@@ -569,15 +569,15 @@ Create an instance: `capsule = client.Capsule`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `String` |  |
-| `land_landings` | `Integer` |  |
-| `last_update` | `String` |  |
-| `launches` | `Array` |  |
-| `reuse_count` | `Integer` |  |
-| `serial` | `String` |  |
-| `status` | `String` |  |
-| `type` | `String` |  |
-| `water_landings` | `Integer` |  |
+| `id` | `String` | Capsule serial number |
+| `land_landings` | `Integer` | Number of land landings |
+| `last_update` | `String` | Last update about the capsule |
+| `launches` | `Array` | Launch IDs |
+| `reuse_count` | `Integer` | Number of times capsule has been reused |
+| `serial` | `String` | Capsule serial number |
+| `status` | `String` | Capsule status |
+| `type` | `String` | Capsule type |
+| `water_landings` | `Integer` | Number of water landings |
 
 #### Example: Load
 
@@ -609,17 +609,17 @@ Create an instance: `core = client.Core`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asds_attempts` | `Integer` |  |
-| `asds_landings` | `Integer` |  |
-| `block` | `Integer` |  |
-| `id` | `String` |  |
-| `last_update` | `String` |  |
-| `launches` | `Array` |  |
-| `reuse_count` | `Integer` |  |
-| `rtls_attempts` | `Integer` |  |
-| `rtls_landings` | `Integer` |  |
-| `serial` | `String` |  |
-| `status` | `String` |  |
+| `asds_attempts` | `Integer` | Number of autonomous spaceport drone ship landing attempts |
+| `asds_landings` | `Integer` | Number of successful ASDS landings |
+| `block` | `Integer` | Core block number |
+| `id` | `String` | Core serial number |
+| `last_update` | `String` | Last update about the core |
+| `launches` | `Array` | Launch IDs |
+| `reuse_count` | `Integer` | Number of times core has been reused |
+| `rtls_attempts` | `Integer` | Number of return to launch site attempts |
+| `rtls_landings` | `Integer` | Number of successful RTLS landings |
+| `serial` | `String` | Core serial number |
+| `status` | `String` | Core status (active, inactive, unknown, expended, lost, retired) |
 
 #### Example: Load
 
@@ -651,13 +651,13 @@ Create an instance: `crew = client.Crew`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agency` | `String` |  |
-| `id` | `String` |  |
-| `image` | `String` |  |
-| `launches` | `Array` |  |
-| `name` | `String` |  |
-| `status` | `String` |  |
-| `wikipedia` | `String` |  |
+| `agency` | `String` | Agency |
+| `id` | `String` | Crew member ID |
+| `image` | `String` | Image URL |
+| `launches` | `Array` | Launch IDs |
+| `name` | `String` | Crew member name |
+| `status` | `String` | Status (active, inactive, retired, unknown) |
+| `wikipedia` | `String` | Wikipedia URL |
 
 #### Example: Load
 
@@ -689,20 +689,20 @@ Create an instance: `landpad = client.Landpad`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `details` | `String` |  |
-| `full_name` | `String` |  |
-| `id` | `String` |  |
-| `landing_attempts` | `Integer` |  |
-| `landing_successes` | `Integer` |  |
-| `latitude` | `Float` |  |
-| `launches` | `Array` |  |
-| `locality` | `String` |  |
-| `longitude` | `Float` |  |
-| `name` | `String` |  |
-| `region` | `String` |  |
-| `status` | `String` |  |
-| `type` | `String` |  |
-| `wikipedia` | `String` |  |
+| `details` | `String` | Landing pad details |
+| `full_name` | `String` | Full landing pad name |
+| `id` | `String` | Landing pad ID |
+| `landing_attempts` | `Integer` | Number of landing attempts |
+| `landing_successes` | `Integer` | Number of successful landings |
+| `latitude` | `Float` | Latitude |
+| `launches` | `Array` | Launch IDs |
+| `locality` | `String` | Locality |
+| `longitude` | `Float` | Longitude |
+| `name` | `String` | Landing pad name |
+| `region` | `String` | Region |
+| `status` | `String` | Landing pad status (active, inactive, unknown, retired, lost, under construction) |
+| `type` | `String` | Landing pad type (ASDS, RTLS) |
+| `wikipedia` | `String` | Wikipedia URL |
 
 #### Example: Load
 
@@ -734,41 +734,41 @@ Create an instance: `launch = client.Launch`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `auto_update` | `Boolean` |  |
-| `capsules` | `Array` |  |
-| `core` | `String` |  |
+| `auto_update` | `Boolean` | Whether the launch data is automatically updated |
+| `capsules` | `Array` | Capsule IDs |
+| `core` | `String` | Core ID |
 | `cores` | `Array` |  |
-| `crew` | `Array` |  |
-| `date_local` | `String` |  |
-| `date_precision` | `String` |  |
-| `date_unix` | `Integer` |  |
-| `date_utc` | `String` |  |
-| `details` | `String` |  |
-| `failures` | `Array` |  |
+| `crew` | `Array` | Crew member IDs |
+| `date_local` | `String` | Launch date in local time |
+| `date_precision` | `String` | Date precision (hour, day, month, quarter, half, year) |
+| `date_unix` | `Integer` | Launch date in unix timestamp |
+| `date_utc` | `String` | Launch date in UTC |
+| `details` | `String` | Launch details |
+| `failures` | `Array` | Launch failures |
 | `fairings` | `Hash` |  |
-| `flight` | `Integer` |  |
-| `flight_number` | `Integer` |  |
-| `gridfins` | `Boolean` |  |
-| `id` | `String` |  |
-| `landing_attempt` | `Boolean` |  |
-| `landing_success` | `Boolean` |  |
-| `landing_type` | `String` |  |
-| `landpad` | `String` |  |
-| `launchpad` | `String` |  |
-| `legs` | `Boolean` |  |
+| `flight` | `Integer` | Core flight number |
+| `flight_number` | `Integer` | Flight number |
+| `gridfins` | `Boolean` | Whether core has grid fins |
+| `id` | `String` | Launch ID |
+| `landing_attempt` | `Boolean` | Whether landing was attempted |
+| `landing_success` | `Boolean` | Whether landing was successful |
+| `landing_type` | `String` | Landing type (ASDS, RTLS, Ocean) |
+| `landpad` | `String` | Landing pad ID |
+| `launchpad` | `String` | Launchpad ID |
+| `legs` | `Boolean` | Whether core has legs |
 | `links` | `Hash` |  |
-| `name` | `String` |  |
-| `net` | `Boolean` |  |
-| `payloads` | `Array` |  |
-| `reused` | `Boolean` |  |
-| `rocket` | `String` |  |
-| `ships` | `Array` |  |
-| `static_fire_date_unix` | `Integer` |  |
-| `static_fire_date_utc` | `String` |  |
-| `success` | `Boolean` |  |
-| `tdb` | `Boolean` |  |
-| `upcoming` | `Boolean` |  |
-| `window` | `Integer` |  |
+| `name` | `String` | Launch name |
+| `net` | `Boolean` | No earlier than |
+| `payloads` | `Array` | Payload IDs |
+| `reused` | `Boolean` | Whether core was reused |
+| `rocket` | `String` | Rocket ID |
+| `ships` | `Array` | Ship IDs |
+| `static_fire_date_unix` | `Integer` | Static fire date in unix timestamp |
+| `static_fire_date_utc` | `String` | Static fire date in UTC |
+| `success` | `Boolean` | Launch success status |
+| `tdb` | `Boolean` | To be determined |
+| `upcoming` | `Boolean` | Whether the launch is upcoming |
+| `window` | `Integer` | Launch window in seconds |
 
 #### Example: Load
 
@@ -800,19 +800,19 @@ Create an instance: `launchpad = client.Launchpad`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `details` | `String` |  |
-| `full_name` | `String` |  |
-| `id` | `String` |  |
-| `latitude` | `Float` |  |
-| `launch_attempts` | `Integer` |  |
-| `launch_successes` | `Integer` |  |
-| `launches` | `Array` |  |
-| `locality` | `String` |  |
-| `longitude` | `Float` |  |
-| `name` | `String` |  |
-| `region` | `String` |  |
-| `rockets` | `Array` |  |
-| `status` | `String` |  |
+| `details` | `String` | Launchpad details |
+| `full_name` | `String` | Full launchpad name |
+| `id` | `String` | Launchpad ID |
+| `latitude` | `Float` | Latitude |
+| `launch_attempts` | `Integer` | Number of launch attempts |
+| `launch_successes` | `Integer` | Number of successful launches |
+| `launches` | `Array` | Launch IDs |
+| `locality` | `String` | Locality |
+| `longitude` | `Float` | Longitude |
+| `name` | `String` | Launchpad name |
+| `region` | `String` | Region |
+| `rockets` | `Array` | Rocket IDs |
+| `status` | `String` | Launchpad status (active, inactive, unknown, retired, lost, under construction) |
 
 #### Example: Load
 
@@ -844,33 +844,33 @@ Create an instance: `payload = client.Payload`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `apoapsis_km` | `Float` |  |
-| `arg_of_pericenter` | `Float` |  |
-| `customers` | `Array` |  |
-| `eccentricity` | `Float` |  |
-| `epoch` | `String` |  |
-| `id` | `String` |  |
-| `inclination_deg` | `Float` |  |
-| `launch` | `String` |  |
-| `lifespan_years` | `Float` |  |
-| `longitude` | `Float` |  |
-| `manufacturers` | `Array` |  |
-| `mass_kg` | `Float` |  |
-| `mass_lbs` | `Float` |  |
-| `mean_anomaly` | `Float` |  |
-| `mean_motion` | `Float` |  |
-| `name` | `String` |  |
-| `nationalities` | `Array` |  |
-| `norad_ids` | `Array` |  |
-| `orbit` | `String` |  |
-| `periapsis_km` | `Float` |  |
-| `period_min` | `Float` |  |
-| `raan` | `Float` |  |
-| `reference_system` | `String` |  |
-| `regime` | `String` |  |
-| `reused` | `Boolean` |  |
-| `semi_major_axis_km` | `Float` |  |
-| `type` | `String` |  |
+| `apoapsis_km` | `Float` | Apoapsis in km |
+| `arg_of_pericenter` | `Float` | Argument of pericenter |
+| `customers` | `Array` | Customers |
+| `eccentricity` | `Float` | Eccentricity |
+| `epoch` | `String` | Epoch |
+| `id` | `String` | Payload ID |
+| `inclination_deg` | `Float` | Inclination in degrees |
+| `launch` | `String` | Launch ID |
+| `lifespan_years` | `Float` | Lifespan in years |
+| `longitude` | `Float` | Longitude |
+| `manufacturers` | `Array` | Manufacturers |
+| `mass_kg` | `Float` | Payload mass in kilograms |
+| `mass_lbs` | `Float` | Payload mass in pounds |
+| `mean_anomaly` | `Float` | Mean anomaly |
+| `mean_motion` | `Float` | Mean motion |
+| `name` | `String` | Payload name |
+| `nationalities` | `Array` | Nationalities |
+| `norad_ids` | `Array` | NORAD IDs |
+| `orbit` | `String` | Orbit type |
+| `periapsis_km` | `Float` | Periapsis in km |
+| `period_min` | `Float` | Orbital period in minutes |
+| `raan` | `Float` | Right ascension of the ascending node |
+| `reference_system` | `String` | Reference system |
+| `regime` | `String` | Orbit regime |
+| `reused` | `Boolean` | Whether the payload was reused |
+| `semi_major_axis_km` | `Float` | Semi-major axis in km |
+| `type` | `String` | Payload type |
 
 #### Example: Load
 
@@ -901,33 +901,33 @@ Create an instance: `roadster = client.Roadster`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `apoapsis_au` | `Float` |  |
-| `details` | `String` |  |
-| `earth_distance_km` | `Float` |  |
-| `earth_distance_mi` | `Float` |  |
-| `eccentricity` | `Float` |  |
-| `epoch_jd` | `Float` |  |
-| `flickr_images` | `Array` |  |
-| `id` | `String` |  |
-| `inclination` | `Float` |  |
-| `launch_date_unix` | `Integer` |  |
-| `launch_date_utc` | `String` |  |
-| `launch_mass_kg` | `Integer` |  |
-| `launch_mass_lbs` | `Integer` |  |
-| `longitude` | `Float` |  |
-| `mars_distance_km` | `Float` |  |
-| `mars_distance_mi` | `Float` |  |
-| `name` | `String` |  |
-| `norad_id` | `Integer` |  |
-| `orbit_type` | `String` |  |
-| `periapsis_arg` | `Float` |  |
-| `periapsis_au` | `Float` |  |
-| `period_days` | `Float` |  |
-| `semi_major_axis_au` | `Float` |  |
-| `speed_kph` | `Float` |  |
-| `speed_mph` | `Float` |  |
-| `video` | `String` |  |
-| `wikipedia` | `String` |  |
+| `apoapsis_au` | `Float` | Apoapsis in AU |
+| `details` | `String` | Details |
+| `earth_distance_km` | `Float` | Distance from Earth in km |
+| `earth_distance_mi` | `Float` | Distance from Earth in miles |
+| `eccentricity` | `Float` | Eccentricity |
+| `epoch_jd` | `Float` | Epoch in Julian Date |
+| `flickr_images` | `Array` | Flickr images |
+| `id` | `String` | Roadster ID |
+| `inclination` | `Float` | Inclination |
+| `launch_date_unix` | `Integer` | Launch date in unix timestamp |
+| `launch_date_utc` | `String` | Launch date in UTC |
+| `launch_mass_kg` | `Integer` | Launch mass in kilograms |
+| `launch_mass_lbs` | `Integer` | Launch mass in pounds |
+| `longitude` | `Float` | Longitude |
+| `mars_distance_km` | `Float` | Distance from Mars in km |
+| `mars_distance_mi` | `Float` | Distance from Mars in miles |
+| `name` | `String` | Roadster name |
+| `norad_id` | `Integer` | NORAD ID |
+| `orbit_type` | `String` | Orbit type |
+| `periapsis_arg` | `Float` | Argument of periapsis |
+| `periapsis_au` | `Float` | Periapsis in AU |
+| `period_days` | `Float` | Orbital period in days |
+| `semi_major_axis_au` | `Float` | Semi-major axis in AU |
+| `speed_kph` | `Float` | Speed in km/h |
+| `speed_mph` | `Float` | Speed in mph |
+| `video` | `String` | Video URL |
+| `wikipedia` | `String` | Wikipedia URL |
 
 #### Example: List
 
@@ -952,22 +952,22 @@ Create an instance: `rocket = client.Rocket`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `active` | `Boolean` |  |
-| `boosters` | `Integer` |  |
-| `company` | `String` |  |
-| `cost_per_launch` | `Integer` |  |
-| `country` | `String` |  |
+| `active` | `Boolean` | Whether the rocket is active |
+| `boosters` | `Integer` | Number of boosters |
+| `company` | `String` | Company |
+| `cost_per_launch` | `Integer` | Cost per launch in USD |
+| `country` | `String` | Country of origin |
 | `description` | `String` |  |
 | `diameter` | `Hash` |  |
-| `first_flight` | `String` |  |
+| `first_flight` | `String` | Date of first flight |
 | `flickr_images` | `Array` |  |
 | `height` | `Hash` |  |
-| `id` | `String` |  |
+| `id` | `String` | Rocket ID |
 | `mass` | `Hash` |  |
-| `name` | `String` |  |
-| `stages` | `Integer` |  |
-| `success_rate_pct` | `Float` |  |
-| `type` | `String` |  |
+| `name` | `String` | Rocket name |
+| `stages` | `Integer` | Number of stages |
+| `success_rate_pct` | `Float` | Success rate percentage |
+| `type` | `String` | Rocket type |
 | `wikipedia` | `String` |  |
 
 #### Example: Load
@@ -1000,29 +1000,29 @@ Create an instance: `ship = client.Ship`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `abs` | `Integer` |  |
-| `class` | `Integer` |  |
-| `course_deg` | `Float` |  |
-| `home_port` | `String` |  |
-| `id` | `String` |  |
-| `image` | `String` |  |
-| `imo` | `Integer` |  |
-| `last_ais_update` | `String` |  |
-| `latitude` | `Float` |  |
-| `launches` | `Array` |  |
-| `legacy_id` | `String` |  |
-| `link` | `String` |  |
-| `longitude` | `Float` |  |
-| `mass_kg` | `Integer` |  |
-| `mass_lbs` | `Integer` |  |
-| `mmsi` | `Integer` |  |
-| `model` | `String` |  |
-| `name` | `String` |  |
-| `roles` | `Array` |  |
-| `speed_kn` | `Float` |  |
-| `status` | `String` |  |
-| `type` | `String` |  |
-| `year_built` | `Integer` |  |
+| `abs` | `Integer` | ABS number |
+| `class` | `Integer` | Ship class |
+| `course_deg` | `Float` | Course in degrees |
+| `home_port` | `String` | Home port |
+| `id` | `String` | Ship ID |
+| `image` | `String` | Image URL |
+| `imo` | `Integer` | IMO number |
+| `last_ais_update` | `String` | Last AIS update timestamp |
+| `latitude` | `Float` | Latitude |
+| `launches` | `Array` | Launch IDs |
+| `legacy_id` | `String` | Legacy ID |
+| `link` | `String` | Link to ship info |
+| `longitude` | `Float` | Longitude |
+| `mass_kg` | `Integer` | Mass in kilograms |
+| `mass_lbs` | `Integer` | Mass in pounds |
+| `mmsi` | `Integer` | MMSI number |
+| `model` | `String` | Ship model |
+| `name` | `String` | Ship name |
+| `roles` | `Array` | Ship roles |
+| `speed_kn` | `Float` | Speed in knots |
+| `status` | `String` | Ship status |
+| `type` | `String` | Ship type |
+| `year_built` | `Integer` | Year built |
 
 #### Example: Load
 
@@ -1054,14 +1054,14 @@ Create an instance: `starlink = client.Starlink`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `height_km` | `Float` |  |
-| `id` | `String` |  |
-| `latitude` | `Float` |  |
-| `launch` | `String` |  |
-| `longitude` | `Float` |  |
-| `spaceTrack` | `Hash` |  |
-| `velocity_kms` | `Float` |  |
-| `version` | `String` |  |
+| `height_km` | `Float` | Current height in kilometers |
+| `id` | `String` | Starlink satellite ID |
+| `latitude` | `Float` | Current latitude |
+| `launch` | `String` | Launch ID |
+| `longitude` | `Float` | Current longitude |
+| `spaceTrack` | `Hash` | Space-Track.org data |
+| `velocity_kms` | `Float` | Current velocity in km/s |
+| `version` | `String` | Satellite version |
 
 #### Example: Load
 

@@ -1,0 +1,154 @@
+# Entity: landpad
+
+main: kit: entity: landpad: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "details"
+      req: false
+      short: "Landing pad details"
+      type: "`$STRING`"
+    }
+    {
+      name: "full_name"
+      req: false
+      short: "Full landing pad name"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Landing pad ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "landing_attempts"
+      req: false
+      short: "Number of landing attempts"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "landing_successes"
+      req: false
+      short: "Number of successful landings"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "latitude"
+      req: false
+      short: "Latitude"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "launches"
+      req: false
+      short: "Launch IDs"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "locality"
+      req: false
+      short: "Locality"
+      type: "`$STRING`"
+    }
+    {
+      name: "longitude"
+      req: false
+      short: "Longitude"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Landing pad name"
+      type: "`$STRING`"
+    }
+    {
+      name: "region"
+      req: false
+      short: "Region"
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: false
+      short: "Landing pad status (active, inactive, unknown, retired, lost, under construction)"
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "Landing pad type (ASDS, RTLS)"
+      type: "`$STRING`"
+    }
+    {
+      name: "wikipedia"
+      req: false
+      short: "Wikipedia URL"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "landpad"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/landpads"
+          parts: [
+            "landpads"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/landpads/{id}"
+          parts: [
+            "landpads"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

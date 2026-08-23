@@ -1,0 +1,166 @@
+# Entity: rocket
+
+main: kit: entity: rocket: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "active"
+      req: false
+      short: "Whether the rocket is active"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "boosters"
+      req: false
+      short: "Number of boosters"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "company"
+      req: false
+      short: "Company"
+      type: "`$STRING`"
+    }
+    {
+      name: "cost_per_launch"
+      req: false
+      short: "Cost per launch in USD"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "country"
+      req: false
+      short: "Country of origin"
+      type: "`$STRING`"
+    }
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "diameter"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "first_flight"
+      req: false
+      short: "Date of first flight"
+      type: "`$STRING`"
+    }
+    {
+      name: "flickr_images"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "height"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Rocket ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "mass"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Rocket name"
+      type: "`$STRING`"
+    }
+    {
+      name: "stages"
+      req: false
+      short: "Number of stages"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "success_rate_pct"
+      req: false
+      short: "Success rate percentage"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "Rocket type"
+      type: "`$STRING`"
+    }
+    {
+      name: "wikipedia"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "rocket"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/rockets"
+          parts: [
+            "rockets"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/rockets/{id}"
+          parts: [
+            "rockets"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

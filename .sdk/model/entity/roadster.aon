@@ -1,0 +1,199 @@
+# Entity: roadster
+
+main: kit: entity: roadster: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "apoapsis_au"
+      req: false
+      short: "Apoapsis in AU"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "details"
+      req: false
+      short: "Details"
+      type: "`$STRING`"
+    }
+    {
+      name: "earth_distance_km"
+      req: false
+      short: "Distance from Earth in km"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "earth_distance_mi"
+      req: false
+      short: "Distance from Earth in miles"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "eccentricity"
+      req: false
+      short: "Eccentricity"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "epoch_jd"
+      req: false
+      short: "Epoch in Julian Date"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "flickr_images"
+      req: false
+      short: "Flickr images"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Roadster ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "inclination"
+      req: false
+      short: "Inclination"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "launch_date_unix"
+      req: false
+      short: "Launch date in unix timestamp"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "launch_date_utc"
+      req: false
+      short: "Launch date in UTC"
+      type: "`$STRING`"
+    }
+    {
+      name: "launch_mass_kg"
+      req: false
+      short: "Launch mass in kilograms"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "launch_mass_lbs"
+      req: false
+      short: "Launch mass in pounds"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "longitude"
+      req: false
+      short: "Longitude"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "mars_distance_km"
+      req: false
+      short: "Distance from Mars in km"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "mars_distance_mi"
+      req: false
+      short: "Distance from Mars in miles"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Roadster name"
+      type: "`$STRING`"
+    }
+    {
+      name: "norad_id"
+      req: false
+      short: "NORAD ID"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "orbit_type"
+      req: false
+      short: "Orbit type"
+      type: "`$STRING`"
+    }
+    {
+      name: "periapsis_arg"
+      req: false
+      short: "Argument of periapsis"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "periapsis_au"
+      req: false
+      short: "Periapsis in AU"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "period_days"
+      req: false
+      short: "Orbital period in days"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "semi_major_axis_au"
+      req: false
+      short: "Semi-major axis in AU"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "speed_kph"
+      req: false
+      short: "Speed in km/h"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "speed_mph"
+      req: false
+      short: "Speed in mph"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "video"
+      req: false
+      short: "Video URL"
+      type: "`$STRING`"
+    }
+    {
+      name: "wikipedia"
+      req: false
+      short: "Wikipedia URL"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "roadster"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/roadster"
+          parts: [
+            "roadster"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body.flickr_images`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

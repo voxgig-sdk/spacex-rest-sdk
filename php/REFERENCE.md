@@ -132,15 +132,15 @@ $capsule = $client->Capsule();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
-| `land_landings` | `int` | No |  |
-| `last_update` | `string` | No |  |
-| `launches` | `array` | No |  |
-| `reuse_count` | `int` | No |  |
-| `serial` | `string` | No |  |
-| `status` | `string` | No |  |
-| `type` | `string` | No |  |
-| `water_landings` | `int` | No |  |
+| `id` | `string` | No | Capsule serial number |
+| `land_landings` | `int` | No | Number of land landings |
+| `last_update` | `string` | No | Last update about the capsule |
+| `launches` | `array` | No | Launch IDs |
+| `reuse_count` | `int` | No | Number of times capsule has been reused |
+| `serial` | `string` | No | Capsule serial number |
+| `status` | `string` | No | Capsule status |
+| `type` | `string` | No | Capsule type |
+| `water_landings` | `int` | No | Number of water landings |
 
 ### Operations
 
@@ -200,17 +200,17 @@ $core = $client->Core();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asds_attempts` | `int` | No |  |
-| `asds_landings` | `int` | No |  |
-| `block` | `int` | No |  |
-| `id` | `string` | No |  |
-| `last_update` | `string` | No |  |
-| `launches` | `array` | No |  |
-| `reuse_count` | `int` | No |  |
-| `rtls_attempts` | `int` | No |  |
-| `rtls_landings` | `int` | No |  |
-| `serial` | `string` | No |  |
-| `status` | `string` | No |  |
+| `asds_attempts` | `int` | No | Number of autonomous spaceport drone ship landing attempts |
+| `asds_landings` | `int` | No | Number of successful ASDS landings |
+| `block` | `int` | No | Core block number |
+| `id` | `string` | No | Core serial number |
+| `last_update` | `string` | No | Last update about the core |
+| `launches` | `array` | No | Launch IDs |
+| `reuse_count` | `int` | No | Number of times core has been reused |
+| `rtls_attempts` | `int` | No | Number of return to launch site attempts |
+| `rtls_landings` | `int` | No | Number of successful RTLS landings |
+| `serial` | `string` | No | Core serial number |
+| `status` | `string` | No | Core status (active, inactive, unknown, expended, lost, retired) |
 
 ### Operations
 
@@ -270,13 +270,13 @@ $crew = $client->Crew();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agency` | `string` | No |  |
-| `id` | `string` | No |  |
-| `image` | `string` | No |  |
-| `launches` | `array` | No |  |
-| `name` | `string` | No |  |
-| `status` | `string` | No |  |
-| `wikipedia` | `string` | No |  |
+| `agency` | `string` | No | Agency |
+| `id` | `string` | No | Crew member ID |
+| `image` | `string` | No | Image URL |
+| `launches` | `array` | No | Launch IDs |
+| `name` | `string` | No | Crew member name |
+| `status` | `string` | No | Status (active, inactive, retired, unknown) |
+| `wikipedia` | `string` | No | Wikipedia URL |
 
 ### Operations
 
@@ -336,20 +336,20 @@ $landpad = $client->Landpad();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `details` | `string` | No |  |
-| `full_name` | `string` | No |  |
-| `id` | `string` | No |  |
-| `landing_attempts` | `int` | No |  |
-| `landing_successes` | `int` | No |  |
-| `latitude` | `float` | No |  |
-| `launches` | `array` | No |  |
-| `locality` | `string` | No |  |
-| `longitude` | `float` | No |  |
-| `name` | `string` | No |  |
-| `region` | `string` | No |  |
-| `status` | `string` | No |  |
-| `type` | `string` | No |  |
-| `wikipedia` | `string` | No |  |
+| `details` | `string` | No | Landing pad details |
+| `full_name` | `string` | No | Full landing pad name |
+| `id` | `string` | No | Landing pad ID |
+| `landing_attempts` | `int` | No | Number of landing attempts |
+| `landing_successes` | `int` | No | Number of successful landings |
+| `latitude` | `float` | No | Latitude |
+| `launches` | `array` | No | Launch IDs |
+| `locality` | `string` | No | Locality |
+| `longitude` | `float` | No | Longitude |
+| `name` | `string` | No | Landing pad name |
+| `region` | `string` | No | Region |
+| `status` | `string` | No | Landing pad status (active, inactive, unknown, retired, lost, under construction) |
+| `type` | `string` | No | Landing pad type (ASDS, RTLS) |
+| `wikipedia` | `string` | No | Wikipedia URL |
 
 ### Operations
 
@@ -409,41 +409,41 @@ $launch = $client->Launch();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `auto_update` | `bool` | No |  |
-| `capsules` | `array` | No |  |
-| `core` | `string` | No |  |
+| `auto_update` | `bool` | No | Whether the launch data is automatically updated |
+| `capsules` | `array` | No | Capsule IDs |
+| `core` | `string` | No | Core ID |
 | `cores` | `array` | No |  |
-| `crew` | `array` | No |  |
-| `date_local` | `string` | No |  |
-| `date_precision` | `string` | No |  |
-| `date_unix` | `int` | No |  |
-| `date_utc` | `string` | No |  |
-| `details` | `string` | No |  |
-| `failures` | `array` | No |  |
+| `crew` | `array` | No | Crew member IDs |
+| `date_local` | `string` | No | Launch date in local time |
+| `date_precision` | `string` | No | Date precision (hour, day, month, quarter, half, year) |
+| `date_unix` | `int` | No | Launch date in unix timestamp |
+| `date_utc` | `string` | No | Launch date in UTC |
+| `details` | `string` | No | Launch details |
+| `failures` | `array` | No | Launch failures |
 | `fairings` | `array` | No |  |
-| `flight` | `int` | No |  |
-| `flight_number` | `int` | No |  |
-| `gridfins` | `bool` | No |  |
-| `id` | `string` | No |  |
-| `landing_attempt` | `bool` | No |  |
-| `landing_success` | `bool` | No |  |
-| `landing_type` | `string` | No |  |
-| `landpad` | `string` | No |  |
-| `launchpad` | `string` | No |  |
-| `legs` | `bool` | No |  |
+| `flight` | `int` | No | Core flight number |
+| `flight_number` | `int` | No | Flight number |
+| `gridfins` | `bool` | No | Whether core has grid fins |
+| `id` | `string` | No | Launch ID |
+| `landing_attempt` | `bool` | No | Whether landing was attempted |
+| `landing_success` | `bool` | No | Whether landing was successful |
+| `landing_type` | `string` | No | Landing type (ASDS, RTLS, Ocean) |
+| `landpad` | `string` | No | Landing pad ID |
+| `launchpad` | `string` | No | Launchpad ID |
+| `legs` | `bool` | No | Whether core has legs |
 | `links` | `array` | No |  |
-| `name` | `string` | No |  |
-| `net` | `bool` | No |  |
-| `payloads` | `array` | No |  |
-| `reused` | `bool` | No |  |
-| `rocket` | `string` | No |  |
-| `ships` | `array` | No |  |
-| `static_fire_date_unix` | `int` | No |  |
-| `static_fire_date_utc` | `string` | No |  |
-| `success` | `bool` | No |  |
-| `tdb` | `bool` | No |  |
-| `upcoming` | `bool` | No |  |
-| `window` | `int` | No |  |
+| `name` | `string` | No | Launch name |
+| `net` | `bool` | No | No earlier than |
+| `payloads` | `array` | No | Payload IDs |
+| `reused` | `bool` | No | Whether core was reused |
+| `rocket` | `string` | No | Rocket ID |
+| `ships` | `array` | No | Ship IDs |
+| `static_fire_date_unix` | `int` | No | Static fire date in unix timestamp |
+| `static_fire_date_utc` | `string` | No | Static fire date in UTC |
+| `success` | `bool` | No | Launch success status |
+| `tdb` | `bool` | No | To be determined |
+| `upcoming` | `bool` | No | Whether the launch is upcoming |
+| `window` | `int` | No | Launch window in seconds |
 
 ### Operations
 
@@ -503,19 +503,19 @@ $launchpad = $client->Launchpad();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `details` | `string` | No |  |
-| `full_name` | `string` | No |  |
-| `id` | `string` | No |  |
-| `latitude` | `float` | No |  |
-| `launch_attempts` | `int` | No |  |
-| `launch_successes` | `int` | No |  |
-| `launches` | `array` | No |  |
-| `locality` | `string` | No |  |
-| `longitude` | `float` | No |  |
-| `name` | `string` | No |  |
-| `region` | `string` | No |  |
-| `rockets` | `array` | No |  |
-| `status` | `string` | No |  |
+| `details` | `string` | No | Launchpad details |
+| `full_name` | `string` | No | Full launchpad name |
+| `id` | `string` | No | Launchpad ID |
+| `latitude` | `float` | No | Latitude |
+| `launch_attempts` | `int` | No | Number of launch attempts |
+| `launch_successes` | `int` | No | Number of successful launches |
+| `launches` | `array` | No | Launch IDs |
+| `locality` | `string` | No | Locality |
+| `longitude` | `float` | No | Longitude |
+| `name` | `string` | No | Launchpad name |
+| `region` | `string` | No | Region |
+| `rockets` | `array` | No | Rocket IDs |
+| `status` | `string` | No | Launchpad status (active, inactive, unknown, retired, lost, under construction) |
 
 ### Operations
 
@@ -575,33 +575,33 @@ $payload = $client->Payload();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `apoapsis_km` | `float` | No |  |
-| `arg_of_pericenter` | `float` | No |  |
-| `customers` | `array` | No |  |
-| `eccentricity` | `float` | No |  |
-| `epoch` | `string` | No |  |
-| `id` | `string` | No |  |
-| `inclination_deg` | `float` | No |  |
-| `launch` | `string` | No |  |
-| `lifespan_years` | `float` | No |  |
-| `longitude` | `float` | No |  |
-| `manufacturers` | `array` | No |  |
-| `mass_kg` | `float` | No |  |
-| `mass_lbs` | `float` | No |  |
-| `mean_anomaly` | `float` | No |  |
-| `mean_motion` | `float` | No |  |
-| `name` | `string` | No |  |
-| `nationalities` | `array` | No |  |
-| `norad_ids` | `array` | No |  |
-| `orbit` | `string` | No |  |
-| `periapsis_km` | `float` | No |  |
-| `period_min` | `float` | No |  |
-| `raan` | `float` | No |  |
-| `reference_system` | `string` | No |  |
-| `regime` | `string` | No |  |
-| `reused` | `bool` | No |  |
-| `semi_major_axis_km` | `float` | No |  |
-| `type` | `string` | No |  |
+| `apoapsis_km` | `float` | No | Apoapsis in km |
+| `arg_of_pericenter` | `float` | No | Argument of pericenter |
+| `customers` | `array` | No | Customers |
+| `eccentricity` | `float` | No | Eccentricity |
+| `epoch` | `string` | No | Epoch |
+| `id` | `string` | No | Payload ID |
+| `inclination_deg` | `float` | No | Inclination in degrees |
+| `launch` | `string` | No | Launch ID |
+| `lifespan_years` | `float` | No | Lifespan in years |
+| `longitude` | `float` | No | Longitude |
+| `manufacturers` | `array` | No | Manufacturers |
+| `mass_kg` | `float` | No | Payload mass in kilograms |
+| `mass_lbs` | `float` | No | Payload mass in pounds |
+| `mean_anomaly` | `float` | No | Mean anomaly |
+| `mean_motion` | `float` | No | Mean motion |
+| `name` | `string` | No | Payload name |
+| `nationalities` | `array` | No | Nationalities |
+| `norad_ids` | `array` | No | NORAD IDs |
+| `orbit` | `string` | No | Orbit type |
+| `periapsis_km` | `float` | No | Periapsis in km |
+| `period_min` | `float` | No | Orbital period in minutes |
+| `raan` | `float` | No | Right ascension of the ascending node |
+| `reference_system` | `string` | No | Reference system |
+| `regime` | `string` | No | Orbit regime |
+| `reused` | `bool` | No | Whether the payload was reused |
+| `semi_major_axis_km` | `float` | No | Semi-major axis in km |
+| `type` | `string` | No | Payload type |
 
 ### Operations
 
@@ -661,33 +661,33 @@ $roadster = $client->Roadster();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `apoapsis_au` | `float` | No |  |
-| `details` | `string` | No |  |
-| `earth_distance_km` | `float` | No |  |
-| `earth_distance_mi` | `float` | No |  |
-| `eccentricity` | `float` | No |  |
-| `epoch_jd` | `float` | No |  |
-| `flickr_images` | `array` | No |  |
-| `id` | `string` | No |  |
-| `inclination` | `float` | No |  |
-| `launch_date_unix` | `int` | No |  |
-| `launch_date_utc` | `string` | No |  |
-| `launch_mass_kg` | `int` | No |  |
-| `launch_mass_lbs` | `int` | No |  |
-| `longitude` | `float` | No |  |
-| `mars_distance_km` | `float` | No |  |
-| `mars_distance_mi` | `float` | No |  |
-| `name` | `string` | No |  |
-| `norad_id` | `int` | No |  |
-| `orbit_type` | `string` | No |  |
-| `periapsis_arg` | `float` | No |  |
-| `periapsis_au` | `float` | No |  |
-| `period_days` | `float` | No |  |
-| `semi_major_axis_au` | `float` | No |  |
-| `speed_kph` | `float` | No |  |
-| `speed_mph` | `float` | No |  |
-| `video` | `string` | No |  |
-| `wikipedia` | `string` | No |  |
+| `apoapsis_au` | `float` | No | Apoapsis in AU |
+| `details` | `string` | No | Details |
+| `earth_distance_km` | `float` | No | Distance from Earth in km |
+| `earth_distance_mi` | `float` | No | Distance from Earth in miles |
+| `eccentricity` | `float` | No | Eccentricity |
+| `epoch_jd` | `float` | No | Epoch in Julian Date |
+| `flickr_images` | `array` | No | Flickr images |
+| `id` | `string` | No | Roadster ID |
+| `inclination` | `float` | No | Inclination |
+| `launch_date_unix` | `int` | No | Launch date in unix timestamp |
+| `launch_date_utc` | `string` | No | Launch date in UTC |
+| `launch_mass_kg` | `int` | No | Launch mass in kilograms |
+| `launch_mass_lbs` | `int` | No | Launch mass in pounds |
+| `longitude` | `float` | No | Longitude |
+| `mars_distance_km` | `float` | No | Distance from Mars in km |
+| `mars_distance_mi` | `float` | No | Distance from Mars in miles |
+| `name` | `string` | No | Roadster name |
+| `norad_id` | `int` | No | NORAD ID |
+| `orbit_type` | `string` | No | Orbit type |
+| `periapsis_arg` | `float` | No | Argument of periapsis |
+| `periapsis_au` | `float` | No | Periapsis in AU |
+| `period_days` | `float` | No | Orbital period in days |
+| `semi_major_axis_au` | `float` | No | Semi-major axis in AU |
+| `speed_kph` | `float` | No | Speed in km/h |
+| `speed_mph` | `float` | No | Speed in mph |
+| `video` | `string` | No | Video URL |
+| `wikipedia` | `string` | No | Wikipedia URL |
 
 ### Operations
 
@@ -739,22 +739,22 @@ $rocket = $client->Rocket();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `active` | `bool` | No |  |
-| `boosters` | `int` | No |  |
-| `company` | `string` | No |  |
-| `cost_per_launch` | `int` | No |  |
-| `country` | `string` | No |  |
+| `active` | `bool` | No | Whether the rocket is active |
+| `boosters` | `int` | No | Number of boosters |
+| `company` | `string` | No | Company |
+| `cost_per_launch` | `int` | No | Cost per launch in USD |
+| `country` | `string` | No | Country of origin |
 | `description` | `string` | No |  |
 | `diameter` | `array` | No |  |
-| `first_flight` | `string` | No |  |
+| `first_flight` | `string` | No | Date of first flight |
 | `flickr_images` | `array` | No |  |
 | `height` | `array` | No |  |
-| `id` | `string` | No |  |
+| `id` | `string` | No | Rocket ID |
 | `mass` | `array` | No |  |
-| `name` | `string` | No |  |
-| `stages` | `int` | No |  |
-| `success_rate_pct` | `float` | No |  |
-| `type` | `string` | No |  |
+| `name` | `string` | No | Rocket name |
+| `stages` | `int` | No | Number of stages |
+| `success_rate_pct` | `float` | No | Success rate percentage |
+| `type` | `string` | No | Rocket type |
 | `wikipedia` | `string` | No |  |
 
 ### Operations
@@ -815,29 +815,29 @@ $ship = $client->Ship();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `abs` | `int` | No |  |
-| `class` | `int` | No |  |
-| `course_deg` | `float` | No |  |
-| `home_port` | `string` | No |  |
-| `id` | `string` | No |  |
-| `image` | `string` | No |  |
-| `imo` | `int` | No |  |
-| `last_ais_update` | `string` | No |  |
-| `latitude` | `float` | No |  |
-| `launches` | `array` | No |  |
-| `legacy_id` | `string` | No |  |
-| `link` | `string` | No |  |
-| `longitude` | `float` | No |  |
-| `mass_kg` | `int` | No |  |
-| `mass_lbs` | `int` | No |  |
-| `mmsi` | `int` | No |  |
-| `model` | `string` | No |  |
-| `name` | `string` | No |  |
-| `roles` | `array` | No |  |
-| `speed_kn` | `float` | No |  |
-| `status` | `string` | No |  |
-| `type` | `string` | No |  |
-| `year_built` | `int` | No |  |
+| `abs` | `int` | No | ABS number |
+| `class` | `int` | No | Ship class |
+| `course_deg` | `float` | No | Course in degrees |
+| `home_port` | `string` | No | Home port |
+| `id` | `string` | No | Ship ID |
+| `image` | `string` | No | Image URL |
+| `imo` | `int` | No | IMO number |
+| `last_ais_update` | `string` | No | Last AIS update timestamp |
+| `latitude` | `float` | No | Latitude |
+| `launches` | `array` | No | Launch IDs |
+| `legacy_id` | `string` | No | Legacy ID |
+| `link` | `string` | No | Link to ship info |
+| `longitude` | `float` | No | Longitude |
+| `mass_kg` | `int` | No | Mass in kilograms |
+| `mass_lbs` | `int` | No | Mass in pounds |
+| `mmsi` | `int` | No | MMSI number |
+| `model` | `string` | No | Ship model |
+| `name` | `string` | No | Ship name |
+| `roles` | `array` | No | Ship roles |
+| `speed_kn` | `float` | No | Speed in knots |
+| `status` | `string` | No | Ship status |
+| `type` | `string` | No | Ship type |
+| `year_built` | `int` | No | Year built |
 
 ### Operations
 
@@ -897,14 +897,14 @@ $starlink = $client->Starlink();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `height_km` | `float` | No |  |
-| `id` | `string` | No |  |
-| `latitude` | `float` | No |  |
-| `launch` | `string` | No |  |
-| `longitude` | `float` | No |  |
-| `spaceTrack` | `array` | No |  |
-| `velocity_kms` | `float` | No |  |
-| `version` | `string` | No |  |
+| `height_km` | `float` | No | Current height in kilometers |
+| `id` | `string` | No | Starlink satellite ID |
+| `latitude` | `float` | No | Current latitude |
+| `launch` | `string` | No | Launch ID |
+| `longitude` | `float` | No | Current longitude |
+| `spaceTrack` | `array` | No | Space-Track.org data |
+| `velocity_kms` | `float` | No | Current velocity in km/s |
+| `version` | `string` | No | Satellite version |
 
 ### Operations
 

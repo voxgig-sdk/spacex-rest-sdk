@@ -1,0 +1,322 @@
+# Entity: launch
+
+main: kit: entity: launch: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "auto_update"
+      req: false
+      short: "Whether the launch data is automatically updated"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "capsules"
+      req: false
+      short: "Capsule IDs"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "core"
+      req: false
+      short: "Core ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "cores"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "crew"
+      req: false
+      short: "Crew member IDs"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "date_local"
+      req: false
+      short: "Launch date in local time"
+      type: "`$STRING`"
+    }
+    {
+      name: "date_precision"
+      req: false
+      short: "Date precision (hour, day, month, quarter, half, year)"
+      type: "`$STRING`"
+    }
+    {
+      name: "date_unix"
+      req: false
+      short: "Launch date in unix timestamp"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "date_utc"
+      req: false
+      short: "Launch date in UTC"
+      type: "`$STRING`"
+    }
+    {
+      name: "details"
+      req: false
+      short: "Launch details"
+      type: "`$STRING`"
+    }
+    {
+      name: "failures"
+      req: false
+      short: "Launch failures"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "fairings"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "flight"
+      req: false
+      short: "Core flight number"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "flight_number"
+      req: false
+      short: "Flight number"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "gridfins"
+      req: false
+      short: "Whether core has grid fins"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Launch ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "landing_attempt"
+      req: false
+      short: "Whether landing was attempted"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "landing_success"
+      req: false
+      short: "Whether landing was successful"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "landing_type"
+      req: false
+      short: "Landing type (ASDS, RTLS, Ocean)"
+      type: "`$STRING`"
+    }
+    {
+      name: "landpad"
+      req: false
+      short: "Landing pad ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "launchpad"
+      req: false
+      short: "Launchpad ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "legs"
+      req: false
+      short: "Whether core has legs"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "links"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Launch name"
+      type: "`$STRING`"
+    }
+    {
+      name: "net"
+      req: false
+      short: "No earlier than"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "payloads"
+      req: false
+      short: "Payload IDs"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "reused"
+      req: false
+      short: "Whether core was reused"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "rocket"
+      req: false
+      short: "Rocket ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "ships"
+      req: false
+      short: "Ship IDs"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "static_fire_date_unix"
+      req: false
+      short: "Static fire date in unix timestamp"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "static_fire_date_utc"
+      req: false
+      short: "Static fire date in UTC"
+      type: "`$STRING`"
+    }
+    {
+      name: "success"
+      req: false
+      short: "Launch success status"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "tdb"
+      req: false
+      short: "To be determined"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "upcoming"
+      req: false
+      short: "Whether the launch is upcoming"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "window"
+      req: false
+      short: "Launch window in seconds"
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "launch"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/launches"
+          parts: [
+            "launches"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/launches/latest"
+          parts: [
+            "launches"
+            "latest"
+          ]
+          select: {
+            "$action": "latest"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/launches/past"
+          parts: [
+            "launches"
+            "past"
+          ]
+          select: {
+            "$action": "past"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/launches/upcoming"
+          parts: [
+            "launches"
+            "upcoming"
+          ]
+          select: {
+            "$action": "upcoming"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/launches/{id}"
+          parts: [
+            "launches"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

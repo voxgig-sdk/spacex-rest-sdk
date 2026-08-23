@@ -36,54 +36,63 @@
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Capsule serial number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "land_landings",
               "req": false,
+              "short": "Number of land landings",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "last_update",
               "req": false,
+              "short": "Last update about the capsule",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "launches",
               "req": false,
+              "short": "Launch IDs",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "reuse_count",
               "req": false,
+              "short": "Number of times capsule has been reused",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "serial",
               "req": false,
+              "short": "Capsule serial number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "status",
               "req": false,
+              "short": "Capsule status",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Capsule type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "water_landings",
               "req": false,
+              "short": "Number of water landings",
               "type": "`$INTEGER`"
             }
           ],
@@ -166,66 +175,77 @@
               "active": true,
               "name": "asds_attempts",
               "req": false,
+              "short": "Number of autonomous spaceport drone ship landing attempts",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "asds_landings",
               "req": false,
+              "short": "Number of successful ASDS landings",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "block",
               "req": false,
+              "short": "Core block number",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Core serial number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "last_update",
               "req": false,
+              "short": "Last update about the core",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "launches",
               "req": false,
+              "short": "Launch IDs",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "reuse_count",
               "req": false,
+              "short": "Number of times core has been reused",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "rtls_attempts",
               "req": false,
+              "short": "Number of return to launch site attempts",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "rtls_landings",
               "req": false,
+              "short": "Number of successful RTLS landings",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "serial",
               "req": false,
+              "short": "Core serial number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "status",
               "req": false,
+              "short": "Core status (active, inactive, unknown, expended, lost, retired)",
               "type": "`$STRING`"
             }
           ],
@@ -308,42 +328,49 @@
               "active": true,
               "name": "agency",
               "req": false,
+              "short": "Agency",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Crew member ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "image",
               "req": false,
+              "short": "Image URL",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "launches",
               "req": false,
+              "short": "Launch IDs",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Crew member name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "status",
               "req": false,
+              "short": "Status (active, inactive, retired, unknown)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "wikipedia",
               "req": false,
+              "short": "Wikipedia URL",
               "type": "`$STRING`"
             }
           ],
@@ -426,84 +453,98 @@
               "active": true,
               "name": "details",
               "req": false,
+              "short": "Landing pad details",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "full_name",
               "req": false,
+              "short": "Full landing pad name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Landing pad ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "landing_attempts",
               "req": false,
+              "short": "Number of landing attempts",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "landing_successes",
               "req": false,
+              "short": "Number of successful landings",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "latitude",
               "req": false,
+              "short": "Latitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "launches",
               "req": false,
+              "short": "Launch IDs",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "locality",
               "req": false,
+              "short": "Locality",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "longitude",
               "req": false,
+              "short": "Longitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Landing pad name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "region",
               "req": false,
+              "short": "Region",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "status",
               "req": false,
+              "short": "Landing pad status (active, inactive, unknown, retired, lost, under construction)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Landing pad type (ASDS, RTLS)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "wikipedia",
               "req": false,
+              "short": "Wikipedia URL",
               "type": "`$STRING`"
             }
           ],
@@ -586,18 +627,21 @@
               "active": true,
               "name": "auto_update",
               "req": false,
+              "short": "Whether the launch data is automatically updated",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "capsules",
               "req": false,
+              "short": "Capsule IDs",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "core",
               "req": false,
+              "short": "Core ID",
               "type": "`$STRING`"
             },
             {
@@ -610,42 +654,49 @@
               "active": true,
               "name": "crew",
               "req": false,
+              "short": "Crew member IDs",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "date_local",
               "req": false,
+              "short": "Launch date in local time",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "date_precision",
               "req": false,
+              "short": "Date precision (hour, day, month, quarter, half, year)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "date_unix",
               "req": false,
+              "short": "Launch date in unix timestamp",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "date_utc",
               "req": false,
+              "short": "Launch date in UTC",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "details",
               "req": false,
+              "short": "Launch details",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "failures",
               "req": false,
+              "short": "Launch failures",
               "type": "`$ARRAY`"
             },
             {
@@ -658,60 +709,70 @@
               "active": true,
               "name": "flight",
               "req": false,
+              "short": "Core flight number",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "flight_number",
               "req": false,
+              "short": "Flight number",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "gridfins",
               "req": false,
+              "short": "Whether core has grid fins",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Launch ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "landing_attempt",
               "req": false,
+              "short": "Whether landing was attempted",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "landing_success",
               "req": false,
+              "short": "Whether landing was successful",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "landing_type",
               "req": false,
+              "short": "Landing type (ASDS, RTLS, Ocean)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "landpad",
               "req": false,
+              "short": "Landing pad ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "launchpad",
               "req": false,
+              "short": "Launchpad ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "legs",
               "req": false,
+              "short": "Whether core has legs",
               "type": "`$BOOLEAN`"
             },
             {
@@ -724,72 +785,84 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Launch name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "net",
               "req": false,
+              "short": "No earlier than",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "payloads",
               "req": false,
+              "short": "Payload IDs",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "reused",
               "req": false,
+              "short": "Whether core was reused",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "rocket",
               "req": false,
+              "short": "Rocket ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "ships",
               "req": false,
+              "short": "Ship IDs",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "static_fire_date_unix",
               "req": false,
+              "short": "Static fire date in unix timestamp",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "static_fire_date_utc",
               "req": false,
+              "short": "Static fire date in UTC",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "success",
               "req": false,
+              "short": "Launch success status",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "tdb",
               "req": false,
+              "short": "To be determined",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "upcoming",
               "req": false,
+              "short": "Whether the launch is upcoming",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "window",
               "req": false,
+              "short": "Launch window in seconds",
               "type": "`$INTEGER`"
             }
           ],
@@ -926,78 +999,91 @@
               "active": true,
               "name": "details",
               "req": false,
+              "short": "Launchpad details",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "full_name",
               "req": false,
+              "short": "Full launchpad name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Launchpad ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "latitude",
               "req": false,
+              "short": "Latitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "launch_attempts",
               "req": false,
+              "short": "Number of launch attempts",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "launch_successes",
               "req": false,
+              "short": "Number of successful launches",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "launches",
               "req": false,
+              "short": "Launch IDs",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "locality",
               "req": false,
+              "short": "Locality",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "longitude",
               "req": false,
+              "short": "Longitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Launchpad name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "region",
               "req": false,
+              "short": "Region",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "rockets",
               "req": false,
+              "short": "Rocket IDs",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "status",
               "req": false,
+              "short": "Launchpad status (active, inactive, unknown, retired, lost, under construction)",
               "type": "`$STRING`"
             }
           ],
@@ -1080,162 +1166,189 @@
               "active": true,
               "name": "apoapsis_km",
               "req": false,
+              "short": "Apoapsis in km",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "arg_of_pericenter",
               "req": false,
+              "short": "Argument of pericenter",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "customers",
               "req": false,
+              "short": "Customers",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "eccentricity",
               "req": false,
+              "short": "Eccentricity",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "epoch",
               "req": false,
+              "short": "Epoch",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Payload ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "inclination_deg",
               "req": false,
+              "short": "Inclination in degrees",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "launch",
               "req": false,
+              "short": "Launch ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "lifespan_years",
               "req": false,
+              "short": "Lifespan in years",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "longitude",
               "req": false,
+              "short": "Longitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "manufacturers",
               "req": false,
+              "short": "Manufacturers",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "mass_kg",
               "req": false,
+              "short": "Payload mass in kilograms",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "mass_lbs",
               "req": false,
+              "short": "Payload mass in pounds",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "mean_anomaly",
               "req": false,
+              "short": "Mean anomaly",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "mean_motion",
               "req": false,
+              "short": "Mean motion",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Payload name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "nationalities",
               "req": false,
+              "short": "Nationalities",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "norad_ids",
               "req": false,
+              "short": "NORAD IDs",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "orbit",
               "req": false,
+              "short": "Orbit type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "periapsis_km",
               "req": false,
+              "short": "Periapsis in km",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "period_min",
               "req": false,
+              "short": "Orbital period in minutes",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "raan",
               "req": false,
+              "short": "Right ascension of the ascending node",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "reference_system",
               "req": false,
+              "short": "Reference system",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "regime",
               "req": false,
+              "short": "Orbit regime",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "reused",
               "req": false,
+              "short": "Whether the payload was reused",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "semi_major_axis_km",
               "req": false,
+              "short": "Semi-major axis in km",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Payload type",
               "type": "`$STRING`"
             }
           ],
@@ -1318,162 +1431,189 @@
               "active": true,
               "name": "apoapsis_au",
               "req": false,
+              "short": "Apoapsis in AU",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "details",
               "req": false,
+              "short": "Details",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "earth_distance_km",
               "req": false,
+              "short": "Distance from Earth in km",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "earth_distance_mi",
               "req": false,
+              "short": "Distance from Earth in miles",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "eccentricity",
               "req": false,
+              "short": "Eccentricity",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "epoch_jd",
               "req": false,
+              "short": "Epoch in Julian Date",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "flickr_images",
               "req": false,
+              "short": "Flickr images",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Roadster ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "inclination",
               "req": false,
+              "short": "Inclination",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "launch_date_unix",
               "req": false,
+              "short": "Launch date in unix timestamp",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "launch_date_utc",
               "req": false,
+              "short": "Launch date in UTC",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "launch_mass_kg",
               "req": false,
+              "short": "Launch mass in kilograms",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "launch_mass_lbs",
               "req": false,
+              "short": "Launch mass in pounds",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "longitude",
               "req": false,
+              "short": "Longitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "mars_distance_km",
               "req": false,
+              "short": "Distance from Mars in km",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "mars_distance_mi",
               "req": false,
+              "short": "Distance from Mars in miles",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Roadster name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "norad_id",
               "req": false,
+              "short": "NORAD ID",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "orbit_type",
               "req": false,
+              "short": "Orbit type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "periapsis_arg",
               "req": false,
+              "short": "Argument of periapsis",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "periapsis_au",
               "req": false,
+              "short": "Periapsis in AU",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "period_days",
               "req": false,
+              "short": "Orbital period in days",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "semi_major_axis_au",
               "req": false,
+              "short": "Semi-major axis in AU",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "speed_kph",
               "req": false,
+              "short": "Speed in km/h",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "speed_mph",
               "req": false,
+              "short": "Speed in mph",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "video",
               "req": false,
+              "short": "Video URL",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "wikipedia",
               "req": false,
+              "short": "Wikipedia URL",
               "type": "`$STRING`"
             }
           ],
@@ -1519,30 +1659,35 @@
               "active": true,
               "name": "active",
               "req": false,
+              "short": "Whether the rocket is active",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "boosters",
               "req": false,
+              "short": "Number of boosters",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "company",
               "req": false,
+              "short": "Company",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "cost_per_launch",
               "req": false,
+              "short": "Cost per launch in USD",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "country",
               "req": false,
+              "short": "Country of origin",
               "type": "`$STRING`"
             },
             {
@@ -1561,6 +1706,7 @@
               "active": true,
               "name": "first_flight",
               "req": false,
+              "short": "Date of first flight",
               "type": "`$STRING`"
             },
             {
@@ -1579,6 +1725,7 @@
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Rocket ID",
               "type": "`$STRING`"
             },
             {
@@ -1591,24 +1738,28 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Rocket name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "stages",
               "req": false,
+              "short": "Number of stages",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "success_rate_pct",
               "req": false,
+              "short": "Success rate percentage",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Rocket type",
               "type": "`$STRING`"
             },
             {
@@ -1697,138 +1848,161 @@
               "active": true,
               "name": "abs",
               "req": false,
+              "short": "ABS number",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "class",
               "req": false,
+              "short": "Ship class",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "course_deg",
               "req": false,
+              "short": "Course in degrees",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "home_port",
               "req": false,
+              "short": "Home port",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Ship ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "image",
               "req": false,
+              "short": "Image URL",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "imo",
               "req": false,
+              "short": "IMO number",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "last_ais_update",
               "req": false,
+              "short": "Last AIS update timestamp",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "latitude",
               "req": false,
+              "short": "Latitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "launches",
               "req": false,
+              "short": "Launch IDs",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "legacy_id",
               "req": false,
+              "short": "Legacy ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "link",
               "req": false,
+              "short": "Link to ship info",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "longitude",
               "req": false,
+              "short": "Longitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "mass_kg",
               "req": false,
+              "short": "Mass in kilograms",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "mass_lbs",
               "req": false,
+              "short": "Mass in pounds",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "mmsi",
               "req": false,
+              "short": "MMSI number",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "model",
               "req": false,
+              "short": "Ship model",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Ship name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "roles",
               "req": false,
+              "short": "Ship roles",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "speed_kn",
               "req": false,
+              "short": "Speed in knots",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "status",
               "req": false,
+              "short": "Ship status",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Ship type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "year_built",
               "req": false,
+              "short": "Year built",
               "type": "`$INTEGER`"
             }
           ],
@@ -1911,48 +2085,56 @@
               "active": true,
               "name": "height_km",
               "req": false,
+              "short": "Current height in kilometers",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Starlink satellite ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "latitude",
               "req": false,
+              "short": "Current latitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "launch",
               "req": false,
+              "short": "Launch ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "longitude",
               "req": false,
+              "short": "Current longitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "spaceTrack",
               "req": false,
+              "short": "Space-Track.org data",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "velocity_kms",
               "req": false,
+              "short": "Current velocity in km/s",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "version",
               "req": false,
+              "short": "Satellite version",
               "type": "`$STRING`"
             }
           ],

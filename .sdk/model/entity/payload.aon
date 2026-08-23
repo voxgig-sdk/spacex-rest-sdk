@@ -1,0 +1,232 @@
+# Entity: payload
+
+main: kit: entity: payload: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "apoapsis_km"
+      req: false
+      short: "Apoapsis in km"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "arg_of_pericenter"
+      req: false
+      short: "Argument of pericenter"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "customers"
+      req: false
+      short: "Customers"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "eccentricity"
+      req: false
+      short: "Eccentricity"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "epoch"
+      req: false
+      short: "Epoch"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Payload ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "inclination_deg"
+      req: false
+      short: "Inclination in degrees"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "launch"
+      req: false
+      short: "Launch ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "lifespan_years"
+      req: false
+      short: "Lifespan in years"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "longitude"
+      req: false
+      short: "Longitude"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "manufacturers"
+      req: false
+      short: "Manufacturers"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "mass_kg"
+      req: false
+      short: "Payload mass in kilograms"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "mass_lbs"
+      req: false
+      short: "Payload mass in pounds"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "mean_anomaly"
+      req: false
+      short: "Mean anomaly"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "mean_motion"
+      req: false
+      short: "Mean motion"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Payload name"
+      type: "`$STRING`"
+    }
+    {
+      name: "nationalities"
+      req: false
+      short: "Nationalities"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "norad_ids"
+      req: false
+      short: "NORAD IDs"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "orbit"
+      req: false
+      short: "Orbit type"
+      type: "`$STRING`"
+    }
+    {
+      name: "periapsis_km"
+      req: false
+      short: "Periapsis in km"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "period_min"
+      req: false
+      short: "Orbital period in minutes"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "raan"
+      req: false
+      short: "Right ascension of the ascending node"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "reference_system"
+      req: false
+      short: "Reference system"
+      type: "`$STRING`"
+    }
+    {
+      name: "regime"
+      req: false
+      short: "Orbit regime"
+      type: "`$STRING`"
+    }
+    {
+      name: "reused"
+      req: false
+      short: "Whether the payload was reused"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "semi_major_axis_km"
+      req: false
+      short: "Semi-major axis in km"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "Payload type"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "payload"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/payloads"
+          parts: [
+            "payloads"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/payloads/{id}"
+          parts: [
+            "payloads"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

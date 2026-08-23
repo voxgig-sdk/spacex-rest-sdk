@@ -1,0 +1,148 @@
+# Entity: launchpad
+
+main: kit: entity: launchpad: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "details"
+      req: false
+      short: "Launchpad details"
+      type: "`$STRING`"
+    }
+    {
+      name: "full_name"
+      req: false
+      short: "Full launchpad name"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Launchpad ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "latitude"
+      req: false
+      short: "Latitude"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "launch_attempts"
+      req: false
+      short: "Number of launch attempts"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "launch_successes"
+      req: false
+      short: "Number of successful launches"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "launches"
+      req: false
+      short: "Launch IDs"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "locality"
+      req: false
+      short: "Locality"
+      type: "`$STRING`"
+    }
+    {
+      name: "longitude"
+      req: false
+      short: "Longitude"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Launchpad name"
+      type: "`$STRING`"
+    }
+    {
+      name: "region"
+      req: false
+      short: "Region"
+      type: "`$STRING`"
+    }
+    {
+      name: "rockets"
+      req: false
+      short: "Rocket IDs"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "status"
+      req: false
+      short: "Launchpad status (active, inactive, unknown, retired, lost, under construction)"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "launchpad"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/launchpads"
+          parts: [
+            "launchpads"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/launchpads/{id}"
+          parts: [
+            "launchpads"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
