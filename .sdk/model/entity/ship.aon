@@ -158,8 +158,10 @@ main: kit: entity: ship: {
         {
           method: "GET"
           orig: "/ships"
-          parts: [
-            "ships"
+          segments: [
+            {
+              lit: "ships"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -185,9 +187,13 @@ main: kit: entity: ship: {
           }
           method: "GET"
           orig: "/ships/{id}"
-          parts: [
-            "ships"
-            "{id}"
+          segments: [
+            {
+              lit: "ships"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

@@ -99,6 +99,10 @@ module SpacexRestConfig
               "type" => "`$INTEGER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "capsule",
           "op" => {
             "list" => {
@@ -110,14 +114,19 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/capsules",
-                  "parts" => [
-                    "capsules",
+                  "segments" => [
+                    {
+                      "lit" => "capsules",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "capsules",
+                  ],
                 },
               ],
             },
@@ -140,9 +149,13 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/capsules/{id}",
-                  "parts" => [
-                    "capsules",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "capsules",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -153,6 +166,10 @@ module SpacexRestConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "capsules",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -219,6 +236,10 @@ module SpacexRestConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "core",
           "op" => {
             "list" => {
@@ -230,14 +251,19 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cores",
-                  "parts" => [
-                    "cores",
+                  "segments" => [
+                    {
+                      "lit" => "cores",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "cores",
+                  ],
                 },
               ],
             },
@@ -260,9 +286,13 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cores/{id}",
-                  "parts" => [
-                    "cores",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "cores",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -273,6 +303,10 @@ module SpacexRestConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "cores",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -319,6 +353,10 @@ module SpacexRestConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "crew",
           "op" => {
             "list" => {
@@ -330,14 +368,19 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/crew",
-                  "parts" => [
-                    "crew",
+                  "segments" => [
+                    {
+                      "lit" => "crew",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "crew",
+                  ],
                 },
               ],
             },
@@ -360,9 +403,13 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/crew/{id}",
-                  "parts" => [
-                    "crew",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "crew",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -373,6 +420,10 @@ module SpacexRestConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "crew",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -454,6 +505,10 @@ module SpacexRestConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "landpad",
           "op" => {
             "list" => {
@@ -465,14 +520,19 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/landpads",
-                  "parts" => [
-                    "landpads",
+                  "segments" => [
+                    {
+                      "lit" => "landpads",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "landpads",
+                  ],
                 },
               ],
             },
@@ -495,9 +555,13 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/landpads/{id}",
-                  "parts" => [
-                    "landpads",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "landpads",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -508,6 +572,10 @@ module SpacexRestConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "landpads",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -543,6 +611,7 @@ module SpacexRestConfig
               "type" => "`$ARRAY`",
             },
             {
+              "format" => "date-time",
               "name" => "date_local",
               "short" => "Launch date in local time",
               "type" => "`$STRING`",
@@ -558,6 +627,7 @@ module SpacexRestConfig
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "date-time",
               "name" => "date_utc",
               "short" => "Launch date in UTC",
               "type" => "`$STRING`",
@@ -666,6 +736,7 @@ module SpacexRestConfig
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "date-time",
               "name" => "static_fire_date_utc",
               "short" => "Static fire date in UTC",
               "type" => "`$STRING`",
@@ -691,6 +762,10 @@ module SpacexRestConfig
               "type" => "`$INTEGER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "launch",
           "op" => {
             "list" => {
@@ -702,23 +777,32 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/launches",
-                  "parts" => [
-                    "launches",
+                  "segments" => [
+                    {
+                      "lit" => "launches",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "launches",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/launches/latest",
-                  "parts" => [
-                    "launches",
-                    "latest",
+                  "segments" => [
+                    {
+                      "lit" => "launches",
+                    },
+                    {
+                      "lit" => "latest",
+                    },
                   ],
                   "select" => {
                     "$action" => "latest",
@@ -727,15 +811,23 @@ module SpacexRestConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "launches",
+                    "latest",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/launches/past",
-                  "parts" => [
-                    "launches",
-                    "past",
+                  "segments" => [
+                    {
+                      "lit" => "launches",
+                    },
+                    {
+                      "lit" => "past",
+                    },
                   ],
                   "select" => {
                     "$action" => "past",
@@ -744,15 +836,23 @@ module SpacexRestConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "launches",
+                    "past",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/launches/upcoming",
-                  "parts" => [
-                    "launches",
-                    "upcoming",
+                  "segments" => [
+                    {
+                      "lit" => "launches",
+                    },
+                    {
+                      "lit" => "upcoming",
+                    },
                   ],
                   "select" => {
                     "$action" => "upcoming",
@@ -761,6 +861,10 @@ module SpacexRestConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "launches",
+                    "upcoming",
+                  ],
                 },
               ],
             },
@@ -783,9 +887,13 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/launches/{id}",
-                  "parts" => [
-                    "launches",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "launches",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -796,6 +904,10 @@ module SpacexRestConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "launches",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -872,6 +984,10 @@ module SpacexRestConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "launchpad",
           "op" => {
             "list" => {
@@ -883,14 +999,19 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/launchpads",
-                  "parts" => [
-                    "launchpads",
+                  "segments" => [
+                    {
+                      "lit" => "launchpads",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "launchpads",
+                  ],
                 },
               ],
             },
@@ -913,9 +1034,13 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/launchpads/{id}",
-                  "parts" => [
-                    "launchpads",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "launchpads",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -926,6 +1051,10 @@ module SpacexRestConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "launchpads",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -1072,6 +1201,10 @@ module SpacexRestConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "payload",
           "op" => {
             "list" => {
@@ -1083,14 +1216,19 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/payloads",
-                  "parts" => [
-                    "payloads",
+                  "segments" => [
+                    {
+                      "lit" => "payloads",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "payloads",
+                  ],
                 },
               ],
             },
@@ -1113,9 +1251,13 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/payloads/{id}",
-                  "parts" => [
-                    "payloads",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "payloads",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1126,6 +1268,10 @@ module SpacexRestConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "payloads",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -1187,6 +1333,7 @@ module SpacexRestConfig
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "date-time",
               "name" => "launch_date_utc",
               "short" => "Launch date in UTC",
               "type" => "`$STRING`",
@@ -1272,6 +1419,10 @@ module SpacexRestConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "roadster",
           "op" => {
             "list" => {
@@ -1283,14 +1434,19 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/roadster",
-                  "parts" => [
-                    "roadster",
+                  "segments" => [
+                    {
+                      "lit" => "roadster",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.flickr_images`",
                   },
+                  "parts" => [
+                    "roadster",
+                  ],
                 },
               ],
             },
@@ -1335,6 +1491,7 @@ module SpacexRestConfig
               "type" => "`$OBJECT`",
             },
             {
+              "format" => "date",
               "name" => "first_flight",
               "short" => "Date of first flight",
               "type" => "`$STRING`",
@@ -1381,6 +1538,10 @@ module SpacexRestConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "rocket",
           "op" => {
             "list" => {
@@ -1392,14 +1553,19 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/rockets",
-                  "parts" => [
-                    "rockets",
+                  "segments" => [
+                    {
+                      "lit" => "rockets",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "rockets",
+                  ],
                 },
               ],
             },
@@ -1422,9 +1588,13 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/rockets/{id}",
-                  "parts" => [
-                    "rockets",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "rockets",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1435,6 +1605,10 @@ module SpacexRestConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "rockets",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -1561,6 +1735,10 @@ module SpacexRestConfig
               "type" => "`$INTEGER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "ship",
           "op" => {
             "list" => {
@@ -1572,14 +1750,19 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/ships",
-                  "parts" => [
-                    "ships",
+                  "segments" => [
+                    {
+                      "lit" => "ships",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "ships",
+                  ],
                 },
               ],
             },
@@ -1602,9 +1785,13 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/ships/{id}",
-                  "parts" => [
-                    "ships",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "ships",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1615,6 +1802,10 @@ module SpacexRestConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "ships",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -1666,6 +1857,10 @@ module SpacexRestConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "starlink",
           "op" => {
             "list" => {
@@ -1677,14 +1872,19 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/starlink",
-                  "parts" => [
-                    "starlink",
+                  "segments" => [
+                    {
+                      "lit" => "starlink",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "starlink",
+                  ],
                 },
               ],
             },
@@ -1707,9 +1907,13 @@ module SpacexRestConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/starlink/{id}",
-                  "parts" => [
-                    "starlink",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "starlink",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1720,6 +1924,10 @@ module SpacexRestConfig
                     "req" => "`reqdata`",
                     "res" => "`body.spaceTrack`",
                   },
+                  "parts" => [
+                    "starlink",
+                    "{id}",
+                  ],
                 },
               ],
             },

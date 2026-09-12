@@ -46,6 +46,7 @@ main: kit: entity: rocket: {
       type: "`$OBJECT`"
     }
     {
+      format: "date"
       name: "first_flight"
       req: false
       short: "Date of first flight"
@@ -116,8 +117,10 @@ main: kit: entity: rocket: {
         {
           method: "GET"
           orig: "/rockets"
-          parts: [
-            "rockets"
+          segments: [
+            {
+              lit: "rockets"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -143,9 +146,13 @@ main: kit: entity: rocket: {
           }
           method: "GET"
           orig: "/rockets/{id}"
-          parts: [
-            "rockets"
-            "{id}"
+          segments: [
+            {
+              lit: "rockets"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

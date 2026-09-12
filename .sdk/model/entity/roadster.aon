@@ -66,6 +66,7 @@ main: kit: entity: roadster: {
       type: "`$INTEGER`"
     }
     {
+      format: "date-time"
       name: "launch_date_utc"
       req: false
       short: "Launch date in UTC"
@@ -182,8 +183,10 @@ main: kit: entity: roadster: {
         {
           method: "GET"
           orig: "/roadster"
-          parts: [
-            "roadster"
+          segments: [
+            {
+              lit: "roadster"
+            }
           ]
           transform: {
             req: "`reqdata`"

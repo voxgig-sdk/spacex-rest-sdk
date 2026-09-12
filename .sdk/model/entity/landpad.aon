@@ -104,8 +104,10 @@ main: kit: entity: landpad: {
         {
           method: "GET"
           orig: "/landpads"
-          parts: [
-            "landpads"
+          segments: [
+            {
+              lit: "landpads"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -131,9 +133,13 @@ main: kit: entity: landpad: {
           }
           method: "GET"
           orig: "/landpads/{id}"
-          parts: [
-            "landpads"
-            "{id}"
+          segments: [
+            {
+              lit: "landpads"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

@@ -35,6 +35,7 @@ main: kit: entity: launch: {
       type: "`$ARRAY`"
     }
     {
+      format: "date-time"
       name: "date_local"
       req: false
       short: "Launch date in local time"
@@ -53,6 +54,7 @@ main: kit: entity: launch: {
       type: "`$INTEGER`"
     }
     {
+      format: "date-time"
       name: "date_utc"
       req: false
       short: "Launch date in UTC"
@@ -183,6 +185,7 @@ main: kit: entity: launch: {
       type: "`$INTEGER`"
     }
     {
+      format: "date-time"
       name: "static_fire_date_utc"
       req: false
       short: "Static fire date in UTC"
@@ -227,8 +230,10 @@ main: kit: entity: launch: {
         {
           method: "GET"
           orig: "/launches"
-          parts: [
-            "launches"
+          segments: [
+            {
+              lit: "launches"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -238,9 +243,13 @@ main: kit: entity: launch: {
         {
           method: "GET"
           orig: "/launches/latest"
-          parts: [
-            "launches"
-            "latest"
+          segments: [
+            {
+              lit: "launches"
+            }
+            {
+              lit: "latest"
+            }
           ]
           select: {
             "$action": "latest"
@@ -253,9 +262,13 @@ main: kit: entity: launch: {
         {
           method: "GET"
           orig: "/launches/past"
-          parts: [
-            "launches"
-            "past"
+          segments: [
+            {
+              lit: "launches"
+            }
+            {
+              lit: "past"
+            }
           ]
           select: {
             "$action": "past"
@@ -268,9 +281,13 @@ main: kit: entity: launch: {
         {
           method: "GET"
           orig: "/launches/upcoming"
-          parts: [
-            "launches"
-            "upcoming"
+          segments: [
+            {
+              lit: "launches"
+            }
+            {
+              lit: "upcoming"
+            }
           ]
           select: {
             "$action": "upcoming"
@@ -299,9 +316,13 @@ main: kit: entity: launch: {
           }
           method: "GET"
           orig: "/launches/{id}"
-          parts: [
-            "launches"
-            "{id}"
+          segments: [
+            {
+              lit: "launches"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

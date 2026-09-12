@@ -86,8 +86,10 @@ main: kit: entity: core: {
         {
           method: "GET"
           orig: "/cores"
-          parts: [
-            "cores"
+          segments: [
+            {
+              lit: "cores"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -113,9 +115,13 @@ main: kit: entity: core: {
           }
           method: "GET"
           orig: "/cores/{id}"
-          parts: [
-            "cores"
-            "{id}"
+          segments: [
+            {
+              lit: "cores"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

@@ -112,8 +112,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/capsules",
-                  "parts": [
-                    "capsules"
+                  "segments": [
+                    {
+                      "lit": "capsules"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -144,9 +146,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/capsules/{id}",
-                  "parts": [
-                    "capsules",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "capsules"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -265,8 +271,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/cores",
-                  "parts": [
-                    "cores"
+                  "segments": [
+                    {
+                      "lit": "cores"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -297,9 +305,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/cores/{id}",
-                  "parts": [
-                    "cores",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "cores"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -390,8 +402,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/crew",
-                  "parts": [
-                    "crew"
+                  "segments": [
+                    {
+                      "lit": "crew"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -422,9 +436,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/crew/{id}",
-                  "parts": [
-                    "crew",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "crew"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -564,8 +582,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/landpads",
-                  "parts": [
-                    "landpads"
+                  "segments": [
+                    {
+                      "lit": "landpads"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -596,9 +616,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/landpads/{id}",
-                  "parts": [
-                    "landpads",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "landpads"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -659,6 +683,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "date_local",
               "req": false,
               "short": "Launch date in local time",
@@ -680,6 +705,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "date_utc",
               "req": false,
               "short": "Launch date in UTC",
@@ -832,6 +858,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "static_fire_date_utc",
               "req": false,
               "short": "Static fire date in UTC",
@@ -882,8 +909,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/launches",
-                  "parts": [
-                    "launches"
+                  "segments": [
+                    {
+                      "lit": "launches"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -897,9 +926,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/launches/latest",
-                  "parts": [
-                    "launches",
-                    "latest"
+                  "segments": [
+                    {
+                      "lit": "launches"
+                    },
+                    {
+                      "lit": "latest"
+                    }
                   ],
                   "select": {
                     "$action": "latest"
@@ -915,9 +948,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/launches/past",
-                  "parts": [
-                    "launches",
-                    "past"
+                  "segments": [
+                    {
+                      "lit": "launches"
+                    },
+                    {
+                      "lit": "past"
+                    }
                   ],
                   "select": {
                     "$action": "past"
@@ -933,9 +970,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/launches/upcoming",
-                  "parts": [
-                    "launches",
-                    "upcoming"
+                  "segments": [
+                    {
+                      "lit": "launches"
+                    },
+                    {
+                      "lit": "upcoming"
+                    }
                   ],
                   "select": {
                     "$action": "upcoming"
@@ -968,9 +1009,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/launches/{id}",
-                  "parts": [
-                    "launches",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "launches"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1103,8 +1148,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/launchpads",
-                  "parts": [
-                    "launchpads"
+                  "segments": [
+                    {
+                      "lit": "launchpads"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1135,9 +1182,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/launchpads/{id}",
-                  "parts": [
-                    "launchpads",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "launchpads"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1368,8 +1419,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/payloads",
-                  "parts": [
-                    "payloads"
+                  "segments": [
+                    {
+                      "lit": "payloads"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1400,9 +1453,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/payloads/{id}",
-                  "parts": [
-                    "payloads",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "payloads"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1499,6 +1556,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "launch_date_utc",
               "req": false,
               "short": "Launch date in UTC",
@@ -1633,8 +1691,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/roadster",
-                  "parts": [
-                    "roadster"
+                  "segments": [
+                    {
+                      "lit": "roadster"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1704,6 +1764,7 @@
             },
             {
               "active": true,
+              "format": "date",
               "name": "first_flight",
               "req": false,
               "short": "Date of first flight",
@@ -1785,8 +1846,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/rockets",
-                  "parts": [
-                    "rockets"
+                  "segments": [
+                    {
+                      "lit": "rockets"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1817,9 +1880,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/rockets/{id}",
-                  "parts": [
-                    "rockets",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "rockets"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2022,8 +2089,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/ships",
-                  "parts": [
-                    "ships"
+                  "segments": [
+                    {
+                      "lit": "ships"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2054,9 +2123,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/ships/{id}",
-                  "parts": [
-                    "ships",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "ships"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2154,8 +2227,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/starlink",
-                  "parts": [
-                    "starlink"
+                  "segments": [
+                    {
+                      "lit": "starlink"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2186,9 +2261,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/starlink/{id}",
-                  "parts": [
-                    "starlink",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "starlink"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2272,8 +2351,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -2875,6 +2957,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2900,6 +2985,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -2951,6 +3040,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -2975,6 +3065,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -3026,6 +3117,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -3050,6 +3142,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -3090,6 +3183,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3115,6 +3211,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -3149,6 +3248,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3174,6 +3276,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -3214,6 +3319,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3239,6 +3347,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -3284,6 +3395,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3309,6 +3423,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -3326,11 +3443,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -3359,6 +3471,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3383,6 +3498,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

@@ -68,8 +68,10 @@ main: kit: entity: starlink: {
         {
           method: "GET"
           orig: "/starlink"
-          parts: [
-            "starlink"
+          segments: [
+            {
+              lit: "starlink"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -95,9 +97,13 @@ main: kit: entity: starlink: {
           }
           method: "GET"
           orig: "/starlink/{id}"
-          parts: [
-            "starlink"
-            "{id}"
+          segments: [
+            {
+              lit: "starlink"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

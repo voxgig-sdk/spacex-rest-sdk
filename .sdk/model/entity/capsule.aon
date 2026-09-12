@@ -74,8 +74,10 @@ main: kit: entity: capsule: {
         {
           method: "GET"
           orig: "/capsules"
-          parts: [
-            "capsules"
+          segments: [
+            {
+              lit: "capsules"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -101,9 +103,13 @@ main: kit: entity: capsule: {
           }
           method: "GET"
           orig: "/capsules/{id}"
-          parts: [
-            "capsules"
-            "{id}"
+          segments: [
+            {
+              lit: "capsules"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

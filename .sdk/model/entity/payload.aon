@@ -182,8 +182,10 @@ main: kit: entity: payload: {
         {
           method: "GET"
           orig: "/payloads"
-          parts: [
-            "payloads"
+          segments: [
+            {
+              lit: "payloads"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -209,9 +211,13 @@ main: kit: entity: payload: {
           }
           method: "GET"
           orig: "/payloads/{id}"
-          parts: [
-            "payloads"
-            "{id}"
+          segments: [
+            {
+              lit: "payloads"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

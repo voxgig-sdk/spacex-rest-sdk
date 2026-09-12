@@ -98,8 +98,10 @@ main: kit: entity: launchpad: {
         {
           method: "GET"
           orig: "/launchpads"
-          parts: [
-            "launchpads"
+          segments: [
+            {
+              lit: "launchpads"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -125,9 +127,13 @@ main: kit: entity: launchpad: {
           }
           method: "GET"
           orig: "/launchpads/{id}"
-          parts: [
-            "launchpads"
-            "{id}"
+          segments: [
+            {
+              lit: "launchpads"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
