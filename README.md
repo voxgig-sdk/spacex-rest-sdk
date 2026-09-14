@@ -105,7 +105,7 @@ local results, err = client:Landpad():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/spacex-rest` | publish pending — [install from git tag](https://github.com/voxgig-sdk/spacex-rest-sdk/releases) |
+| TypeScript | `@voxgig-sdk/spacex-rest-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/spacex-rest-sdk/releases) |
 | Python | `voxgig-sdk-spacex-rest` | publish pending — [install from git tag](https://github.com/voxgig-sdk/spacex-rest-sdk/releases) |
 | PHP | `voxgig-sdk/spacex-rest` | publish pending — [install from git tag](https://github.com/voxgig-sdk/spacex-rest-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/spacex-rest-sdk/go` | `go get github.com/voxgig-sdk/spacex-rest-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Landpad():list()
 ### TypeScript
 
 ```ts
-import { SpacexRestSDK } from '@voxgig-sdk/spacex-rest'
+import { SpacexRestSDK } from '@voxgig-sdk/spacex-rest-sdk'
 
 const client = new SpacexRestSDK()
 

@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { SpacexRestSDK } from '@voxgig-sdk/spacex-rest'
+import { SpacexRestSDK } from '@voxgig-sdk/spacex-rest-sdk'
 
 const client = new SpacexRestSDK()
 ```
@@ -1188,7 +1188,7 @@ spacex-rest/
 Import the SDK from the package root:
 
 ```ts
-import { SpacexRestSDK } from '@voxgig-sdk/spacex-rest'
+import { SpacexRestSDK } from '@voxgig-sdk/spacex-rest-sdk'
 ```
 
 ### Entity state
