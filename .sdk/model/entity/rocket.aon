@@ -115,6 +115,12 @@ main: kit: entity: rocket: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /rockets"
+            json: "{\"operationId\":\"getAllRockets\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"active\":{\"description\":\"Whether the rocket is active\",\"type\":\"boolean\"},\"boosters\":{\"description\":\"Number of boosters\",\"type\":\"integer\"},\"company\":{\"description\":\"Company\",\"type\":\"string\"},\"cost_per_launch\":{\"description\":\"Cost per launch in USD\",\"type\":\"integer\"},\"country\":{\"description\":\"Country of origin\",\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"diameter\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"first_flight\":{\"description\":\"Date of first flight\",\"format\":\"date\",\"type\":\"string\"},\"flickr_images\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"height\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"id\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"mass\":{\"properties\":{\"kg\":{\"type\":\"integer\"},\"lb\":{\"type\":\"integer\"}},\"type\":\"object\"},\"name\":{\"description\":\"Rocket name\",\"type\":\"string\"},\"stages\":{\"description\":\"Number of stages\",\"type\":\"integer\"},\"success_rate_pct\":{\"description\":\"Success rate percentage\",\"type\":\"number\"},\"type\":{\"description\":\"Rocket type\",\"type\":\"string\"},\"wikipedia\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/rockets"
           segments: [
@@ -143,6 +149,12 @@ main: kit: entity: rocket: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /rockets/{id}"
+            json: "{\"operationId\":\"getOneRocket\",\"parameters\":[{\"description\":\"Rocket ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"active\":{\"description\":\"Whether the rocket is active\",\"type\":\"boolean\"},\"boosters\":{\"description\":\"Number of boosters\",\"type\":\"integer\"},\"company\":{\"description\":\"Company\",\"type\":\"string\"},\"cost_per_launch\":{\"description\":\"Cost per launch in USD\",\"type\":\"integer\"},\"country\":{\"description\":\"Country of origin\",\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"diameter\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"first_flight\":{\"description\":\"Date of first flight\",\"format\":\"date\",\"type\":\"string\"},\"flickr_images\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"height\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"id\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"mass\":{\"properties\":{\"kg\":{\"type\":\"integer\"},\"lb\":{\"type\":\"integer\"}},\"type\":\"object\"},\"name\":{\"description\":\"Rocket name\",\"type\":\"string\"},\"stages\":{\"description\":\"Number of stages\",\"type\":\"integer\"},\"success_rate_pct\":{\"description\":\"Success rate percentage\",\"type\":\"number\"},\"type\":{\"description\":\"Rocket type\",\"type\":\"string\"},\"wikipedia\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Rocket not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/rockets/{id}"

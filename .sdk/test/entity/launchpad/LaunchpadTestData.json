@@ -6,8 +6,8 @@
         "full_name": "s83",
         "id": "LAUNCHPAD00",
         "latitude": 133,
-        "launch_attempts": "s86",
-        "launch_successes": "s87",
+        "launch_attempts": 134,
+        "launch_successes": 135,
         "launches": [],
         "locality": "s89",
         "longitude": 138,
@@ -21,8 +21,8 @@
         "full_name": "s105",
         "id": "LAUNCHPAD01",
         "latitude": 263,
-        "launch_attempts": "s108",
-        "launch_successes": "s109",
+        "launch_attempts": 264,
+        "launch_successes": 265,
         "launches": [],
         "locality": "s10b",
         "longitude": 268,
@@ -36,8 +36,8 @@
         "full_name": "s187",
         "id": "LAUNCHPAD02",
         "latitude": 393,
-        "launch_attempts": "s18a",
-        "launch_successes": "s18b",
+        "launch_attempts": 394,
+        "launch_successes": 395,
         "launches": [],
         "locality": "s18d",
         "longitude": 398,
@@ -54,8 +54,8 @@
         "details": "s208",
         "full_name": "s209",
         "latitude": 523,
-        "launch_attempts": "s20c",
-        "launch_successes": "s20d",
+        "launch_attempts": 524,
+        "launch_successes": 525,
         "launches": [],
         "locality": "s20f",
         "longitude": 528,
@@ -63,6 +63,186 @@
         "region": "s212",
         "rockets": [],
         "status": "s214"
+      }
+    }
+  },
+  "requests": {
+    "GET /launchpads": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAllLaunchpads",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "details": {
+                        "description": "Launchpad details",
+                        "type": "string"
+                      },
+                      "full_name": {
+                        "description": "Full launchpad name",
+                        "type": "string"
+                      },
+                      "id": {
+                        "description": "Launchpad ID",
+                        "type": "string"
+                      },
+                      "latitude": {
+                        "description": "Latitude",
+                        "type": "number"
+                      },
+                      "launch_attempts": {
+                        "description": "Number of launch attempts",
+                        "type": "integer"
+                      },
+                      "launch_successes": {
+                        "description": "Number of successful launches",
+                        "type": "integer"
+                      },
+                      "launches": {
+                        "description": "Launch IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "locality": {
+                        "description": "Locality",
+                        "type": "string"
+                      },
+                      "longitude": {
+                        "description": "Longitude",
+                        "type": "number"
+                      },
+                      "name": {
+                        "description": "Launchpad name",
+                        "type": "string"
+                      },
+                      "region": {
+                        "description": "Region",
+                        "type": "string"
+                      },
+                      "rockets": {
+                        "description": "Rocket IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "status": {
+                        "description": "Launchpad status (active, inactive, unknown, retired, lost, under construction)",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /launchpads/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getOneLaunchpad",
+        "parameters": [
+          {
+            "description": "Launchpad ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "details": {
+                      "description": "Launchpad details",
+                      "type": "string"
+                    },
+                    "full_name": {
+                      "description": "Full launchpad name",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Launchpad ID",
+                      "type": "string"
+                    },
+                    "latitude": {
+                      "description": "Latitude",
+                      "type": "number"
+                    },
+                    "launch_attempts": {
+                      "description": "Number of launch attempts",
+                      "type": "integer"
+                    },
+                    "launch_successes": {
+                      "description": "Number of successful launches",
+                      "type": "integer"
+                    },
+                    "launches": {
+                      "description": "Launch IDs",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "locality": {
+                      "description": "Locality",
+                      "type": "string"
+                    },
+                    "longitude": {
+                      "description": "Longitude",
+                      "type": "number"
+                    },
+                    "name": {
+                      "description": "Launchpad name",
+                      "type": "string"
+                    },
+                    "region": {
+                      "description": "Region",
+                      "type": "string"
+                    },
+                    "rockets": {
+                      "description": "Rocket IDs",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "status": {
+                      "description": "Launchpad status (active, inactive, unknown, retired, lost, under construction)",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "Launchpad not found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

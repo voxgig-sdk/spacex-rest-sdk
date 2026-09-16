@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { SpacexRestSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('RocketEntity', async () => {
 
     const live = 'TRUE' === process.env.SPACEX_REST_TEST_LIVE
     for (const op of ['list', 'load']) {
-      if (maybeSkipControl(t, 'entityOp', 'rocket.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'rocket.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set SPACEX_REST_TEST_ROCKET_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"active","req":false,"short":"Whether the rocket is active","type":"`$BOOLEAN`","index$":0},{"active":true,"name":"boosters","req":false,"short":"Number of boosters","type":"`$INTEGER`","index$":1},{"active":true,"name":"company","req":false,"short":"Company","type":"`$STRING`","index$":2},{"active":true,"name":"cost_per_launch","req":false,"short":"Cost per launch in USD","type":"`$INTEGER`","index$":3},{"active":true,"name":"country","req":false,"short":"Country of origin","type":"`$STRING`","index$":4},{"active":true,"name":"description","req":false,"type":"`$STRING`","index$":5},{"active":true,"name":"diameter","req":false,"type":"`$OBJECT`","index$":6},{"active":true,"format":"date","name":"first_flight","req":false,"short":"Date of first flight","type":"`$STRING`","index$":7},{"active":true,"name":"flickr_images","req":false,"type":"`$ARRAY`","index$":8},{"active":true,"name":"height","req":false,"type":"`$OBJECT`","index$":9},{"active":true,"name":"id","req":false,"short":"Rocket ID","type":"`$STRING`","index$":10},{"active":true,"name":"mass","req":false,"type":"`$OBJECT`","index$":11},{"active":true,"name":"name","req":false,"short":"Rocket name","type":"`$STRING`","index$":12},{"active":true,"name":"stages","req":false,"short":"Number of stages","type":"`$INTEGER`","index$":13},{"active":true,"name":"success_rate_pct","req":false,"short":"Success rate percentage","type":"`$NUMBER`","index$":14},{"active":true,"name":"type","req":false,"short":"Rocket type","type":"`$STRING`","index$":15},{"active":true,"name":"wikipedia","req":false,"type":"`$STRING`","index$":16}],"id":{"field":"id","name":"id"},"name":"rocket","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{},"contract":{"id":"GET /rockets","json":"{\"operationId\":\"getAllRockets\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"active\":{\"description\":\"Whether the rocket is active\",\"type\":\"boolean\"},\"boosters\":{\"description\":\"Number of boosters\",\"type\":\"integer\"},\"company\":{\"description\":\"Company\",\"type\":\"string\"},\"cost_per_launch\":{\"description\":\"Cost per launch in USD\",\"type\":\"integer\"},\"country\":{\"description\":\"Country of origin\",\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"diameter\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"first_flight\":{\"description\":\"Date of first flight\",\"format\":\"date\",\"type\":\"string\"},\"flickr_images\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"height\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"id\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"mass\":{\"properties\":{\"kg\":{\"type\":\"integer\"},\"lb\":{\"type\":\"integer\"}},\"type\":\"object\"},\"name\":{\"description\":\"Rocket name\",\"type\":\"string\"},\"stages\":{\"description\":\"Number of stages\",\"type\":\"integer\"},\"success_rate_pct\":{\"description\":\"Success rate percentage\",\"type\":\"number\"},\"type\":{\"description\":\"Rocket type\",\"type\":\"string\"},\"wikipedia\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/rockets","segments":[{"lit":"rockets"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"kind":"param","name":"id","orig":"id","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /rockets/{id}","json":"{\"operationId\":\"getOneRocket\",\"parameters\":[{\"description\":\"Rocket ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"active\":{\"description\":\"Whether the rocket is active\",\"type\":\"boolean\"},\"boosters\":{\"description\":\"Number of boosters\",\"type\":\"integer\"},\"company\":{\"description\":\"Company\",\"type\":\"string\"},\"cost_per_launch\":{\"description\":\"Cost per launch in USD\",\"type\":\"integer\"},\"country\":{\"description\":\"Country of origin\",\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"diameter\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"first_flight\":{\"description\":\"Date of first flight\",\"format\":\"date\",\"type\":\"string\"},\"flickr_images\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"height\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"id\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"mass\":{\"properties\":{\"kg\":{\"type\":\"integer\"},\"lb\":{\"type\":\"integer\"}},\"type\":\"object\"},\"name\":{\"description\":\"Rocket name\",\"type\":\"string\"},\"stages\":{\"description\":\"Number of stages\",\"type\":\"integer\"},\"success_rate_pct\":{\"description\":\"Success rate percentage\",\"type\":\"number\"},\"type\":{\"description\":\"Rocket type\",\"type\":\"string\"},\"wikipedia\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Rocket not found\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/rockets/{id}","segments":[{"lit":"rockets"},{"var":"id"}],"select":{"exist":["id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"rocket","name__orig":"rocket","Name":"Rocket","name_":"rocket","name-":"rocket","NAME":"ROCKET","index$":8}, {"active":true,"entity":"rocket","key$":"BasicRocketFlow","kind":"basic","name":"BasicRocketFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"rocket_ref01"}}],"index$":0},{"active":true,"data":{},"input":{"ref":"rocket_ref01","srcdatavar":"rocket_ref01_data","suffix":"_dt0"},"match":{"id":"rocket01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-rocket_ref01"}}],"index$":1}]}, 'Rocket')
     }
     const client = setup.client
     const struct = setup.struct
@@ -116,13 +115,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['SPACEX_REST_TEST_ROCKET_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'SPACEX_REST_TEST_ROCKET_ENTID': idmap,
     'SPACEX_REST_TEST_LIVE': 'FALSE',
@@ -133,7 +125,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.SPACEX_REST_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['SPACEX_REST_TEST_ROCKET_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new SpacexRestSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -145,7 +143,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -158,7 +157,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.SPACEX_REST_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

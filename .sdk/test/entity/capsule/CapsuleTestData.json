@@ -3,50 +3,194 @@
     "capsule": {
       "CAPSULE00": {
         "id": "CAPSULE00",
-        "land_landings": "s5b",
+        "land_landings": 91,
         "last_update": "s5c",
         "launches": [],
-        "reuse_count": "s5e",
+        "reuse_count": 94,
         "serial": "s5f",
         "status": "s60",
         "type": "s61",
-        "water_landings": "s62"
+        "water_landings": 98
       },
       "CAPSULE01": {
         "id": "CAPSULE01",
-        "land_landings": "sb5",
+        "land_landings": 181,
         "last_update": "sb6",
         "launches": [],
-        "reuse_count": "sb8",
+        "reuse_count": 184,
         "serial": "sb9",
         "status": "sba",
         "type": "sbb",
-        "water_landings": "sbc"
+        "water_landings": 188
       },
       "CAPSULE02": {
         "id": "CAPSULE02",
-        "land_landings": "s10f",
+        "land_landings": 271,
         "last_update": "s110",
         "launches": [],
-        "reuse_count": "s112",
+        "reuse_count": 274,
         "serial": "s113",
         "status": "s114",
         "type": "s115",
-        "water_landings": "s116"
+        "water_landings": 278
       }
     }
   },
   "new": {
     "capsule": {
       "capsule_ref01": {
-        "land_landings": "s169",
+        "land_landings": 361,
         "last_update": "s16a",
         "launches": [],
-        "reuse_count": "s16c",
+        "reuse_count": 364,
         "serial": "s16d",
         "status": "s16e",
         "type": "s16f",
-        "water_landings": "s170"
+        "water_landings": 368
+      }
+    }
+  },
+  "requests": {
+    "GET /capsules": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAllCapsules",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "id": {
+                        "description": "Capsule serial number",
+                        "type": "string"
+                      },
+                      "land_landings": {
+                        "description": "Number of land landings",
+                        "type": "integer"
+                      },
+                      "last_update": {
+                        "description": "Last update about the capsule",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "launches": {
+                        "description": "Launch IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "reuse_count": {
+                        "description": "Number of times capsule has been reused",
+                        "type": "integer"
+                      },
+                      "serial": {
+                        "description": "Capsule serial number",
+                        "type": "string"
+                      },
+                      "status": {
+                        "description": "Capsule status",
+                        "type": "string"
+                      },
+                      "type": {
+                        "description": "Capsule type",
+                        "type": "string"
+                      },
+                      "water_landings": {
+                        "description": "Number of water landings",
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /capsules/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getOneCapsule",
+        "parameters": [
+          {
+            "description": "Capsule ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "description": "Capsule serial number",
+                      "type": "string"
+                    },
+                    "land_landings": {
+                      "description": "Number of land landings",
+                      "type": "integer"
+                    },
+                    "last_update": {
+                      "description": "Last update about the capsule",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "launches": {
+                      "description": "Launch IDs",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "reuse_count": {
+                      "description": "Number of times capsule has been reused",
+                      "type": "integer"
+                    },
+                    "serial": {
+                      "description": "Capsule serial number",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "Capsule status",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "Capsule type",
+                      "type": "string"
+                    },
+                    "water_landings": {
+                      "description": "Number of water landings",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "Capsule not found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

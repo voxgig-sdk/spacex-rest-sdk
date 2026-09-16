@@ -1,12 +1,18 @@
 # SpacexRest SDK feature factory
 
 from spacexrest_sdk.feature.base_feature import SpacexRestBaseFeature
+from spacexrest_sdk.feature.ratelimit_feature import SpacexRestRatelimitFeature
+from spacexrest_sdk.feature.retry_feature import SpacexRestRetryFeature
 from spacexrest_sdk.feature.test_feature import SpacexRestTestFeature
+from spacexrest_sdk.feature.timeout_feature import SpacexRestTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: SpacexRestBaseFeature(),
+    "ratelimit": lambda: SpacexRestRatelimitFeature(),
+    "retry": lambda: SpacexRestRetryFeature(),
     "test": lambda: SpacexRestTestFeature(),
+    "timeout": lambda: SpacexRestTimeoutFeature(),
 }
 
 

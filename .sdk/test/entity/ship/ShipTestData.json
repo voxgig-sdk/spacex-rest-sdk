@@ -2,107 +2,401 @@
   "existing": {
     "ship": {
       "SHIP00": {
-        "abs": "se6",
-        "class": "se7",
+        "abs": 230,
+        "class": 231,
         "course_deg": 232,
         "home_port": "se9",
         "id": "SHIP00",
         "image": "seb",
-        "imo": "sec",
+        "imo": 236,
         "last_ais_update": "sed",
         "latitude": 238,
         "launches": [],
         "legacy_id": "LEGACY01",
         "link": "sf1",
         "longitude": 242,
-        "mass_kg": "sf3",
-        "mass_lbs": "sf4",
-        "mmsi": "sf5",
+        "mass_kg": 243,
+        "mass_lbs": 244,
+        "mmsi": 245,
         "model": "sf6",
         "name": "sf7",
         "roles": [],
         "speed_kn": 249,
         "status": "sfa",
         "type": "sfb",
-        "year_built": "sfc"
+        "year_built": 252
       },
       "SHIP01": {
-        "abs": "s1cc",
-        "class": "s1cd",
+        "abs": 460,
+        "class": 461,
         "course_deg": 462,
         "home_port": "s1cf",
         "id": "SHIP01",
         "image": "s1d1",
-        "imo": "s1d2",
+        "imo": 466,
         "last_ais_update": "s1d3",
         "latitude": 468,
         "launches": [],
         "legacy_id": "LEGACY01",
         "link": "s1d7",
         "longitude": 472,
-        "mass_kg": "s1d9",
-        "mass_lbs": "s1da",
-        "mmsi": "s1db",
+        "mass_kg": 473,
+        "mass_lbs": 474,
+        "mmsi": 475,
         "model": "s1dc",
         "name": "s1dd",
         "roles": [],
         "speed_kn": 479,
         "status": "s1e0",
         "type": "s1e1",
-        "year_built": "s1e2"
+        "year_built": 482
       },
       "SHIP02": {
-        "abs": "s2b2",
-        "class": "s2b3",
+        "abs": 690,
+        "class": 691,
         "course_deg": 692,
         "home_port": "s2b5",
         "id": "SHIP02",
         "image": "s2b7",
-        "imo": "s2b8",
+        "imo": 696,
         "last_ais_update": "s2b9",
         "latitude": 698,
         "launches": [],
         "legacy_id": "LEGACY01",
         "link": "s2bd",
         "longitude": 702,
-        "mass_kg": "s2bf",
-        "mass_lbs": "s2c0",
-        "mmsi": "s2c1",
+        "mass_kg": 703,
+        "mass_lbs": 704,
+        "mmsi": 705,
         "model": "s2c2",
         "name": "s2c3",
         "roles": [],
         "speed_kn": 709,
         "status": "s2c6",
         "type": "s2c7",
-        "year_built": "s2c8"
+        "year_built": 712
       }
     }
   },
   "new": {
     "ship": {
       "ship_ref01": {
-        "abs": "s398",
-        "class": "s399",
+        "abs": 920,
+        "class": 921,
         "course_deg": 922,
         "home_port": "s39b",
         "image": "s39d",
-        "imo": "s39e",
+        "imo": 926,
         "last_ais_update": "s39f",
         "latitude": 928,
         "launches": [],
         "legacy_id": "LEGACY01",
         "link": "s3a3",
         "longitude": 932,
-        "mass_kg": "s3a5",
-        "mass_lbs": "s3a6",
-        "mmsi": "s3a7",
+        "mass_kg": 933,
+        "mass_lbs": 934,
+        "mmsi": 935,
         "model": "s3a8",
         "name": "s3a9",
         "roles": [],
         "speed_kn": 939,
         "status": "s3ac",
         "type": "s3ad",
-        "year_built": "s3ae"
+        "year_built": 942
+      }
+    }
+  },
+  "requests": {
+    "GET /ships": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAllShips",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "abs": {
+                        "description": "ABS number",
+                        "nullable": true,
+                        "type": "integer"
+                      },
+                      "class": {
+                        "description": "Ship class",
+                        "nullable": true,
+                        "type": "integer"
+                      },
+                      "course_deg": {
+                        "description": "Course in degrees",
+                        "nullable": true,
+                        "type": "number"
+                      },
+                      "home_port": {
+                        "description": "Home port",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "id": {
+                        "description": "Ship ID",
+                        "type": "string"
+                      },
+                      "image": {
+                        "description": "Image URL",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "imo": {
+                        "description": "IMO number",
+                        "nullable": true,
+                        "type": "integer"
+                      },
+                      "last_ais_update": {
+                        "description": "Last AIS update timestamp",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "latitude": {
+                        "description": "Latitude",
+                        "nullable": true,
+                        "type": "number"
+                      },
+                      "launches": {
+                        "description": "Launch IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "legacy_id": {
+                        "description": "Legacy ID",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "link": {
+                        "description": "Link to ship info",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "longitude": {
+                        "description": "Longitude",
+                        "nullable": true,
+                        "type": "number"
+                      },
+                      "mass_kg": {
+                        "description": "Mass in kilograms",
+                        "nullable": true,
+                        "type": "integer"
+                      },
+                      "mass_lbs": {
+                        "description": "Mass in pounds",
+                        "nullable": true,
+                        "type": "integer"
+                      },
+                      "mmsi": {
+                        "description": "MMSI number",
+                        "nullable": true,
+                        "type": "integer"
+                      },
+                      "model": {
+                        "description": "Ship model",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "Ship name",
+                        "type": "string"
+                      },
+                      "roles": {
+                        "description": "Ship roles",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "speed_kn": {
+                        "description": "Speed in knots",
+                        "nullable": true,
+                        "type": "number"
+                      },
+                      "status": {
+                        "description": "Ship status",
+                        "type": "string"
+                      },
+                      "type": {
+                        "description": "Ship type",
+                        "type": "string"
+                      },
+                      "year_built": {
+                        "description": "Year built",
+                        "nullable": true,
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /ships/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getOneShip",
+        "parameters": [
+          {
+            "description": "Ship ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "abs": {
+                      "description": "ABS number",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "class": {
+                      "description": "Ship class",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "course_deg": {
+                      "description": "Course in degrees",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "home_port": {
+                      "description": "Home port",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Ship ID",
+                      "type": "string"
+                    },
+                    "image": {
+                      "description": "Image URL",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "imo": {
+                      "description": "IMO number",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "last_ais_update": {
+                      "description": "Last AIS update timestamp",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "latitude": {
+                      "description": "Latitude",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "launches": {
+                      "description": "Launch IDs",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "legacy_id": {
+                      "description": "Legacy ID",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "link": {
+                      "description": "Link to ship info",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "longitude": {
+                      "description": "Longitude",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "mass_kg": {
+                      "description": "Mass in kilograms",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "mass_lbs": {
+                      "description": "Mass in pounds",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "mmsi": {
+                      "description": "MMSI number",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "model": {
+                      "description": "Ship model",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Ship name",
+                      "type": "string"
+                    },
+                    "roles": {
+                      "description": "Ship roles",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "speed_kn": {
+                      "description": "Speed in knots",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "status": {
+                      "description": "Ship status",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "Ship type",
+                      "type": "string"
+                    },
+                    "year_built": {
+                      "description": "Year built",
+                      "nullable": true,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "Ship not found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

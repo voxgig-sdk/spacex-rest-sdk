@@ -3,9 +3,9 @@
     "rocket": {
       "ROCKET00": {
         "active": true,
-        "boosters": "sab",
+        "boosters": 171,
         "company": "sac",
-        "cost_per_launch": "sad",
+        "cost_per_launch": 173,
         "country": "sae",
         "description": "saf",
         "diameter": {},
@@ -15,16 +15,16 @@
         "id": "ROCKET00",
         "mass": {},
         "name": "sb6",
-        "stages": "sb7",
+        "stages": 183,
         "success_rate_pct": 184,
         "type": "sb9",
         "wikipedia": "sba"
       },
       "ROCKET01": {
         "active": true,
-        "boosters": "s155",
+        "boosters": 341,
         "company": "s156",
-        "cost_per_launch": "s157",
+        "cost_per_launch": 343,
         "country": "s158",
         "description": "s159",
         "diameter": {},
@@ -34,16 +34,16 @@
         "id": "ROCKET01",
         "mass": {},
         "name": "s160",
-        "stages": "s161",
+        "stages": 353,
         "success_rate_pct": 354,
         "type": "s163",
         "wikipedia": "s164"
       },
       "ROCKET02": {
         "active": true,
-        "boosters": "s1ff",
+        "boosters": 511,
         "company": "s200",
-        "cost_per_launch": "s201",
+        "cost_per_launch": 513,
         "country": "s202",
         "description": "s203",
         "diameter": {},
@@ -53,7 +53,7 @@
         "id": "ROCKET02",
         "mass": {},
         "name": "s20a",
-        "stages": "s20b",
+        "stages": 523,
         "success_rate_pct": 524,
         "type": "s20d",
         "wikipedia": "s20e"
@@ -64,9 +64,9 @@
     "rocket": {
       "rocket_ref01": {
         "active": true,
-        "boosters": "s2a9",
+        "boosters": 681,
         "company": "s2aa",
-        "cost_per_launch": "s2ab",
+        "cost_per_launch": 683,
         "country": "s2ac",
         "description": "s2ad",
         "diameter": {},
@@ -75,10 +75,254 @@
         "height": {},
         "mass": {},
         "name": "s2b4",
-        "stages": "s2b5",
+        "stages": 693,
         "success_rate_pct": 694,
         "type": "s2b7",
         "wikipedia": "s2b8"
+      }
+    }
+  },
+  "requests": {
+    "GET /rockets": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAllRockets",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "active": {
+                        "description": "Whether the rocket is active",
+                        "type": "boolean"
+                      },
+                      "boosters": {
+                        "description": "Number of boosters",
+                        "type": "integer"
+                      },
+                      "company": {
+                        "description": "Company",
+                        "type": "string"
+                      },
+                      "cost_per_launch": {
+                        "description": "Cost per launch in USD",
+                        "type": "integer"
+                      },
+                      "country": {
+                        "description": "Country of origin",
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "diameter": {
+                        "properties": {
+                          "feet": {
+                            "type": "number"
+                          },
+                          "meters": {
+                            "type": "number"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "first_flight": {
+                        "description": "Date of first flight",
+                        "format": "date",
+                        "type": "string"
+                      },
+                      "flickr_images": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "height": {
+                        "properties": {
+                          "feet": {
+                            "type": "number"
+                          },
+                          "meters": {
+                            "type": "number"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "id": {
+                        "description": "Rocket ID",
+                        "type": "string"
+                      },
+                      "mass": {
+                        "properties": {
+                          "kg": {
+                            "type": "integer"
+                          },
+                          "lb": {
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "name": {
+                        "description": "Rocket name",
+                        "type": "string"
+                      },
+                      "stages": {
+                        "description": "Number of stages",
+                        "type": "integer"
+                      },
+                      "success_rate_pct": {
+                        "description": "Success rate percentage",
+                        "type": "number"
+                      },
+                      "type": {
+                        "description": "Rocket type",
+                        "type": "string"
+                      },
+                      "wikipedia": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /rockets/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getOneRocket",
+        "parameters": [
+          {
+            "description": "Rocket ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "active": {
+                      "description": "Whether the rocket is active",
+                      "type": "boolean"
+                    },
+                    "boosters": {
+                      "description": "Number of boosters",
+                      "type": "integer"
+                    },
+                    "company": {
+                      "description": "Company",
+                      "type": "string"
+                    },
+                    "cost_per_launch": {
+                      "description": "Cost per launch in USD",
+                      "type": "integer"
+                    },
+                    "country": {
+                      "description": "Country of origin",
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "diameter": {
+                      "properties": {
+                        "feet": {
+                          "type": "number"
+                        },
+                        "meters": {
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "first_flight": {
+                      "description": "Date of first flight",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "flickr_images": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "height": {
+                      "properties": {
+                        "feet": {
+                          "type": "number"
+                        },
+                        "meters": {
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "id": {
+                      "description": "Rocket ID",
+                      "type": "string"
+                    },
+                    "mass": {
+                      "properties": {
+                        "kg": {
+                          "type": "integer"
+                        },
+                        "lb": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "name": {
+                      "description": "Rocket name",
+                      "type": "string"
+                    },
+                    "stages": {
+                      "description": "Number of stages",
+                      "type": "integer"
+                    },
+                    "success_rate_pct": {
+                      "description": "Success rate percentage",
+                      "type": "number"
+                    },
+                    "type": {
+                      "description": "Rocket type",
+                      "type": "string"
+                    },
+                    "wikipedia": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "Rocket not found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

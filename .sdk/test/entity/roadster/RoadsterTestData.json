@@ -11,10 +11,10 @@
         "flickr_images": [],
         "id": "ROADSTER00",
         "inclination": 278,
-        "launch_date_unix": "s117",
+        "launch_date_unix": 279,
         "launch_date_utc": "s118",
-        "launch_mass_kg": "s119",
-        "launch_mass_lbs": "s11a",
+        "launch_mass_kg": 281,
+        "launch_mass_lbs": 282,
         "longitude": 283,
         "mars_distance_km": 284,
         "mars_distance_mi": 285,
@@ -40,10 +40,10 @@
         "flickr_images": [],
         "id": "ROADSTER01",
         "inclination": 548,
-        "launch_date_unix": "s225",
+        "launch_date_unix": 549,
         "launch_date_utc": "s226",
-        "launch_mass_kg": "s227",
-        "launch_mass_lbs": "s228",
+        "launch_mass_kg": 551,
+        "launch_mass_lbs": 552,
         "longitude": 553,
         "mars_distance_km": 554,
         "mars_distance_mi": 555,
@@ -69,10 +69,10 @@
         "flickr_images": [],
         "id": "ROADSTER02",
         "inclination": 818,
-        "launch_date_unix": "s333",
+        "launch_date_unix": 819,
         "launch_date_utc": "s334",
-        "launch_mass_kg": "s335",
-        "launch_mass_lbs": "s336",
+        "launch_mass_kg": 821,
+        "launch_mass_lbs": 822,
         "longitude": 823,
         "mars_distance_km": 824,
         "mars_distance_mi": 825,
@@ -101,10 +101,10 @@
         "epoch_jd": 1085,
         "flickr_images": [],
         "inclination": 1088,
-        "launch_date_unix": "s441",
+        "launch_date_unix": 1089,
         "launch_date_utc": "s442",
-        "launch_mass_kg": "s443",
-        "launch_mass_lbs": "s444",
+        "launch_mass_kg": 1091,
+        "launch_mass_lbs": 1092,
         "longitude": 1093,
         "mars_distance_km": 1094,
         "mars_distance_mi": 1095,
@@ -119,6 +119,143 @@
         "speed_mph": 1104,
         "video": "s451",
         "wikipedia": "s452"
+      }
+    }
+  },
+  "requests": {
+    "GET /roadster": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRoadster",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "apoapsis_au": {
+                      "description": "Apoapsis in AU",
+                      "type": "number"
+                    },
+                    "details": {
+                      "description": "Details",
+                      "type": "string"
+                    },
+                    "earth_distance_km": {
+                      "description": "Distance from Earth in km",
+                      "type": "number"
+                    },
+                    "earth_distance_mi": {
+                      "description": "Distance from Earth in miles",
+                      "type": "number"
+                    },
+                    "eccentricity": {
+                      "description": "Eccentricity",
+                      "type": "number"
+                    },
+                    "epoch_jd": {
+                      "description": "Epoch in Julian Date",
+                      "type": "number"
+                    },
+                    "flickr_images": {
+                      "description": "Flickr images",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "description": "Roadster ID",
+                      "type": "string"
+                    },
+                    "inclination": {
+                      "description": "Inclination",
+                      "type": "number"
+                    },
+                    "launch_date_unix": {
+                      "description": "Launch date in unix timestamp",
+                      "type": "integer"
+                    },
+                    "launch_date_utc": {
+                      "description": "Launch date in UTC",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "launch_mass_kg": {
+                      "description": "Launch mass in kilograms",
+                      "type": "integer"
+                    },
+                    "launch_mass_lbs": {
+                      "description": "Launch mass in pounds",
+                      "type": "integer"
+                    },
+                    "longitude": {
+                      "description": "Longitude",
+                      "type": "number"
+                    },
+                    "mars_distance_km": {
+                      "description": "Distance from Mars in km",
+                      "type": "number"
+                    },
+                    "mars_distance_mi": {
+                      "description": "Distance from Mars in miles",
+                      "type": "number"
+                    },
+                    "name": {
+                      "description": "Roadster name",
+                      "type": "string"
+                    },
+                    "norad_id": {
+                      "description": "NORAD ID",
+                      "type": "integer"
+                    },
+                    "orbit_type": {
+                      "description": "Orbit type",
+                      "type": "string"
+                    },
+                    "periapsis_arg": {
+                      "description": "Argument of periapsis",
+                      "type": "number"
+                    },
+                    "periapsis_au": {
+                      "description": "Periapsis in AU",
+                      "type": "number"
+                    },
+                    "period_days": {
+                      "description": "Orbital period in days",
+                      "type": "number"
+                    },
+                    "semi_major_axis_au": {
+                      "description": "Semi-major axis in AU",
+                      "type": "number"
+                    },
+                    "speed_kph": {
+                      "description": "Speed in km/h",
+                      "type": "number"
+                    },
+                    "speed_mph": {
+                      "description": "Speed in mph",
+                      "type": "number"
+                    },
+                    "video": {
+                      "description": "Video URL",
+                      "type": "string"
+                    },
+                    "wikipedia": {
+                      "description": "Wikipedia URL",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

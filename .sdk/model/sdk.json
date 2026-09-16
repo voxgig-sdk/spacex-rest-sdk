@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "capsule": {
           "active": true,
@@ -109,6 +173,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /capsules",
+                    "json": "{\"operationId\":\"getAllCapsules\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"id\":{\"description\":\"Capsule serial number\",\"type\":\"string\"},\"land_landings\":{\"description\":\"Number of land landings\",\"type\":\"integer\"},\"last_update\":{\"description\":\"Last update about the capsule\",\"nullable\":true,\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"reuse_count\":{\"description\":\"Number of times capsule has been reused\",\"type\":\"integer\"},\"serial\":{\"description\":\"Capsule serial number\",\"type\":\"string\"},\"status\":{\"description\":\"Capsule status\",\"type\":\"string\"},\"type\":{\"description\":\"Capsule type\",\"type\":\"string\"},\"water_landings\":{\"description\":\"Number of water landings\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/capsules",
@@ -142,6 +212,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /capsules/{id}",
+                    "json": "{\"operationId\":\"getOneCapsule\",\"parameters\":[{\"description\":\"Capsule ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"id\":{\"description\":\"Capsule serial number\",\"type\":\"string\"},\"land_landings\":{\"description\":\"Number of land landings\",\"type\":\"integer\"},\"last_update\":{\"description\":\"Last update about the capsule\",\"nullable\":true,\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"reuse_count\":{\"description\":\"Number of times capsule has been reused\",\"type\":\"integer\"},\"serial\":{\"description\":\"Capsule serial number\",\"type\":\"string\"},\"status\":{\"description\":\"Capsule status\",\"type\":\"string\"},\"type\":{\"description\":\"Capsule type\",\"type\":\"string\"},\"water_landings\":{\"description\":\"Number of water landings\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Capsule not found\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -268,6 +344,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /cores",
+                    "json": "{\"operationId\":\"getAllCores\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"asds_attempts\":{\"description\":\"Number of autonomous spaceport drone ship landing attempts\",\"type\":\"integer\"},\"asds_landings\":{\"description\":\"Number of successful ASDS landings\",\"type\":\"integer\"},\"block\":{\"description\":\"Core block number\",\"nullable\":true,\"type\":\"integer\"},\"id\":{\"description\":\"Core serial number\",\"type\":\"string\"},\"last_update\":{\"description\":\"Last update about the core\",\"nullable\":true,\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"reuse_count\":{\"description\":\"Number of times core has been reused\",\"type\":\"integer\"},\"rtls_attempts\":{\"description\":\"Number of return to launch site attempts\",\"type\":\"integer\"},\"rtls_landings\":{\"description\":\"Number of successful RTLS landings\",\"type\":\"integer\"},\"serial\":{\"description\":\"Core serial number\",\"type\":\"string\"},\"status\":{\"description\":\"Core status (active, inactive, unknown, expended, lost, retired)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/cores",
@@ -301,6 +383,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /cores/{id}",
+                    "json": "{\"operationId\":\"getOneCore\",\"parameters\":[{\"description\":\"Core ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"asds_attempts\":{\"description\":\"Number of autonomous spaceport drone ship landing attempts\",\"type\":\"integer\"},\"asds_landings\":{\"description\":\"Number of successful ASDS landings\",\"type\":\"integer\"},\"block\":{\"description\":\"Core block number\",\"nullable\":true,\"type\":\"integer\"},\"id\":{\"description\":\"Core serial number\",\"type\":\"string\"},\"last_update\":{\"description\":\"Last update about the core\",\"nullable\":true,\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"reuse_count\":{\"description\":\"Number of times core has been reused\",\"type\":\"integer\"},\"rtls_attempts\":{\"description\":\"Number of return to launch site attempts\",\"type\":\"integer\"},\"rtls_landings\":{\"description\":\"Number of successful RTLS landings\",\"type\":\"integer\"},\"serial\":{\"description\":\"Core serial number\",\"type\":\"string\"},\"status\":{\"description\":\"Core status (active, inactive, unknown, expended, lost, retired)\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Core not found\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -399,6 +487,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /crew",
+                    "json": "{\"operationId\":\"getAllCrew\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"agency\":{\"description\":\"Agency\",\"type\":\"string\"},\"id\":{\"description\":\"Crew member ID\",\"type\":\"string\"},\"image\":{\"description\":\"Image URL\",\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"Crew member name\",\"type\":\"string\"},\"status\":{\"description\":\"Status (active, inactive, retired, unknown)\",\"type\":\"string\"},\"wikipedia\":{\"description\":\"Wikipedia URL\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/crew",
@@ -432,6 +526,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /crew/{id}",
+                    "json": "{\"operationId\":\"getOneCrew\",\"parameters\":[{\"description\":\"Crew member ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"agency\":{\"description\":\"Agency\",\"type\":\"string\"},\"id\":{\"description\":\"Crew member ID\",\"type\":\"string\"},\"image\":{\"description\":\"Image URL\",\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"Crew member name\",\"type\":\"string\"},\"status\":{\"description\":\"Status (active, inactive, retired, unknown)\",\"type\":\"string\"},\"wikipedia\":{\"description\":\"Wikipedia URL\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Crew member not found\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -579,6 +679,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /landpads",
+                    "json": "{\"operationId\":\"getAllLandpads\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"details\":{\"description\":\"Landing pad details\",\"type\":\"string\"},\"full_name\":{\"description\":\"Full landing pad name\",\"type\":\"string\"},\"id\":{\"description\":\"Landing pad ID\",\"type\":\"string\"},\"landing_attempts\":{\"description\":\"Number of landing attempts\",\"type\":\"integer\"},\"landing_successes\":{\"description\":\"Number of successful landings\",\"type\":\"integer\"},\"latitude\":{\"description\":\"Latitude\",\"type\":\"number\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"locality\":{\"description\":\"Locality\",\"type\":\"string\"},\"longitude\":{\"description\":\"Longitude\",\"type\":\"number\"},\"name\":{\"description\":\"Landing pad name\",\"type\":\"string\"},\"region\":{\"description\":\"Region\",\"type\":\"string\"},\"status\":{\"description\":\"Landing pad status (active, inactive, unknown, retired, lost, under construction)\",\"type\":\"string\"},\"type\":{\"description\":\"Landing pad type (ASDS, RTLS)\",\"type\":\"string\"},\"wikipedia\":{\"description\":\"Wikipedia URL\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/landpads",
@@ -612,6 +718,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /landpads/{id}",
+                    "json": "{\"operationId\":\"getOneLandpad\",\"parameters\":[{\"description\":\"Landing pad ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"details\":{\"description\":\"Landing pad details\",\"type\":\"string\"},\"full_name\":{\"description\":\"Full landing pad name\",\"type\":\"string\"},\"id\":{\"description\":\"Landing pad ID\",\"type\":\"string\"},\"landing_attempts\":{\"description\":\"Number of landing attempts\",\"type\":\"integer\"},\"landing_successes\":{\"description\":\"Number of successful landings\",\"type\":\"integer\"},\"latitude\":{\"description\":\"Latitude\",\"type\":\"number\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"locality\":{\"description\":\"Locality\",\"type\":\"string\"},\"longitude\":{\"description\":\"Longitude\",\"type\":\"number\"},\"name\":{\"description\":\"Landing pad name\",\"type\":\"string\"},\"region\":{\"description\":\"Region\",\"type\":\"string\"},\"status\":{\"description\":\"Landing pad status (active, inactive, unknown, retired, lost, under construction)\",\"type\":\"string\"},\"type\":{\"description\":\"Landing pad type (ASDS, RTLS)\",\"type\":\"string\"},\"wikipedia\":{\"description\":\"Wikipedia URL\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Landing pad not found\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -906,6 +1018,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /launches",
+                    "json": "{\"operationId\":\"getAllLaunches\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"auto_update\":{\"description\":\"Whether the launch data is automatically updated\",\"type\":\"boolean\"},\"capsules\":{\"description\":\"Capsule IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"cores\":{\"items\":{\"properties\":{\"core\":{\"description\":\"Core ID\",\"type\":\"string\"},\"flight\":{\"description\":\"Core flight number\",\"type\":\"integer\"},\"gridfins\":{\"description\":\"Whether core has grid fins\",\"type\":\"boolean\"},\"landing_attempt\":{\"description\":\"Whether landing was attempted\",\"type\":\"boolean\"},\"landing_success\":{\"description\":\"Whether landing was successful\",\"nullable\":true,\"type\":\"boolean\"},\"landing_type\":{\"description\":\"Landing type (ASDS, RTLS, Ocean)\",\"nullable\":true,\"type\":\"string\"},\"landpad\":{\"description\":\"Landing pad ID\",\"nullable\":true,\"type\":\"string\"},\"legs\":{\"description\":\"Whether core has legs\",\"type\":\"boolean\"},\"reused\":{\"description\":\"Whether core was reused\",\"type\":\"boolean\"}},\"type\":\"object\"},\"type\":\"array\"},\"crew\":{\"description\":\"Crew member IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"date_local\":{\"description\":\"Launch date in local time\",\"format\":\"date-time\",\"type\":\"string\"},\"date_precision\":{\"description\":\"Date precision (hour, day, month, quarter, half, year)\",\"type\":\"string\"},\"date_unix\":{\"description\":\"Launch date in unix timestamp\",\"type\":\"integer\"},\"date_utc\":{\"description\":\"Launch date in UTC\",\"format\":\"date-time\",\"type\":\"string\"},\"details\":{\"description\":\"Launch details\",\"nullable\":true,\"type\":\"string\"},\"failures\":{\"description\":\"Launch failures\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"fairings\":{\"nullable\":true,\"properties\":{\"recovered\":{\"type\":\"boolean\"},\"recovery_attempt\":{\"type\":\"boolean\"},\"reused\":{\"type\":\"boolean\"},\"ships\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"flight_number\":{\"description\":\"Flight number\",\"type\":\"integer\"},\"id\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"launchpad\":{\"description\":\"Launchpad ID\",\"type\":\"string\"},\"links\":{\"properties\":{\"article\":{\"nullable\":true,\"type\":\"string\"},\"flickr\":{\"properties\":{\"original\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"small\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"patch\":{\"properties\":{\"large\":{\"nullable\":true,\"type\":\"string\"},\"small\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"presskit\":{\"nullable\":true,\"type\":\"string\"},\"reddit\":{\"properties\":{\"campaign\":{\"nullable\":true,\"type\":\"string\"},\"launch\":{\"nullable\":true,\"type\":\"string\"},\"media\":{\"nullable\":true,\"type\":\"string\"},\"recovery\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"webcast\":{\"nullable\":true,\"type\":\"string\"},\"wikipedia\":{\"nullable\":true,\"type\":\"string\"},\"youtube_id\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"description\":\"Launch name\",\"type\":\"string\"},\"net\":{\"description\":\"No earlier than\",\"type\":\"boolean\"},\"payloads\":{\"description\":\"Payload IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"rocket\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"ships\":{\"description\":\"Ship IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"static_fire_date_unix\":{\"description\":\"Static fire date in unix timestamp\",\"nullable\":true,\"type\":\"integer\"},\"static_fire_date_utc\":{\"description\":\"Static fire date in UTC\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"success\":{\"description\":\"Launch success status\",\"nullable\":true,\"type\":\"boolean\"},\"tdb\":{\"description\":\"To be determined\",\"type\":\"boolean\"},\"upcoming\":{\"description\":\"Whether the launch is upcoming\",\"type\":\"boolean\"},\"window\":{\"description\":\"Launch window in seconds\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/launches",
@@ -923,6 +1041,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /launches/latest",
+                    "json": "{\"operationId\":\"getLatestLaunch\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"auto_update\":{\"description\":\"Whether the launch data is automatically updated\",\"type\":\"boolean\"},\"capsules\":{\"description\":\"Capsule IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"cores\":{\"items\":{\"properties\":{\"core\":{\"description\":\"Core ID\",\"type\":\"string\"},\"flight\":{\"description\":\"Core flight number\",\"type\":\"integer\"},\"gridfins\":{\"description\":\"Whether core has grid fins\",\"type\":\"boolean\"},\"landing_attempt\":{\"description\":\"Whether landing was attempted\",\"type\":\"boolean\"},\"landing_success\":{\"description\":\"Whether landing was successful\",\"nullable\":true,\"type\":\"boolean\"},\"landing_type\":{\"description\":\"Landing type (ASDS, RTLS, Ocean)\",\"nullable\":true,\"type\":\"string\"},\"landpad\":{\"description\":\"Landing pad ID\",\"nullable\":true,\"type\":\"string\"},\"legs\":{\"description\":\"Whether core has legs\",\"type\":\"boolean\"},\"reused\":{\"description\":\"Whether core was reused\",\"type\":\"boolean\"}},\"type\":\"object\"},\"type\":\"array\"},\"crew\":{\"description\":\"Crew member IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"date_local\":{\"description\":\"Launch date in local time\",\"format\":\"date-time\",\"type\":\"string\"},\"date_precision\":{\"description\":\"Date precision (hour, day, month, quarter, half, year)\",\"type\":\"string\"},\"date_unix\":{\"description\":\"Launch date in unix timestamp\",\"type\":\"integer\"},\"date_utc\":{\"description\":\"Launch date in UTC\",\"format\":\"date-time\",\"type\":\"string\"},\"details\":{\"description\":\"Launch details\",\"nullable\":true,\"type\":\"string\"},\"failures\":{\"description\":\"Launch failures\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"fairings\":{\"nullable\":true,\"properties\":{\"recovered\":{\"type\":\"boolean\"},\"recovery_attempt\":{\"type\":\"boolean\"},\"reused\":{\"type\":\"boolean\"},\"ships\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"flight_number\":{\"description\":\"Flight number\",\"type\":\"integer\"},\"id\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"launchpad\":{\"description\":\"Launchpad ID\",\"type\":\"string\"},\"links\":{\"properties\":{\"article\":{\"nullable\":true,\"type\":\"string\"},\"flickr\":{\"properties\":{\"original\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"small\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"patch\":{\"properties\":{\"large\":{\"nullable\":true,\"type\":\"string\"},\"small\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"presskit\":{\"nullable\":true,\"type\":\"string\"},\"reddit\":{\"properties\":{\"campaign\":{\"nullable\":true,\"type\":\"string\"},\"launch\":{\"nullable\":true,\"type\":\"string\"},\"media\":{\"nullable\":true,\"type\":\"string\"},\"recovery\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"webcast\":{\"nullable\":true,\"type\":\"string\"},\"wikipedia\":{\"nullable\":true,\"type\":\"string\"},\"youtube_id\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"description\":\"Launch name\",\"type\":\"string\"},\"net\":{\"description\":\"No earlier than\",\"type\":\"boolean\"},\"payloads\":{\"description\":\"Payload IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"rocket\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"ships\":{\"description\":\"Ship IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"static_fire_date_unix\":{\"description\":\"Static fire date in unix timestamp\",\"nullable\":true,\"type\":\"integer\"},\"static_fire_date_utc\":{\"description\":\"Static fire date in UTC\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"success\":{\"description\":\"Launch success status\",\"nullable\":true,\"type\":\"boolean\"},\"tdb\":{\"description\":\"To be determined\",\"type\":\"boolean\"},\"upcoming\":{\"description\":\"Whether the launch is upcoming\",\"type\":\"boolean\"},\"window\":{\"description\":\"Launch window in seconds\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/launches/latest",
@@ -945,6 +1069,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /launches/past",
+                    "json": "{\"operationId\":\"getPastLaunches\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"auto_update\":{\"description\":\"Whether the launch data is automatically updated\",\"type\":\"boolean\"},\"capsules\":{\"description\":\"Capsule IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"cores\":{\"items\":{\"properties\":{\"core\":{\"description\":\"Core ID\",\"type\":\"string\"},\"flight\":{\"description\":\"Core flight number\",\"type\":\"integer\"},\"gridfins\":{\"description\":\"Whether core has grid fins\",\"type\":\"boolean\"},\"landing_attempt\":{\"description\":\"Whether landing was attempted\",\"type\":\"boolean\"},\"landing_success\":{\"description\":\"Whether landing was successful\",\"nullable\":true,\"type\":\"boolean\"},\"landing_type\":{\"description\":\"Landing type (ASDS, RTLS, Ocean)\",\"nullable\":true,\"type\":\"string\"},\"landpad\":{\"description\":\"Landing pad ID\",\"nullable\":true,\"type\":\"string\"},\"legs\":{\"description\":\"Whether core has legs\",\"type\":\"boolean\"},\"reused\":{\"description\":\"Whether core was reused\",\"type\":\"boolean\"}},\"type\":\"object\"},\"type\":\"array\"},\"crew\":{\"description\":\"Crew member IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"date_local\":{\"description\":\"Launch date in local time\",\"format\":\"date-time\",\"type\":\"string\"},\"date_precision\":{\"description\":\"Date precision (hour, day, month, quarter, half, year)\",\"type\":\"string\"},\"date_unix\":{\"description\":\"Launch date in unix timestamp\",\"type\":\"integer\"},\"date_utc\":{\"description\":\"Launch date in UTC\",\"format\":\"date-time\",\"type\":\"string\"},\"details\":{\"description\":\"Launch details\",\"nullable\":true,\"type\":\"string\"},\"failures\":{\"description\":\"Launch failures\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"fairings\":{\"nullable\":true,\"properties\":{\"recovered\":{\"type\":\"boolean\"},\"recovery_attempt\":{\"type\":\"boolean\"},\"reused\":{\"type\":\"boolean\"},\"ships\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"flight_number\":{\"description\":\"Flight number\",\"type\":\"integer\"},\"id\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"launchpad\":{\"description\":\"Launchpad ID\",\"type\":\"string\"},\"links\":{\"properties\":{\"article\":{\"nullable\":true,\"type\":\"string\"},\"flickr\":{\"properties\":{\"original\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"small\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"patch\":{\"properties\":{\"large\":{\"nullable\":true,\"type\":\"string\"},\"small\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"presskit\":{\"nullable\":true,\"type\":\"string\"},\"reddit\":{\"properties\":{\"campaign\":{\"nullable\":true,\"type\":\"string\"},\"launch\":{\"nullable\":true,\"type\":\"string\"},\"media\":{\"nullable\":true,\"type\":\"string\"},\"recovery\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"webcast\":{\"nullable\":true,\"type\":\"string\"},\"wikipedia\":{\"nullable\":true,\"type\":\"string\"},\"youtube_id\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"description\":\"Launch name\",\"type\":\"string\"},\"net\":{\"description\":\"No earlier than\",\"type\":\"boolean\"},\"payloads\":{\"description\":\"Payload IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"rocket\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"ships\":{\"description\":\"Ship IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"static_fire_date_unix\":{\"description\":\"Static fire date in unix timestamp\",\"nullable\":true,\"type\":\"integer\"},\"static_fire_date_utc\":{\"description\":\"Static fire date in UTC\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"success\":{\"description\":\"Launch success status\",\"nullable\":true,\"type\":\"boolean\"},\"tdb\":{\"description\":\"To be determined\",\"type\":\"boolean\"},\"upcoming\":{\"description\":\"Whether the launch is upcoming\",\"type\":\"boolean\"},\"window\":{\"description\":\"Launch window in seconds\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/launches/past",
@@ -967,6 +1097,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /launches/upcoming",
+                    "json": "{\"operationId\":\"getUpcomingLaunches\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"auto_update\":{\"description\":\"Whether the launch data is automatically updated\",\"type\":\"boolean\"},\"capsules\":{\"description\":\"Capsule IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"cores\":{\"items\":{\"properties\":{\"core\":{\"description\":\"Core ID\",\"type\":\"string\"},\"flight\":{\"description\":\"Core flight number\",\"type\":\"integer\"},\"gridfins\":{\"description\":\"Whether core has grid fins\",\"type\":\"boolean\"},\"landing_attempt\":{\"description\":\"Whether landing was attempted\",\"type\":\"boolean\"},\"landing_success\":{\"description\":\"Whether landing was successful\",\"nullable\":true,\"type\":\"boolean\"},\"landing_type\":{\"description\":\"Landing type (ASDS, RTLS, Ocean)\",\"nullable\":true,\"type\":\"string\"},\"landpad\":{\"description\":\"Landing pad ID\",\"nullable\":true,\"type\":\"string\"},\"legs\":{\"description\":\"Whether core has legs\",\"type\":\"boolean\"},\"reused\":{\"description\":\"Whether core was reused\",\"type\":\"boolean\"}},\"type\":\"object\"},\"type\":\"array\"},\"crew\":{\"description\":\"Crew member IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"date_local\":{\"description\":\"Launch date in local time\",\"format\":\"date-time\",\"type\":\"string\"},\"date_precision\":{\"description\":\"Date precision (hour, day, month, quarter, half, year)\",\"type\":\"string\"},\"date_unix\":{\"description\":\"Launch date in unix timestamp\",\"type\":\"integer\"},\"date_utc\":{\"description\":\"Launch date in UTC\",\"format\":\"date-time\",\"type\":\"string\"},\"details\":{\"description\":\"Launch details\",\"nullable\":true,\"type\":\"string\"},\"failures\":{\"description\":\"Launch failures\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"fairings\":{\"nullable\":true,\"properties\":{\"recovered\":{\"type\":\"boolean\"},\"recovery_attempt\":{\"type\":\"boolean\"},\"reused\":{\"type\":\"boolean\"},\"ships\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"flight_number\":{\"description\":\"Flight number\",\"type\":\"integer\"},\"id\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"launchpad\":{\"description\":\"Launchpad ID\",\"type\":\"string\"},\"links\":{\"properties\":{\"article\":{\"nullable\":true,\"type\":\"string\"},\"flickr\":{\"properties\":{\"original\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"small\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"patch\":{\"properties\":{\"large\":{\"nullable\":true,\"type\":\"string\"},\"small\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"presskit\":{\"nullable\":true,\"type\":\"string\"},\"reddit\":{\"properties\":{\"campaign\":{\"nullable\":true,\"type\":\"string\"},\"launch\":{\"nullable\":true,\"type\":\"string\"},\"media\":{\"nullable\":true,\"type\":\"string\"},\"recovery\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"webcast\":{\"nullable\":true,\"type\":\"string\"},\"wikipedia\":{\"nullable\":true,\"type\":\"string\"},\"youtube_id\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"description\":\"Launch name\",\"type\":\"string\"},\"net\":{\"description\":\"No earlier than\",\"type\":\"boolean\"},\"payloads\":{\"description\":\"Payload IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"rocket\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"ships\":{\"description\":\"Ship IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"static_fire_date_unix\":{\"description\":\"Static fire date in unix timestamp\",\"nullable\":true,\"type\":\"integer\"},\"static_fire_date_utc\":{\"description\":\"Static fire date in UTC\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"success\":{\"description\":\"Launch success status\",\"nullable\":true,\"type\":\"boolean\"},\"tdb\":{\"description\":\"To be determined\",\"type\":\"boolean\"},\"upcoming\":{\"description\":\"Whether the launch is upcoming\",\"type\":\"boolean\"},\"window\":{\"description\":\"Launch window in seconds\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/launches/upcoming",
@@ -1005,6 +1141,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /launches/{id}",
+                    "json": "{\"operationId\":\"getOneLaunch\",\"parameters\":[{\"description\":\"Launch ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"auto_update\":{\"description\":\"Whether the launch data is automatically updated\",\"type\":\"boolean\"},\"capsules\":{\"description\":\"Capsule IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"cores\":{\"items\":{\"properties\":{\"core\":{\"description\":\"Core ID\",\"type\":\"string\"},\"flight\":{\"description\":\"Core flight number\",\"type\":\"integer\"},\"gridfins\":{\"description\":\"Whether core has grid fins\",\"type\":\"boolean\"},\"landing_attempt\":{\"description\":\"Whether landing was attempted\",\"type\":\"boolean\"},\"landing_success\":{\"description\":\"Whether landing was successful\",\"nullable\":true,\"type\":\"boolean\"},\"landing_type\":{\"description\":\"Landing type (ASDS, RTLS, Ocean)\",\"nullable\":true,\"type\":\"string\"},\"landpad\":{\"description\":\"Landing pad ID\",\"nullable\":true,\"type\":\"string\"},\"legs\":{\"description\":\"Whether core has legs\",\"type\":\"boolean\"},\"reused\":{\"description\":\"Whether core was reused\",\"type\":\"boolean\"}},\"type\":\"object\"},\"type\":\"array\"},\"crew\":{\"description\":\"Crew member IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"date_local\":{\"description\":\"Launch date in local time\",\"format\":\"date-time\",\"type\":\"string\"},\"date_precision\":{\"description\":\"Date precision (hour, day, month, quarter, half, year)\",\"type\":\"string\"},\"date_unix\":{\"description\":\"Launch date in unix timestamp\",\"type\":\"integer\"},\"date_utc\":{\"description\":\"Launch date in UTC\",\"format\":\"date-time\",\"type\":\"string\"},\"details\":{\"description\":\"Launch details\",\"nullable\":true,\"type\":\"string\"},\"failures\":{\"description\":\"Launch failures\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"fairings\":{\"nullable\":true,\"properties\":{\"recovered\":{\"type\":\"boolean\"},\"recovery_attempt\":{\"type\":\"boolean\"},\"reused\":{\"type\":\"boolean\"},\"ships\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"flight_number\":{\"description\":\"Flight number\",\"type\":\"integer\"},\"id\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"launchpad\":{\"description\":\"Launchpad ID\",\"type\":\"string\"},\"links\":{\"properties\":{\"article\":{\"nullable\":true,\"type\":\"string\"},\"flickr\":{\"properties\":{\"original\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"small\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"patch\":{\"properties\":{\"large\":{\"nullable\":true,\"type\":\"string\"},\"small\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"presskit\":{\"nullable\":true,\"type\":\"string\"},\"reddit\":{\"properties\":{\"campaign\":{\"nullable\":true,\"type\":\"string\"},\"launch\":{\"nullable\":true,\"type\":\"string\"},\"media\":{\"nullable\":true,\"type\":\"string\"},\"recovery\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"webcast\":{\"nullable\":true,\"type\":\"string\"},\"wikipedia\":{\"nullable\":true,\"type\":\"string\"},\"youtube_id\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"description\":\"Launch name\",\"type\":\"string\"},\"net\":{\"description\":\"No earlier than\",\"type\":\"boolean\"},\"payloads\":{\"description\":\"Payload IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"rocket\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"ships\":{\"description\":\"Ship IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"static_fire_date_unix\":{\"description\":\"Static fire date in unix timestamp\",\"nullable\":true,\"type\":\"integer\"},\"static_fire_date_utc\":{\"description\":\"Static fire date in UTC\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"success\":{\"description\":\"Launch success status\",\"nullable\":true,\"type\":\"boolean\"},\"tdb\":{\"description\":\"To be determined\",\"type\":\"boolean\"},\"upcoming\":{\"description\":\"Whether the launch is upcoming\",\"type\":\"boolean\"},\"window\":{\"description\":\"Launch window in seconds\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Launch not found\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1145,6 +1287,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /launchpads",
+                    "json": "{\"operationId\":\"getAllLaunchpads\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"details\":{\"description\":\"Launchpad details\",\"type\":\"string\"},\"full_name\":{\"description\":\"Full launchpad name\",\"type\":\"string\"},\"id\":{\"description\":\"Launchpad ID\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude\",\"type\":\"number\"},\"launch_attempts\":{\"description\":\"Number of launch attempts\",\"type\":\"integer\"},\"launch_successes\":{\"description\":\"Number of successful launches\",\"type\":\"integer\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"locality\":{\"description\":\"Locality\",\"type\":\"string\"},\"longitude\":{\"description\":\"Longitude\",\"type\":\"number\"},\"name\":{\"description\":\"Launchpad name\",\"type\":\"string\"},\"region\":{\"description\":\"Region\",\"type\":\"string\"},\"rockets\":{\"description\":\"Rocket IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"status\":{\"description\":\"Launchpad status (active, inactive, unknown, retired, lost, under construction)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/launchpads",
@@ -1178,6 +1326,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /launchpads/{id}",
+                    "json": "{\"operationId\":\"getOneLaunchpad\",\"parameters\":[{\"description\":\"Launchpad ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"details\":{\"description\":\"Launchpad details\",\"type\":\"string\"},\"full_name\":{\"description\":\"Full launchpad name\",\"type\":\"string\"},\"id\":{\"description\":\"Launchpad ID\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude\",\"type\":\"number\"},\"launch_attempts\":{\"description\":\"Number of launch attempts\",\"type\":\"integer\"},\"launch_successes\":{\"description\":\"Number of successful launches\",\"type\":\"integer\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"locality\":{\"description\":\"Locality\",\"type\":\"string\"},\"longitude\":{\"description\":\"Longitude\",\"type\":\"number\"},\"name\":{\"description\":\"Launchpad name\",\"type\":\"string\"},\"region\":{\"description\":\"Region\",\"type\":\"string\"},\"rockets\":{\"description\":\"Rocket IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"status\":{\"description\":\"Launchpad status (active, inactive, unknown, retired, lost, under construction)\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Launchpad not found\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1416,6 +1570,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /payloads",
+                    "json": "{\"operationId\":\"getAllPayloads\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"apoapsis_km\":{\"description\":\"Apoapsis in km\",\"nullable\":true,\"type\":\"number\"},\"arg_of_pericenter\":{\"description\":\"Argument of pericenter\",\"nullable\":true,\"type\":\"number\"},\"customers\":{\"description\":\"Customers\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"eccentricity\":{\"description\":\"Eccentricity\",\"nullable\":true,\"type\":\"number\"},\"epoch\":{\"description\":\"Epoch\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"description\":\"Payload ID\",\"type\":\"string\"},\"inclination_deg\":{\"description\":\"Inclination in degrees\",\"nullable\":true,\"type\":\"number\"},\"launch\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"lifespan_years\":{\"description\":\"Lifespan in years\",\"nullable\":true,\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude\",\"nullable\":true,\"type\":\"number\"},\"manufacturers\":{\"description\":\"Manufacturers\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"mass_kg\":{\"description\":\"Payload mass in kilograms\",\"nullable\":true,\"type\":\"number\"},\"mass_lbs\":{\"description\":\"Payload mass in pounds\",\"nullable\":true,\"type\":\"number\"},\"mean_anomaly\":{\"description\":\"Mean anomaly\",\"nullable\":true,\"type\":\"number\"},\"mean_motion\":{\"description\":\"Mean motion\",\"nullable\":true,\"type\":\"number\"},\"name\":{\"description\":\"Payload name\",\"type\":\"string\"},\"nationalities\":{\"description\":\"Nationalities\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"norad_ids\":{\"description\":\"NORAD IDs\",\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"orbit\":{\"description\":\"Orbit type\",\"type\":\"string\"},\"periapsis_km\":{\"description\":\"Periapsis in km\",\"nullable\":true,\"type\":\"number\"},\"period_min\":{\"description\":\"Orbital period in minutes\",\"nullable\":true,\"type\":\"number\"},\"raan\":{\"description\":\"Right ascension of the ascending node\",\"nullable\":true,\"type\":\"number\"},\"reference_system\":{\"description\":\"Reference system\",\"type\":\"string\"},\"regime\":{\"description\":\"Orbit regime\",\"type\":\"string\"},\"reused\":{\"description\":\"Whether the payload was reused\",\"type\":\"boolean\"},\"semi_major_axis_km\":{\"description\":\"Semi-major axis in km\",\"nullable\":true,\"type\":\"number\"},\"type\":{\"description\":\"Payload type\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/payloads",
@@ -1449,6 +1609,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /payloads/{id}",
+                    "json": "{\"operationId\":\"getOnePayload\",\"parameters\":[{\"description\":\"Payload ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"apoapsis_km\":{\"description\":\"Apoapsis in km\",\"nullable\":true,\"type\":\"number\"},\"arg_of_pericenter\":{\"description\":\"Argument of pericenter\",\"nullable\":true,\"type\":\"number\"},\"customers\":{\"description\":\"Customers\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"eccentricity\":{\"description\":\"Eccentricity\",\"nullable\":true,\"type\":\"number\"},\"epoch\":{\"description\":\"Epoch\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"description\":\"Payload ID\",\"type\":\"string\"},\"inclination_deg\":{\"description\":\"Inclination in degrees\",\"nullable\":true,\"type\":\"number\"},\"launch\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"lifespan_years\":{\"description\":\"Lifespan in years\",\"nullable\":true,\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude\",\"nullable\":true,\"type\":\"number\"},\"manufacturers\":{\"description\":\"Manufacturers\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"mass_kg\":{\"description\":\"Payload mass in kilograms\",\"nullable\":true,\"type\":\"number\"},\"mass_lbs\":{\"description\":\"Payload mass in pounds\",\"nullable\":true,\"type\":\"number\"},\"mean_anomaly\":{\"description\":\"Mean anomaly\",\"nullable\":true,\"type\":\"number\"},\"mean_motion\":{\"description\":\"Mean motion\",\"nullable\":true,\"type\":\"number\"},\"name\":{\"description\":\"Payload name\",\"type\":\"string\"},\"nationalities\":{\"description\":\"Nationalities\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"norad_ids\":{\"description\":\"NORAD IDs\",\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"orbit\":{\"description\":\"Orbit type\",\"type\":\"string\"},\"periapsis_km\":{\"description\":\"Periapsis in km\",\"nullable\":true,\"type\":\"number\"},\"period_min\":{\"description\":\"Orbital period in minutes\",\"nullable\":true,\"type\":\"number\"},\"raan\":{\"description\":\"Right ascension of the ascending node\",\"nullable\":true,\"type\":\"number\"},\"reference_system\":{\"description\":\"Reference system\",\"type\":\"string\"},\"regime\":{\"description\":\"Orbit regime\",\"type\":\"string\"},\"reused\":{\"description\":\"Whether the payload was reused\",\"type\":\"boolean\"},\"semi_major_axis_km\":{\"description\":\"Semi-major axis in km\",\"nullable\":true,\"type\":\"number\"},\"type\":{\"description\":\"Payload type\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Payload not found\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1688,6 +1854,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /roadster",
+                    "json": "{\"operationId\":\"getRoadster\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"apoapsis_au\":{\"description\":\"Apoapsis in AU\",\"type\":\"number\"},\"details\":{\"description\":\"Details\",\"type\":\"string\"},\"earth_distance_km\":{\"description\":\"Distance from Earth in km\",\"type\":\"number\"},\"earth_distance_mi\":{\"description\":\"Distance from Earth in miles\",\"type\":\"number\"},\"eccentricity\":{\"description\":\"Eccentricity\",\"type\":\"number\"},\"epoch_jd\":{\"description\":\"Epoch in Julian Date\",\"type\":\"number\"},\"flickr_images\":{\"description\":\"Flickr images\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Roadster ID\",\"type\":\"string\"},\"inclination\":{\"description\":\"Inclination\",\"type\":\"number\"},\"launch_date_unix\":{\"description\":\"Launch date in unix timestamp\",\"type\":\"integer\"},\"launch_date_utc\":{\"description\":\"Launch date in UTC\",\"format\":\"date-time\",\"type\":\"string\"},\"launch_mass_kg\":{\"description\":\"Launch mass in kilograms\",\"type\":\"integer\"},\"launch_mass_lbs\":{\"description\":\"Launch mass in pounds\",\"type\":\"integer\"},\"longitude\":{\"description\":\"Longitude\",\"type\":\"number\"},\"mars_distance_km\":{\"description\":\"Distance from Mars in km\",\"type\":\"number\"},\"mars_distance_mi\":{\"description\":\"Distance from Mars in miles\",\"type\":\"number\"},\"name\":{\"description\":\"Roadster name\",\"type\":\"string\"},\"norad_id\":{\"description\":\"NORAD ID\",\"type\":\"integer\"},\"orbit_type\":{\"description\":\"Orbit type\",\"type\":\"string\"},\"periapsis_arg\":{\"description\":\"Argument of periapsis\",\"type\":\"number\"},\"periapsis_au\":{\"description\":\"Periapsis in AU\",\"type\":\"number\"},\"period_days\":{\"description\":\"Orbital period in days\",\"type\":\"number\"},\"semi_major_axis_au\":{\"description\":\"Semi-major axis in AU\",\"type\":\"number\"},\"speed_kph\":{\"description\":\"Speed in km/h\",\"type\":\"number\"},\"speed_mph\":{\"description\":\"Speed in mph\",\"type\":\"number\"},\"video\":{\"description\":\"Video URL\",\"type\":\"string\"},\"wikipedia\":{\"description\":\"Wikipedia URL\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/roadster",
@@ -1843,6 +2015,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /rockets",
+                    "json": "{\"operationId\":\"getAllRockets\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"active\":{\"description\":\"Whether the rocket is active\",\"type\":\"boolean\"},\"boosters\":{\"description\":\"Number of boosters\",\"type\":\"integer\"},\"company\":{\"description\":\"Company\",\"type\":\"string\"},\"cost_per_launch\":{\"description\":\"Cost per launch in USD\",\"type\":\"integer\"},\"country\":{\"description\":\"Country of origin\",\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"diameter\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"first_flight\":{\"description\":\"Date of first flight\",\"format\":\"date\",\"type\":\"string\"},\"flickr_images\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"height\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"id\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"mass\":{\"properties\":{\"kg\":{\"type\":\"integer\"},\"lb\":{\"type\":\"integer\"}},\"type\":\"object\"},\"name\":{\"description\":\"Rocket name\",\"type\":\"string\"},\"stages\":{\"description\":\"Number of stages\",\"type\":\"integer\"},\"success_rate_pct\":{\"description\":\"Success rate percentage\",\"type\":\"number\"},\"type\":{\"description\":\"Rocket type\",\"type\":\"string\"},\"wikipedia\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/rockets",
@@ -1876,6 +2054,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /rockets/{id}",
+                    "json": "{\"operationId\":\"getOneRocket\",\"parameters\":[{\"description\":\"Rocket ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"active\":{\"description\":\"Whether the rocket is active\",\"type\":\"boolean\"},\"boosters\":{\"description\":\"Number of boosters\",\"type\":\"integer\"},\"company\":{\"description\":\"Company\",\"type\":\"string\"},\"cost_per_launch\":{\"description\":\"Cost per launch in USD\",\"type\":\"integer\"},\"country\":{\"description\":\"Country of origin\",\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"diameter\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"first_flight\":{\"description\":\"Date of first flight\",\"format\":\"date\",\"type\":\"string\"},\"flickr_images\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"height\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"id\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"mass\":{\"properties\":{\"kg\":{\"type\":\"integer\"},\"lb\":{\"type\":\"integer\"}},\"type\":\"object\"},\"name\":{\"description\":\"Rocket name\",\"type\":\"string\"},\"stages\":{\"description\":\"Number of stages\",\"type\":\"integer\"},\"success_rate_pct\":{\"description\":\"Success rate percentage\",\"type\":\"number\"},\"type\":{\"description\":\"Rocket type\",\"type\":\"string\"},\"wikipedia\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Rocket not found\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -2086,6 +2270,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /ships",
+                    "json": "{\"operationId\":\"getAllShips\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"abs\":{\"description\":\"ABS number\",\"nullable\":true,\"type\":\"integer\"},\"class\":{\"description\":\"Ship class\",\"nullable\":true,\"type\":\"integer\"},\"course_deg\":{\"description\":\"Course in degrees\",\"nullable\":true,\"type\":\"number\"},\"home_port\":{\"description\":\"Home port\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"description\":\"Ship ID\",\"type\":\"string\"},\"image\":{\"description\":\"Image URL\",\"nullable\":true,\"type\":\"string\"},\"imo\":{\"description\":\"IMO number\",\"nullable\":true,\"type\":\"integer\"},\"last_ais_update\":{\"description\":\"Last AIS update timestamp\",\"nullable\":true,\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude\",\"nullable\":true,\"type\":\"number\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"legacy_id\":{\"description\":\"Legacy ID\",\"nullable\":true,\"type\":\"string\"},\"link\":{\"description\":\"Link to ship info\",\"nullable\":true,\"type\":\"string\"},\"longitude\":{\"description\":\"Longitude\",\"nullable\":true,\"type\":\"number\"},\"mass_kg\":{\"description\":\"Mass in kilograms\",\"nullable\":true,\"type\":\"integer\"},\"mass_lbs\":{\"description\":\"Mass in pounds\",\"nullable\":true,\"type\":\"integer\"},\"mmsi\":{\"description\":\"MMSI number\",\"nullable\":true,\"type\":\"integer\"},\"model\":{\"description\":\"Ship model\",\"nullable\":true,\"type\":\"string\"},\"name\":{\"description\":\"Ship name\",\"type\":\"string\"},\"roles\":{\"description\":\"Ship roles\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"speed_kn\":{\"description\":\"Speed in knots\",\"nullable\":true,\"type\":\"number\"},\"status\":{\"description\":\"Ship status\",\"type\":\"string\"},\"type\":{\"description\":\"Ship type\",\"type\":\"string\"},\"year_built\":{\"description\":\"Year built\",\"nullable\":true,\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/ships",
@@ -2119,6 +2309,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /ships/{id}",
+                    "json": "{\"operationId\":\"getOneShip\",\"parameters\":[{\"description\":\"Ship ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"abs\":{\"description\":\"ABS number\",\"nullable\":true,\"type\":\"integer\"},\"class\":{\"description\":\"Ship class\",\"nullable\":true,\"type\":\"integer\"},\"course_deg\":{\"description\":\"Course in degrees\",\"nullable\":true,\"type\":\"number\"},\"home_port\":{\"description\":\"Home port\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"description\":\"Ship ID\",\"type\":\"string\"},\"image\":{\"description\":\"Image URL\",\"nullable\":true,\"type\":\"string\"},\"imo\":{\"description\":\"IMO number\",\"nullable\":true,\"type\":\"integer\"},\"last_ais_update\":{\"description\":\"Last AIS update timestamp\",\"nullable\":true,\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude\",\"nullable\":true,\"type\":\"number\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"legacy_id\":{\"description\":\"Legacy ID\",\"nullable\":true,\"type\":\"string\"},\"link\":{\"description\":\"Link to ship info\",\"nullable\":true,\"type\":\"string\"},\"longitude\":{\"description\":\"Longitude\",\"nullable\":true,\"type\":\"number\"},\"mass_kg\":{\"description\":\"Mass in kilograms\",\"nullable\":true,\"type\":\"integer\"},\"mass_lbs\":{\"description\":\"Mass in pounds\",\"nullable\":true,\"type\":\"integer\"},\"mmsi\":{\"description\":\"MMSI number\",\"nullable\":true,\"type\":\"integer\"},\"model\":{\"description\":\"Ship model\",\"nullable\":true,\"type\":\"string\"},\"name\":{\"description\":\"Ship name\",\"type\":\"string\"},\"roles\":{\"description\":\"Ship roles\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"speed_kn\":{\"description\":\"Speed in knots\",\"nullable\":true,\"type\":\"number\"},\"status\":{\"description\":\"Ship status\",\"type\":\"string\"},\"type\":{\"description\":\"Ship type\",\"type\":\"string\"},\"year_built\":{\"description\":\"Year built\",\"nullable\":true,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Ship not found\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -2224,6 +2420,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /starlink",
+                    "json": "{\"operationId\":\"getAllStarlink\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"height_km\":{\"description\":\"Current height in kilometers\",\"type\":\"number\"},\"id\":{\"description\":\"Starlink satellite ID\",\"type\":\"string\"},\"latitude\":{\"description\":\"Current latitude\",\"type\":\"number\"},\"launch\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"longitude\":{\"description\":\"Current longitude\",\"type\":\"number\"},\"spaceTrack\":{\"description\":\"Space-Track.org data\",\"type\":\"object\"},\"velocity_kms\":{\"description\":\"Current velocity in km/s\",\"type\":\"number\"},\"version\":{\"description\":\"Satellite version\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/starlink",
@@ -2258,6 +2460,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /starlink/{id}",
+                    "json": "{\"operationId\":\"getOneStarlink\",\"parameters\":[{\"description\":\"Starlink satellite ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"height_km\":{\"description\":\"Current height in kilometers\",\"type\":\"number\"},\"id\":{\"description\":\"Starlink satellite ID\",\"type\":\"string\"},\"latitude\":{\"description\":\"Current latitude\",\"type\":\"number\"},\"launch\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"longitude\":{\"description\":\"Current longitude\",\"type\":\"number\"},\"spaceTrack\":{\"description\":\"Space-Track.org data\",\"type\":\"object\"},\"velocity_kms\":{\"description\":\"Current velocity in km/s\",\"type\":\"number\"},\"version\":{\"description\":\"Satellite version\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Starlink satellite not found\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/starlink/{id}",
@@ -2288,13 +2496,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -2384,6 +2802,102 @@
           },
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
           "version": "0.0.1"
         }
       },
@@ -2918,6 +3432,48 @@
         "website": "https://spacexdata.com"
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -3472,6 +4028,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -3513,7 +4070,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

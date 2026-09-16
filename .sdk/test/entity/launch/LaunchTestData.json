@@ -9,13 +9,13 @@
         "crew": [],
         "date_local": "s163",
         "date_precision": "s164",
-        "date_unix": "s165",
+        "date_unix": 357,
         "date_utc": "s166",
         "details": "s167",
         "failures": [],
         "fairings": {},
-        "flight": "s16a",
-        "flight_number": "s16b",
+        "flight": 362,
+        "flight_number": 363,
         "gridfins": true,
         "id": "LAUNCH00",
         "landing_attempt": true,
@@ -31,12 +31,12 @@
         "reused": true,
         "rocket": "s179",
         "ships": [],
-        "static_fire_date_unix": "s17b",
+        "static_fire_date_unix": 379,
         "static_fire_date_utc": "s17c",
         "success": false,
         "tdb": true,
         "upcoming": false,
-        "window": "s180"
+        "window": 384
       },
       "LAUNCH01": {
         "auto_update": true,
@@ -46,13 +46,13 @@
         "crew": [],
         "date_local": "s2c1",
         "date_precision": "s2c2",
-        "date_unix": "s2c3",
+        "date_unix": 707,
         "date_utc": "s2c4",
         "details": "s2c5",
         "failures": [],
         "fairings": {},
-        "flight": "s2c8",
-        "flight_number": "s2c9",
+        "flight": 712,
+        "flight_number": 713,
         "gridfins": true,
         "id": "LAUNCH01",
         "landing_attempt": true,
@@ -68,12 +68,12 @@
         "reused": true,
         "rocket": "s2d7",
         "ships": [],
-        "static_fire_date_unix": "s2d9",
+        "static_fire_date_unix": 729,
         "static_fire_date_utc": "s2da",
         "success": false,
         "tdb": true,
         "upcoming": false,
-        "window": "s2de"
+        "window": 734
       },
       "LAUNCH02": {
         "auto_update": true,
@@ -83,13 +83,13 @@
         "crew": [],
         "date_local": "s41f",
         "date_precision": "s420",
-        "date_unix": "s421",
+        "date_unix": 1057,
         "date_utc": "s422",
         "details": "s423",
         "failures": [],
         "fairings": {},
-        "flight": "s426",
-        "flight_number": "s427",
+        "flight": 1062,
+        "flight_number": 1063,
         "gridfins": true,
         "id": "LAUNCH02",
         "landing_attempt": true,
@@ -105,12 +105,12 @@
         "reused": true,
         "rocket": "s435",
         "ships": [],
-        "static_fire_date_unix": "s437",
+        "static_fire_date_unix": 1079,
         "static_fire_date_utc": "s438",
         "success": false,
         "tdb": true,
         "upcoming": false,
-        "window": "s43c"
+        "window": 1084
       }
     }
   },
@@ -124,13 +124,13 @@
         "crew": [],
         "date_local": "s57d",
         "date_precision": "s57e",
-        "date_unix": "s57f",
+        "date_unix": 1407,
         "date_utc": "s580",
         "details": "s581",
         "failures": [],
         "fairings": {},
-        "flight": "s584",
-        "flight_number": "s585",
+        "flight": 1412,
+        "flight_number": 1413,
         "gridfins": true,
         "landing_attempt": true,
         "landing_success": false,
@@ -145,12 +145,1441 @@
         "reused": true,
         "rocket": "s593",
         "ships": [],
-        "static_fire_date_unix": "s595",
+        "static_fire_date_unix": 1429,
         "static_fire_date_utc": "s596",
         "success": false,
         "tdb": true,
         "upcoming": false,
-        "window": "s59a"
+        "window": 1434
+      }
+    }
+  },
+  "requests": {
+    "GET /launches": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAllLaunches",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "auto_update": {
+                        "description": "Whether the launch data is automatically updated",
+                        "type": "boolean"
+                      },
+                      "capsules": {
+                        "description": "Capsule IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "cores": {
+                        "items": {
+                          "properties": {
+                            "core": {
+                              "description": "Core ID",
+                              "type": "string"
+                            },
+                            "flight": {
+                              "description": "Core flight number",
+                              "type": "integer"
+                            },
+                            "gridfins": {
+                              "description": "Whether core has grid fins",
+                              "type": "boolean"
+                            },
+                            "landing_attempt": {
+                              "description": "Whether landing was attempted",
+                              "type": "boolean"
+                            },
+                            "landing_success": {
+                              "description": "Whether landing was successful",
+                              "nullable": true,
+                              "type": "boolean"
+                            },
+                            "landing_type": {
+                              "description": "Landing type (ASDS, RTLS, Ocean)",
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "landpad": {
+                              "description": "Landing pad ID",
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "legs": {
+                              "description": "Whether core has legs",
+                              "type": "boolean"
+                            },
+                            "reused": {
+                              "description": "Whether core was reused",
+                              "type": "boolean"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "crew": {
+                        "description": "Crew member IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "date_local": {
+                        "description": "Launch date in local time",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "date_precision": {
+                        "description": "Date precision (hour, day, month, quarter, half, year)",
+                        "type": "string"
+                      },
+                      "date_unix": {
+                        "description": "Launch date in unix timestamp",
+                        "type": "integer"
+                      },
+                      "date_utc": {
+                        "description": "Launch date in UTC",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "details": {
+                        "description": "Launch details",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "failures": {
+                        "description": "Launch failures",
+                        "items": {
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "fairings": {
+                        "nullable": true,
+                        "properties": {
+                          "recovered": {
+                            "type": "boolean"
+                          },
+                          "recovery_attempt": {
+                            "type": "boolean"
+                          },
+                          "reused": {
+                            "type": "boolean"
+                          },
+                          "ships": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "flight_number": {
+                        "description": "Flight number",
+                        "type": "integer"
+                      },
+                      "id": {
+                        "description": "Launch ID",
+                        "type": "string"
+                      },
+                      "launchpad": {
+                        "description": "Launchpad ID",
+                        "type": "string"
+                      },
+                      "links": {
+                        "properties": {
+                          "article": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "flickr": {
+                            "properties": {
+                              "original": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "small": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "patch": {
+                            "properties": {
+                              "large": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "small": {
+                                "nullable": true,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "presskit": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "reddit": {
+                            "properties": {
+                              "campaign": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "launch": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "media": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "recovery": {
+                                "nullable": true,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "webcast": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "wikipedia": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "youtube_id": {
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "name": {
+                        "description": "Launch name",
+                        "type": "string"
+                      },
+                      "net": {
+                        "description": "No earlier than",
+                        "type": "boolean"
+                      },
+                      "payloads": {
+                        "description": "Payload IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "rocket": {
+                        "description": "Rocket ID",
+                        "type": "string"
+                      },
+                      "ships": {
+                        "description": "Ship IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "static_fire_date_unix": {
+                        "description": "Static fire date in unix timestamp",
+                        "nullable": true,
+                        "type": "integer"
+                      },
+                      "static_fire_date_utc": {
+                        "description": "Static fire date in UTC",
+                        "format": "date-time",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "success": {
+                        "description": "Launch success status",
+                        "nullable": true,
+                        "type": "boolean"
+                      },
+                      "tdb": {
+                        "description": "To be determined",
+                        "type": "boolean"
+                      },
+                      "upcoming": {
+                        "description": "Whether the launch is upcoming",
+                        "type": "boolean"
+                      },
+                      "window": {
+                        "description": "Launch window in seconds",
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /launches/latest": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getLatestLaunch",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "auto_update": {
+                      "description": "Whether the launch data is automatically updated",
+                      "type": "boolean"
+                    },
+                    "capsules": {
+                      "description": "Capsule IDs",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "cores": {
+                      "items": {
+                        "properties": {
+                          "core": {
+                            "description": "Core ID",
+                            "type": "string"
+                          },
+                          "flight": {
+                            "description": "Core flight number",
+                            "type": "integer"
+                          },
+                          "gridfins": {
+                            "description": "Whether core has grid fins",
+                            "type": "boolean"
+                          },
+                          "landing_attempt": {
+                            "description": "Whether landing was attempted",
+                            "type": "boolean"
+                          },
+                          "landing_success": {
+                            "description": "Whether landing was successful",
+                            "nullable": true,
+                            "type": "boolean"
+                          },
+                          "landing_type": {
+                            "description": "Landing type (ASDS, RTLS, Ocean)",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "landpad": {
+                            "description": "Landing pad ID",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "legs": {
+                            "description": "Whether core has legs",
+                            "type": "boolean"
+                          },
+                          "reused": {
+                            "description": "Whether core was reused",
+                            "type": "boolean"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "crew": {
+                      "description": "Crew member IDs",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "date_local": {
+                      "description": "Launch date in local time",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "date_precision": {
+                      "description": "Date precision (hour, day, month, quarter, half, year)",
+                      "type": "string"
+                    },
+                    "date_unix": {
+                      "description": "Launch date in unix timestamp",
+                      "type": "integer"
+                    },
+                    "date_utc": {
+                      "description": "Launch date in UTC",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "Launch details",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "failures": {
+                      "description": "Launch failures",
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "fairings": {
+                      "nullable": true,
+                      "properties": {
+                        "recovered": {
+                          "type": "boolean"
+                        },
+                        "recovery_attempt": {
+                          "type": "boolean"
+                        },
+                        "reused": {
+                          "type": "boolean"
+                        },
+                        "ships": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "flight_number": {
+                      "description": "Flight number",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "Launch ID",
+                      "type": "string"
+                    },
+                    "launchpad": {
+                      "description": "Launchpad ID",
+                      "type": "string"
+                    },
+                    "links": {
+                      "properties": {
+                        "article": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "flickr": {
+                          "properties": {
+                            "original": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "small": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "patch": {
+                          "properties": {
+                            "large": {
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "small": {
+                              "nullable": true,
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "presskit": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "reddit": {
+                          "properties": {
+                            "campaign": {
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "launch": {
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "media": {
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "recovery": {
+                              "nullable": true,
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "webcast": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "wikipedia": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "youtube_id": {
+                          "nullable": true,
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "name": {
+                      "description": "Launch name",
+                      "type": "string"
+                    },
+                    "net": {
+                      "description": "No earlier than",
+                      "type": "boolean"
+                    },
+                    "payloads": {
+                      "description": "Payload IDs",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "rocket": {
+                      "description": "Rocket ID",
+                      "type": "string"
+                    },
+                    "ships": {
+                      "description": "Ship IDs",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "static_fire_date_unix": {
+                      "description": "Static fire date in unix timestamp",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "static_fire_date_utc": {
+                      "description": "Static fire date in UTC",
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "success": {
+                      "description": "Launch success status",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "tdb": {
+                      "description": "To be determined",
+                      "type": "boolean"
+                    },
+                    "upcoming": {
+                      "description": "Whether the launch is upcoming",
+                      "type": "boolean"
+                    },
+                    "window": {
+                      "description": "Launch window in seconds",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /launches/past": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getPastLaunches",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "auto_update": {
+                        "description": "Whether the launch data is automatically updated",
+                        "type": "boolean"
+                      },
+                      "capsules": {
+                        "description": "Capsule IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "cores": {
+                        "items": {
+                          "properties": {
+                            "core": {
+                              "description": "Core ID",
+                              "type": "string"
+                            },
+                            "flight": {
+                              "description": "Core flight number",
+                              "type": "integer"
+                            },
+                            "gridfins": {
+                              "description": "Whether core has grid fins",
+                              "type": "boolean"
+                            },
+                            "landing_attempt": {
+                              "description": "Whether landing was attempted",
+                              "type": "boolean"
+                            },
+                            "landing_success": {
+                              "description": "Whether landing was successful",
+                              "nullable": true,
+                              "type": "boolean"
+                            },
+                            "landing_type": {
+                              "description": "Landing type (ASDS, RTLS, Ocean)",
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "landpad": {
+                              "description": "Landing pad ID",
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "legs": {
+                              "description": "Whether core has legs",
+                              "type": "boolean"
+                            },
+                            "reused": {
+                              "description": "Whether core was reused",
+                              "type": "boolean"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "crew": {
+                        "description": "Crew member IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "date_local": {
+                        "description": "Launch date in local time",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "date_precision": {
+                        "description": "Date precision (hour, day, month, quarter, half, year)",
+                        "type": "string"
+                      },
+                      "date_unix": {
+                        "description": "Launch date in unix timestamp",
+                        "type": "integer"
+                      },
+                      "date_utc": {
+                        "description": "Launch date in UTC",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "details": {
+                        "description": "Launch details",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "failures": {
+                        "description": "Launch failures",
+                        "items": {
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "fairings": {
+                        "nullable": true,
+                        "properties": {
+                          "recovered": {
+                            "type": "boolean"
+                          },
+                          "recovery_attempt": {
+                            "type": "boolean"
+                          },
+                          "reused": {
+                            "type": "boolean"
+                          },
+                          "ships": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "flight_number": {
+                        "description": "Flight number",
+                        "type": "integer"
+                      },
+                      "id": {
+                        "description": "Launch ID",
+                        "type": "string"
+                      },
+                      "launchpad": {
+                        "description": "Launchpad ID",
+                        "type": "string"
+                      },
+                      "links": {
+                        "properties": {
+                          "article": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "flickr": {
+                            "properties": {
+                              "original": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "small": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "patch": {
+                            "properties": {
+                              "large": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "small": {
+                                "nullable": true,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "presskit": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "reddit": {
+                            "properties": {
+                              "campaign": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "launch": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "media": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "recovery": {
+                                "nullable": true,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "webcast": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "wikipedia": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "youtube_id": {
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "name": {
+                        "description": "Launch name",
+                        "type": "string"
+                      },
+                      "net": {
+                        "description": "No earlier than",
+                        "type": "boolean"
+                      },
+                      "payloads": {
+                        "description": "Payload IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "rocket": {
+                        "description": "Rocket ID",
+                        "type": "string"
+                      },
+                      "ships": {
+                        "description": "Ship IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "static_fire_date_unix": {
+                        "description": "Static fire date in unix timestamp",
+                        "nullable": true,
+                        "type": "integer"
+                      },
+                      "static_fire_date_utc": {
+                        "description": "Static fire date in UTC",
+                        "format": "date-time",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "success": {
+                        "description": "Launch success status",
+                        "nullable": true,
+                        "type": "boolean"
+                      },
+                      "tdb": {
+                        "description": "To be determined",
+                        "type": "boolean"
+                      },
+                      "upcoming": {
+                        "description": "Whether the launch is upcoming",
+                        "type": "boolean"
+                      },
+                      "window": {
+                        "description": "Launch window in seconds",
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /launches/upcoming": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getUpcomingLaunches",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "auto_update": {
+                        "description": "Whether the launch data is automatically updated",
+                        "type": "boolean"
+                      },
+                      "capsules": {
+                        "description": "Capsule IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "cores": {
+                        "items": {
+                          "properties": {
+                            "core": {
+                              "description": "Core ID",
+                              "type": "string"
+                            },
+                            "flight": {
+                              "description": "Core flight number",
+                              "type": "integer"
+                            },
+                            "gridfins": {
+                              "description": "Whether core has grid fins",
+                              "type": "boolean"
+                            },
+                            "landing_attempt": {
+                              "description": "Whether landing was attempted",
+                              "type": "boolean"
+                            },
+                            "landing_success": {
+                              "description": "Whether landing was successful",
+                              "nullable": true,
+                              "type": "boolean"
+                            },
+                            "landing_type": {
+                              "description": "Landing type (ASDS, RTLS, Ocean)",
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "landpad": {
+                              "description": "Landing pad ID",
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "legs": {
+                              "description": "Whether core has legs",
+                              "type": "boolean"
+                            },
+                            "reused": {
+                              "description": "Whether core was reused",
+                              "type": "boolean"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "crew": {
+                        "description": "Crew member IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "date_local": {
+                        "description": "Launch date in local time",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "date_precision": {
+                        "description": "Date precision (hour, day, month, quarter, half, year)",
+                        "type": "string"
+                      },
+                      "date_unix": {
+                        "description": "Launch date in unix timestamp",
+                        "type": "integer"
+                      },
+                      "date_utc": {
+                        "description": "Launch date in UTC",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "details": {
+                        "description": "Launch details",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "failures": {
+                        "description": "Launch failures",
+                        "items": {
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "fairings": {
+                        "nullable": true,
+                        "properties": {
+                          "recovered": {
+                            "type": "boolean"
+                          },
+                          "recovery_attempt": {
+                            "type": "boolean"
+                          },
+                          "reused": {
+                            "type": "boolean"
+                          },
+                          "ships": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "flight_number": {
+                        "description": "Flight number",
+                        "type": "integer"
+                      },
+                      "id": {
+                        "description": "Launch ID",
+                        "type": "string"
+                      },
+                      "launchpad": {
+                        "description": "Launchpad ID",
+                        "type": "string"
+                      },
+                      "links": {
+                        "properties": {
+                          "article": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "flickr": {
+                            "properties": {
+                              "original": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "small": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "patch": {
+                            "properties": {
+                              "large": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "small": {
+                                "nullable": true,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "presskit": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "reddit": {
+                            "properties": {
+                              "campaign": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "launch": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "media": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "recovery": {
+                                "nullable": true,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "webcast": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "wikipedia": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "youtube_id": {
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "name": {
+                        "description": "Launch name",
+                        "type": "string"
+                      },
+                      "net": {
+                        "description": "No earlier than",
+                        "type": "boolean"
+                      },
+                      "payloads": {
+                        "description": "Payload IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "rocket": {
+                        "description": "Rocket ID",
+                        "type": "string"
+                      },
+                      "ships": {
+                        "description": "Ship IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "static_fire_date_unix": {
+                        "description": "Static fire date in unix timestamp",
+                        "nullable": true,
+                        "type": "integer"
+                      },
+                      "static_fire_date_utc": {
+                        "description": "Static fire date in UTC",
+                        "format": "date-time",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "success": {
+                        "description": "Launch success status",
+                        "nullable": true,
+                        "type": "boolean"
+                      },
+                      "tdb": {
+                        "description": "To be determined",
+                        "type": "boolean"
+                      },
+                      "upcoming": {
+                        "description": "Whether the launch is upcoming",
+                        "type": "boolean"
+                      },
+                      "window": {
+                        "description": "Launch window in seconds",
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /launches/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getOneLaunch",
+        "parameters": [
+          {
+            "description": "Launch ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "auto_update": {
+                      "description": "Whether the launch data is automatically updated",
+                      "type": "boolean"
+                    },
+                    "capsules": {
+                      "description": "Capsule IDs",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "cores": {
+                      "items": {
+                        "properties": {
+                          "core": {
+                            "description": "Core ID",
+                            "type": "string"
+                          },
+                          "flight": {
+                            "description": "Core flight number",
+                            "type": "integer"
+                          },
+                          "gridfins": {
+                            "description": "Whether core has grid fins",
+                            "type": "boolean"
+                          },
+                          "landing_attempt": {
+                            "description": "Whether landing was attempted",
+                            "type": "boolean"
+                          },
+                          "landing_success": {
+                            "description": "Whether landing was successful",
+                            "nullable": true,
+                            "type": "boolean"
+                          },
+                          "landing_type": {
+                            "description": "Landing type (ASDS, RTLS, Ocean)",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "landpad": {
+                            "description": "Landing pad ID",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "legs": {
+                            "description": "Whether core has legs",
+                            "type": "boolean"
+                          },
+                          "reused": {
+                            "description": "Whether core was reused",
+                            "type": "boolean"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "crew": {
+                      "description": "Crew member IDs",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "date_local": {
+                      "description": "Launch date in local time",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "date_precision": {
+                      "description": "Date precision (hour, day, month, quarter, half, year)",
+                      "type": "string"
+                    },
+                    "date_unix": {
+                      "description": "Launch date in unix timestamp",
+                      "type": "integer"
+                    },
+                    "date_utc": {
+                      "description": "Launch date in UTC",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "Launch details",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "failures": {
+                      "description": "Launch failures",
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "fairings": {
+                      "nullable": true,
+                      "properties": {
+                        "recovered": {
+                          "type": "boolean"
+                        },
+                        "recovery_attempt": {
+                          "type": "boolean"
+                        },
+                        "reused": {
+                          "type": "boolean"
+                        },
+                        "ships": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "flight_number": {
+                      "description": "Flight number",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "Launch ID",
+                      "type": "string"
+                    },
+                    "launchpad": {
+                      "description": "Launchpad ID",
+                      "type": "string"
+                    },
+                    "links": {
+                      "properties": {
+                        "article": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "flickr": {
+                          "properties": {
+                            "original": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "small": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "patch": {
+                          "properties": {
+                            "large": {
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "small": {
+                              "nullable": true,
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "presskit": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "reddit": {
+                          "properties": {
+                            "campaign": {
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "launch": {
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "media": {
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "recovery": {
+                              "nullable": true,
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "webcast": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "wikipedia": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "youtube_id": {
+                          "nullable": true,
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "name": {
+                      "description": "Launch name",
+                      "type": "string"
+                    },
+                    "net": {
+                      "description": "No earlier than",
+                      "type": "boolean"
+                    },
+                    "payloads": {
+                      "description": "Payload IDs",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "rocket": {
+                      "description": "Rocket ID",
+                      "type": "string"
+                    },
+                    "ships": {
+                      "description": "Ship IDs",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "static_fire_date_unix": {
+                      "description": "Static fire date in unix timestamp",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "static_fire_date_utc": {
+                      "description": "Static fire date in UTC",
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "success": {
+                      "description": "Launch success status",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "tdb": {
+                      "description": "To be determined",
+                      "type": "boolean"
+                    },
+                    "upcoming": {
+                      "description": "Whether the launch is upcoming",
+                      "type": "boolean"
+                    },
+                    "window": {
+                      "description": "Launch window in seconds",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "Launch not found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

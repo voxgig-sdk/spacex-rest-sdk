@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { SpacexRestSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('PayloadEntity', async () => {
 
     const live = 'TRUE' === process.env.SPACEX_REST_TEST_LIVE
     for (const op of ['list', 'load']) {
-      if (maybeSkipControl(t, 'entityOp', 'payload.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'payload.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set SPACEX_REST_TEST_PAYLOAD_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"apoapsis_km","req":false,"short":"Apoapsis in km","type":"`$NUMBER`","index$":0},{"active":true,"name":"arg_of_pericenter","req":false,"short":"Argument of pericenter","type":"`$NUMBER`","index$":1},{"active":true,"name":"customers","req":false,"short":"Customers","type":"`$ARRAY`","index$":2},{"active":true,"name":"eccentricity","req":false,"short":"Eccentricity","type":"`$NUMBER`","index$":3},{"active":true,"name":"epoch","req":false,"short":"Epoch","type":"`$STRING`","index$":4},{"active":true,"name":"id","req":false,"short":"Payload ID","type":"`$STRING`","index$":5},{"active":true,"name":"inclination_deg","req":false,"short":"Inclination in degrees","type":"`$NUMBER`","index$":6},{"active":true,"name":"launch","req":false,"short":"Launch ID","type":"`$STRING`","index$":7},{"active":true,"name":"lifespan_years","req":false,"short":"Lifespan in years","type":"`$NUMBER`","index$":8},{"active":true,"name":"longitude","req":false,"short":"Longitude","type":"`$NUMBER`","index$":9},{"active":true,"name":"manufacturers","req":false,"short":"Manufacturers","type":"`$ARRAY`","index$":10},{"active":true,"name":"mass_kg","req":false,"short":"Payload mass in kilograms","type":"`$NUMBER`","index$":11},{"active":true,"name":"mass_lbs","req":false,"short":"Payload mass in pounds","type":"`$NUMBER`","index$":12},{"active":true,"name":"mean_anomaly","req":false,"short":"Mean anomaly","type":"`$NUMBER`","index$":13},{"active":true,"name":"mean_motion","req":false,"short":"Mean motion","type":"`$NUMBER`","index$":14},{"active":true,"name":"name","req":false,"short":"Payload name","type":"`$STRING`","index$":15},{"active":true,"name":"nationalities","req":false,"short":"Nationalities","type":"`$ARRAY`","index$":16},{"active":true,"name":"norad_ids","req":false,"short":"NORAD IDs","type":"`$ARRAY`","index$":17},{"active":true,"name":"orbit","req":false,"short":"Orbit type","type":"`$STRING`","index$":18},{"active":true,"name":"periapsis_km","req":false,"short":"Periapsis in km","type":"`$NUMBER`","index$":19},{"active":true,"name":"period_min","req":false,"short":"Orbital period in minutes","type":"`$NUMBER`","index$":20},{"active":true,"name":"raan","req":false,"short":"Right ascension of the ascending node","type":"`$NUMBER`","index$":21},{"active":true,"name":"reference_system","req":false,"short":"Reference system","type":"`$STRING`","index$":22},{"active":true,"name":"regime","req":false,"short":"Orbit regime","type":"`$STRING`","index$":23},{"active":true,"name":"reused","req":false,"short":"Whether the payload was reused","type":"`$BOOLEAN`","index$":24},{"active":true,"name":"semi_major_axis_km","req":false,"short":"Semi-major axis in km","type":"`$NUMBER`","index$":25},{"active":true,"name":"type","req":false,"short":"Payload type","type":"`$STRING`","index$":26}],"id":{"field":"id","name":"id"},"name":"payload","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{},"contract":{"id":"GET /payloads","json":"{\"operationId\":\"getAllPayloads\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"apoapsis_km\":{\"description\":\"Apoapsis in km\",\"nullable\":true,\"type\":\"number\"},\"arg_of_pericenter\":{\"description\":\"Argument of pericenter\",\"nullable\":true,\"type\":\"number\"},\"customers\":{\"description\":\"Customers\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"eccentricity\":{\"description\":\"Eccentricity\",\"nullable\":true,\"type\":\"number\"},\"epoch\":{\"description\":\"Epoch\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"description\":\"Payload ID\",\"type\":\"string\"},\"inclination_deg\":{\"description\":\"Inclination in degrees\",\"nullable\":true,\"type\":\"number\"},\"launch\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"lifespan_years\":{\"description\":\"Lifespan in years\",\"nullable\":true,\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude\",\"nullable\":true,\"type\":\"number\"},\"manufacturers\":{\"description\":\"Manufacturers\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"mass_kg\":{\"description\":\"Payload mass in kilograms\",\"nullable\":true,\"type\":\"number\"},\"mass_lbs\":{\"description\":\"Payload mass in pounds\",\"nullable\":true,\"type\":\"number\"},\"mean_anomaly\":{\"description\":\"Mean anomaly\",\"nullable\":true,\"type\":\"number\"},\"mean_motion\":{\"description\":\"Mean motion\",\"nullable\":true,\"type\":\"number\"},\"name\":{\"description\":\"Payload name\",\"type\":\"string\"},\"nationalities\":{\"description\":\"Nationalities\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"norad_ids\":{\"description\":\"NORAD IDs\",\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"orbit\":{\"description\":\"Orbit type\",\"type\":\"string\"},\"periapsis_km\":{\"description\":\"Periapsis in km\",\"nullable\":true,\"type\":\"number\"},\"period_min\":{\"description\":\"Orbital period in minutes\",\"nullable\":true,\"type\":\"number\"},\"raan\":{\"description\":\"Right ascension of the ascending node\",\"nullable\":true,\"type\":\"number\"},\"reference_system\":{\"description\":\"Reference system\",\"type\":\"string\"},\"regime\":{\"description\":\"Orbit regime\",\"type\":\"string\"},\"reused\":{\"description\":\"Whether the payload was reused\",\"type\":\"boolean\"},\"semi_major_axis_km\":{\"description\":\"Semi-major axis in km\",\"nullable\":true,\"type\":\"number\"},\"type\":{\"description\":\"Payload type\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/payloads","segments":[{"lit":"payloads"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"kind":"param","name":"id","orig":"id","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /payloads/{id}","json":"{\"operationId\":\"getOnePayload\",\"parameters\":[{\"description\":\"Payload ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"apoapsis_km\":{\"description\":\"Apoapsis in km\",\"nullable\":true,\"type\":\"number\"},\"arg_of_pericenter\":{\"description\":\"Argument of pericenter\",\"nullable\":true,\"type\":\"number\"},\"customers\":{\"description\":\"Customers\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"eccentricity\":{\"description\":\"Eccentricity\",\"nullable\":true,\"type\":\"number\"},\"epoch\":{\"description\":\"Epoch\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"description\":\"Payload ID\",\"type\":\"string\"},\"inclination_deg\":{\"description\":\"Inclination in degrees\",\"nullable\":true,\"type\":\"number\"},\"launch\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"lifespan_years\":{\"description\":\"Lifespan in years\",\"nullable\":true,\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude\",\"nullable\":true,\"type\":\"number\"},\"manufacturers\":{\"description\":\"Manufacturers\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"mass_kg\":{\"description\":\"Payload mass in kilograms\",\"nullable\":true,\"type\":\"number\"},\"mass_lbs\":{\"description\":\"Payload mass in pounds\",\"nullable\":true,\"type\":\"number\"},\"mean_anomaly\":{\"description\":\"Mean anomaly\",\"nullable\":true,\"type\":\"number\"},\"mean_motion\":{\"description\":\"Mean motion\",\"nullable\":true,\"type\":\"number\"},\"name\":{\"description\":\"Payload name\",\"type\":\"string\"},\"nationalities\":{\"description\":\"Nationalities\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"norad_ids\":{\"description\":\"NORAD IDs\",\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"orbit\":{\"description\":\"Orbit type\",\"type\":\"string\"},\"periapsis_km\":{\"description\":\"Periapsis in km\",\"nullable\":true,\"type\":\"number\"},\"period_min\":{\"description\":\"Orbital period in minutes\",\"nullable\":true,\"type\":\"number\"},\"raan\":{\"description\":\"Right ascension of the ascending node\",\"nullable\":true,\"type\":\"number\"},\"reference_system\":{\"description\":\"Reference system\",\"type\":\"string\"},\"regime\":{\"description\":\"Orbit regime\",\"type\":\"string\"},\"reused\":{\"description\":\"Whether the payload was reused\",\"type\":\"boolean\"},\"semi_major_axis_km\":{\"description\":\"Semi-major axis in km\",\"nullable\":true,\"type\":\"number\"},\"type\":{\"description\":\"Payload type\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Payload not found\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/payloads/{id}","segments":[{"lit":"payloads"},{"var":"id"}],"select":{"exist":["id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"payload","name__orig":"payload","Name":"Payload","name_":"payload","name-":"payload","NAME":"PAYLOAD","index$":6}, {"active":true,"entity":"payload","key$":"BasicPayloadFlow","kind":"basic","name":"BasicPayloadFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"payload_ref01"}}],"index$":0},{"active":true,"data":{},"input":{"ref":"payload_ref01","srcdatavar":"payload_ref01_data","suffix":"_dt0"},"match":{"id":"payload01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-payload_ref01"}}],"index$":1}]}, 'Payload')
     }
     const client = setup.client
     const struct = setup.struct
@@ -116,13 +115,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['SPACEX_REST_TEST_PAYLOAD_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'SPACEX_REST_TEST_PAYLOAD_ENTID': idmap,
     'SPACEX_REST_TEST_LIVE': 'FALSE',
@@ -133,7 +125,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.SPACEX_REST_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['SPACEX_REST_TEST_PAYLOAD_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new SpacexRestSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -145,7 +143,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -158,7 +157,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.SPACEX_REST_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

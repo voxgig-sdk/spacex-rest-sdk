@@ -60,6 +60,12 @@ main: kit: entity: crew: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /crew"
+            json: "{\"operationId\":\"getAllCrew\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"agency\":{\"description\":\"Agency\",\"type\":\"string\"},\"id\":{\"description\":\"Crew member ID\",\"type\":\"string\"},\"image\":{\"description\":\"Image URL\",\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"Crew member name\",\"type\":\"string\"},\"status\":{\"description\":\"Status (active, inactive, retired, unknown)\",\"type\":\"string\"},\"wikipedia\":{\"description\":\"Wikipedia URL\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/crew"
           segments: [
@@ -88,6 +94,12 @@ main: kit: entity: crew: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /crew/{id}"
+            json: "{\"operationId\":\"getOneCrew\",\"parameters\":[{\"description\":\"Crew member ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"agency\":{\"description\":\"Agency\",\"type\":\"string\"},\"id\":{\"description\":\"Crew member ID\",\"type\":\"string\"},\"image\":{\"description\":\"Image URL\",\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"Crew member name\",\"type\":\"string\"},\"status\":{\"description\":\"Status (active, inactive, retired, unknown)\",\"type\":\"string\"},\"wikipedia\":{\"description\":\"Wikipedia URL\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Crew member not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/crew/{id}"

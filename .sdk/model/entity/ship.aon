@@ -156,6 +156,12 @@ main: kit: entity: ship: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /ships"
+            json: "{\"operationId\":\"getAllShips\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"abs\":{\"description\":\"ABS number\",\"nullable\":true,\"type\":\"integer\"},\"class\":{\"description\":\"Ship class\",\"nullable\":true,\"type\":\"integer\"},\"course_deg\":{\"description\":\"Course in degrees\",\"nullable\":true,\"type\":\"number\"},\"home_port\":{\"description\":\"Home port\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"description\":\"Ship ID\",\"type\":\"string\"},\"image\":{\"description\":\"Image URL\",\"nullable\":true,\"type\":\"string\"},\"imo\":{\"description\":\"IMO number\",\"nullable\":true,\"type\":\"integer\"},\"last_ais_update\":{\"description\":\"Last AIS update timestamp\",\"nullable\":true,\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude\",\"nullable\":true,\"type\":\"number\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"legacy_id\":{\"description\":\"Legacy ID\",\"nullable\":true,\"type\":\"string\"},\"link\":{\"description\":\"Link to ship info\",\"nullable\":true,\"type\":\"string\"},\"longitude\":{\"description\":\"Longitude\",\"nullable\":true,\"type\":\"number\"},\"mass_kg\":{\"description\":\"Mass in kilograms\",\"nullable\":true,\"type\":\"integer\"},\"mass_lbs\":{\"description\":\"Mass in pounds\",\"nullable\":true,\"type\":\"integer\"},\"mmsi\":{\"description\":\"MMSI number\",\"nullable\":true,\"type\":\"integer\"},\"model\":{\"description\":\"Ship model\",\"nullable\":true,\"type\":\"string\"},\"name\":{\"description\":\"Ship name\",\"type\":\"string\"},\"roles\":{\"description\":\"Ship roles\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"speed_kn\":{\"description\":\"Speed in knots\",\"nullable\":true,\"type\":\"number\"},\"status\":{\"description\":\"Ship status\",\"type\":\"string\"},\"type\":{\"description\":\"Ship type\",\"type\":\"string\"},\"year_built\":{\"description\":\"Year built\",\"nullable\":true,\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/ships"
           segments: [
@@ -184,6 +190,12 @@ main: kit: entity: ship: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /ships/{id}"
+            json: "{\"operationId\":\"getOneShip\",\"parameters\":[{\"description\":\"Ship ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"abs\":{\"description\":\"ABS number\",\"nullable\":true,\"type\":\"integer\"},\"class\":{\"description\":\"Ship class\",\"nullable\":true,\"type\":\"integer\"},\"course_deg\":{\"description\":\"Course in degrees\",\"nullable\":true,\"type\":\"number\"},\"home_port\":{\"description\":\"Home port\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"description\":\"Ship ID\",\"type\":\"string\"},\"image\":{\"description\":\"Image URL\",\"nullable\":true,\"type\":\"string\"},\"imo\":{\"description\":\"IMO number\",\"nullable\":true,\"type\":\"integer\"},\"last_ais_update\":{\"description\":\"Last AIS update timestamp\",\"nullable\":true,\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude\",\"nullable\":true,\"type\":\"number\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"legacy_id\":{\"description\":\"Legacy ID\",\"nullable\":true,\"type\":\"string\"},\"link\":{\"description\":\"Link to ship info\",\"nullable\":true,\"type\":\"string\"},\"longitude\":{\"description\":\"Longitude\",\"nullable\":true,\"type\":\"number\"},\"mass_kg\":{\"description\":\"Mass in kilograms\",\"nullable\":true,\"type\":\"integer\"},\"mass_lbs\":{\"description\":\"Mass in pounds\",\"nullable\":true,\"type\":\"integer\"},\"mmsi\":{\"description\":\"MMSI number\",\"nullable\":true,\"type\":\"integer\"},\"model\":{\"description\":\"Ship model\",\"nullable\":true,\"type\":\"string\"},\"name\":{\"description\":\"Ship name\",\"type\":\"string\"},\"roles\":{\"description\":\"Ship roles\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"speed_kn\":{\"description\":\"Speed in knots\",\"nullable\":true,\"type\":\"number\"},\"status\":{\"description\":\"Ship status\",\"type\":\"string\"},\"type\":{\"description\":\"Ship type\",\"type\":\"string\"},\"year_built\":{\"description\":\"Year built\",\"nullable\":true,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Ship not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/ships/{id}"

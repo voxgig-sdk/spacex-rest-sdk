@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { SpacexRestSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('CoreEntity', async () => {
 
     const live = 'TRUE' === process.env.SPACEX_REST_TEST_LIVE
     for (const op of ['list', 'load']) {
-      if (maybeSkipControl(t, 'entityOp', 'core.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'core.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set SPACEX_REST_TEST_CORE_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"asds_attempts","req":false,"short":"Number of autonomous spaceport drone ship landing attempts","type":"`$INTEGER`","index$":0},{"active":true,"name":"asds_landings","req":false,"short":"Number of successful ASDS landings","type":"`$INTEGER`","index$":1},{"active":true,"name":"block","req":false,"short":"Core block number","type":"`$INTEGER`","index$":2},{"active":true,"name":"id","req":false,"short":"Core serial number","type":"`$STRING`","index$":3},{"active":true,"name":"last_update","req":false,"short":"Last update about the core","type":"`$STRING`","index$":4},{"active":true,"name":"launches","req":false,"short":"Launch IDs","type":"`$ARRAY`","index$":5},{"active":true,"name":"reuse_count","req":false,"short":"Number of times core has been reused","type":"`$INTEGER`","index$":6},{"active":true,"name":"rtls_attempts","req":false,"short":"Number of return to launch site attempts","type":"`$INTEGER`","index$":7},{"active":true,"name":"rtls_landings","req":false,"short":"Number of successful RTLS landings","type":"`$INTEGER`","index$":8},{"active":true,"name":"serial","req":false,"short":"Core serial number","type":"`$STRING`","index$":9},{"active":true,"name":"status","req":false,"short":"Core status (active, inactive, unknown, expended, lost, retired)","type":"`$STRING`","index$":10}],"id":{"field":"id","name":"id"},"name":"core","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{},"contract":{"id":"GET /cores","json":"{\"operationId\":\"getAllCores\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"asds_attempts\":{\"description\":\"Number of autonomous spaceport drone ship landing attempts\",\"type\":\"integer\"},\"asds_landings\":{\"description\":\"Number of successful ASDS landings\",\"type\":\"integer\"},\"block\":{\"description\":\"Core block number\",\"nullable\":true,\"type\":\"integer\"},\"id\":{\"description\":\"Core serial number\",\"type\":\"string\"},\"last_update\":{\"description\":\"Last update about the core\",\"nullable\":true,\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"reuse_count\":{\"description\":\"Number of times core has been reused\",\"type\":\"integer\"},\"rtls_attempts\":{\"description\":\"Number of return to launch site attempts\",\"type\":\"integer\"},\"rtls_landings\":{\"description\":\"Number of successful RTLS landings\",\"type\":\"integer\"},\"serial\":{\"description\":\"Core serial number\",\"type\":\"string\"},\"status\":{\"description\":\"Core status (active, inactive, unknown, expended, lost, retired)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/cores","segments":[{"lit":"cores"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"kind":"param","name":"id","orig":"id","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /cores/{id}","json":"{\"operationId\":\"getOneCore\",\"parameters\":[{\"description\":\"Core ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"asds_attempts\":{\"description\":\"Number of autonomous spaceport drone ship landing attempts\",\"type\":\"integer\"},\"asds_landings\":{\"description\":\"Number of successful ASDS landings\",\"type\":\"integer\"},\"block\":{\"description\":\"Core block number\",\"nullable\":true,\"type\":\"integer\"},\"id\":{\"description\":\"Core serial number\",\"type\":\"string\"},\"last_update\":{\"description\":\"Last update about the core\",\"nullable\":true,\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"reuse_count\":{\"description\":\"Number of times core has been reused\",\"type\":\"integer\"},\"rtls_attempts\":{\"description\":\"Number of return to launch site attempts\",\"type\":\"integer\"},\"rtls_landings\":{\"description\":\"Number of successful RTLS landings\",\"type\":\"integer\"},\"serial\":{\"description\":\"Core serial number\",\"type\":\"string\"},\"status\":{\"description\":\"Core status (active, inactive, unknown, expended, lost, retired)\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Core not found\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/cores/{id}","segments":[{"lit":"cores"},{"var":"id"}],"select":{"exist":["id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"core","name__orig":"core","Name":"Core","name_":"core","name-":"core","NAME":"CORE","index$":1}, {"active":true,"entity":"core","key$":"BasicCoreFlow","kind":"basic","name":"BasicCoreFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"core_ref01"}}],"index$":0},{"active":true,"data":{},"input":{"ref":"core_ref01","srcdatavar":"core_ref01_data","suffix":"_dt0"},"match":{"id":"core01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-core_ref01"}}],"index$":1}]}, 'Core')
     }
     const client = setup.client
     const struct = setup.struct
@@ -116,13 +115,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['SPACEX_REST_TEST_CORE_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'SPACEX_REST_TEST_CORE_ENTID': idmap,
     'SPACEX_REST_TEST_LIVE': 'FALSE',
@@ -133,7 +125,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.SPACEX_REST_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['SPACEX_REST_TEST_CORE_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new SpacexRestSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -145,7 +143,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -158,7 +157,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.SPACEX_REST_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

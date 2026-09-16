@@ -1,7 +1,10 @@
 # SpacexRest SDK feature factory
 
 require_relative 'feature/base_feature'
+require_relative 'feature/ratelimit_feature'
+require_relative 'feature/retry_feature'
 require_relative 'feature/test_feature'
+require_relative 'feature/timeout_feature'
 
 
 module SpacexRestFeatures
@@ -9,8 +12,14 @@ module SpacexRestFeatures
     case name
     when "base"
       SpacexRestBaseFeature.new
+    when "ratelimit"
+      SpacexRestRatelimitFeature.new
+    when "retry"
+      SpacexRestRetryFeature.new
     when "test"
       SpacexRestTestFeature.new
+    when "timeout"
+      SpacexRestTimeoutFeature.new
     else
       SpacexRestBaseFeature.new
     end

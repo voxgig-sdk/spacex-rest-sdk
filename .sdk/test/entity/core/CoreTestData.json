@@ -2,41 +2,41 @@
   "existing": {
     "core": {
       "CORE00": {
-        "asds_attempts": "s6e",
-        "asds_landings": "s6f",
-        "block": "s70",
+        "asds_attempts": 110,
+        "asds_landings": 111,
+        "block": 112,
         "id": "CORE00",
         "last_update": "s72",
         "launches": [],
-        "reuse_count": "s74",
-        "rtls_attempts": "s75",
-        "rtls_landings": "s76",
+        "reuse_count": 116,
+        "rtls_attempts": 117,
+        "rtls_landings": 118,
         "serial": "s77",
         "status": "s78"
       },
       "CORE01": {
-        "asds_attempts": "sdc",
-        "asds_landings": "sdd",
-        "block": "sde",
+        "asds_attempts": 220,
+        "asds_landings": 221,
+        "block": 222,
         "id": "CORE01",
         "last_update": "se0",
         "launches": [],
-        "reuse_count": "se2",
-        "rtls_attempts": "se3",
-        "rtls_landings": "se4",
+        "reuse_count": 226,
+        "rtls_attempts": 227,
+        "rtls_landings": 228,
         "serial": "se5",
         "status": "se6"
       },
       "CORE02": {
-        "asds_attempts": "s14a",
-        "asds_landings": "s14b",
-        "block": "s14c",
+        "asds_attempts": 330,
+        "asds_landings": 331,
+        "block": 332,
         "id": "CORE02",
         "last_update": "s14e",
         "launches": [],
-        "reuse_count": "s150",
-        "rtls_attempts": "s151",
-        "rtls_landings": "s152",
+        "reuse_count": 336,
+        "rtls_attempts": 337,
+        "rtls_landings": 338,
         "serial": "s153",
         "status": "s154"
       }
@@ -45,16 +45,178 @@
   "new": {
     "core": {
       "core_ref01": {
-        "asds_attempts": "s1b8",
-        "asds_landings": "s1b9",
-        "block": "s1ba",
+        "asds_attempts": 440,
+        "asds_landings": 441,
+        "block": 442,
         "last_update": "s1bc",
         "launches": [],
-        "reuse_count": "s1be",
-        "rtls_attempts": "s1bf",
-        "rtls_landings": "s1c0",
+        "reuse_count": 446,
+        "rtls_attempts": 447,
+        "rtls_landings": 448,
         "serial": "s1c1",
         "status": "s1c2"
+      }
+    }
+  },
+  "requests": {
+    "GET /cores": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAllCores",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "asds_attempts": {
+                        "description": "Number of autonomous spaceport drone ship landing attempts",
+                        "type": "integer"
+                      },
+                      "asds_landings": {
+                        "description": "Number of successful ASDS landings",
+                        "type": "integer"
+                      },
+                      "block": {
+                        "description": "Core block number",
+                        "nullable": true,
+                        "type": "integer"
+                      },
+                      "id": {
+                        "description": "Core serial number",
+                        "type": "string"
+                      },
+                      "last_update": {
+                        "description": "Last update about the core",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "launches": {
+                        "description": "Launch IDs",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "reuse_count": {
+                        "description": "Number of times core has been reused",
+                        "type": "integer"
+                      },
+                      "rtls_attempts": {
+                        "description": "Number of return to launch site attempts",
+                        "type": "integer"
+                      },
+                      "rtls_landings": {
+                        "description": "Number of successful RTLS landings",
+                        "type": "integer"
+                      },
+                      "serial": {
+                        "description": "Core serial number",
+                        "type": "string"
+                      },
+                      "status": {
+                        "description": "Core status (active, inactive, unknown, expended, lost, retired)",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /cores/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getOneCore",
+        "parameters": [
+          {
+            "description": "Core ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "asds_attempts": {
+                      "description": "Number of autonomous spaceport drone ship landing attempts",
+                      "type": "integer"
+                    },
+                    "asds_landings": {
+                      "description": "Number of successful ASDS landings",
+                      "type": "integer"
+                    },
+                    "block": {
+                      "description": "Core block number",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "Core serial number",
+                      "type": "string"
+                    },
+                    "last_update": {
+                      "description": "Last update about the core",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "launches": {
+                      "description": "Launch IDs",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "reuse_count": {
+                      "description": "Number of times core has been reused",
+                      "type": "integer"
+                    },
+                    "rtls_attempts": {
+                      "description": "Number of return to launch site attempts",
+                      "type": "integer"
+                    },
+                    "rtls_landings": {
+                      "description": "Number of successful RTLS landings",
+                      "type": "integer"
+                    },
+                    "serial": {
+                      "description": "Core serial number",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "Core status (active, inactive, unknown, expended, lost, retired)",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "Core not found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }
