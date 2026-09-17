@@ -411,7 +411,6 @@ $launch = $client->Launch();
 | --- | --- | --- | --- |
 | `auto_update` | `bool` | No | Whether the launch data is automatically updated |
 | `capsules` | `array` | No | Capsule IDs |
-| `core` | `string` | No | Core ID |
 | `cores` | `array` | No |  |
 | `crew` | `array` | No | Crew member IDs |
 | `date_local` | `string` | No | Launch date in local time |
@@ -421,21 +420,13 @@ $launch = $client->Launch();
 | `details` | `string` | No | Launch details |
 | `failures` | `array` | No | Launch failures |
 | `fairings` | `array` | No |  |
-| `flight` | `int` | No | Core flight number |
 | `flight_number` | `int` | No | Flight number |
-| `gridfins` | `bool` | No | Whether core has grid fins |
 | `id` | `string` | No | Launch ID |
-| `landing_attempt` | `bool` | No | Whether landing was attempted |
-| `landing_success` | `bool` | No | Whether landing was successful |
-| `landing_type` | `string` | No | Landing type (ASDS, RTLS, Ocean) |
-| `landpad` | `string` | No | Landing pad ID |
 | `launchpad` | `string` | No | Launchpad ID |
-| `legs` | `bool` | No | Whether core has legs |
 | `links` | `array` | No |  |
 | `name` | `string` | No | Launch name |
 | `net` | `bool` | No | No earlier than |
 | `payloads` | `array` | No | Payload IDs |
-| `reused` | `bool` | No | Whether core was reused |
 | `rocket` | `string` | No | Rocket ID |
 | `ships` | `array` | No | Ship IDs |
 | `static_fire_date_unix` | `int` | No | Static fire date in unix timestamp |

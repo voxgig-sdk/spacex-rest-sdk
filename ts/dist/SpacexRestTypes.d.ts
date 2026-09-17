@@ -111,7 +111,6 @@ export interface LandpadListMatch {
 export interface Launch {
     auto_update?: boolean;
     capsules?: any[];
-    core?: string;
     cores?: any[];
     crew?: any[];
     date_local?: string;
@@ -121,21 +120,13 @@ export interface Launch {
     details?: string;
     failures?: any[];
     fairings?: Record<string, any>;
-    flight?: number;
     flight_number?: number;
-    gridfins?: boolean;
     id?: string;
-    landing_attempt?: boolean;
-    landing_success?: boolean;
-    landing_type?: string;
-    landpad?: string;
     launchpad?: string;
-    legs?: boolean;
     links?: Record<string, any>;
     name?: string;
     net?: boolean;
     payloads?: any[];
-    reused?: boolean;
     rocket?: string;
     ships?: any[];
     static_fire_date_unix?: number;
@@ -151,7 +142,6 @@ export interface LaunchLoadMatch {
 export interface LaunchListMatch {
     auto_update?: boolean;
     capsules?: any[];
-    core?: string;
     cores?: any[];
     crew?: any[];
     date_local?: string;
@@ -161,21 +151,13 @@ export interface LaunchListMatch {
     details?: string;
     failures?: any[];
     fairings?: Record<string, any>;
-    flight?: number;
     flight_number?: number;
-    gridfins?: boolean;
     id?: string;
-    landing_attempt?: boolean;
-    landing_success?: boolean;
-    landing_type?: string;
-    landpad?: string;
     launchpad?: string;
-    legs?: boolean;
     links?: Record<string, any>;
     name?: string;
     net?: boolean;
     payloads?: any[];
-    reused?: boolean;
     rocket?: string;
     ships?: any[];
     static_fire_date_unix?: number;

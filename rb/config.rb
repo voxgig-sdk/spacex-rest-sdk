@@ -651,11 +651,6 @@ module SpacexRestConfig
               "type" => "`$ARRAY`",
             },
             {
-              "name" => "core",
-              "short" => "Core ID",
-              "type" => "`$STRING`",
-            },
-            {
               "name" => "cores",
               "type" => "`$ARRAY`",
             },
@@ -701,19 +696,9 @@ module SpacexRestConfig
               "type" => "`$OBJECT`",
             },
             {
-              "name" => "flight",
-              "short" => "Core flight number",
-              "type" => "`$INTEGER`",
-            },
-            {
               "name" => "flight_number",
               "short" => "Flight number",
               "type" => "`$INTEGER`",
-            },
-            {
-              "name" => "gridfins",
-              "short" => "Whether core has grid fins",
-              "type" => "`$BOOLEAN`",
             },
             {
               "name" => "id",
@@ -721,34 +706,9 @@ module SpacexRestConfig
               "type" => "`$STRING`",
             },
             {
-              "name" => "landing_attempt",
-              "short" => "Whether landing was attempted",
-              "type" => "`$BOOLEAN`",
-            },
-            {
-              "name" => "landing_success",
-              "short" => "Whether landing was successful",
-              "type" => "`$BOOLEAN`",
-            },
-            {
-              "name" => "landing_type",
-              "short" => "Landing type (ASDS, RTLS, Ocean)",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "landpad",
-              "short" => "Landing pad ID",
-              "type" => "`$STRING`",
-            },
-            {
               "name" => "launchpad",
               "short" => "Launchpad ID",
               "type" => "`$STRING`",
-            },
-            {
-              "name" => "legs",
-              "short" => "Whether core has legs",
-              "type" => "`$BOOLEAN`",
             },
             {
               "name" => "links",
@@ -768,11 +728,6 @@ module SpacexRestConfig
               "name" => "payloads",
               "short" => "Payload IDs",
               "type" => "`$ARRAY`",
-            },
-            {
-              "name" => "reused",
-              "short" => "Whether core was reused",
-              "type" => "`$BOOLEAN`",
             },
             {
               "name" => "rocket",

@@ -105,12 +105,12 @@ local results, err = client:Landpad():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/spacex-rest-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/spacex-rest-sdk/releases) |
-| Python | `voxgig-sdk-spacex-rest` | publish pending — [install from git tag](https://github.com/voxgig-sdk/spacex-rest-sdk/releases) |
-| PHP | `voxgig-sdk/spacex-rest` | publish pending — [install from git tag](https://github.com/voxgig-sdk/spacex-rest-sdk/releases) |
+| TypeScript | `@voxgig-sdk/spacex-rest-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/spacex-rest-sdk/tags) |
+| Python | `voxgig-sdk-spacex-rest` | publish pending — [install from git tag](https://github.com/voxgig-sdk/spacex-rest-sdk/tags) |
+| PHP | `voxgig-sdk/spacex-rest` | publish pending — [install from git tag](https://github.com/voxgig-sdk/spacex-rest-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/spacex-rest-sdk/go` | `go get github.com/voxgig-sdk/spacex-rest-sdk/go@latest` |
-| Ruby | `voxgig-sdk-spacex-rest` | publish pending — [install from git tag](https://github.com/voxgig-sdk/spacex-rest-sdk/releases) |
-| Lua | `voxgig-sdk-spacex-rest` | publish pending — [install from git tag](https://github.com/voxgig-sdk/spacex-rest-sdk/releases) |
+| Ruby | `voxgig-sdk-spacex-rest` | publish pending — [install from git tag](https://github.com/voxgig-sdk/spacex-rest-sdk/tags) |
+| Lua | `voxgig-sdk-spacex-rest` | publish pending — [install from git tag](https://github.com/voxgig-sdk/spacex-rest-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/spacex-rest-sdk/go-cli` | `go install github.com/voxgig-sdk/spacex-rest-sdk/go-cli/cmd/spacex-rest@latest` |
 | Go MCP server | `github.com/voxgig-sdk/spacex-rest-sdk/go-mcp` | `go get github.com/voxgig-sdk/spacex-rest-sdk/go-mcp@latest` |
 

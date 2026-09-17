@@ -412,7 +412,6 @@ launch = client.Launch
 | --- | --- | --- | --- |
 | `auto_update` | `Boolean` | No | Whether the launch data is automatically updated |
 | `capsules` | `Array` | No | Capsule IDs |
-| `core` | `String` | No | Core ID |
 | `cores` | `Array` | No |  |
 | `crew` | `Array` | No | Crew member IDs |
 | `date_local` | `String` | No | Launch date in local time |
@@ -422,21 +421,13 @@ launch = client.Launch
 | `details` | `String` | No | Launch details |
 | `failures` | `Array` | No | Launch failures |
 | `fairings` | `Hash` | No |  |
-| `flight` | `Integer` | No | Core flight number |
 | `flight_number` | `Integer` | No | Flight number |
-| `gridfins` | `Boolean` | No | Whether core has grid fins |
 | `id` | `String` | No | Launch ID |
-| `landing_attempt` | `Boolean` | No | Whether landing was attempted |
-| `landing_success` | `Boolean` | No | Whether landing was successful |
-| `landing_type` | `String` | No | Landing type (ASDS, RTLS, Ocean) |
-| `landpad` | `String` | No | Landing pad ID |
 | `launchpad` | `String` | No | Launchpad ID |
-| `legs` | `Boolean` | No | Whether core has legs |
 | `links` | `Hash` | No |  |
 | `name` | `String` | No | Launch name |
 | `net` | `Boolean` | No | No earlier than |
 | `payloads` | `Array` | No | Payload IDs |
-| `reused` | `Boolean` | No | Whether core was reused |
 | `rocket` | `String` | No | Rocket ID |
 | `ships` | `Array` | No | Ship IDs |
 | `static_fire_date_unix` | `Integer` | No | Static fire date in unix timestamp |

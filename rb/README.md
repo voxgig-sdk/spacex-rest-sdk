@@ -342,7 +342,6 @@ API path: `/landpads`
 | --- | --- |
 | `auto_update` | Whether the launch data is automatically updated |
 | `capsules` | Capsule IDs |
-| `core` | Core ID |
 | `cores` |  |
 | `crew` | Crew member IDs |
 | `date_local` | Launch date in local time |
@@ -352,21 +351,13 @@ API path: `/landpads`
 | `details` | Launch details |
 | `failures` | Launch failures |
 | `fairings` |  |
-| `flight` | Core flight number |
 | `flight_number` | Flight number |
-| `gridfins` | Whether core has grid fins |
 | `id` | Launch ID |
-| `landing_attempt` | Whether landing was attempted |
-| `landing_success` | Whether landing was successful |
-| `landing_type` | Landing type (ASDS, RTLS, Ocean) |
-| `landpad` | Landing pad ID |
 | `launchpad` | Launchpad ID |
-| `legs` | Whether core has legs |
 | `links` |  |
 | `name` | Launch name |
 | `net` | No earlier than |
 | `payloads` | Payload IDs |
-| `reused` | Whether core was reused |
 | `rocket` | Rocket ID |
 | `ships` | Ship IDs |
 | `static_fire_date_unix` | Static fire date in unix timestamp |
@@ -736,7 +727,6 @@ Create an instance: `launch = client.Launch`
 | --- | --- | --- |
 | `auto_update` | `Boolean` | Whether the launch data is automatically updated |
 | `capsules` | `Array` | Capsule IDs |
-| `core` | `String` | Core ID |
 | `cores` | `Array` |  |
 | `crew` | `Array` | Crew member IDs |
 | `date_local` | `String` | Launch date in local time |
@@ -746,21 +736,13 @@ Create an instance: `launch = client.Launch`
 | `details` | `String` | Launch details |
 | `failures` | `Array` | Launch failures |
 | `fairings` | `Hash` |  |
-| `flight` | `Integer` | Core flight number |
 | `flight_number` | `Integer` | Flight number |
-| `gridfins` | `Boolean` | Whether core has grid fins |
 | `id` | `String` | Launch ID |
-| `landing_attempt` | `Boolean` | Whether landing was attempted |
-| `landing_success` | `Boolean` | Whether landing was successful |
-| `landing_type` | `String` | Landing type (ASDS, RTLS, Ocean) |
-| `landpad` | `String` | Landing pad ID |
 | `launchpad` | `String` | Launchpad ID |
-| `legs` | `Boolean` | Whether core has legs |
 | `links` | `Hash` |  |
 | `name` | `String` | Launch name |
 | `net` | `Boolean` | No earlier than |
 | `payloads` | `Array` | Payload IDs |
-| `reused` | `Boolean` | Whether core was reused |
 | `rocket` | `String` | Rocket ID |
 | `ships` | `Array` | Ship IDs |
 | `static_fire_date_unix` | `Integer` | Static fire date in unix timestamp |
@@ -1220,6 +1202,7 @@ Use `Helpers.to_map()` to safely validate that a value is a hash.
 rb/
 ├── SpacexRest_sdk.rb       -- Main SDK module
 ├── config.rb                  -- Configuration
+├── schema.rb                  -- Generated option + entity specs
 ├── features.rb                -- Feature factory
 ├── core/                      -- Core types and context
 ├── entity/                    -- Entity implementations

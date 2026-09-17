@@ -507,7 +507,6 @@ const launch = client.Launch()
 | --- | --- | --- | --- |
 | `auto_update` | `boolean` | No | Whether the launch data is automatically updated |
 | `capsules` | `any[]` | No | Capsule IDs |
-| `core` | `string` | No | Core ID |
 | `cores` | `any[]` | No |  |
 | `crew` | `any[]` | No | Crew member IDs |
 | `date_local` | `string` | No | Launch date in local time |
@@ -517,21 +516,13 @@ const launch = client.Launch()
 | `details` | `string` | No | Launch details |
 | `failures` | `any[]` | No | Launch failures |
 | `fairings` | `Record<string, any>` | No |  |
-| `flight` | `number` | No | Core flight number |
 | `flight_number` | `number` | No | Flight number |
-| `gridfins` | `boolean` | No | Whether core has grid fins |
 | `id` | `string` | No | Launch ID |
-| `landing_attempt` | `boolean` | No | Whether landing was attempted |
-| `landing_success` | `boolean` | No | Whether landing was successful |
-| `landing_type` | `string` | No | Landing type (ASDS, RTLS, Ocean) |
-| `landpad` | `string` | No | Landing pad ID |
 | `launchpad` | `string` | No | Launchpad ID |
-| `legs` | `boolean` | No | Whether core has legs |
 | `links` | `Record<string, any>` | No |  |
 | `name` | `string` | No | Launch name |
 | `net` | `boolean` | No | No earlier than |
 | `payloads` | `any[]` | No | Payload IDs |
-| `reused` | `boolean` | No | Whether core was reused |
 | `rocket` | `string` | No | Rocket ID |
 | `ships` | `any[]` | No | Ship IDs |
 | `static_fire_date_unix` | `number` | No | Static fire date in unix timestamp |

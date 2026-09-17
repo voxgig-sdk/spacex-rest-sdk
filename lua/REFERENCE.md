@@ -409,7 +409,6 @@ local launch = client:Launch(nil)
 | --- | --- | --- | --- |
 | `auto_update` | `boolean` | No | Whether the launch data is automatically updated |
 | `capsules` | `table` | No | Capsule IDs |
-| `core` | `string` | No | Core ID |
 | `cores` | `table` | No |  |
 | `crew` | `table` | No | Crew member IDs |
 | `date_local` | `string` | No | Launch date in local time |
@@ -419,21 +418,13 @@ local launch = client:Launch(nil)
 | `details` | `string` | No | Launch details |
 | `failures` | `table` | No | Launch failures |
 | `fairings` | `table` | No |  |
-| `flight` | `number` | No | Core flight number |
 | `flight_number` | `number` | No | Flight number |
-| `gridfins` | `boolean` | No | Whether core has grid fins |
 | `id` | `string` | No | Launch ID |
-| `landing_attempt` | `boolean` | No | Whether landing was attempted |
-| `landing_success` | `boolean` | No | Whether landing was successful |
-| `landing_type` | `string` | No | Landing type (ASDS, RTLS, Ocean) |
-| `landpad` | `string` | No | Landing pad ID |
 | `launchpad` | `string` | No | Launchpad ID |
-| `legs` | `boolean` | No | Whether core has legs |
 | `links` | `table` | No |  |
 | `name` | `string` | No | Launch name |
 | `net` | `boolean` | No | No earlier than |
 | `payloads` | `table` | No | Payload IDs |
-| `reused` | `boolean` | No | Whether core was reused |
 | `rocket` | `string` | No | Rocket ID |
 | `ships` | `table` | No | Ship IDs |
 | `static_fire_date_unix` | `number` | No | Static fire date in unix timestamp |

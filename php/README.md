@@ -353,7 +353,6 @@ API path: `/landpads`
 | --- | --- |
 | `auto_update` | Whether the launch data is automatically updated |
 | `capsules` | Capsule IDs |
-| `core` | Core ID |
 | `cores` |  |
 | `crew` | Crew member IDs |
 | `date_local` | Launch date in local time |
@@ -363,21 +362,13 @@ API path: `/landpads`
 | `details` | Launch details |
 | `failures` | Launch failures |
 | `fairings` |  |
-| `flight` | Core flight number |
 | `flight_number` | Flight number |
-| `gridfins` | Whether core has grid fins |
 | `id` | Launch ID |
-| `landing_attempt` | Whether landing was attempted |
-| `landing_success` | Whether landing was successful |
-| `landing_type` | Landing type (ASDS, RTLS, Ocean) |
-| `landpad` | Landing pad ID |
 | `launchpad` | Launchpad ID |
-| `legs` | Whether core has legs |
 | `links` |  |
 | `name` | Launch name |
 | `net` | No earlier than |
 | `payloads` | Payload IDs |
-| `reused` | Whether core was reused |
 | `rocket` | Rocket ID |
 | `ships` | Ship IDs |
 | `static_fire_date_unix` | Static fire date in unix timestamp |
@@ -747,7 +738,6 @@ Create an instance: `$launch = $client->Launch();`
 | --- | --- | --- |
 | `auto_update` | `bool` | Whether the launch data is automatically updated |
 | `capsules` | `array` | Capsule IDs |
-| `core` | `string` | Core ID |
 | `cores` | `array` |  |
 | `crew` | `array` | Crew member IDs |
 | `date_local` | `string` | Launch date in local time |
@@ -757,21 +747,13 @@ Create an instance: `$launch = $client->Launch();`
 | `details` | `string` | Launch details |
 | `failures` | `array` | Launch failures |
 | `fairings` | `array` |  |
-| `flight` | `int` | Core flight number |
 | `flight_number` | `int` | Flight number |
-| `gridfins` | `bool` | Whether core has grid fins |
 | `id` | `string` | Launch ID |
-| `landing_attempt` | `bool` | Whether landing was attempted |
-| `landing_success` | `bool` | Whether landing was successful |
-| `landing_type` | `string` | Landing type (ASDS, RTLS, Ocean) |
-| `landpad` | `string` | Landing pad ID |
 | `launchpad` | `string` | Launchpad ID |
-| `legs` | `bool` | Whether core has legs |
 | `links` | `array` |  |
 | `name` | `string` | Launch name |
 | `net` | `bool` | No earlier than |
 | `payloads` | `array` | Payload IDs |
-| `reused` | `bool` | Whether core was reused |
 | `rocket` | `string` | Rocket ID |
 | `ships` | `array` | Ship IDs |
 | `static_fire_date_unix` | `int` | Static fire date in unix timestamp |
@@ -1231,6 +1213,7 @@ Use `Helpers::to_map()` to safely validate that a value is an array.
 php/
 ├── spacexrest_sdk.php          -- Main SDK class
 ├── config.php                     -- Configuration
+├── schema.php                     -- Generated option + entity specs
 ├── features.php                   -- Feature factory
 ├── core/                          -- Core types and context
 ├── entity/                        -- Entity implementations

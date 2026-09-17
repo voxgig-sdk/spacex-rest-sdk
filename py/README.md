@@ -345,7 +345,6 @@ API path: `/landpads`
 | --- | --- |
 | `auto_update` | Whether the launch data is automatically updated |
 | `capsules` | Capsule IDs |
-| `core` | Core ID |
 | `cores` |  |
 | `crew` | Crew member IDs |
 | `date_local` | Launch date in local time |
@@ -355,21 +354,13 @@ API path: `/landpads`
 | `details` | Launch details |
 | `failures` | Launch failures |
 | `fairings` |  |
-| `flight` | Core flight number |
 | `flight_number` | Flight number |
-| `gridfins` | Whether core has grid fins |
 | `id` | Launch ID |
-| `landing_attempt` | Whether landing was attempted |
-| `landing_success` | Whether landing was successful |
-| `landing_type` | Landing type (ASDS, RTLS, Ocean) |
-| `landpad` | Landing pad ID |
 | `launchpad` | Launchpad ID |
-| `legs` | Whether core has legs |
 | `links` |  |
 | `name` | Launch name |
 | `net` | No earlier than |
 | `payloads` | Payload IDs |
-| `reused` | Whether core was reused |
 | `rocket` | Rocket ID |
 | `ships` | Ship IDs |
 | `static_fire_date_unix` | Static fire date in unix timestamp |
@@ -731,7 +722,6 @@ Create an instance: `launch = client.Launch()`
 | --- | --- | --- |
 | `auto_update` | `bool` | Whether the launch data is automatically updated |
 | `capsules` | `list` | Capsule IDs |
-| `core` | `str` | Core ID |
 | `cores` | `list` |  |
 | `crew` | `list` | Crew member IDs |
 | `date_local` | `str` | Launch date in local time |
@@ -741,21 +731,13 @@ Create an instance: `launch = client.Launch()`
 | `details` | `str` | Launch details |
 | `failures` | `list` | Launch failures |
 | `fairings` | `dict` |  |
-| `flight` | `int` | Core flight number |
 | `flight_number` | `int` | Flight number |
-| `gridfins` | `bool` | Whether core has grid fins |
 | `id` | `str` | Launch ID |
-| `landing_attempt` | `bool` | Whether landing was attempted |
-| `landing_success` | `bool` | Whether landing was successful |
-| `landing_type` | `str` | Landing type (ASDS, RTLS, Ocean) |
-| `landpad` | `str` | Landing pad ID |
 | `launchpad` | `str` | Launchpad ID |
-| `legs` | `bool` | Whether core has legs |
 | `links` | `dict` |  |
 | `name` | `str` | Launch name |
 | `net` | `bool` | No earlier than |
 | `payloads` | `list` | Payload IDs |
-| `reused` | `bool` | Whether core was reused |
 | `rocket` | `str` | Rocket ID |
 | `ships` | `list` | Ship IDs |
 | `static_fire_date_unix` | `int` | Static fire date in unix timestamp |
@@ -1202,6 +1184,7 @@ Use `helpers.to_map()` to safely validate that a value is a dict.
 py/
 ├── spacexrest_sdk.py         -- Main SDK module
 ├── config.py                    -- Configuration
+├── schema.py                    -- Generated option + entity specs
 ├── features.py                  -- Feature factory
 ├── core/                        -- Core types and context
 ├── entity/                      -- Entity implementations

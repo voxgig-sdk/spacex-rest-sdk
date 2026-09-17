@@ -163,7 +163,6 @@ class Launch
 {
     public ?bool $auto_update = null;
     public ?array $capsules = null;
-    public ?string $core = null;
     public ?array $cores = null;
     public ?array $crew = null;
     public ?string $date_local = null;
@@ -173,21 +172,13 @@ class Launch
     public ?string $details = null;
     public ?array $failures = null;
     public ?array $fairings = null;
-    public ?int $flight = null;
     public ?int $flight_number = null;
-    public ?bool $gridfins = null;
     public ?string $id = null;
-    public ?bool $landing_attempt = null;
-    public ?bool $landing_success = null;
-    public ?string $landing_type = null;
-    public ?string $landpad = null;
     public ?string $launchpad = null;
-    public ?bool $legs = null;
     public ?array $links = null;
     public ?string $name = null;
     public ?bool $net = null;
     public ?array $payloads = null;
-    public ?bool $reused = null;
     public ?string $rocket = null;
     public ?array $ships = null;
     public ?int $static_fire_date_unix = null;
@@ -209,7 +200,6 @@ class LaunchListMatch
 {
     public ?bool $auto_update = null;
     public ?array $capsules = null;
-    public ?string $core = null;
     public ?array $cores = null;
     public ?array $crew = null;
     public ?string $date_local = null;
@@ -219,21 +209,13 @@ class LaunchListMatch
     public ?string $details = null;
     public ?array $failures = null;
     public ?array $fairings = null;
-    public ?int $flight = null;
     public ?int $flight_number = null;
-    public ?bool $gridfins = null;
     public ?string $id = null;
-    public ?bool $landing_attempt = null;
-    public ?bool $landing_success = null;
-    public ?string $landing_type = null;
-    public ?string $landpad = null;
     public ?string $launchpad = null;
-    public ?bool $legs = null;
     public ?array $links = null;
     public ?string $name = null;
     public ?bool $net = null;
     public ?array $payloads = null;
-    public ?bool $reused = null;
     public ?string $rocket = null;
     public ?array $ships = null;
     public ?int $static_fire_date_unix = null;

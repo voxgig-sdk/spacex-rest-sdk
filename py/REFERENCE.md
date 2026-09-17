@@ -410,7 +410,6 @@ launch = client.Launch()
 | --- | --- | --- | --- |
 | `auto_update` | `bool` | No | Whether the launch data is automatically updated |
 | `capsules` | `list` | No | Capsule IDs |
-| `core` | `str` | No | Core ID |
 | `cores` | `list` | No |  |
 | `crew` | `list` | No | Crew member IDs |
 | `date_local` | `str` | No | Launch date in local time |
@@ -420,21 +419,13 @@ launch = client.Launch()
 | `details` | `str` | No | Launch details |
 | `failures` | `list` | No | Launch failures |
 | `fairings` | `dict` | No |  |
-| `flight` | `int` | No | Core flight number |
 | `flight_number` | `int` | No | Flight number |
-| `gridfins` | `bool` | No | Whether core has grid fins |
 | `id` | `str` | No | Launch ID |
-| `landing_attempt` | `bool` | No | Whether landing was attempted |
-| `landing_success` | `bool` | No | Whether landing was successful |
-| `landing_type` | `str` | No | Landing type (ASDS, RTLS, Ocean) |
-| `landpad` | `str` | No | Landing pad ID |
 | `launchpad` | `str` | No | Launchpad ID |
-| `legs` | `bool` | No | Whether core has legs |
 | `links` | `dict` | No |  |
 | `name` | `str` | No | Launch name |
 | `net` | `bool` | No | No earlier than |
 | `payloads` | `list` | No | Payload IDs |
-| `reused` | `bool` | No | Whether core was reused |
 | `rocket` | `str` | No | Rocket ID |
 | `ships` | `list` | No | Ship IDs |
 | `static_fire_date_unix` | `int` | No | Static fire date in unix timestamp |

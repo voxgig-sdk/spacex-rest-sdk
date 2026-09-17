@@ -420,9 +420,6 @@ LandpadListMatch = Struct.new(
 # @!attribute [rw] capsules
 #   @return [Array, nil]
 #
-# @!attribute [rw] core
-#   @return [String, nil]
-#
 # @!attribute [rw] cores
 #   @return [Array, nil]
 #
@@ -450,35 +447,14 @@ LandpadListMatch = Struct.new(
 # @!attribute [rw] fairings
 #   @return [Hash, nil]
 #
-# @!attribute [rw] flight
-#   @return [Integer, nil]
-#
 # @!attribute [rw] flight_number
 #   @return [Integer, nil]
-#
-# @!attribute [rw] gridfins
-#   @return [Boolean, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] landing_attempt
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] landing_success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] landing_type
-#   @return [String, nil]
-#
-# @!attribute [rw] landpad
-#   @return [String, nil]
-#
 # @!attribute [rw] launchpad
 #   @return [String, nil]
-#
-# @!attribute [rw] legs
-#   @return [Boolean, nil]
 #
 # @!attribute [rw] links
 #   @return [Hash, nil]
@@ -491,9 +467,6 @@ LandpadListMatch = Struct.new(
 #
 # @!attribute [rw] payloads
 #   @return [Array, nil]
-#
-# @!attribute [rw] reused
-#   @return [Boolean, nil]
 #
 # @!attribute [rw] rocket
 #   @return [String, nil]
@@ -521,7 +494,6 @@ LandpadListMatch = Struct.new(
 Launch = Struct.new(
   :auto_update,
   :capsules,
-  :core,
   :cores,
   :crew,
   :date_local,
@@ -531,21 +503,13 @@ Launch = Struct.new(
   :details,
   :failures,
   :fairings,
-  :flight,
   :flight_number,
-  :gridfins,
   :id,
-  :landing_attempt,
-  :landing_success,
-  :landing_type,
-  :landpad,
   :launchpad,
-  :legs,
   :links,
   :name,
   :net,
   :payloads,
-  :reused,
   :rocket,
   :ships,
   :static_fire_date_unix,
@@ -574,9 +538,6 @@ LaunchLoadMatch = Struct.new(
 # @!attribute [rw] capsules
 #   @return [Array, nil]
 #
-# @!attribute [rw] core
-#   @return [String, nil]
-#
 # @!attribute [rw] cores
 #   @return [Array, nil]
 #
@@ -604,35 +565,14 @@ LaunchLoadMatch = Struct.new(
 # @!attribute [rw] fairings
 #   @return [Hash, nil]
 #
-# @!attribute [rw] flight
-#   @return [Integer, nil]
-#
 # @!attribute [rw] flight_number
 #   @return [Integer, nil]
-#
-# @!attribute [rw] gridfins
-#   @return [Boolean, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] landing_attempt
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] landing_success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] landing_type
-#   @return [String, nil]
-#
-# @!attribute [rw] landpad
-#   @return [String, nil]
-#
 # @!attribute [rw] launchpad
 #   @return [String, nil]
-#
-# @!attribute [rw] legs
-#   @return [Boolean, nil]
 #
 # @!attribute [rw] links
 #   @return [Hash, nil]
@@ -645,9 +585,6 @@ LaunchLoadMatch = Struct.new(
 #
 # @!attribute [rw] payloads
 #   @return [Array, nil]
-#
-# @!attribute [rw] reused
-#   @return [Boolean, nil]
 #
 # @!attribute [rw] rocket
 #   @return [String, nil]
@@ -675,7 +612,6 @@ LaunchLoadMatch = Struct.new(
 LaunchListMatch = Struct.new(
   :auto_update,
   :capsules,
-  :core,
   :cores,
   :crew,
   :date_local,
@@ -685,21 +621,13 @@ LaunchListMatch = Struct.new(
   :details,
   :failures,
   :fairings,
-  :flight,
   :flight_number,
-  :gridfins,
   :id,
-  :landing_attempt,
-  :landing_success,
-  :landing_type,
-  :landpad,
   :launchpad,
-  :legs,
   :links,
   :name,
   :net,
   :payloads,
-  :reused,
   :rocket,
   :ships,
   :static_fire_date_unix,

@@ -18,12 +18,6 @@ main: kit: entity: launch: {
       type: "`$ARRAY`"
     }
     {
-      name: "core"
-      req: false
-      short: "Core ID"
-      type: "`$STRING`"
-    }
-    {
       name: "cores"
       req: false
       type: "`$ARRAY`"
@@ -78,22 +72,10 @@ main: kit: entity: launch: {
       type: "`$OBJECT`"
     }
     {
-      name: "flight"
-      req: false
-      short: "Core flight number"
-      type: "`$INTEGER`"
-    }
-    {
       name: "flight_number"
       req: false
       short: "Flight number"
       type: "`$INTEGER`"
-    }
-    {
-      name: "gridfins"
-      req: false
-      short: "Whether core has grid fins"
-      type: "`$BOOLEAN`"
     }
     {
       name: "id"
@@ -102,40 +84,10 @@ main: kit: entity: launch: {
       type: "`$STRING`"
     }
     {
-      name: "landing_attempt"
-      req: false
-      short: "Whether landing was attempted"
-      type: "`$BOOLEAN`"
-    }
-    {
-      name: "landing_success"
-      req: false
-      short: "Whether landing was successful"
-      type: "`$BOOLEAN`"
-    }
-    {
-      name: "landing_type"
-      req: false
-      short: "Landing type (ASDS, RTLS, Ocean)"
-      type: "`$STRING`"
-    }
-    {
-      name: "landpad"
-      req: false
-      short: "Landing pad ID"
-      type: "`$STRING`"
-    }
-    {
       name: "launchpad"
       req: false
       short: "Launchpad ID"
       type: "`$STRING`"
-    }
-    {
-      name: "legs"
-      req: false
-      short: "Whether core has legs"
-      type: "`$BOOLEAN`"
     }
     {
       name: "links"
@@ -159,12 +111,6 @@ main: kit: entity: launch: {
       req: false
       short: "Payload IDs"
       type: "`$ARRAY`"
-    }
-    {
-      name: "reused"
-      req: false
-      short: "Whether core was reused"
-      type: "`$BOOLEAN`"
     }
     {
       name: "rocket"

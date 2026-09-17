@@ -643,11 +643,6 @@ func MakeConfig() map[string]any {
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
-						"name": "core",
-						"short": "Core ID",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"name": "cores",
 						"type": "`$ARRAY`",
 					},
@@ -693,19 +688,9 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
-						"name": "flight",
-						"short": "Core flight number",
-						"type": "`$INTEGER`",
-					},
-					map[string]any{
 						"name": "flight_number",
 						"short": "Flight number",
 						"type": "`$INTEGER`",
-					},
-					map[string]any{
-						"name": "gridfins",
-						"short": "Whether core has grid fins",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "id",
@@ -713,34 +698,9 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"name": "landing_attempt",
-						"short": "Whether landing was attempted",
-						"type": "`$BOOLEAN`",
-					},
-					map[string]any{
-						"name": "landing_success",
-						"short": "Whether landing was successful",
-						"type": "`$BOOLEAN`",
-					},
-					map[string]any{
-						"name": "landing_type",
-						"short": "Landing type (ASDS, RTLS, Ocean)",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "landpad",
-						"short": "Landing pad ID",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"name": "launchpad",
 						"short": "Launchpad ID",
 						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "legs",
-						"short": "Whether core has legs",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "links",
@@ -760,11 +720,6 @@ func MakeConfig() map[string]any {
 						"name": "payloads",
 						"short": "Payload IDs",
 						"type": "`$ARRAY`",
-					},
-					map[string]any{
-						"name": "reused",
-						"short": "Whether core was reused",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "rocket",

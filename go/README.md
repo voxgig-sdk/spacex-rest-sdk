@@ -358,7 +358,6 @@ API path: `/landpads`
 | --- | --- |
 | `"auto_update"` | Whether the launch data is automatically updated |
 | `"capsules"` | Capsule IDs |
-| `"core"` | Core ID |
 | `"cores"` |  |
 | `"crew"` | Crew member IDs |
 | `"date_local"` | Launch date in local time |
@@ -368,21 +367,13 @@ API path: `/landpads`
 | `"details"` | Launch details |
 | `"failures"` | Launch failures |
 | `"fairings"` |  |
-| `"flight"` | Core flight number |
 | `"flight_number"` | Flight number |
-| `"gridfins"` | Whether core has grid fins |
 | `"id"` | Launch ID |
-| `"landing_attempt"` | Whether landing was attempted |
-| `"landing_success"` | Whether landing was successful |
-| `"landing_type"` | Landing type (ASDS, RTLS, Ocean) |
-| `"landpad"` | Landing pad ID |
 | `"launchpad"` | Launchpad ID |
-| `"legs"` | Whether core has legs |
 | `"links"` |  |
 | `"name"` | Launch name |
 | `"net"` | No earlier than |
 | `"payloads"` | Payload IDs |
-| `"reused"` | Whether core was reused |
 | `"rocket"` | Rocket ID |
 | `"ships"` | Ship IDs |
 | `"static_fire_date_unix"` | Static fire date in unix timestamp |
@@ -776,7 +767,6 @@ Create an instance: `launch := client.Launch(nil)`
 | --- | --- | --- |
 | `auto_update` | `bool` | Whether the launch data is automatically updated |
 | `capsules` | `[]any` | Capsule IDs |
-| `core` | `string` | Core ID |
 | `cores` | `[]any` |  |
 | `crew` | `[]any` | Crew member IDs |
 | `date_local` | `string` | Launch date in local time |
@@ -786,21 +776,13 @@ Create an instance: `launch := client.Launch(nil)`
 | `details` | `string` | Launch details |
 | `failures` | `[]any` | Launch failures |
 | `fairings` | `map[string]any` |  |
-| `flight` | `int` | Core flight number |
 | `flight_number` | `int` | Flight number |
-| `gridfins` | `bool` | Whether core has grid fins |
 | `id` | `string` | Launch ID |
-| `landing_attempt` | `bool` | Whether landing was attempted |
-| `landing_success` | `bool` | Whether landing was successful |
-| `landing_type` | `string` | Landing type (ASDS, RTLS, Ocean) |
-| `landpad` | `string` | Landing pad ID |
 | `launchpad` | `string` | Launchpad ID |
-| `legs` | `bool` | Whether core has legs |
 | `links` | `map[string]any` |  |
 | `name` | `string` | Launch name |
 | `net` | `bool` | No earlier than |
 | `payloads` | `[]any` | Payload IDs |
-| `reused` | `bool` | Whether core was reused |
 | `rocket` | `string` | Rocket ID |
 | `ships` | `[]any` | Ship IDs |
 | `static_fire_date_unix` | `int` | Static fire date in unix timestamp |

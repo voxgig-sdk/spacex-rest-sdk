@@ -141,7 +141,6 @@ class LandpadListMatch(TypedDict, total=False):
 class Launch(TypedDict, total=False):
     auto_update: bool
     capsules: list
-    core: str
     cores: list
     crew: list
     date_local: str
@@ -151,21 +150,13 @@ class Launch(TypedDict, total=False):
     details: str
     failures: list
     fairings: dict
-    flight: int
     flight_number: int
-    gridfins: bool
     id: str
-    landing_attempt: bool
-    landing_success: bool
-    landing_type: str
-    landpad: str
     launchpad: str
-    legs: bool
     links: dict
     name: str
     net: bool
     payloads: list
-    reused: bool
     rocket: str
     ships: list
     static_fire_date_unix: int
@@ -183,7 +174,6 @@ class LaunchLoadMatch(TypedDict):
 class LaunchListMatch(TypedDict, total=False):
     auto_update: bool
     capsules: list
-    core: str
     cores: list
     crew: list
     date_local: str
@@ -193,21 +183,13 @@ class LaunchListMatch(TypedDict, total=False):
     details: str
     failures: list
     fairings: dict
-    flight: int
     flight_number: int
-    gridfins: bool
     id: str
-    landing_attempt: bool
-    landing_success: bool
-    landing_type: str
-    landpad: str
     launchpad: str
-    legs: bool
     links: dict
     name: str
     net: bool
     payloads: list
-    reused: bool
     rocket: str
     ships: list
     static_fire_date_unix: int

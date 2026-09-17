@@ -330,7 +330,6 @@ API path: `/landpads`
 | --- | --- |
 | `auto_update` | Whether the launch data is automatically updated |
 | `capsules` | Capsule IDs |
-| `core` | Core ID |
 | `cores` |  |
 | `crew` | Crew member IDs |
 | `date_local` | Launch date in local time |
@@ -340,21 +339,13 @@ API path: `/landpads`
 | `details` | Launch details |
 | `failures` | Launch failures |
 | `fairings` |  |
-| `flight` | Core flight number |
 | `flight_number` | Flight number |
-| `gridfins` | Whether core has grid fins |
 | `id` | Launch ID |
-| `landing_attempt` | Whether landing was attempted |
-| `landing_success` | Whether landing was successful |
-| `landing_type` | Landing type (ASDS, RTLS, Ocean) |
-| `landpad` | Landing pad ID |
 | `launchpad` | Launchpad ID |
-| `legs` | Whether core has legs |
 | `links` |  |
 | `name` | Launch name |
 | `net` | No earlier than |
 | `payloads` | Payload IDs |
-| `reused` | Whether core was reused |
 | `rocket` | Rocket ID |
 | `ships` | Ship IDs |
 | `static_fire_date_unix` | Static fire date in unix timestamp |
@@ -716,7 +707,6 @@ Create an instance: `local launch = client:Launch(nil)`
 | --- | --- | --- |
 | `auto_update` | `boolean` | Whether the launch data is automatically updated |
 | `capsules` | `table` | Capsule IDs |
-| `core` | `string` | Core ID |
 | `cores` | `table` |  |
 | `crew` | `table` | Crew member IDs |
 | `date_local` | `string` | Launch date in local time |
@@ -726,21 +716,13 @@ Create an instance: `local launch = client:Launch(nil)`
 | `details` | `string` | Launch details |
 | `failures` | `table` | Launch failures |
 | `fairings` | `table` |  |
-| `flight` | `number` | Core flight number |
 | `flight_number` | `number` | Flight number |
-| `gridfins` | `boolean` | Whether core has grid fins |
 | `id` | `string` | Launch ID |
-| `landing_attempt` | `boolean` | Whether landing was attempted |
-| `landing_success` | `boolean` | Whether landing was successful |
-| `landing_type` | `string` | Landing type (ASDS, RTLS, Ocean) |
-| `landpad` | `string` | Landing pad ID |
 | `launchpad` | `string` | Launchpad ID |
-| `legs` | `boolean` | Whether core has legs |
 | `links` | `table` |  |
 | `name` | `string` | Launch name |
 | `net` | `boolean` | No earlier than |
 | `payloads` | `table` | Payload IDs |
-| `reused` | `boolean` | Whether core was reused |
 | `rocket` | `string` | Rocket ID |
 | `ships` | `table` | Ship IDs |
 | `static_fire_date_unix` | `number` | Static fire date in unix timestamp |
@@ -1187,6 +1169,7 @@ Use `helpers.to_map()` to safely validate that a value is a table.
 lua/
 ├── spacex-rest_sdk.lua    -- Main SDK module
 ├── config.lua               -- Configuration
+├── schema.lua               -- Generated option + entity specs
 ├── features.lua             -- Feature factory
 ├── core/                    -- Core types and context
 ├── entity/                  -- Entity implementations

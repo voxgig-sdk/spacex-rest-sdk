@@ -150,7 +150,6 @@ type LandpadListMatch struct {
 type Launch struct {
 	AutoUpdate *bool `json:"auto_update,omitempty"`
 	Capsules *[]any `json:"capsules,omitempty"`
-	Core *string `json:"core,omitempty"`
 	Cores *[]any `json:"cores,omitempty"`
 	Crew *[]any `json:"crew,omitempty"`
 	DateLocal *string `json:"date_local,omitempty"`
@@ -160,21 +159,13 @@ type Launch struct {
 	Details *string `json:"details,omitempty"`
 	Failures *[]any `json:"failures,omitempty"`
 	Fairings *map[string]any `json:"fairings,omitempty"`
-	Flight *int `json:"flight,omitempty"`
 	FlightNumber *int `json:"flight_number,omitempty"`
-	Gridfins *bool `json:"gridfins,omitempty"`
 	Id *string `json:"id,omitempty"`
-	LandingAttempt *bool `json:"landing_attempt,omitempty"`
-	LandingSuccess *bool `json:"landing_success,omitempty"`
-	LandingType *string `json:"landing_type,omitempty"`
-	Landpad *string `json:"landpad,omitempty"`
 	Launchpad *string `json:"launchpad,omitempty"`
-	Legs *bool `json:"legs,omitempty"`
 	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Net *bool `json:"net,omitempty"`
 	Payloads *[]any `json:"payloads,omitempty"`
-	Reused *bool `json:"reused,omitempty"`
 	Rocket *string `json:"rocket,omitempty"`
 	Ships *[]any `json:"ships,omitempty"`
 	StaticFireDateUnix *int `json:"static_fire_date_unix,omitempty"`
@@ -194,7 +185,6 @@ type LaunchLoadMatch struct {
 type LaunchListMatch struct {
 	AutoUpdate *bool `json:"auto_update,omitempty"`
 	Capsules *[]any `json:"capsules,omitempty"`
-	Core *string `json:"core,omitempty"`
 	Cores *[]any `json:"cores,omitempty"`
 	Crew *[]any `json:"crew,omitempty"`
 	DateLocal *string `json:"date_local,omitempty"`
@@ -204,21 +194,13 @@ type LaunchListMatch struct {
 	Details *string `json:"details,omitempty"`
 	Failures *[]any `json:"failures,omitempty"`
 	Fairings *map[string]any `json:"fairings,omitempty"`
-	Flight *int `json:"flight,omitempty"`
 	FlightNumber *int `json:"flight_number,omitempty"`
-	Gridfins *bool `json:"gridfins,omitempty"`
 	Id *string `json:"id,omitempty"`
-	LandingAttempt *bool `json:"landing_attempt,omitempty"`
-	LandingSuccess *bool `json:"landing_success,omitempty"`
-	LandingType *string `json:"landing_type,omitempty"`
-	Landpad *string `json:"landpad,omitempty"`
 	Launchpad *string `json:"launchpad,omitempty"`
-	Legs *bool `json:"legs,omitempty"`
 	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Net *bool `json:"net,omitempty"`
 	Payloads *[]any `json:"payloads,omitempty"`
-	Reused *bool `json:"reused,omitempty"`
 	Rocket *string `json:"rocket,omitempty"`
 	Ships *[]any `json:"ships,omitempty"`
 	StaticFireDateUnix *int `json:"static_fire_date_unix,omitempty"`
