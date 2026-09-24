@@ -19,7 +19,6 @@ import type {
   RoadsterListMatch,
 } from '../SpacexRestTypes'
 
-// TODO: needs Entity superclass
 class RoadsterEntity extends SpacexRestEntityBase<Roadster> {
 
   constructor(client: SpacexRestSDK, entopts: any) {

@@ -1,0 +1,184 @@
+# Entity: landpad
+
+main: kit: entity: landpad: {
+
+  alias: field: {}
+
+  fields: {
+    details: {
+      h: "Details"
+      n: "details"
+      r: false
+      sh: "Landing pad details"
+      t: "`$STRING`"
+    }
+    full_name: {
+      h: "Full Name"
+      n: "full_name"
+      r: false
+      sh: "Full landing pad name"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Landing pad ID"
+      t: "`$STRING`"
+    }
+    landing_attempts: {
+      h: "Landing Attempts"
+      n: "landing_attempts"
+      r: false
+      sh: "Number of landing attempts"
+      t: "`$INTEGER`"
+    }
+    landing_successes: {
+      h: "Landing Successes"
+      n: "landing_successes"
+      r: false
+      sh: "Number of successful landings"
+      t: "`$INTEGER`"
+    }
+    latitude: {
+      h: "Latitude"
+      n: "latitude"
+      r: false
+      sh: "Latitude"
+      t: "`$NUMBER`"
+    }
+    launches: {
+      h: "Launches"
+      n: "launches"
+      r: false
+      sh: "Launch IDs"
+      t: "`$ARRAY`"
+    }
+    locality: {
+      h: "Locality"
+      n: "locality"
+      r: false
+      sh: "Locality"
+      t: "`$STRING`"
+    }
+    longitude: {
+      h: "Longitude"
+      n: "longitude"
+      r: false
+      sh: "Longitude"
+      t: "`$NUMBER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Landing pad name"
+      t: "`$STRING`"
+    }
+    region: {
+      h: "Region"
+      n: "region"
+      r: false
+      sh: "Region"
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "Landing pad status (active, inactive, unknown, retired, lost, under construction)"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Landing pad type (ASDS, RTLS)"
+      t: "`$STRING`"
+    }
+    wikipedia: {
+      h: "Wikipedia"
+      n: "wikipedia"
+      r: false
+      sh: "Wikipedia URL"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "landpad"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /landpads"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/landpads"
+          s: [
+            {
+              lit: "landpads"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /landpads/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/landpads/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "landpads"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

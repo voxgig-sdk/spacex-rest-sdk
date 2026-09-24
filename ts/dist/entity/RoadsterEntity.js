@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RoadsterEntity = void 0;
 const SpacexRestEntityBase_1 = require("../SpacexRestEntityBase");
-// TODO: needs Entity superclass
 class RoadsterEntity extends SpacexRestEntityBase_1.SpacexRestEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

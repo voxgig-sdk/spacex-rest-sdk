@@ -1,0 +1,247 @@
+# Entity: ship
+
+main: kit: entity: ship: {
+
+  alias: field: {}
+
+  fields: {
+    abs: {
+      h: "Abs"
+      n: "abs"
+      r: false
+      sh: "ABS number"
+      t: "`$INTEGER`"
+    }
+    class: {
+      h: "Class"
+      n: "class"
+      r: false
+      sh: "Ship class"
+      t: "`$INTEGER`"
+    }
+    course_deg: {
+      h: "Course Deg"
+      n: "course_deg"
+      r: false
+      sh: "Course in degrees"
+      t: "`$NUMBER`"
+    }
+    home_port: {
+      h: "Home Port"
+      n: "home_port"
+      r: false
+      sh: "Home port"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Ship ID"
+      t: "`$STRING`"
+    }
+    image: {
+      h: "Image"
+      n: "image"
+      r: false
+      sh: "Image URL"
+      t: "`$STRING`"
+    }
+    imo: {
+      h: "Imo"
+      n: "imo"
+      r: false
+      sh: "IMO number"
+      t: "`$INTEGER`"
+    }
+    last_ais_update: {
+      h: "Last Ais Update"
+      n: "last_ais_update"
+      r: false
+      sh: "Last AIS update timestamp"
+      t: "`$STRING`"
+    }
+    latitude: {
+      h: "Latitude"
+      n: "latitude"
+      r: false
+      sh: "Latitude"
+      t: "`$NUMBER`"
+    }
+    launches: {
+      h: "Launches"
+      n: "launches"
+      r: false
+      sh: "Launch IDs"
+      t: "`$ARRAY`"
+    }
+    legacy_id: {
+      h: "Legacy Id"
+      n: "legacy_id"
+      r: false
+      sh: "Legacy ID"
+      t: "`$STRING`"
+    }
+    link: {
+      h: "Link"
+      n: "link"
+      r: false
+      sh: "Link to ship info"
+      t: "`$STRING`"
+    }
+    longitude: {
+      h: "Longitude"
+      n: "longitude"
+      r: false
+      sh: "Longitude"
+      t: "`$NUMBER`"
+    }
+    mass_kg: {
+      h: "Mass Kg"
+      n: "mass_kg"
+      r: false
+      sh: "Mass in kilograms"
+      t: "`$INTEGER`"
+    }
+    mass_lbs: {
+      h: "Mass Lbs"
+      n: "mass_lbs"
+      r: false
+      sh: "Mass in pounds"
+      t: "`$INTEGER`"
+    }
+    mmsi: {
+      h: "Mmsi"
+      n: "mmsi"
+      r: false
+      sh: "MMSI number"
+      t: "`$INTEGER`"
+    }
+    model: {
+      h: "Model"
+      n: "model"
+      r: false
+      sh: "Ship model"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Ship name"
+      t: "`$STRING`"
+    }
+    roles: {
+      h: "Roles"
+      n: "roles"
+      r: false
+      sh: "Ship roles"
+      t: "`$ARRAY`"
+    }
+    speed_kn: {
+      h: "Speed Kn"
+      n: "speed_kn"
+      r: false
+      sh: "Speed in knots"
+      t: "`$NUMBER`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "Ship status"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Ship type"
+      t: "`$STRING`"
+    }
+    year_built: {
+      h: "Year Built"
+      n: "year_built"
+      r: false
+      sh: "Year built"
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "ship"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /ships"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/ships"
+          s: [
+            {
+              lit: "ships"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /ships/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/ships/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "ships"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

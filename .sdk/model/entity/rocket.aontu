@@ -1,0 +1,200 @@
+# Entity: rocket
+
+main: kit: entity: rocket: {
+
+  alias: field: {}
+
+  fields: {
+    active: {
+      h: "Active"
+      n: "active"
+      r: false
+      sh: "Whether the rocket is active"
+      t: "`$BOOLEAN`"
+    }
+    boosters: {
+      h: "Boosters"
+      n: "boosters"
+      r: false
+      sh: "Number of boosters"
+      t: "`$INTEGER`"
+    }
+    company: {
+      h: "Company"
+      n: "company"
+      r: false
+      sh: "Company"
+      t: "`$STRING`"
+    }
+    cost_per_launch: {
+      h: "Cost Per Launch"
+      n: "cost_per_launch"
+      r: false
+      sh: "Cost per launch in USD"
+      t: "`$INTEGER`"
+    }
+    country: {
+      h: "Country"
+      n: "country"
+      r: false
+      sh: "Country of origin"
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      t: "`$STRING`"
+    }
+    diameter: {
+      h: "Diameter"
+      n: "diameter"
+      r: false
+      t: "`$OBJECT`"
+    }
+    first_flight: {
+      fo: "date"
+      h: "First Flight"
+      n: "first_flight"
+      r: false
+      sh: "Date of first flight"
+      t: "`$STRING`"
+    }
+    flickr_images: {
+      h: "Flickr Images"
+      n: "flickr_images"
+      r: false
+      t: "`$ARRAY`"
+    }
+    height: {
+      h: "Height"
+      n: "height"
+      r: false
+      t: "`$OBJECT`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Rocket ID"
+      t: "`$STRING`"
+    }
+    mass: {
+      h: "Mass"
+      n: "mass"
+      r: false
+      t: "`$OBJECT`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Rocket name"
+      t: "`$STRING`"
+    }
+    stages: {
+      h: "Stages"
+      n: "stages"
+      r: false
+      sh: "Number of stages"
+      t: "`$INTEGER`"
+    }
+    success_rate_pct: {
+      h: "Success Rate Pct"
+      n: "success_rate_pct"
+      r: false
+      sh: "Success rate percentage"
+      t: "`$NUMBER`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Rocket type"
+      t: "`$STRING`"
+    }
+    wikipedia: {
+      h: "Wikipedia"
+      n: "wikipedia"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "rocket"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /rockets"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/rockets"
+          s: [
+            {
+              lit: "rockets"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /rockets/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/rockets/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "rockets"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

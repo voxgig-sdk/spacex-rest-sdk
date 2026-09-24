@@ -43,7 +43,7 @@ local capsules, err = client:Capsule():list()
 if err then error(err) end
 
 for _, item in ipairs(capsules) do
-  print(item["id"], item["last_update"])
+  print(item["id"])
 end
 ```
 

@@ -1,0 +1,340 @@
+# Entity: launch
+
+main: kit: entity: launch: {
+
+  alias: field: {}
+
+  fields: {
+    auto_update: {
+      h: "Auto Update"
+      n: "auto_update"
+      r: false
+      sh: "Whether the launch data is automatically updated"
+      t: "`$BOOLEAN`"
+    }
+    capsules: {
+      h: "Capsules"
+      n: "capsules"
+      r: false
+      sh: "Capsule IDs"
+      t: "`$ARRAY`"
+    }
+    cores: {
+      h: "Cores"
+      n: "cores"
+      r: false
+      t: "`$ARRAY`"
+    }
+    crew: {
+      h: "Crew"
+      n: "crew"
+      r: false
+      sh: "Crew member IDs"
+      t: "`$ARRAY`"
+    }
+    date_local: {
+      fo: "date-time"
+      h: "Date Local"
+      n: "date_local"
+      r: false
+      sh: "Launch date in local time"
+      t: "`$STRING`"
+    }
+    date_precision: {
+      h: "Date Precision"
+      n: "date_precision"
+      r: false
+      sh: "Date precision (hour, day, month, quarter, half, year)"
+      t: "`$STRING`"
+    }
+    date_unix: {
+      h: "Date Unix"
+      n: "date_unix"
+      r: false
+      sh: "Launch date in unix timestamp"
+      t: "`$INTEGER`"
+    }
+    date_utc: {
+      fo: "date-time"
+      h: "Date Utc"
+      n: "date_utc"
+      r: false
+      sh: "Launch date in UTC"
+      t: "`$STRING`"
+    }
+    details: {
+      h: "Details"
+      n: "details"
+      r: false
+      sh: "Launch details"
+      t: "`$STRING`"
+    }
+    failures: {
+      h: "Failures"
+      n: "failures"
+      r: false
+      sh: "Launch failures"
+      t: "`$ARRAY`"
+    }
+    fairings: {
+      h: "Fairings"
+      n: "fairings"
+      r: false
+      t: "`$OBJECT`"
+    }
+    flight_number: {
+      h: "Flight Number"
+      n: "flight_number"
+      r: false
+      sh: "Flight number"
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Launch ID"
+      t: "`$STRING`"
+    }
+    launchpad: {
+      h: "Launchpad"
+      n: "launchpad"
+      r: false
+      sh: "Launchpad ID"
+      t: "`$STRING`"
+    }
+    links: {
+      h: "Links"
+      n: "links"
+      r: false
+      t: "`$OBJECT`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Launch name"
+      t: "`$STRING`"
+    }
+    net: {
+      h: "Net"
+      n: "net"
+      r: false
+      sh: "No earlier than"
+      t: "`$BOOLEAN`"
+    }
+    payloads: {
+      h: "Payloads"
+      n: "payloads"
+      r: false
+      sh: "Payload IDs"
+      t: "`$ARRAY`"
+    }
+    rocket: {
+      h: "Rocket"
+      n: "rocket"
+      r: false
+      sh: "Rocket ID"
+      t: "`$STRING`"
+    }
+    ships: {
+      h: "Ships"
+      n: "ships"
+      r: false
+      sh: "Ship IDs"
+      t: "`$ARRAY`"
+    }
+    static_fire_date_unix: {
+      h: "Static Fire Date Unix"
+      n: "static_fire_date_unix"
+      r: false
+      sh: "Static fire date in unix timestamp"
+      t: "`$INTEGER`"
+    }
+    static_fire_date_utc: {
+      fo: "date-time"
+      h: "Static Fire Date Utc"
+      n: "static_fire_date_utc"
+      r: false
+      sh: "Static fire date in UTC"
+      t: "`$STRING`"
+    }
+    success: {
+      h: "Success"
+      n: "success"
+      r: false
+      sh: "Launch success status"
+      t: "`$BOOLEAN`"
+    }
+    tdb: {
+      h: "Tdb"
+      n: "tdb"
+      r: false
+      sh: "To be determined"
+      t: "`$BOOLEAN`"
+    }
+    upcoming: {
+      h: "Upcoming"
+      n: "upcoming"
+      r: false
+      sh: "Whether the launch is upcoming"
+      t: "`$BOOLEAN`"
+    }
+    window: {
+      h: "Window"
+      n: "window"
+      r: false
+      sh: "Launch window in seconds"
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "launch"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /launches"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/launches"
+          s: [
+            {
+              lit: "launches"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /launches/latest"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/launches/latest"
+          q: {
+            "$action": "latest"
+          }
+          s: [
+            {
+              lit: "launches"
+            }
+            {
+              lit: "latest"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /launches/past"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/launches/past"
+          q: {
+            "$action": "past"
+          }
+          s: [
+            {
+              lit: "launches"
+            }
+            {
+              lit: "past"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /launches/upcoming"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/launches/upcoming"
+          q: {
+            "$action": "upcoming"
+          }
+          s: [
+            {
+              lit: "launches"
+            }
+            {
+              lit: "upcoming"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /launches/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/launches/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "launches"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

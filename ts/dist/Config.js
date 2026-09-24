@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -124,48 +117,57 @@ class Config {
             "fields": [
                 {
                     "name": "id",
-                    "short": "Capsule serial number",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Capsule serial number"
                 },
                 {
                     "name": "land_landings",
-                    "short": "Number of land landings",
-                    "type": "`$INTEGER`"
+                    "title": "Land Landings",
+                    "type": "`$INTEGER`",
+                    "short": "Number of land landings"
                 },
                 {
                     "name": "last_update",
-                    "short": "Last update about the capsule",
-                    "type": "`$STRING`"
+                    "title": "Last Update",
+                    "type": "`$STRING`",
+                    "short": "Last update about the capsule"
                 },
                 {
                     "name": "launches",
-                    "short": "Launch IDs",
-                    "type": "`$ARRAY`"
+                    "title": "Launches",
+                    "type": "`$ARRAY`",
+                    "short": "Launch IDs"
                 },
                 {
                     "name": "reuse_count",
-                    "short": "Number of times capsule has been reused",
-                    "type": "`$INTEGER`"
+                    "title": "Reuse Count",
+                    "type": "`$INTEGER`",
+                    "short": "Number of times capsule has been reused"
                 },
                 {
                     "name": "serial",
-                    "short": "Capsule serial number",
-                    "type": "`$STRING`"
+                    "title": "Serial",
+                    "type": "`$STRING`",
+                    "short": "Capsule serial number"
                 },
                 {
                     "name": "status",
-                    "short": "Capsule status",
-                    "type": "`$STRING`"
+                    "title": "Status",
+                    "type": "`$STRING`",
+                    "short": "Capsule status"
                 },
                 {
                     "name": "type",
-                    "short": "Capsule type",
-                    "type": "`$STRING`"
+                    "title": "Type",
+                    "type": "`$STRING`",
+                    "short": "Capsule type"
                 },
                 {
                     "name": "water_landings",
-                    "short": "Number of water landings",
-                    "type": "`$INTEGER`"
+                    "title": "Water Landings",
+                    "type": "`$INTEGER`",
+                    "short": "Number of water landings"
                 }
             ],
             "id": {
@@ -179,7 +181,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/capsules",
@@ -188,14 +189,16 @@ class Config {
                                     "lit": "capsules"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "capsules"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "capsules"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -204,17 +207,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/capsules/{id}",
@@ -226,19 +218,31 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
+                            "parts": [
+                                "capsules",
+                                "{id}"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "capsules",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -251,58 +255,69 @@ class Config {
             "fields": [
                 {
                     "name": "asds_attempts",
-                    "short": "Number of autonomous spaceport drone ship landing attempts",
-                    "type": "`$INTEGER`"
+                    "title": "Asds Attempts",
+                    "type": "`$INTEGER`",
+                    "short": "Number of autonomous spaceport drone ship landing attempts"
                 },
                 {
                     "name": "asds_landings",
-                    "short": "Number of successful ASDS landings",
-                    "type": "`$INTEGER`"
+                    "title": "Asds Landings",
+                    "type": "`$INTEGER`",
+                    "short": "Number of successful ASDS landings"
                 },
                 {
                     "name": "block",
-                    "short": "Core block number",
-                    "type": "`$INTEGER`"
+                    "title": "Block",
+                    "type": "`$INTEGER`",
+                    "short": "Core block number"
                 },
                 {
                     "name": "id",
-                    "short": "Core serial number",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Core serial number"
                 },
                 {
                     "name": "last_update",
-                    "short": "Last update about the core",
-                    "type": "`$STRING`"
+                    "title": "Last Update",
+                    "type": "`$STRING`",
+                    "short": "Last update about the core"
                 },
                 {
                     "name": "launches",
-                    "short": "Launch IDs",
-                    "type": "`$ARRAY`"
+                    "title": "Launches",
+                    "type": "`$ARRAY`",
+                    "short": "Launch IDs"
                 },
                 {
                     "name": "reuse_count",
-                    "short": "Number of times core has been reused",
-                    "type": "`$INTEGER`"
+                    "title": "Reuse Count",
+                    "type": "`$INTEGER`",
+                    "short": "Number of times core has been reused"
                 },
                 {
                     "name": "rtls_attempts",
-                    "short": "Number of return to launch site attempts",
-                    "type": "`$INTEGER`"
+                    "title": "Rtls Attempts",
+                    "type": "`$INTEGER`",
+                    "short": "Number of return to launch site attempts"
                 },
                 {
                     "name": "rtls_landings",
-                    "short": "Number of successful RTLS landings",
-                    "type": "`$INTEGER`"
+                    "title": "Rtls Landings",
+                    "type": "`$INTEGER`",
+                    "short": "Number of successful RTLS landings"
                 },
                 {
                     "name": "serial",
-                    "short": "Core serial number",
-                    "type": "`$STRING`"
+                    "title": "Serial",
+                    "type": "`$STRING`",
+                    "short": "Core serial number"
                 },
                 {
                     "name": "status",
-                    "short": "Core status (active, inactive, unknown, expended, lost, retired)",
-                    "type": "`$STRING`"
+                    "title": "Status",
+                    "type": "`$STRING`",
+                    "short": "Core status (active, inactive, unknown, expended, lost, retired)"
                 }
             ],
             "id": {
@@ -316,7 +331,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/cores",
@@ -325,14 +339,16 @@ class Config {
                                     "lit": "cores"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "cores"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "cores"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -341,17 +357,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/cores/{id}",
@@ -363,19 +368,31 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
+                            "parts": [
+                                "cores",
+                                "{id}"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "cores",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -388,38 +405,45 @@ class Config {
             "fields": [
                 {
                     "name": "agency",
-                    "short": "Agency",
-                    "type": "`$STRING`"
+                    "title": "Agency",
+                    "type": "`$STRING`",
+                    "short": "Agency"
                 },
                 {
                     "name": "id",
-                    "short": "Crew member ID",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Crew member ID"
                 },
                 {
                     "name": "image",
-                    "short": "Image URL",
-                    "type": "`$STRING`"
+                    "title": "Image",
+                    "type": "`$STRING`",
+                    "short": "Image URL"
                 },
                 {
                     "name": "launches",
-                    "short": "Launch IDs",
-                    "type": "`$ARRAY`"
+                    "title": "Launches",
+                    "type": "`$ARRAY`",
+                    "short": "Launch IDs"
                 },
                 {
                     "name": "name",
-                    "short": "Crew member name",
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Crew member name"
                 },
                 {
                     "name": "status",
-                    "short": "Status (active, inactive, retired, unknown)",
-                    "type": "`$STRING`"
+                    "title": "Status",
+                    "type": "`$STRING`",
+                    "short": "Status (active, inactive, retired, unknown)"
                 },
                 {
                     "name": "wikipedia",
-                    "short": "Wikipedia URL",
-                    "type": "`$STRING`"
+                    "title": "Wikipedia",
+                    "type": "`$STRING`",
+                    "short": "Wikipedia URL"
                 }
             ],
             "id": {
@@ -433,7 +457,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/crew",
@@ -442,14 +465,16 @@ class Config {
                                     "lit": "crew"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "crew"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "crew"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -458,17 +483,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/crew/{id}",
@@ -480,19 +494,31 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
+                            "parts": [
+                                "crew",
+                                "{id}"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "crew",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -505,73 +531,87 @@ class Config {
             "fields": [
                 {
                     "name": "details",
-                    "short": "Landing pad details",
-                    "type": "`$STRING`"
+                    "title": "Details",
+                    "type": "`$STRING`",
+                    "short": "Landing pad details"
                 },
                 {
                     "name": "full_name",
-                    "short": "Full landing pad name",
-                    "type": "`$STRING`"
+                    "title": "Full Name",
+                    "type": "`$STRING`",
+                    "short": "Full landing pad name"
                 },
                 {
                     "name": "id",
-                    "short": "Landing pad ID",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Landing pad ID"
                 },
                 {
                     "name": "landing_attempts",
-                    "short": "Number of landing attempts",
-                    "type": "`$INTEGER`"
+                    "title": "Landing Attempts",
+                    "type": "`$INTEGER`",
+                    "short": "Number of landing attempts"
                 },
                 {
                     "name": "landing_successes",
-                    "short": "Number of successful landings",
-                    "type": "`$INTEGER`"
+                    "title": "Landing Successes",
+                    "type": "`$INTEGER`",
+                    "short": "Number of successful landings"
                 },
                 {
                     "name": "latitude",
-                    "short": "Latitude",
-                    "type": "`$NUMBER`"
+                    "title": "Latitude",
+                    "type": "`$NUMBER`",
+                    "short": "Latitude"
                 },
                 {
                     "name": "launches",
-                    "short": "Launch IDs",
-                    "type": "`$ARRAY`"
+                    "title": "Launches",
+                    "type": "`$ARRAY`",
+                    "short": "Launch IDs"
                 },
                 {
                     "name": "locality",
-                    "short": "Locality",
-                    "type": "`$STRING`"
+                    "title": "Locality",
+                    "type": "`$STRING`",
+                    "short": "Locality"
                 },
                 {
                     "name": "longitude",
-                    "short": "Longitude",
-                    "type": "`$NUMBER`"
+                    "title": "Longitude",
+                    "type": "`$NUMBER`",
+                    "short": "Longitude"
                 },
                 {
                     "name": "name",
-                    "short": "Landing pad name",
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Landing pad name"
                 },
                 {
                     "name": "region",
-                    "short": "Region",
-                    "type": "`$STRING`"
+                    "title": "Region",
+                    "type": "`$STRING`",
+                    "short": "Region"
                 },
                 {
                     "name": "status",
-                    "short": "Landing pad status (active, inactive, unknown, retired, lost, under construction)",
-                    "type": "`$STRING`"
+                    "title": "Status",
+                    "type": "`$STRING`",
+                    "short": "Landing pad status (active, inactive, unknown, retired, lost, under construction)"
                 },
                 {
                     "name": "type",
-                    "short": "Landing pad type (ASDS, RTLS)",
-                    "type": "`$STRING`"
+                    "title": "Type",
+                    "type": "`$STRING`",
+                    "short": "Landing pad type (ASDS, RTLS)"
                 },
                 {
                     "name": "wikipedia",
-                    "short": "Wikipedia URL",
-                    "type": "`$STRING`"
+                    "title": "Wikipedia",
+                    "type": "`$STRING`",
+                    "short": "Wikipedia URL"
                 }
             ],
             "id": {
@@ -585,7 +625,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/landpads",
@@ -594,14 +633,16 @@ class Config {
                                     "lit": "landpads"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "landpads"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "landpads"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -610,17 +651,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/landpads/{id}",
@@ -632,19 +662,31 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
+                            "parts": [
+                                "landpads",
+                                "{id}"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "landpads",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -657,133 +699,159 @@ class Config {
             "fields": [
                 {
                     "name": "auto_update",
-                    "short": "Whether the launch data is automatically updated",
-                    "type": "`$BOOLEAN`"
+                    "title": "Auto Update",
+                    "type": "`$BOOLEAN`",
+                    "short": "Whether the launch data is automatically updated"
                 },
                 {
                     "name": "capsules",
-                    "short": "Capsule IDs",
-                    "type": "`$ARRAY`"
+                    "title": "Capsules",
+                    "type": "`$ARRAY`",
+                    "short": "Capsule IDs"
                 },
                 {
                     "name": "cores",
+                    "title": "Cores",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "crew",
-                    "short": "Crew member IDs",
-                    "type": "`$ARRAY`"
+                    "title": "Crew",
+                    "type": "`$ARRAY`",
+                    "short": "Crew member IDs"
                 },
                 {
-                    "format": "date-time",
                     "name": "date_local",
+                    "title": "Date Local",
+                    "type": "`$STRING`",
                     "short": "Launch date in local time",
-                    "type": "`$STRING`"
+                    "format": "date-time"
                 },
                 {
                     "name": "date_precision",
-                    "short": "Date precision (hour, day, month, quarter, half, year)",
-                    "type": "`$STRING`"
+                    "title": "Date Precision",
+                    "type": "`$STRING`",
+                    "short": "Date precision (hour, day, month, quarter, half, year)"
                 },
                 {
                     "name": "date_unix",
-                    "short": "Launch date in unix timestamp",
-                    "type": "`$INTEGER`"
+                    "title": "Date Unix",
+                    "type": "`$INTEGER`",
+                    "short": "Launch date in unix timestamp"
                 },
                 {
-                    "format": "date-time",
                     "name": "date_utc",
+                    "title": "Date Utc",
+                    "type": "`$STRING`",
                     "short": "Launch date in UTC",
-                    "type": "`$STRING`"
+                    "format": "date-time"
                 },
                 {
                     "name": "details",
-                    "short": "Launch details",
-                    "type": "`$STRING`"
+                    "title": "Details",
+                    "type": "`$STRING`",
+                    "short": "Launch details"
                 },
                 {
                     "name": "failures",
-                    "short": "Launch failures",
-                    "type": "`$ARRAY`"
+                    "title": "Failures",
+                    "type": "`$ARRAY`",
+                    "short": "Launch failures"
                 },
                 {
                     "name": "fairings",
+                    "title": "Fairings",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "flight_number",
-                    "short": "Flight number",
-                    "type": "`$INTEGER`"
+                    "title": "Flight Number",
+                    "type": "`$INTEGER`",
+                    "short": "Flight number"
                 },
                 {
                     "name": "id",
-                    "short": "Launch ID",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Launch ID"
                 },
                 {
                     "name": "launchpad",
-                    "short": "Launchpad ID",
-                    "type": "`$STRING`"
+                    "title": "Launchpad",
+                    "type": "`$STRING`",
+                    "short": "Launchpad ID"
                 },
                 {
                     "name": "links",
+                    "title": "Links",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "name",
-                    "short": "Launch name",
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Launch name"
                 },
                 {
                     "name": "net",
-                    "short": "No earlier than",
-                    "type": "`$BOOLEAN`"
+                    "title": "Net",
+                    "type": "`$BOOLEAN`",
+                    "short": "No earlier than"
                 },
                 {
                     "name": "payloads",
-                    "short": "Payload IDs",
-                    "type": "`$ARRAY`"
+                    "title": "Payloads",
+                    "type": "`$ARRAY`",
+                    "short": "Payload IDs"
                 },
                 {
                     "name": "rocket",
-                    "short": "Rocket ID",
-                    "type": "`$STRING`"
+                    "title": "Rocket",
+                    "type": "`$STRING`",
+                    "short": "Rocket ID"
                 },
                 {
                     "name": "ships",
-                    "short": "Ship IDs",
-                    "type": "`$ARRAY`"
+                    "title": "Ships",
+                    "type": "`$ARRAY`",
+                    "short": "Ship IDs"
                 },
                 {
                     "name": "static_fire_date_unix",
-                    "short": "Static fire date in unix timestamp",
-                    "type": "`$INTEGER`"
+                    "title": "Static Fire Date Unix",
+                    "type": "`$INTEGER`",
+                    "short": "Static fire date in unix timestamp"
                 },
                 {
-                    "format": "date-time",
                     "name": "static_fire_date_utc",
+                    "title": "Static Fire Date Utc",
+                    "type": "`$STRING`",
                     "short": "Static fire date in UTC",
-                    "type": "`$STRING`"
+                    "format": "date-time"
                 },
                 {
                     "name": "success",
-                    "short": "Launch success status",
-                    "type": "`$BOOLEAN`"
+                    "title": "Success",
+                    "type": "`$BOOLEAN`",
+                    "short": "Launch success status"
                 },
                 {
                     "name": "tdb",
-                    "short": "To be determined",
-                    "type": "`$BOOLEAN`"
+                    "title": "Tdb",
+                    "type": "`$BOOLEAN`",
+                    "short": "To be determined"
                 },
                 {
                     "name": "upcoming",
-                    "short": "Whether the launch is upcoming",
-                    "type": "`$BOOLEAN`"
+                    "title": "Upcoming",
+                    "type": "`$BOOLEAN`",
+                    "short": "Whether the launch is upcoming"
                 },
                 {
                     "name": "window",
-                    "short": "Launch window in seconds",
-                    "type": "`$INTEGER`"
+                    "title": "Window",
+                    "type": "`$INTEGER`",
+                    "short": "Launch window in seconds"
                 }
             ],
             "id": {
@@ -797,7 +865,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/launches",
@@ -806,17 +873,18 @@ class Config {
                                     "lit": "launches"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "launches"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "launches"
-                            ]
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/launches/latest",
@@ -828,20 +896,21 @@ class Config {
                                     "lit": "latest"
                                 }
                             ],
-                            "select": {
-                                "$action": "latest"
-                            },
+                            "parts": [
+                                "launches",
+                                "latest"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "launches",
-                                "latest"
-                            ]
+                            "args": {},
+                            "select": {
+                                "$action": "latest"
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/launches/past",
@@ -853,20 +922,21 @@ class Config {
                                     "lit": "past"
                                 }
                             ],
-                            "select": {
-                                "$action": "past"
-                            },
+                            "parts": [
+                                "launches",
+                                "past"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "launches",
-                                "past"
-                            ]
+                            "args": {},
+                            "select": {
+                                "$action": "past"
+                            }
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/launches/upcoming",
@@ -878,17 +948,19 @@ class Config {
                                     "lit": "upcoming"
                                 }
                             ],
-                            "select": {
-                                "$action": "upcoming"
-                            },
+                            "parts": [
+                                "launches",
+                                "upcoming"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "launches",
-                                "upcoming"
-                            ]
+                            "args": {},
+                            "select": {
+                                "$action": "upcoming"
+                            }
                         }
                     ]
                 },
@@ -897,17 +969,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/launches/{id}",
@@ -919,19 +980,31 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
+                            "parts": [
+                                "launches",
+                                "{id}"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "launches",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -944,68 +1017,81 @@ class Config {
             "fields": [
                 {
                     "name": "details",
-                    "short": "Launchpad details",
-                    "type": "`$STRING`"
+                    "title": "Details",
+                    "type": "`$STRING`",
+                    "short": "Launchpad details"
                 },
                 {
                     "name": "full_name",
-                    "short": "Full launchpad name",
-                    "type": "`$STRING`"
+                    "title": "Full Name",
+                    "type": "`$STRING`",
+                    "short": "Full launchpad name"
                 },
                 {
                     "name": "id",
-                    "short": "Launchpad ID",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Launchpad ID"
                 },
                 {
                     "name": "latitude",
-                    "short": "Latitude",
-                    "type": "`$NUMBER`"
+                    "title": "Latitude",
+                    "type": "`$NUMBER`",
+                    "short": "Latitude"
                 },
                 {
                     "name": "launch_attempts",
-                    "short": "Number of launch attempts",
-                    "type": "`$INTEGER`"
+                    "title": "Launch Attempts",
+                    "type": "`$INTEGER`",
+                    "short": "Number of launch attempts"
                 },
                 {
                     "name": "launch_successes",
-                    "short": "Number of successful launches",
-                    "type": "`$INTEGER`"
+                    "title": "Launch Successes",
+                    "type": "`$INTEGER`",
+                    "short": "Number of successful launches"
                 },
                 {
                     "name": "launches",
-                    "short": "Launch IDs",
-                    "type": "`$ARRAY`"
+                    "title": "Launches",
+                    "type": "`$ARRAY`",
+                    "short": "Launch IDs"
                 },
                 {
                     "name": "locality",
-                    "short": "Locality",
-                    "type": "`$STRING`"
+                    "title": "Locality",
+                    "type": "`$STRING`",
+                    "short": "Locality"
                 },
                 {
                     "name": "longitude",
-                    "short": "Longitude",
-                    "type": "`$NUMBER`"
+                    "title": "Longitude",
+                    "type": "`$NUMBER`",
+                    "short": "Longitude"
                 },
                 {
                     "name": "name",
-                    "short": "Launchpad name",
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Launchpad name"
                 },
                 {
                     "name": "region",
-                    "short": "Region",
-                    "type": "`$STRING`"
+                    "title": "Region",
+                    "type": "`$STRING`",
+                    "short": "Region"
                 },
                 {
                     "name": "rockets",
-                    "short": "Rocket IDs",
-                    "type": "`$ARRAY`"
+                    "title": "Rockets",
+                    "type": "`$ARRAY`",
+                    "short": "Rocket IDs"
                 },
                 {
                     "name": "status",
-                    "short": "Launchpad status (active, inactive, unknown, retired, lost, under construction)",
-                    "type": "`$STRING`"
+                    "title": "Status",
+                    "type": "`$STRING`",
+                    "short": "Launchpad status (active, inactive, unknown, retired, lost, under construction)"
                 }
             ],
             "id": {
@@ -1019,7 +1105,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/launchpads",
@@ -1028,14 +1113,16 @@ class Config {
                                     "lit": "launchpads"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "launchpads"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "launchpads"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -1044,17 +1131,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/launchpads/{id}",
@@ -1066,19 +1142,31 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
+                            "parts": [
+                                "launchpads",
+                                "{id}"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "launchpads",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -1091,138 +1179,165 @@ class Config {
             "fields": [
                 {
                     "name": "apoapsis_km",
-                    "short": "Apoapsis in km",
-                    "type": "`$NUMBER`"
+                    "title": "Apoapsis Km",
+                    "type": "`$NUMBER`",
+                    "short": "Apoapsis in km"
                 },
                 {
                     "name": "arg_of_pericenter",
-                    "short": "Argument of pericenter",
-                    "type": "`$NUMBER`"
+                    "title": "Arg Of Pericenter",
+                    "type": "`$NUMBER`",
+                    "short": "Argument of pericenter"
                 },
                 {
                     "name": "customers",
-                    "short": "Customers",
-                    "type": "`$ARRAY`"
+                    "title": "Customers",
+                    "type": "`$ARRAY`",
+                    "short": "Customers"
                 },
                 {
                     "name": "eccentricity",
-                    "short": "Eccentricity",
-                    "type": "`$NUMBER`"
+                    "title": "Eccentricity",
+                    "type": "`$NUMBER`",
+                    "short": "Eccentricity"
                 },
                 {
                     "name": "epoch",
-                    "short": "Epoch",
-                    "type": "`$STRING`"
+                    "title": "Epoch",
+                    "type": "`$STRING`",
+                    "short": "Epoch"
                 },
                 {
                     "name": "id",
-                    "short": "Payload ID",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Payload ID"
                 },
                 {
                     "name": "inclination_deg",
-                    "short": "Inclination in degrees",
-                    "type": "`$NUMBER`"
+                    "title": "Inclination Deg",
+                    "type": "`$NUMBER`",
+                    "short": "Inclination in degrees"
                 },
                 {
                     "name": "launch",
-                    "short": "Launch ID",
-                    "type": "`$STRING`"
+                    "title": "Launch",
+                    "type": "`$STRING`",
+                    "short": "Launch ID"
                 },
                 {
                     "name": "lifespan_years",
-                    "short": "Lifespan in years",
-                    "type": "`$NUMBER`"
+                    "title": "Lifespan Years",
+                    "type": "`$NUMBER`",
+                    "short": "Lifespan in years"
                 },
                 {
                     "name": "longitude",
-                    "short": "Longitude",
-                    "type": "`$NUMBER`"
+                    "title": "Longitude",
+                    "type": "`$NUMBER`",
+                    "short": "Longitude"
                 },
                 {
                     "name": "manufacturers",
-                    "short": "Manufacturers",
-                    "type": "`$ARRAY`"
+                    "title": "Manufacturers",
+                    "type": "`$ARRAY`",
+                    "short": "Manufacturers"
                 },
                 {
                     "name": "mass_kg",
-                    "short": "Payload mass in kilograms",
-                    "type": "`$NUMBER`"
+                    "title": "Mass Kg",
+                    "type": "`$NUMBER`",
+                    "short": "Payload mass in kilograms"
                 },
                 {
                     "name": "mass_lbs",
-                    "short": "Payload mass in pounds",
-                    "type": "`$NUMBER`"
+                    "title": "Mass Lbs",
+                    "type": "`$NUMBER`",
+                    "short": "Payload mass in pounds"
                 },
                 {
                     "name": "mean_anomaly",
-                    "short": "Mean anomaly",
-                    "type": "`$NUMBER`"
+                    "title": "Mean Anomaly",
+                    "type": "`$NUMBER`",
+                    "short": "Mean anomaly"
                 },
                 {
                     "name": "mean_motion",
-                    "short": "Mean motion",
-                    "type": "`$NUMBER`"
+                    "title": "Mean Motion",
+                    "type": "`$NUMBER`",
+                    "short": "Mean motion"
                 },
                 {
                     "name": "name",
-                    "short": "Payload name",
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Payload name"
                 },
                 {
                     "name": "nationalities",
-                    "short": "Nationalities",
-                    "type": "`$ARRAY`"
+                    "title": "Nationalities",
+                    "type": "`$ARRAY`",
+                    "short": "Nationalities"
                 },
                 {
                     "name": "norad_ids",
-                    "short": "NORAD IDs",
-                    "type": "`$ARRAY`"
+                    "title": "Norad Ids",
+                    "type": "`$ARRAY`",
+                    "short": "NORAD IDs"
                 },
                 {
                     "name": "orbit",
-                    "short": "Orbit type",
-                    "type": "`$STRING`"
+                    "title": "Orbit",
+                    "type": "`$STRING`",
+                    "short": "Orbit type"
                 },
                 {
                     "name": "periapsis_km",
-                    "short": "Periapsis in km",
-                    "type": "`$NUMBER`"
+                    "title": "Periapsis Km",
+                    "type": "`$NUMBER`",
+                    "short": "Periapsis in km"
                 },
                 {
                     "name": "period_min",
-                    "short": "Orbital period in minutes",
-                    "type": "`$NUMBER`"
+                    "title": "Period Min",
+                    "type": "`$NUMBER`",
+                    "short": "Orbital period in minutes"
                 },
                 {
                     "name": "raan",
-                    "short": "Right ascension of the ascending node",
-                    "type": "`$NUMBER`"
+                    "title": "Raan",
+                    "type": "`$NUMBER`",
+                    "short": "Right ascension of the ascending node"
                 },
                 {
                     "name": "reference_system",
-                    "short": "Reference system",
-                    "type": "`$STRING`"
+                    "title": "Reference System",
+                    "type": "`$STRING`",
+                    "short": "Reference system"
                 },
                 {
                     "name": "regime",
-                    "short": "Orbit regime",
-                    "type": "`$STRING`"
+                    "title": "Regime",
+                    "type": "`$STRING`",
+                    "short": "Orbit regime"
                 },
                 {
                     "name": "reused",
-                    "short": "Whether the payload was reused",
-                    "type": "`$BOOLEAN`"
+                    "title": "Reused",
+                    "type": "`$BOOLEAN`",
+                    "short": "Whether the payload was reused"
                 },
                 {
                     "name": "semi_major_axis_km",
-                    "short": "Semi-major axis in km",
-                    "type": "`$NUMBER`"
+                    "title": "Semi Major Axis Km",
+                    "type": "`$NUMBER`",
+                    "short": "Semi-major axis in km"
                 },
                 {
                     "name": "type",
-                    "short": "Payload type",
-                    "type": "`$STRING`"
+                    "title": "Type",
+                    "type": "`$STRING`",
+                    "short": "Payload type"
                 }
             ],
             "id": {
@@ -1236,7 +1351,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/payloads",
@@ -1245,14 +1359,16 @@ class Config {
                                     "lit": "payloads"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "payloads"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "payloads"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -1261,17 +1377,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/payloads/{id}",
@@ -1283,19 +1388,31 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
+                            "parts": [
+                                "payloads",
+                                "{id}"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "payloads",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -1308,139 +1425,166 @@ class Config {
             "fields": [
                 {
                     "name": "apoapsis_au",
-                    "short": "Apoapsis in AU",
-                    "type": "`$NUMBER`"
+                    "title": "Apoapsis Au",
+                    "type": "`$NUMBER`",
+                    "short": "Apoapsis in AU"
                 },
                 {
                     "name": "details",
-                    "short": "Details",
-                    "type": "`$STRING`"
+                    "title": "Details",
+                    "type": "`$STRING`",
+                    "short": "Details"
                 },
                 {
                     "name": "earth_distance_km",
-                    "short": "Distance from Earth in km",
-                    "type": "`$NUMBER`"
+                    "title": "Earth Distance Km",
+                    "type": "`$NUMBER`",
+                    "short": "Distance from Earth in km"
                 },
                 {
                     "name": "earth_distance_mi",
-                    "short": "Distance from Earth in miles",
-                    "type": "`$NUMBER`"
+                    "title": "Earth Distance Mi",
+                    "type": "`$NUMBER`",
+                    "short": "Distance from Earth in miles"
                 },
                 {
                     "name": "eccentricity",
-                    "short": "Eccentricity",
-                    "type": "`$NUMBER`"
+                    "title": "Eccentricity",
+                    "type": "`$NUMBER`",
+                    "short": "Eccentricity"
                 },
                 {
                     "name": "epoch_jd",
-                    "short": "Epoch in Julian Date",
-                    "type": "`$NUMBER`"
+                    "title": "Epoch Jd",
+                    "type": "`$NUMBER`",
+                    "short": "Epoch in Julian Date"
                 },
                 {
                     "name": "flickr_images",
-                    "short": "Flickr images",
-                    "type": "`$ARRAY`"
+                    "title": "Flickr Images",
+                    "type": "`$ARRAY`",
+                    "short": "Flickr images"
                 },
                 {
                     "name": "id",
-                    "short": "Roadster ID",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Roadster ID"
                 },
                 {
                     "name": "inclination",
-                    "short": "Inclination",
-                    "type": "`$NUMBER`"
+                    "title": "Inclination",
+                    "type": "`$NUMBER`",
+                    "short": "Inclination"
                 },
                 {
                     "name": "launch_date_unix",
-                    "short": "Launch date in unix timestamp",
-                    "type": "`$INTEGER`"
+                    "title": "Launch Date Unix",
+                    "type": "`$INTEGER`",
+                    "short": "Launch date in unix timestamp"
                 },
                 {
-                    "format": "date-time",
                     "name": "launch_date_utc",
+                    "title": "Launch Date Utc",
+                    "type": "`$STRING`",
                     "short": "Launch date in UTC",
-                    "type": "`$STRING`"
+                    "format": "date-time"
                 },
                 {
                     "name": "launch_mass_kg",
-                    "short": "Launch mass in kilograms",
-                    "type": "`$INTEGER`"
+                    "title": "Launch Mass Kg",
+                    "type": "`$INTEGER`",
+                    "short": "Launch mass in kilograms"
                 },
                 {
                     "name": "launch_mass_lbs",
-                    "short": "Launch mass in pounds",
-                    "type": "`$INTEGER`"
+                    "title": "Launch Mass Lbs",
+                    "type": "`$INTEGER`",
+                    "short": "Launch mass in pounds"
                 },
                 {
                     "name": "longitude",
-                    "short": "Longitude",
-                    "type": "`$NUMBER`"
+                    "title": "Longitude",
+                    "type": "`$NUMBER`",
+                    "short": "Longitude"
                 },
                 {
                     "name": "mars_distance_km",
-                    "short": "Distance from Mars in km",
-                    "type": "`$NUMBER`"
+                    "title": "Mars Distance Km",
+                    "type": "`$NUMBER`",
+                    "short": "Distance from Mars in km"
                 },
                 {
                     "name": "mars_distance_mi",
-                    "short": "Distance from Mars in miles",
-                    "type": "`$NUMBER`"
+                    "title": "Mars Distance Mi",
+                    "type": "`$NUMBER`",
+                    "short": "Distance from Mars in miles"
                 },
                 {
                     "name": "name",
-                    "short": "Roadster name",
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Roadster name"
                 },
                 {
                     "name": "norad_id",
-                    "short": "NORAD ID",
-                    "type": "`$INTEGER`"
+                    "title": "Norad Id",
+                    "type": "`$INTEGER`",
+                    "short": "NORAD ID"
                 },
                 {
                     "name": "orbit_type",
-                    "short": "Orbit type",
-                    "type": "`$STRING`"
+                    "title": "Orbit Type",
+                    "type": "`$STRING`",
+                    "short": "Orbit type"
                 },
                 {
                     "name": "periapsis_arg",
-                    "short": "Argument of periapsis",
-                    "type": "`$NUMBER`"
+                    "title": "Periapsis Arg",
+                    "type": "`$NUMBER`",
+                    "short": "Argument of periapsis"
                 },
                 {
                     "name": "periapsis_au",
-                    "short": "Periapsis in AU",
-                    "type": "`$NUMBER`"
+                    "title": "Periapsis Au",
+                    "type": "`$NUMBER`",
+                    "short": "Periapsis in AU"
                 },
                 {
                     "name": "period_days",
-                    "short": "Orbital period in days",
-                    "type": "`$NUMBER`"
+                    "title": "Period Days",
+                    "type": "`$NUMBER`",
+                    "short": "Orbital period in days"
                 },
                 {
                     "name": "semi_major_axis_au",
-                    "short": "Semi-major axis in AU",
-                    "type": "`$NUMBER`"
+                    "title": "Semi Major Axis Au",
+                    "type": "`$NUMBER`",
+                    "short": "Semi-major axis in AU"
                 },
                 {
                     "name": "speed_kph",
-                    "short": "Speed in km/h",
-                    "type": "`$NUMBER`"
+                    "title": "Speed Kph",
+                    "type": "`$NUMBER`",
+                    "short": "Speed in km/h"
                 },
                 {
                     "name": "speed_mph",
-                    "short": "Speed in mph",
-                    "type": "`$NUMBER`"
+                    "title": "Speed Mph",
+                    "type": "`$NUMBER`",
+                    "short": "Speed in mph"
                 },
                 {
                     "name": "video",
-                    "short": "Video URL",
-                    "type": "`$STRING`"
+                    "title": "Video",
+                    "type": "`$STRING`",
+                    "short": "Video URL"
                 },
                 {
                     "name": "wikipedia",
-                    "short": "Wikipedia URL",
-                    "type": "`$STRING`"
+                    "title": "Wikipedia",
+                    "type": "`$STRING`",
+                    "short": "Wikipedia URL"
                 }
             ],
             "id": {
@@ -1454,7 +1598,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/roadster",
@@ -1463,14 +1606,16 @@ class Config {
                                     "lit": "roadster"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "roadster"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body.flickr_images`"
                             },
-                            "parts": [
-                                "roadster"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -1483,82 +1628,99 @@ class Config {
             "fields": [
                 {
                     "name": "active",
-                    "short": "Whether the rocket is active",
-                    "type": "`$BOOLEAN`"
+                    "title": "Active",
+                    "type": "`$BOOLEAN`",
+                    "short": "Whether the rocket is active"
                 },
                 {
                     "name": "boosters",
-                    "short": "Number of boosters",
-                    "type": "`$INTEGER`"
+                    "title": "Boosters",
+                    "type": "`$INTEGER`",
+                    "short": "Number of boosters"
                 },
                 {
                     "name": "company",
-                    "short": "Company",
-                    "type": "`$STRING`"
+                    "title": "Company",
+                    "type": "`$STRING`",
+                    "short": "Company"
                 },
                 {
                     "name": "cost_per_launch",
-                    "short": "Cost per launch in USD",
-                    "type": "`$INTEGER`"
+                    "title": "Cost Per Launch",
+                    "type": "`$INTEGER`",
+                    "short": "Cost per launch in USD"
                 },
                 {
                     "name": "country",
-                    "short": "Country of origin",
-                    "type": "`$STRING`"
+                    "title": "Country",
+                    "type": "`$STRING`",
+                    "short": "Country of origin"
                 },
                 {
                     "name": "description",
+                    "title": "Description",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "diameter",
+                    "title": "Diameter",
                     "type": "`$OBJECT`"
                 },
                 {
-                    "format": "date",
                     "name": "first_flight",
+                    "title": "First Flight",
+                    "type": "`$STRING`",
                     "short": "Date of first flight",
-                    "type": "`$STRING`"
+                    "format": "date"
                 },
                 {
                     "name": "flickr_images",
+                    "title": "Flickr Images",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "height",
+                    "title": "Height",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "id",
-                    "short": "Rocket ID",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Rocket ID"
                 },
                 {
                     "name": "mass",
+                    "title": "Mass",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "name",
-                    "short": "Rocket name",
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Rocket name"
                 },
                 {
                     "name": "stages",
-                    "short": "Number of stages",
-                    "type": "`$INTEGER`"
+                    "title": "Stages",
+                    "type": "`$INTEGER`",
+                    "short": "Number of stages"
                 },
                 {
                     "name": "success_rate_pct",
-                    "short": "Success rate percentage",
-                    "type": "`$NUMBER`"
+                    "title": "Success Rate Pct",
+                    "type": "`$NUMBER`",
+                    "short": "Success rate percentage"
                 },
                 {
                     "name": "type",
-                    "short": "Rocket type",
-                    "type": "`$STRING`"
+                    "title": "Type",
+                    "type": "`$STRING`",
+                    "short": "Rocket type"
                 },
                 {
                     "name": "wikipedia",
+                    "title": "Wikipedia",
                     "type": "`$STRING`"
                 }
             ],
@@ -1573,7 +1735,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/rockets",
@@ -1582,14 +1743,16 @@ class Config {
                                     "lit": "rockets"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "rockets"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "rockets"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -1598,17 +1761,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/rockets/{id}",
@@ -1620,19 +1772,31 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
+                            "parts": [
+                                "rockets",
+                                "{id}"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "rockets",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -1645,118 +1809,141 @@ class Config {
             "fields": [
                 {
                     "name": "abs",
-                    "short": "ABS number",
-                    "type": "`$INTEGER`"
+                    "title": "Abs",
+                    "type": "`$INTEGER`",
+                    "short": "ABS number"
                 },
                 {
                     "name": "class",
-                    "short": "Ship class",
-                    "type": "`$INTEGER`"
+                    "title": "Class",
+                    "type": "`$INTEGER`",
+                    "short": "Ship class"
                 },
                 {
                     "name": "course_deg",
-                    "short": "Course in degrees",
-                    "type": "`$NUMBER`"
+                    "title": "Course Deg",
+                    "type": "`$NUMBER`",
+                    "short": "Course in degrees"
                 },
                 {
                     "name": "home_port",
-                    "short": "Home port",
-                    "type": "`$STRING`"
+                    "title": "Home Port",
+                    "type": "`$STRING`",
+                    "short": "Home port"
                 },
                 {
                     "name": "id",
-                    "short": "Ship ID",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Ship ID"
                 },
                 {
                     "name": "image",
-                    "short": "Image URL",
-                    "type": "`$STRING`"
+                    "title": "Image",
+                    "type": "`$STRING`",
+                    "short": "Image URL"
                 },
                 {
                     "name": "imo",
-                    "short": "IMO number",
-                    "type": "`$INTEGER`"
+                    "title": "Imo",
+                    "type": "`$INTEGER`",
+                    "short": "IMO number"
                 },
                 {
                     "name": "last_ais_update",
-                    "short": "Last AIS update timestamp",
-                    "type": "`$STRING`"
+                    "title": "Last Ais Update",
+                    "type": "`$STRING`",
+                    "short": "Last AIS update timestamp"
                 },
                 {
                     "name": "latitude",
-                    "short": "Latitude",
-                    "type": "`$NUMBER`"
+                    "title": "Latitude",
+                    "type": "`$NUMBER`",
+                    "short": "Latitude"
                 },
                 {
                     "name": "launches",
-                    "short": "Launch IDs",
-                    "type": "`$ARRAY`"
+                    "title": "Launches",
+                    "type": "`$ARRAY`",
+                    "short": "Launch IDs"
                 },
                 {
                     "name": "legacy_id",
-                    "short": "Legacy ID",
-                    "type": "`$STRING`"
+                    "title": "Legacy Id",
+                    "type": "`$STRING`",
+                    "short": "Legacy ID"
                 },
                 {
                     "name": "link",
-                    "short": "Link to ship info",
-                    "type": "`$STRING`"
+                    "title": "Link",
+                    "type": "`$STRING`",
+                    "short": "Link to ship info"
                 },
                 {
                     "name": "longitude",
-                    "short": "Longitude",
-                    "type": "`$NUMBER`"
+                    "title": "Longitude",
+                    "type": "`$NUMBER`",
+                    "short": "Longitude"
                 },
                 {
                     "name": "mass_kg",
-                    "short": "Mass in kilograms",
-                    "type": "`$INTEGER`"
+                    "title": "Mass Kg",
+                    "type": "`$INTEGER`",
+                    "short": "Mass in kilograms"
                 },
                 {
                     "name": "mass_lbs",
-                    "short": "Mass in pounds",
-                    "type": "`$INTEGER`"
+                    "title": "Mass Lbs",
+                    "type": "`$INTEGER`",
+                    "short": "Mass in pounds"
                 },
                 {
                     "name": "mmsi",
-                    "short": "MMSI number",
-                    "type": "`$INTEGER`"
+                    "title": "Mmsi",
+                    "type": "`$INTEGER`",
+                    "short": "MMSI number"
                 },
                 {
                     "name": "model",
-                    "short": "Ship model",
-                    "type": "`$STRING`"
+                    "title": "Model",
+                    "type": "`$STRING`",
+                    "short": "Ship model"
                 },
                 {
                     "name": "name",
-                    "short": "Ship name",
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Ship name"
                 },
                 {
                     "name": "roles",
-                    "short": "Ship roles",
-                    "type": "`$ARRAY`"
+                    "title": "Roles",
+                    "type": "`$ARRAY`",
+                    "short": "Ship roles"
                 },
                 {
                     "name": "speed_kn",
-                    "short": "Speed in knots",
-                    "type": "`$NUMBER`"
+                    "title": "Speed Kn",
+                    "type": "`$NUMBER`",
+                    "short": "Speed in knots"
                 },
                 {
                     "name": "status",
-                    "short": "Ship status",
-                    "type": "`$STRING`"
+                    "title": "Status",
+                    "type": "`$STRING`",
+                    "short": "Ship status"
                 },
                 {
                     "name": "type",
-                    "short": "Ship type",
-                    "type": "`$STRING`"
+                    "title": "Type",
+                    "type": "`$STRING`",
+                    "short": "Ship type"
                 },
                 {
                     "name": "year_built",
-                    "short": "Year built",
-                    "type": "`$INTEGER`"
+                    "title": "Year Built",
+                    "type": "`$INTEGER`",
+                    "short": "Year built"
                 }
             ],
             "id": {
@@ -1770,7 +1957,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/ships",
@@ -1779,14 +1965,16 @@ class Config {
                                     "lit": "ships"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "ships"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "ships"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -1795,17 +1983,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/ships/{id}",
@@ -1817,19 +1994,31 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
+                            "parts": [
+                                "ships",
+                                "{id}"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "ships",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -1842,43 +2031,51 @@ class Config {
             "fields": [
                 {
                     "name": "height_km",
-                    "short": "Current height in kilometers",
-                    "type": "`$NUMBER`"
+                    "title": "Height Km",
+                    "type": "`$NUMBER`",
+                    "short": "Current height in kilometers"
                 },
                 {
                     "name": "id",
-                    "short": "Starlink satellite ID",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Starlink satellite ID"
                 },
                 {
                     "name": "latitude",
-                    "short": "Current latitude",
-                    "type": "`$NUMBER`"
+                    "title": "Latitude",
+                    "type": "`$NUMBER`",
+                    "short": "Current latitude"
                 },
                 {
                     "name": "launch",
-                    "short": "Launch ID",
-                    "type": "`$STRING`"
+                    "title": "Launch",
+                    "type": "`$STRING`",
+                    "short": "Launch ID"
                 },
                 {
                     "name": "longitude",
-                    "short": "Current longitude",
-                    "type": "`$NUMBER`"
+                    "title": "Longitude",
+                    "type": "`$NUMBER`",
+                    "short": "Current longitude"
                 },
                 {
                     "name": "spaceTrack",
-                    "short": "Space-Track.org data",
-                    "type": "`$OBJECT`"
+                    "title": "Space Track",
+                    "type": "`$OBJECT`",
+                    "short": "Space-Track.org data"
                 },
                 {
                     "name": "velocity_kms",
-                    "short": "Current velocity in km/s",
-                    "type": "`$NUMBER`"
+                    "title": "Velocity Kms",
+                    "type": "`$NUMBER`",
+                    "short": "Current velocity in km/s"
                 },
                 {
                     "name": "version",
-                    "short": "Satellite version",
-                    "type": "`$STRING`"
+                    "title": "Version",
+                    "type": "`$STRING`",
+                    "short": "Satellite version"
                 }
             ],
             "id": {
@@ -1892,7 +2089,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/starlink",
@@ -1901,14 +2097,16 @@ class Config {
                                     "lit": "starlink"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "starlink"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "starlink"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -1917,17 +2115,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/starlink/{id}",
@@ -1939,19 +2126,31 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
+                            "parts": [
+                                "starlink",
+                                "{id}"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body.spaceTrack`"
                             },
-                            "parts": [
-                                "starlink",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }

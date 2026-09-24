@@ -1,0 +1,44 @@
+# BasicCapsuleFlow
+
+main: kit: flow: BasicCapsuleFlow:
+{
+  entity: "capsule",
+  kind: "basic",
+  name: "BasicCapsuleFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "capsule_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "capsule_ref01",
+        srcdatavar: "capsule_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "capsule01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-capsule_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCapsuleFlow"
+}

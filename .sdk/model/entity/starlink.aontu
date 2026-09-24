@@ -1,0 +1,142 @@
+# Entity: starlink
+
+main: kit: entity: starlink: {
+
+  alias: field: {}
+
+  fields: {
+    height_km: {
+      h: "Height Km"
+      n: "height_km"
+      r: false
+      sh: "Current height in kilometers"
+      t: "`$NUMBER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Starlink satellite ID"
+      t: "`$STRING`"
+    }
+    latitude: {
+      h: "Latitude"
+      n: "latitude"
+      r: false
+      sh: "Current latitude"
+      t: "`$NUMBER`"
+    }
+    launch: {
+      h: "Launch"
+      n: "launch"
+      r: false
+      sh: "Launch ID"
+      t: "`$STRING`"
+    }
+    longitude: {
+      h: "Longitude"
+      n: "longitude"
+      r: false
+      sh: "Current longitude"
+      t: "`$NUMBER`"
+    }
+    spaceTrack: {
+      h: "Space Track"
+      n: "spaceTrack"
+      r: false
+      sh: "Space-Track.org data"
+      t: "`$OBJECT`"
+    }
+    velocity_kms: {
+      h: "Velocity Kms"
+      n: "velocity_kms"
+      r: false
+      sh: "Current velocity in km/s"
+      t: "`$NUMBER`"
+    }
+    version: {
+      h: "Version"
+      n: "version"
+      r: false
+      sh: "Satellite version"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "starlink"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /starlink"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/starlink"
+          s: [
+            {
+              lit: "starlink"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /starlink/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/starlink/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "starlink"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.spaceTrack`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

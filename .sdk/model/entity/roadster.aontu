@@ -1,0 +1,234 @@
+# Entity: roadster
+
+main: kit: entity: roadster: {
+
+  alias: field: {}
+
+  fields: {
+    apoapsis_au: {
+      h: "Apoapsis Au"
+      n: "apoapsis_au"
+      r: false
+      sh: "Apoapsis in AU"
+      t: "`$NUMBER`"
+    }
+    details: {
+      h: "Details"
+      n: "details"
+      r: false
+      sh: "Details"
+      t: "`$STRING`"
+    }
+    earth_distance_km: {
+      h: "Earth Distance Km"
+      n: "earth_distance_km"
+      r: false
+      sh: "Distance from Earth in km"
+      t: "`$NUMBER`"
+    }
+    earth_distance_mi: {
+      h: "Earth Distance Mi"
+      n: "earth_distance_mi"
+      r: false
+      sh: "Distance from Earth in miles"
+      t: "`$NUMBER`"
+    }
+    eccentricity: {
+      h: "Eccentricity"
+      n: "eccentricity"
+      r: false
+      sh: "Eccentricity"
+      t: "`$NUMBER`"
+    }
+    epoch_jd: {
+      h: "Epoch Jd"
+      n: "epoch_jd"
+      r: false
+      sh: "Epoch in Julian Date"
+      t: "`$NUMBER`"
+    }
+    flickr_images: {
+      h: "Flickr Images"
+      n: "flickr_images"
+      r: false
+      sh: "Flickr images"
+      t: "`$ARRAY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Roadster ID"
+      t: "`$STRING`"
+    }
+    inclination: {
+      h: "Inclination"
+      n: "inclination"
+      r: false
+      sh: "Inclination"
+      t: "`$NUMBER`"
+    }
+    launch_date_unix: {
+      h: "Launch Date Unix"
+      n: "launch_date_unix"
+      r: false
+      sh: "Launch date in unix timestamp"
+      t: "`$INTEGER`"
+    }
+    launch_date_utc: {
+      fo: "date-time"
+      h: "Launch Date Utc"
+      n: "launch_date_utc"
+      r: false
+      sh: "Launch date in UTC"
+      t: "`$STRING`"
+    }
+    launch_mass_kg: {
+      h: "Launch Mass Kg"
+      n: "launch_mass_kg"
+      r: false
+      sh: "Launch mass in kilograms"
+      t: "`$INTEGER`"
+    }
+    launch_mass_lbs: {
+      h: "Launch Mass Lbs"
+      n: "launch_mass_lbs"
+      r: false
+      sh: "Launch mass in pounds"
+      t: "`$INTEGER`"
+    }
+    longitude: {
+      h: "Longitude"
+      n: "longitude"
+      r: false
+      sh: "Longitude"
+      t: "`$NUMBER`"
+    }
+    mars_distance_km: {
+      h: "Mars Distance Km"
+      n: "mars_distance_km"
+      r: false
+      sh: "Distance from Mars in km"
+      t: "`$NUMBER`"
+    }
+    mars_distance_mi: {
+      h: "Mars Distance Mi"
+      n: "mars_distance_mi"
+      r: false
+      sh: "Distance from Mars in miles"
+      t: "`$NUMBER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Roadster name"
+      t: "`$STRING`"
+    }
+    norad_id: {
+      h: "Norad Id"
+      n: "norad_id"
+      r: false
+      sh: "NORAD ID"
+      t: "`$INTEGER`"
+    }
+    orbit_type: {
+      h: "Orbit Type"
+      n: "orbit_type"
+      r: false
+      sh: "Orbit type"
+      t: "`$STRING`"
+    }
+    periapsis_arg: {
+      h: "Periapsis Arg"
+      n: "periapsis_arg"
+      r: false
+      sh: "Argument of periapsis"
+      t: "`$NUMBER`"
+    }
+    periapsis_au: {
+      h: "Periapsis Au"
+      n: "periapsis_au"
+      r: false
+      sh: "Periapsis in AU"
+      t: "`$NUMBER`"
+    }
+    period_days: {
+      h: "Period Days"
+      n: "period_days"
+      r: false
+      sh: "Orbital period in days"
+      t: "`$NUMBER`"
+    }
+    semi_major_axis_au: {
+      h: "Semi Major Axis Au"
+      n: "semi_major_axis_au"
+      r: false
+      sh: "Semi-major axis in AU"
+      t: "`$NUMBER`"
+    }
+    speed_kph: {
+      h: "Speed Kph"
+      n: "speed_kph"
+      r: false
+      sh: "Speed in km/h"
+      t: "`$NUMBER`"
+    }
+    speed_mph: {
+      h: "Speed Mph"
+      n: "speed_mph"
+      r: false
+      sh: "Speed in mph"
+      t: "`$NUMBER`"
+    }
+    video: {
+      h: "Video"
+      n: "video"
+      r: false
+      sh: "Video URL"
+      t: "`$STRING`"
+    }
+    wikipedia: {
+      h: "Wikipedia"
+      n: "wikipedia"
+      r: false
+      sh: "Wikipedia URL"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "roadster"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /roadster"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/roadster"
+          s: [
+            {
+              lit: "roadster"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.flickr_images`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,22 @@
+# BasicRoadsterFlow
+
+main: kit: flow: BasicRoadsterFlow:
+{
+  entity: "roadster",
+  kind: "basic",
+  name: "BasicRoadsterFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "roadster_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRoadsterFlow"
+}

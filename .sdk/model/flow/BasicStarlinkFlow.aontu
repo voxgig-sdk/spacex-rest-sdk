@@ -1,0 +1,44 @@
+# BasicStarlinkFlow
+
+main: kit: flow: BasicStarlinkFlow:
+{
+  entity: "starlink",
+  kind: "basic",
+  name: "BasicStarlinkFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "starlink_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "starlink_ref01",
+        srcdatavar: "starlink_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "starlink01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-starlink_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicStarlinkFlow"
+}

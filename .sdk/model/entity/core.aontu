@@ -1,0 +1,163 @@
+# Entity: core
+
+main: kit: entity: core: {
+
+  alias: field: {}
+
+  fields: {
+    asds_attempts: {
+      h: "Asds Attempts"
+      n: "asds_attempts"
+      r: false
+      sh: "Number of autonomous spaceport drone ship landing attempts"
+      t: "`$INTEGER`"
+    }
+    asds_landings: {
+      h: "Asds Landings"
+      n: "asds_landings"
+      r: false
+      sh: "Number of successful ASDS landings"
+      t: "`$INTEGER`"
+    }
+    block: {
+      h: "Block"
+      n: "block"
+      r: false
+      sh: "Core block number"
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Core serial number"
+      t: "`$STRING`"
+    }
+    last_update: {
+      h: "Last Update"
+      n: "last_update"
+      r: false
+      sh: "Last update about the core"
+      t: "`$STRING`"
+    }
+    launches: {
+      h: "Launches"
+      n: "launches"
+      r: false
+      sh: "Launch IDs"
+      t: "`$ARRAY`"
+    }
+    reuse_count: {
+      h: "Reuse Count"
+      n: "reuse_count"
+      r: false
+      sh: "Number of times core has been reused"
+      t: "`$INTEGER`"
+    }
+    rtls_attempts: {
+      h: "Rtls Attempts"
+      n: "rtls_attempts"
+      r: false
+      sh: "Number of return to launch site attempts"
+      t: "`$INTEGER`"
+    }
+    rtls_landings: {
+      h: "Rtls Landings"
+      n: "rtls_landings"
+      r: false
+      sh: "Number of successful RTLS landings"
+      t: "`$INTEGER`"
+    }
+    serial: {
+      h: "Serial"
+      n: "serial"
+      r: false
+      sh: "Core serial number"
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "Core status (active, inactive, unknown, expended, lost, retired)"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "core"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /cores"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/cores"
+          s: [
+            {
+              lit: "cores"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /cores/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cores/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "cores"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

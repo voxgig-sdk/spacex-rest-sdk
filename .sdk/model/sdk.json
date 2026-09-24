@@ -24,77 +24,152 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "capsule": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Capsule serial number",
-              "type": "`$STRING`"
+          "fields": {
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Capsule serial number",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "land_landings",
-              "req": false,
-              "short": "Number of land landings",
-              "type": "`$INTEGER`"
+            "land_landings": {
+              "a": true,
+              "h": "Land Landings",
+              "n": "land_landings",
+              "r": false,
+              "sh": "Number of land landings",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "last_update",
-              "req": false,
-              "short": "Last update about the capsule",
-              "type": "`$STRING`"
+            "last_update": {
+              "a": true,
+              "h": "Last Update",
+              "n": "last_update",
+              "r": false,
+              "sh": "Last update about the capsule",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "launches",
-              "req": false,
-              "short": "Launch IDs",
-              "type": "`$ARRAY`"
+            "launches": {
+              "a": true,
+              "h": "Launches",
+              "n": "launches",
+              "r": false,
+              "sh": "Launch IDs",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "reuse_count",
-              "req": false,
-              "short": "Number of times capsule has been reused",
-              "type": "`$INTEGER`"
+            "reuse_count": {
+              "a": true,
+              "h": "Reuse Count",
+              "n": "reuse_count",
+              "r": false,
+              "sh": "Number of times capsule has been reused",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "serial",
-              "req": false,
-              "short": "Capsule serial number",
-              "type": "`$STRING`"
+            "serial": {
+              "a": true,
+              "h": "Serial",
+              "n": "serial",
+              "r": false,
+              "sh": "Capsule serial number",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "status",
-              "req": false,
-              "short": "Capsule status",
-              "type": "`$STRING`"
+            "status": {
+              "a": true,
+              "h": "Status",
+              "n": "status",
+              "r": false,
+              "sh": "Capsule status",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "type",
-              "req": false,
-              "short": "Capsule type",
-              "type": "`$STRING`"
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "sh": "Capsule type",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "water_landings",
-              "req": false,
-              "short": "Number of water landings",
-              "type": "`$INTEGER`"
+            "water_landings": {
+              "a": true,
+              "h": "Water Landings",
+              "n": "water_landings",
+              "r": false,
+              "sh": "Number of water landings",
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -106,24 +181,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /capsules",
-                    "json": "{\"operationId\":\"getAllCapsules\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"id\":{\"description\":\"Capsule serial number\",\"type\":\"string\"},\"land_landings\":{\"description\":\"Number of land landings\",\"type\":\"integer\"},\"last_update\":{\"description\":\"Last update about the capsule\",\"nullable\":true,\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"reuse_count\":{\"description\":\"Number of times capsule has been reused\",\"type\":\"integer\"},\"serial\":{\"description\":\"Capsule serial number\",\"type\":\"string\"},\"status\":{\"description\":\"Capsule status\",\"type\":\"string\"},\"type\":{\"description\":\"Capsule type\",\"type\":\"string\"},\"water_landings\":{\"description\":\"Number of water landings\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/capsules",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/capsules",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "capsules"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -135,29 +210,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /capsules/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /capsules/{id}",
-                    "json": "{\"operationId\":\"getOneCapsule\",\"parameters\":[{\"description\":\"Capsule ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"id\":{\"description\":\"Capsule serial number\",\"type\":\"string\"},\"land_landings\":{\"description\":\"Number of land landings\",\"type\":\"integer\"},\"last_update\":{\"description\":\"Last update about the capsule\",\"nullable\":true,\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"reuse_count\":{\"description\":\"Number of times capsule has been reused\",\"type\":\"integer\"},\"serial\":{\"description\":\"Capsule serial number\",\"type\":\"string\"},\"status\":{\"description\":\"Capsule status\",\"type\":\"string\"},\"type\":{\"description\":\"Capsule type\",\"type\":\"string\"},\"water_landings\":{\"description\":\"Number of water landings\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Capsule not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/capsules/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/capsules/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "capsules"
                     },
@@ -165,12 +245,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -187,85 +262,96 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "asds_attempts",
-              "req": false,
-              "short": "Number of autonomous spaceport drone ship landing attempts",
-              "type": "`$INTEGER`"
+          "fields": {
+            "asds_attempts": {
+              "a": true,
+              "h": "Asds Attempts",
+              "n": "asds_attempts",
+              "r": false,
+              "sh": "Number of autonomous spaceport drone ship landing attempts",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "asds_landings",
-              "req": false,
-              "short": "Number of successful ASDS landings",
-              "type": "`$INTEGER`"
+            "asds_landings": {
+              "a": true,
+              "h": "Asds Landings",
+              "n": "asds_landings",
+              "r": false,
+              "sh": "Number of successful ASDS landings",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "block",
-              "req": false,
-              "short": "Core block number",
-              "type": "`$INTEGER`"
+            "block": {
+              "a": true,
+              "h": "Block",
+              "n": "block",
+              "r": false,
+              "sh": "Core block number",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Core serial number",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Core serial number",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "last_update",
-              "req": false,
-              "short": "Last update about the core",
-              "type": "`$STRING`"
+            "last_update": {
+              "a": true,
+              "h": "Last Update",
+              "n": "last_update",
+              "r": false,
+              "sh": "Last update about the core",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "launches",
-              "req": false,
-              "short": "Launch IDs",
-              "type": "`$ARRAY`"
+            "launches": {
+              "a": true,
+              "h": "Launches",
+              "n": "launches",
+              "r": false,
+              "sh": "Launch IDs",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "reuse_count",
-              "req": false,
-              "short": "Number of times core has been reused",
-              "type": "`$INTEGER`"
+            "reuse_count": {
+              "a": true,
+              "h": "Reuse Count",
+              "n": "reuse_count",
+              "r": false,
+              "sh": "Number of times core has been reused",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "rtls_attempts",
-              "req": false,
-              "short": "Number of return to launch site attempts",
-              "type": "`$INTEGER`"
+            "rtls_attempts": {
+              "a": true,
+              "h": "Rtls Attempts",
+              "n": "rtls_attempts",
+              "r": false,
+              "sh": "Number of return to launch site attempts",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "rtls_landings",
-              "req": false,
-              "short": "Number of successful RTLS landings",
-              "type": "`$INTEGER`"
+            "rtls_landings": {
+              "a": true,
+              "h": "Rtls Landings",
+              "n": "rtls_landings",
+              "r": false,
+              "sh": "Number of successful RTLS landings",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "serial",
-              "req": false,
-              "short": "Core serial number",
-              "type": "`$STRING`"
+            "serial": {
+              "a": true,
+              "h": "Serial",
+              "n": "serial",
+              "r": false,
+              "sh": "Core serial number",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "status",
-              "req": false,
-              "short": "Core status (active, inactive, unknown, expended, lost, retired)",
-              "type": "`$STRING`"
+            "status": {
+              "a": true,
+              "h": "Status",
+              "n": "status",
+              "r": false,
+              "sh": "Core status (active, inactive, unknown, expended, lost, retired)",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -277,24 +363,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /cores",
-                    "json": "{\"operationId\":\"getAllCores\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"asds_attempts\":{\"description\":\"Number of autonomous spaceport drone ship landing attempts\",\"type\":\"integer\"},\"asds_landings\":{\"description\":\"Number of successful ASDS landings\",\"type\":\"integer\"},\"block\":{\"description\":\"Core block number\",\"nullable\":true,\"type\":\"integer\"},\"id\":{\"description\":\"Core serial number\",\"type\":\"string\"},\"last_update\":{\"description\":\"Last update about the core\",\"nullable\":true,\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"reuse_count\":{\"description\":\"Number of times core has been reused\",\"type\":\"integer\"},\"rtls_attempts\":{\"description\":\"Number of return to launch site attempts\",\"type\":\"integer\"},\"rtls_landings\":{\"description\":\"Number of successful RTLS landings\",\"type\":\"integer\"},\"serial\":{\"description\":\"Core serial number\",\"type\":\"string\"},\"status\":{\"description\":\"Core status (active, inactive, unknown, expended, lost, retired)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/cores",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cores",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "cores"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -306,29 +392,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /cores/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /cores/{id}",
-                    "json": "{\"operationId\":\"getOneCore\",\"parameters\":[{\"description\":\"Core ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"asds_attempts\":{\"description\":\"Number of autonomous spaceport drone ship landing attempts\",\"type\":\"integer\"},\"asds_landings\":{\"description\":\"Number of successful ASDS landings\",\"type\":\"integer\"},\"block\":{\"description\":\"Core block number\",\"nullable\":true,\"type\":\"integer\"},\"id\":{\"description\":\"Core serial number\",\"type\":\"string\"},\"last_update\":{\"description\":\"Last update about the core\",\"nullable\":true,\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"reuse_count\":{\"description\":\"Number of times core has been reused\",\"type\":\"integer\"},\"rtls_attempts\":{\"description\":\"Number of return to launch site attempts\",\"type\":\"integer\"},\"rtls_landings\":{\"description\":\"Number of successful RTLS landings\",\"type\":\"integer\"},\"serial\":{\"description\":\"Core serial number\",\"type\":\"string\"},\"status\":{\"description\":\"Core status (active, inactive, unknown, expended, lost, retired)\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Core not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cores/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/cores/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "cores"
                     },
@@ -336,12 +427,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -358,57 +444,64 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "agency",
-              "req": false,
-              "short": "Agency",
-              "type": "`$STRING`"
+          "fields": {
+            "agency": {
+              "a": true,
+              "h": "Agency",
+              "n": "agency",
+              "r": false,
+              "sh": "Agency",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Crew member ID",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Crew member ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "image",
-              "req": false,
-              "short": "Image URL",
-              "type": "`$STRING`"
+            "image": {
+              "a": true,
+              "h": "Image",
+              "n": "image",
+              "r": false,
+              "sh": "Image URL",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "launches",
-              "req": false,
-              "short": "Launch IDs",
-              "type": "`$ARRAY`"
+            "launches": {
+              "a": true,
+              "h": "Launches",
+              "n": "launches",
+              "r": false,
+              "sh": "Launch IDs",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Crew member name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Crew member name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "status",
-              "req": false,
-              "short": "Status (active, inactive, retired, unknown)",
-              "type": "`$STRING`"
+            "status": {
+              "a": true,
+              "h": "Status",
+              "n": "status",
+              "r": false,
+              "sh": "Status (active, inactive, retired, unknown)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "wikipedia",
-              "req": false,
-              "short": "Wikipedia URL",
-              "type": "`$STRING`"
+            "wikipedia": {
+              "a": true,
+              "h": "Wikipedia",
+              "n": "wikipedia",
+              "r": false,
+              "sh": "Wikipedia URL",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -420,24 +513,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /crew",
-                    "json": "{\"operationId\":\"getAllCrew\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"agency\":{\"description\":\"Agency\",\"type\":\"string\"},\"id\":{\"description\":\"Crew member ID\",\"type\":\"string\"},\"image\":{\"description\":\"Image URL\",\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"Crew member name\",\"type\":\"string\"},\"status\":{\"description\":\"Status (active, inactive, retired, unknown)\",\"type\":\"string\"},\"wikipedia\":{\"description\":\"Wikipedia URL\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/crew",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/crew",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "crew"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -449,29 +542,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /crew/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /crew/{id}",
-                    "json": "{\"operationId\":\"getOneCrew\",\"parameters\":[{\"description\":\"Crew member ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"agency\":{\"description\":\"Agency\",\"type\":\"string\"},\"id\":{\"description\":\"Crew member ID\",\"type\":\"string\"},\"image\":{\"description\":\"Image URL\",\"type\":\"string\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"Crew member name\",\"type\":\"string\"},\"status\":{\"description\":\"Status (active, inactive, retired, unknown)\",\"type\":\"string\"},\"wikipedia\":{\"description\":\"Wikipedia URL\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Crew member not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/crew/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/crew/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "crew"
                     },
@@ -479,12 +577,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -501,106 +594,120 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "details",
-              "req": false,
-              "short": "Landing pad details",
-              "type": "`$STRING`"
+          "fields": {
+            "details": {
+              "a": true,
+              "h": "Details",
+              "n": "details",
+              "r": false,
+              "sh": "Landing pad details",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "full_name",
-              "req": false,
-              "short": "Full landing pad name",
-              "type": "`$STRING`"
+            "full_name": {
+              "a": true,
+              "h": "Full Name",
+              "n": "full_name",
+              "r": false,
+              "sh": "Full landing pad name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Landing pad ID",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Landing pad ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "landing_attempts",
-              "req": false,
-              "short": "Number of landing attempts",
-              "type": "`$INTEGER`"
+            "landing_attempts": {
+              "a": true,
+              "h": "Landing Attempts",
+              "n": "landing_attempts",
+              "r": false,
+              "sh": "Number of landing attempts",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "landing_successes",
-              "req": false,
-              "short": "Number of successful landings",
-              "type": "`$INTEGER`"
+            "landing_successes": {
+              "a": true,
+              "h": "Landing Successes",
+              "n": "landing_successes",
+              "r": false,
+              "sh": "Number of successful landings",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "latitude",
-              "req": false,
-              "short": "Latitude",
-              "type": "`$NUMBER`"
+            "latitude": {
+              "a": true,
+              "h": "Latitude",
+              "n": "latitude",
+              "r": false,
+              "sh": "Latitude",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "launches",
-              "req": false,
-              "short": "Launch IDs",
-              "type": "`$ARRAY`"
+            "launches": {
+              "a": true,
+              "h": "Launches",
+              "n": "launches",
+              "r": false,
+              "sh": "Launch IDs",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "locality",
-              "req": false,
-              "short": "Locality",
-              "type": "`$STRING`"
+            "locality": {
+              "a": true,
+              "h": "Locality",
+              "n": "locality",
+              "r": false,
+              "sh": "Locality",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "longitude",
-              "req": false,
-              "short": "Longitude",
-              "type": "`$NUMBER`"
+            "longitude": {
+              "a": true,
+              "h": "Longitude",
+              "n": "longitude",
+              "r": false,
+              "sh": "Longitude",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Landing pad name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Landing pad name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "region",
-              "req": false,
-              "short": "Region",
-              "type": "`$STRING`"
+            "region": {
+              "a": true,
+              "h": "Region",
+              "n": "region",
+              "r": false,
+              "sh": "Region",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "status",
-              "req": false,
-              "short": "Landing pad status (active, inactive, unknown, retired, lost, under construction)",
-              "type": "`$STRING`"
+            "status": {
+              "a": true,
+              "h": "Status",
+              "n": "status",
+              "r": false,
+              "sh": "Landing pad status (active, inactive, unknown, retired, lost, under construction)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "type",
-              "req": false,
-              "short": "Landing pad type (ASDS, RTLS)",
-              "type": "`$STRING`"
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "sh": "Landing pad type (ASDS, RTLS)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "wikipedia",
-              "req": false,
-              "short": "Wikipedia URL",
-              "type": "`$STRING`"
+            "wikipedia": {
+              "a": true,
+              "h": "Wikipedia",
+              "n": "wikipedia",
+              "r": false,
+              "sh": "Wikipedia URL",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -612,24 +719,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /landpads",
-                    "json": "{\"operationId\":\"getAllLandpads\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"details\":{\"description\":\"Landing pad details\",\"type\":\"string\"},\"full_name\":{\"description\":\"Full landing pad name\",\"type\":\"string\"},\"id\":{\"description\":\"Landing pad ID\",\"type\":\"string\"},\"landing_attempts\":{\"description\":\"Number of landing attempts\",\"type\":\"integer\"},\"landing_successes\":{\"description\":\"Number of successful landings\",\"type\":\"integer\"},\"latitude\":{\"description\":\"Latitude\",\"type\":\"number\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"locality\":{\"description\":\"Locality\",\"type\":\"string\"},\"longitude\":{\"description\":\"Longitude\",\"type\":\"number\"},\"name\":{\"description\":\"Landing pad name\",\"type\":\"string\"},\"region\":{\"description\":\"Region\",\"type\":\"string\"},\"status\":{\"description\":\"Landing pad status (active, inactive, unknown, retired, lost, under construction)\",\"type\":\"string\"},\"type\":{\"description\":\"Landing pad type (ASDS, RTLS)\",\"type\":\"string\"},\"wikipedia\":{\"description\":\"Wikipedia URL\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/landpads",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/landpads",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "landpads"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -641,29 +748,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /landpads/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /landpads/{id}",
-                    "json": "{\"operationId\":\"getOneLandpad\",\"parameters\":[{\"description\":\"Landing pad ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"details\":{\"description\":\"Landing pad details\",\"type\":\"string\"},\"full_name\":{\"description\":\"Full landing pad name\",\"type\":\"string\"},\"id\":{\"description\":\"Landing pad ID\",\"type\":\"string\"},\"landing_attempts\":{\"description\":\"Number of landing attempts\",\"type\":\"integer\"},\"landing_successes\":{\"description\":\"Number of successful landings\",\"type\":\"integer\"},\"latitude\":{\"description\":\"Latitude\",\"type\":\"number\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"locality\":{\"description\":\"Locality\",\"type\":\"string\"},\"longitude\":{\"description\":\"Longitude\",\"type\":\"number\"},\"name\":{\"description\":\"Landing pad name\",\"type\":\"string\"},\"region\":{\"description\":\"Region\",\"type\":\"string\"},\"status\":{\"description\":\"Landing pad status (active, inactive, unknown, retired, lost, under construction)\",\"type\":\"string\"},\"type\":{\"description\":\"Landing pad type (ASDS, RTLS)\",\"type\":\"string\"},\"wikipedia\":{\"description\":\"Wikipedia URL\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Landing pad not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/landpads/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/landpads/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "landpads"
                     },
@@ -671,12 +783,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -693,190 +800,216 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "auto_update",
-              "req": false,
-              "short": "Whether the launch data is automatically updated",
-              "type": "`$BOOLEAN`"
+          "fields": {
+            "auto_update": {
+              "a": true,
+              "h": "Auto Update",
+              "n": "auto_update",
+              "r": false,
+              "sh": "Whether the launch data is automatically updated",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "capsules",
-              "req": false,
-              "short": "Capsule IDs",
-              "type": "`$ARRAY`"
+            "capsules": {
+              "a": true,
+              "h": "Capsules",
+              "n": "capsules",
+              "r": false,
+              "sh": "Capsule IDs",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "cores",
-              "req": false,
-              "type": "`$ARRAY`"
+            "cores": {
+              "a": true,
+              "h": "Cores",
+              "n": "cores",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "crew",
-              "req": false,
-              "short": "Crew member IDs",
-              "type": "`$ARRAY`"
+            "crew": {
+              "a": true,
+              "h": "Crew",
+              "n": "crew",
+              "r": false,
+              "sh": "Crew member IDs",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "date_local",
-              "req": false,
-              "short": "Launch date in local time",
-              "type": "`$STRING`"
+            "date_local": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Date Local",
+              "n": "date_local",
+              "r": false,
+              "sh": "Launch date in local time",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "date_precision",
-              "req": false,
-              "short": "Date precision (hour, day, month, quarter, half, year)",
-              "type": "`$STRING`"
+            "date_precision": {
+              "a": true,
+              "h": "Date Precision",
+              "n": "date_precision",
+              "r": false,
+              "sh": "Date precision (hour, day, month, quarter, half, year)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "date_unix",
-              "req": false,
-              "short": "Launch date in unix timestamp",
-              "type": "`$INTEGER`"
+            "date_unix": {
+              "a": true,
+              "h": "Date Unix",
+              "n": "date_unix",
+              "r": false,
+              "sh": "Launch date in unix timestamp",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "date_utc",
-              "req": false,
-              "short": "Launch date in UTC",
-              "type": "`$STRING`"
+            "date_utc": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Date Utc",
+              "n": "date_utc",
+              "r": false,
+              "sh": "Launch date in UTC",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "details",
-              "req": false,
-              "short": "Launch details",
-              "type": "`$STRING`"
+            "details": {
+              "a": true,
+              "h": "Details",
+              "n": "details",
+              "r": false,
+              "sh": "Launch details",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "failures",
-              "req": false,
-              "short": "Launch failures",
-              "type": "`$ARRAY`"
+            "failures": {
+              "a": true,
+              "h": "Failures",
+              "n": "failures",
+              "r": false,
+              "sh": "Launch failures",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "fairings",
-              "req": false,
-              "type": "`$OBJECT`"
+            "fairings": {
+              "a": true,
+              "h": "Fairings",
+              "n": "fairings",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "flight_number",
-              "req": false,
-              "short": "Flight number",
-              "type": "`$INTEGER`"
+            "flight_number": {
+              "a": true,
+              "h": "Flight Number",
+              "n": "flight_number",
+              "r": false,
+              "sh": "Flight number",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Launch ID",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Launch ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "launchpad",
-              "req": false,
-              "short": "Launchpad ID",
-              "type": "`$STRING`"
+            "launchpad": {
+              "a": true,
+              "h": "Launchpad",
+              "n": "launchpad",
+              "r": false,
+              "sh": "Launchpad ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "links",
-              "req": false,
-              "type": "`$OBJECT`"
+            "links": {
+              "a": true,
+              "h": "Links",
+              "n": "links",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Launch name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Launch name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "net",
-              "req": false,
-              "short": "No earlier than",
-              "type": "`$BOOLEAN`"
+            "net": {
+              "a": true,
+              "h": "Net",
+              "n": "net",
+              "r": false,
+              "sh": "No earlier than",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "payloads",
-              "req": false,
-              "short": "Payload IDs",
-              "type": "`$ARRAY`"
+            "payloads": {
+              "a": true,
+              "h": "Payloads",
+              "n": "payloads",
+              "r": false,
+              "sh": "Payload IDs",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "rocket",
-              "req": false,
-              "short": "Rocket ID",
-              "type": "`$STRING`"
+            "rocket": {
+              "a": true,
+              "h": "Rocket",
+              "n": "rocket",
+              "r": false,
+              "sh": "Rocket ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "ships",
-              "req": false,
-              "short": "Ship IDs",
-              "type": "`$ARRAY`"
+            "ships": {
+              "a": true,
+              "h": "Ships",
+              "n": "ships",
+              "r": false,
+              "sh": "Ship IDs",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "static_fire_date_unix",
-              "req": false,
-              "short": "Static fire date in unix timestamp",
-              "type": "`$INTEGER`"
+            "static_fire_date_unix": {
+              "a": true,
+              "h": "Static Fire Date Unix",
+              "n": "static_fire_date_unix",
+              "r": false,
+              "sh": "Static fire date in unix timestamp",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "static_fire_date_utc",
-              "req": false,
-              "short": "Static fire date in UTC",
-              "type": "`$STRING`"
+            "static_fire_date_utc": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Static Fire Date Utc",
+              "n": "static_fire_date_utc",
+              "r": false,
+              "sh": "Static fire date in UTC",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "success",
-              "req": false,
-              "short": "Launch success status",
-              "type": "`$BOOLEAN`"
+            "success": {
+              "a": true,
+              "h": "Success",
+              "n": "success",
+              "r": false,
+              "sh": "Launch success status",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "tdb",
-              "req": false,
-              "short": "To be determined",
-              "type": "`$BOOLEAN`"
+            "tdb": {
+              "a": true,
+              "h": "Tdb",
+              "n": "tdb",
+              "r": false,
+              "sh": "To be determined",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "upcoming",
-              "req": false,
-              "short": "Whether the launch is upcoming",
-              "type": "`$BOOLEAN`"
+            "upcoming": {
+              "a": true,
+              "h": "Upcoming",
+              "n": "upcoming",
+              "r": false,
+              "sh": "Whether the launch is upcoming",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "window",
-              "req": false,
-              "short": "Launch window in seconds",
-              "type": "`$INTEGER`"
+            "window": {
+              "a": true,
+              "h": "Window",
+              "n": "window",
+              "r": false,
+              "sh": "Launch window in seconds",
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -888,41 +1021,44 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /launches",
-                    "json": "{\"operationId\":\"getAllLaunches\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"auto_update\":{\"description\":\"Whether the launch data is automatically updated\",\"type\":\"boolean\"},\"capsules\":{\"description\":\"Capsule IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"cores\":{\"items\":{\"properties\":{\"core\":{\"description\":\"Core ID\",\"type\":\"string\"},\"flight\":{\"description\":\"Core flight number\",\"type\":\"integer\"},\"gridfins\":{\"description\":\"Whether core has grid fins\",\"type\":\"boolean\"},\"landing_attempt\":{\"description\":\"Whether landing was attempted\",\"type\":\"boolean\"},\"landing_success\":{\"description\":\"Whether landing was successful\",\"nullable\":true,\"type\":\"boolean\"},\"landing_type\":{\"description\":\"Landing type (ASDS, RTLS, Ocean)\",\"nullable\":true,\"type\":\"string\"},\"landpad\":{\"description\":\"Landing pad ID\",\"nullable\":true,\"type\":\"string\"},\"legs\":{\"description\":\"Whether core has legs\",\"type\":\"boolean\"},\"reused\":{\"description\":\"Whether core was reused\",\"type\":\"boolean\"}},\"type\":\"object\"},\"type\":\"array\"},\"crew\":{\"description\":\"Crew member IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"date_local\":{\"description\":\"Launch date in local time\",\"format\":\"date-time\",\"type\":\"string\"},\"date_precision\":{\"description\":\"Date precision (hour, day, month, quarter, half, year)\",\"type\":\"string\"},\"date_unix\":{\"description\":\"Launch date in unix timestamp\",\"type\":\"integer\"},\"date_utc\":{\"description\":\"Launch date in UTC\",\"format\":\"date-time\",\"type\":\"string\"},\"details\":{\"description\":\"Launch details\",\"nullable\":true,\"type\":\"string\"},\"failures\":{\"description\":\"Launch failures\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"fairings\":{\"nullable\":true,\"properties\":{\"recovered\":{\"type\":\"boolean\"},\"recovery_attempt\":{\"type\":\"boolean\"},\"reused\":{\"type\":\"boolean\"},\"ships\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"flight_number\":{\"description\":\"Flight number\",\"type\":\"integer\"},\"id\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"launchpad\":{\"description\":\"Launchpad ID\",\"type\":\"string\"},\"links\":{\"properties\":{\"article\":{\"nullable\":true,\"type\":\"string\"},\"flickr\":{\"properties\":{\"original\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"small\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"patch\":{\"properties\":{\"large\":{\"nullable\":true,\"type\":\"string\"},\"small\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"presskit\":{\"nullable\":true,\"type\":\"string\"},\"reddit\":{\"properties\":{\"campaign\":{\"nullable\":true,\"type\":\"string\"},\"launch\":{\"nullable\":true,\"type\":\"string\"},\"media\":{\"nullable\":true,\"type\":\"string\"},\"recovery\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"webcast\":{\"nullable\":true,\"type\":\"string\"},\"wikipedia\":{\"nullable\":true,\"type\":\"string\"},\"youtube_id\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"description\":\"Launch name\",\"type\":\"string\"},\"net\":{\"description\":\"No earlier than\",\"type\":\"boolean\"},\"payloads\":{\"description\":\"Payload IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"rocket\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"ships\":{\"description\":\"Ship IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"static_fire_date_unix\":{\"description\":\"Static fire date in unix timestamp\",\"nullable\":true,\"type\":\"integer\"},\"static_fire_date_utc\":{\"description\":\"Static fire date in UTC\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"success\":{\"description\":\"Launch success status\",\"nullable\":true,\"type\":\"boolean\"},\"tdb\":{\"description\":\"To be determined\",\"type\":\"boolean\"},\"upcoming\":{\"description\":\"Whether the launch is upcoming\",\"type\":\"boolean\"},\"window\":{\"description\":\"Launch window in seconds\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/launches",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/launches",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "launches"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /launches/latest",
-                    "json": "{\"operationId\":\"getLatestLaunch\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"auto_update\":{\"description\":\"Whether the launch data is automatically updated\",\"type\":\"boolean\"},\"capsules\":{\"description\":\"Capsule IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"cores\":{\"items\":{\"properties\":{\"core\":{\"description\":\"Core ID\",\"type\":\"string\"},\"flight\":{\"description\":\"Core flight number\",\"type\":\"integer\"},\"gridfins\":{\"description\":\"Whether core has grid fins\",\"type\":\"boolean\"},\"landing_attempt\":{\"description\":\"Whether landing was attempted\",\"type\":\"boolean\"},\"landing_success\":{\"description\":\"Whether landing was successful\",\"nullable\":true,\"type\":\"boolean\"},\"landing_type\":{\"description\":\"Landing type (ASDS, RTLS, Ocean)\",\"nullable\":true,\"type\":\"string\"},\"landpad\":{\"description\":\"Landing pad ID\",\"nullable\":true,\"type\":\"string\"},\"legs\":{\"description\":\"Whether core has legs\",\"type\":\"boolean\"},\"reused\":{\"description\":\"Whether core was reused\",\"type\":\"boolean\"}},\"type\":\"object\"},\"type\":\"array\"},\"crew\":{\"description\":\"Crew member IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"date_local\":{\"description\":\"Launch date in local time\",\"format\":\"date-time\",\"type\":\"string\"},\"date_precision\":{\"description\":\"Date precision (hour, day, month, quarter, half, year)\",\"type\":\"string\"},\"date_unix\":{\"description\":\"Launch date in unix timestamp\",\"type\":\"integer\"},\"date_utc\":{\"description\":\"Launch date in UTC\",\"format\":\"date-time\",\"type\":\"string\"},\"details\":{\"description\":\"Launch details\",\"nullable\":true,\"type\":\"string\"},\"failures\":{\"description\":\"Launch failures\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"fairings\":{\"nullable\":true,\"properties\":{\"recovered\":{\"type\":\"boolean\"},\"recovery_attempt\":{\"type\":\"boolean\"},\"reused\":{\"type\":\"boolean\"},\"ships\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"flight_number\":{\"description\":\"Flight number\",\"type\":\"integer\"},\"id\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"launchpad\":{\"description\":\"Launchpad ID\",\"type\":\"string\"},\"links\":{\"properties\":{\"article\":{\"nullable\":true,\"type\":\"string\"},\"flickr\":{\"properties\":{\"original\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"small\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"patch\":{\"properties\":{\"large\":{\"nullable\":true,\"type\":\"string\"},\"small\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"presskit\":{\"nullable\":true,\"type\":\"string\"},\"reddit\":{\"properties\":{\"campaign\":{\"nullable\":true,\"type\":\"string\"},\"launch\":{\"nullable\":true,\"type\":\"string\"},\"media\":{\"nullable\":true,\"type\":\"string\"},\"recovery\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"webcast\":{\"nullable\":true,\"type\":\"string\"},\"wikipedia\":{\"nullable\":true,\"type\":\"string\"},\"youtube_id\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"description\":\"Launch name\",\"type\":\"string\"},\"net\":{\"description\":\"No earlier than\",\"type\":\"boolean\"},\"payloads\":{\"description\":\"Payload IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"rocket\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"ships\":{\"description\":\"Ship IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"static_fire_date_unix\":{\"description\":\"Static fire date in unix timestamp\",\"nullable\":true,\"type\":\"integer\"},\"static_fire_date_utc\":{\"description\":\"Static fire date in UTC\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"success\":{\"description\":\"Launch success status\",\"nullable\":true,\"type\":\"boolean\"},\"tdb\":{\"description\":\"To be determined\",\"type\":\"boolean\"},\"upcoming\":{\"description\":\"Whether the launch is upcoming\",\"type\":\"boolean\"},\"window\":{\"description\":\"Launch window in seconds\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/launches/latest",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/launches/latest",
+                  "q": {
+                    "$action": "latest"
+                  },
+                  "r": {},
+                  "s": [
                     {
                       "lit": "launches"
                     },
@@ -930,27 +1066,27 @@
                       "lit": "latest"
                     }
                   ],
-                  "select": {
-                    "$action": "latest"
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /launches/past",
-                    "json": "{\"operationId\":\"getPastLaunches\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"auto_update\":{\"description\":\"Whether the launch data is automatically updated\",\"type\":\"boolean\"},\"capsules\":{\"description\":\"Capsule IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"cores\":{\"items\":{\"properties\":{\"core\":{\"description\":\"Core ID\",\"type\":\"string\"},\"flight\":{\"description\":\"Core flight number\",\"type\":\"integer\"},\"gridfins\":{\"description\":\"Whether core has grid fins\",\"type\":\"boolean\"},\"landing_attempt\":{\"description\":\"Whether landing was attempted\",\"type\":\"boolean\"},\"landing_success\":{\"description\":\"Whether landing was successful\",\"nullable\":true,\"type\":\"boolean\"},\"landing_type\":{\"description\":\"Landing type (ASDS, RTLS, Ocean)\",\"nullable\":true,\"type\":\"string\"},\"landpad\":{\"description\":\"Landing pad ID\",\"nullable\":true,\"type\":\"string\"},\"legs\":{\"description\":\"Whether core has legs\",\"type\":\"boolean\"},\"reused\":{\"description\":\"Whether core was reused\",\"type\":\"boolean\"}},\"type\":\"object\"},\"type\":\"array\"},\"crew\":{\"description\":\"Crew member IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"date_local\":{\"description\":\"Launch date in local time\",\"format\":\"date-time\",\"type\":\"string\"},\"date_precision\":{\"description\":\"Date precision (hour, day, month, quarter, half, year)\",\"type\":\"string\"},\"date_unix\":{\"description\":\"Launch date in unix timestamp\",\"type\":\"integer\"},\"date_utc\":{\"description\":\"Launch date in UTC\",\"format\":\"date-time\",\"type\":\"string\"},\"details\":{\"description\":\"Launch details\",\"nullable\":true,\"type\":\"string\"},\"failures\":{\"description\":\"Launch failures\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"fairings\":{\"nullable\":true,\"properties\":{\"recovered\":{\"type\":\"boolean\"},\"recovery_attempt\":{\"type\":\"boolean\"},\"reused\":{\"type\":\"boolean\"},\"ships\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"flight_number\":{\"description\":\"Flight number\",\"type\":\"integer\"},\"id\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"launchpad\":{\"description\":\"Launchpad ID\",\"type\":\"string\"},\"links\":{\"properties\":{\"article\":{\"nullable\":true,\"type\":\"string\"},\"flickr\":{\"properties\":{\"original\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"small\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"patch\":{\"properties\":{\"large\":{\"nullable\":true,\"type\":\"string\"},\"small\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"presskit\":{\"nullable\":true,\"type\":\"string\"},\"reddit\":{\"properties\":{\"campaign\":{\"nullable\":true,\"type\":\"string\"},\"launch\":{\"nullable\":true,\"type\":\"string\"},\"media\":{\"nullable\":true,\"type\":\"string\"},\"recovery\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"webcast\":{\"nullable\":true,\"type\":\"string\"},\"wikipedia\":{\"nullable\":true,\"type\":\"string\"},\"youtube_id\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"description\":\"Launch name\",\"type\":\"string\"},\"net\":{\"description\":\"No earlier than\",\"type\":\"boolean\"},\"payloads\":{\"description\":\"Payload IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"rocket\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"ships\":{\"description\":\"Ship IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"static_fire_date_unix\":{\"description\":\"Static fire date in unix timestamp\",\"nullable\":true,\"type\":\"integer\"},\"static_fire_date_utc\":{\"description\":\"Static fire date in UTC\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"success\":{\"description\":\"Launch success status\",\"nullable\":true,\"type\":\"boolean\"},\"tdb\":{\"description\":\"To be determined\",\"type\":\"boolean\"},\"upcoming\":{\"description\":\"Whether the launch is upcoming\",\"type\":\"boolean\"},\"window\":{\"description\":\"Launch window in seconds\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/launches/past",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/launches/past",
+                  "q": {
+                    "$action": "past"
+                  },
+                  "r": {},
+                  "s": [
                     {
                       "lit": "launches"
                     },
@@ -958,27 +1094,27 @@
                       "lit": "past"
                     }
                   ],
-                  "select": {
-                    "$action": "past"
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /launches/upcoming",
-                    "json": "{\"operationId\":\"getUpcomingLaunches\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"auto_update\":{\"description\":\"Whether the launch data is automatically updated\",\"type\":\"boolean\"},\"capsules\":{\"description\":\"Capsule IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"cores\":{\"items\":{\"properties\":{\"core\":{\"description\":\"Core ID\",\"type\":\"string\"},\"flight\":{\"description\":\"Core flight number\",\"type\":\"integer\"},\"gridfins\":{\"description\":\"Whether core has grid fins\",\"type\":\"boolean\"},\"landing_attempt\":{\"description\":\"Whether landing was attempted\",\"type\":\"boolean\"},\"landing_success\":{\"description\":\"Whether landing was successful\",\"nullable\":true,\"type\":\"boolean\"},\"landing_type\":{\"description\":\"Landing type (ASDS, RTLS, Ocean)\",\"nullable\":true,\"type\":\"string\"},\"landpad\":{\"description\":\"Landing pad ID\",\"nullable\":true,\"type\":\"string\"},\"legs\":{\"description\":\"Whether core has legs\",\"type\":\"boolean\"},\"reused\":{\"description\":\"Whether core was reused\",\"type\":\"boolean\"}},\"type\":\"object\"},\"type\":\"array\"},\"crew\":{\"description\":\"Crew member IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"date_local\":{\"description\":\"Launch date in local time\",\"format\":\"date-time\",\"type\":\"string\"},\"date_precision\":{\"description\":\"Date precision (hour, day, month, quarter, half, year)\",\"type\":\"string\"},\"date_unix\":{\"description\":\"Launch date in unix timestamp\",\"type\":\"integer\"},\"date_utc\":{\"description\":\"Launch date in UTC\",\"format\":\"date-time\",\"type\":\"string\"},\"details\":{\"description\":\"Launch details\",\"nullable\":true,\"type\":\"string\"},\"failures\":{\"description\":\"Launch failures\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"fairings\":{\"nullable\":true,\"properties\":{\"recovered\":{\"type\":\"boolean\"},\"recovery_attempt\":{\"type\":\"boolean\"},\"reused\":{\"type\":\"boolean\"},\"ships\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"flight_number\":{\"description\":\"Flight number\",\"type\":\"integer\"},\"id\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"launchpad\":{\"description\":\"Launchpad ID\",\"type\":\"string\"},\"links\":{\"properties\":{\"article\":{\"nullable\":true,\"type\":\"string\"},\"flickr\":{\"properties\":{\"original\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"small\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"patch\":{\"properties\":{\"large\":{\"nullable\":true,\"type\":\"string\"},\"small\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"presskit\":{\"nullable\":true,\"type\":\"string\"},\"reddit\":{\"properties\":{\"campaign\":{\"nullable\":true,\"type\":\"string\"},\"launch\":{\"nullable\":true,\"type\":\"string\"},\"media\":{\"nullable\":true,\"type\":\"string\"},\"recovery\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"webcast\":{\"nullable\":true,\"type\":\"string\"},\"wikipedia\":{\"nullable\":true,\"type\":\"string\"},\"youtube_id\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"description\":\"Launch name\",\"type\":\"string\"},\"net\":{\"description\":\"No earlier than\",\"type\":\"boolean\"},\"payloads\":{\"description\":\"Payload IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"rocket\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"ships\":{\"description\":\"Ship IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"static_fire_date_unix\":{\"description\":\"Static fire date in unix timestamp\",\"nullable\":true,\"type\":\"integer\"},\"static_fire_date_utc\":{\"description\":\"Static fire date in UTC\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"success\":{\"description\":\"Launch success status\",\"nullable\":true,\"type\":\"boolean\"},\"tdb\":{\"description\":\"To be determined\",\"type\":\"boolean\"},\"upcoming\":{\"description\":\"Whether the launch is upcoming\",\"type\":\"boolean\"},\"window\":{\"description\":\"Launch window in seconds\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/launches/upcoming",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/launches/upcoming",
+                  "q": {
+                    "$action": "upcoming"
+                  },
+                  "r": {},
+                  "s": [
                     {
                       "lit": "launches"
                     },
@@ -986,10 +1122,7 @@
                       "lit": "upcoming"
                     }
                   ],
-                  "select": {
-                    "$action": "upcoming"
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -1001,29 +1134,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /launches/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /launches/{id}",
-                    "json": "{\"operationId\":\"getOneLaunch\",\"parameters\":[{\"description\":\"Launch ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"auto_update\":{\"description\":\"Whether the launch data is automatically updated\",\"type\":\"boolean\"},\"capsules\":{\"description\":\"Capsule IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"cores\":{\"items\":{\"properties\":{\"core\":{\"description\":\"Core ID\",\"type\":\"string\"},\"flight\":{\"description\":\"Core flight number\",\"type\":\"integer\"},\"gridfins\":{\"description\":\"Whether core has grid fins\",\"type\":\"boolean\"},\"landing_attempt\":{\"description\":\"Whether landing was attempted\",\"type\":\"boolean\"},\"landing_success\":{\"description\":\"Whether landing was successful\",\"nullable\":true,\"type\":\"boolean\"},\"landing_type\":{\"description\":\"Landing type (ASDS, RTLS, Ocean)\",\"nullable\":true,\"type\":\"string\"},\"landpad\":{\"description\":\"Landing pad ID\",\"nullable\":true,\"type\":\"string\"},\"legs\":{\"description\":\"Whether core has legs\",\"type\":\"boolean\"},\"reused\":{\"description\":\"Whether core was reused\",\"type\":\"boolean\"}},\"type\":\"object\"},\"type\":\"array\"},\"crew\":{\"description\":\"Crew member IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"date_local\":{\"description\":\"Launch date in local time\",\"format\":\"date-time\",\"type\":\"string\"},\"date_precision\":{\"description\":\"Date precision (hour, day, month, quarter, half, year)\",\"type\":\"string\"},\"date_unix\":{\"description\":\"Launch date in unix timestamp\",\"type\":\"integer\"},\"date_utc\":{\"description\":\"Launch date in UTC\",\"format\":\"date-time\",\"type\":\"string\"},\"details\":{\"description\":\"Launch details\",\"nullable\":true,\"type\":\"string\"},\"failures\":{\"description\":\"Launch failures\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"fairings\":{\"nullable\":true,\"properties\":{\"recovered\":{\"type\":\"boolean\"},\"recovery_attempt\":{\"type\":\"boolean\"},\"reused\":{\"type\":\"boolean\"},\"ships\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"flight_number\":{\"description\":\"Flight number\",\"type\":\"integer\"},\"id\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"launchpad\":{\"description\":\"Launchpad ID\",\"type\":\"string\"},\"links\":{\"properties\":{\"article\":{\"nullable\":true,\"type\":\"string\"},\"flickr\":{\"properties\":{\"original\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"small\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"patch\":{\"properties\":{\"large\":{\"nullable\":true,\"type\":\"string\"},\"small\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"presskit\":{\"nullable\":true,\"type\":\"string\"},\"reddit\":{\"properties\":{\"campaign\":{\"nullable\":true,\"type\":\"string\"},\"launch\":{\"nullable\":true,\"type\":\"string\"},\"media\":{\"nullable\":true,\"type\":\"string\"},\"recovery\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"webcast\":{\"nullable\":true,\"type\":\"string\"},\"wikipedia\":{\"nullable\":true,\"type\":\"string\"},\"youtube_id\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"description\":\"Launch name\",\"type\":\"string\"},\"net\":{\"description\":\"No earlier than\",\"type\":\"boolean\"},\"payloads\":{\"description\":\"Payload IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"rocket\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"ships\":{\"description\":\"Ship IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"static_fire_date_unix\":{\"description\":\"Static fire date in unix timestamp\",\"nullable\":true,\"type\":\"integer\"},\"static_fire_date_utc\":{\"description\":\"Static fire date in UTC\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"success\":{\"description\":\"Launch success status\",\"nullable\":true,\"type\":\"boolean\"},\"tdb\":{\"description\":\"To be determined\",\"type\":\"boolean\"},\"upcoming\":{\"description\":\"Whether the launch is upcoming\",\"type\":\"boolean\"},\"window\":{\"description\":\"Launch window in seconds\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Launch not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/launches/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/launches/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "launches"
                     },
@@ -1031,12 +1169,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -1053,99 +1186,112 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "details",
-              "req": false,
-              "short": "Launchpad details",
-              "type": "`$STRING`"
+          "fields": {
+            "details": {
+              "a": true,
+              "h": "Details",
+              "n": "details",
+              "r": false,
+              "sh": "Launchpad details",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "full_name",
-              "req": false,
-              "short": "Full launchpad name",
-              "type": "`$STRING`"
+            "full_name": {
+              "a": true,
+              "h": "Full Name",
+              "n": "full_name",
+              "r": false,
+              "sh": "Full launchpad name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Launchpad ID",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Launchpad ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "latitude",
-              "req": false,
-              "short": "Latitude",
-              "type": "`$NUMBER`"
+            "latitude": {
+              "a": true,
+              "h": "Latitude",
+              "n": "latitude",
+              "r": false,
+              "sh": "Latitude",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "launch_attempts",
-              "req": false,
-              "short": "Number of launch attempts",
-              "type": "`$INTEGER`"
+            "launch_attempts": {
+              "a": true,
+              "h": "Launch Attempts",
+              "n": "launch_attempts",
+              "r": false,
+              "sh": "Number of launch attempts",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "launch_successes",
-              "req": false,
-              "short": "Number of successful launches",
-              "type": "`$INTEGER`"
+            "launch_successes": {
+              "a": true,
+              "h": "Launch Successes",
+              "n": "launch_successes",
+              "r": false,
+              "sh": "Number of successful launches",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "launches",
-              "req": false,
-              "short": "Launch IDs",
-              "type": "`$ARRAY`"
+            "launches": {
+              "a": true,
+              "h": "Launches",
+              "n": "launches",
+              "r": false,
+              "sh": "Launch IDs",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "locality",
-              "req": false,
-              "short": "Locality",
-              "type": "`$STRING`"
+            "locality": {
+              "a": true,
+              "h": "Locality",
+              "n": "locality",
+              "r": false,
+              "sh": "Locality",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "longitude",
-              "req": false,
-              "short": "Longitude",
-              "type": "`$NUMBER`"
+            "longitude": {
+              "a": true,
+              "h": "Longitude",
+              "n": "longitude",
+              "r": false,
+              "sh": "Longitude",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Launchpad name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Launchpad name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "region",
-              "req": false,
-              "short": "Region",
-              "type": "`$STRING`"
+            "region": {
+              "a": true,
+              "h": "Region",
+              "n": "region",
+              "r": false,
+              "sh": "Region",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "rockets",
-              "req": false,
-              "short": "Rocket IDs",
-              "type": "`$ARRAY`"
+            "rockets": {
+              "a": true,
+              "h": "Rockets",
+              "n": "rockets",
+              "r": false,
+              "sh": "Rocket IDs",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "status",
-              "req": false,
-              "short": "Launchpad status (active, inactive, unknown, retired, lost, under construction)",
-              "type": "`$STRING`"
+            "status": {
+              "a": true,
+              "h": "Status",
+              "n": "status",
+              "r": false,
+              "sh": "Launchpad status (active, inactive, unknown, retired, lost, under construction)",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -1157,24 +1303,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /launchpads",
-                    "json": "{\"operationId\":\"getAllLaunchpads\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"details\":{\"description\":\"Launchpad details\",\"type\":\"string\"},\"full_name\":{\"description\":\"Full launchpad name\",\"type\":\"string\"},\"id\":{\"description\":\"Launchpad ID\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude\",\"type\":\"number\"},\"launch_attempts\":{\"description\":\"Number of launch attempts\",\"type\":\"integer\"},\"launch_successes\":{\"description\":\"Number of successful launches\",\"type\":\"integer\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"locality\":{\"description\":\"Locality\",\"type\":\"string\"},\"longitude\":{\"description\":\"Longitude\",\"type\":\"number\"},\"name\":{\"description\":\"Launchpad name\",\"type\":\"string\"},\"region\":{\"description\":\"Region\",\"type\":\"string\"},\"rockets\":{\"description\":\"Rocket IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"status\":{\"description\":\"Launchpad status (active, inactive, unknown, retired, lost, under construction)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/launchpads",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/launchpads",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "launchpads"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -1186,29 +1332,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /launchpads/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /launchpads/{id}",
-                    "json": "{\"operationId\":\"getOneLaunchpad\",\"parameters\":[{\"description\":\"Launchpad ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"details\":{\"description\":\"Launchpad details\",\"type\":\"string\"},\"full_name\":{\"description\":\"Full launchpad name\",\"type\":\"string\"},\"id\":{\"description\":\"Launchpad ID\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude\",\"type\":\"number\"},\"launch_attempts\":{\"description\":\"Number of launch attempts\",\"type\":\"integer\"},\"launch_successes\":{\"description\":\"Number of successful launches\",\"type\":\"integer\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"locality\":{\"description\":\"Locality\",\"type\":\"string\"},\"longitude\":{\"description\":\"Longitude\",\"type\":\"number\"},\"name\":{\"description\":\"Launchpad name\",\"type\":\"string\"},\"region\":{\"description\":\"Region\",\"type\":\"string\"},\"rockets\":{\"description\":\"Rocket IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"status\":{\"description\":\"Launchpad status (active, inactive, unknown, retired, lost, under construction)\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Launchpad not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/launchpads/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/launchpads/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "launchpads"
                     },
@@ -1216,12 +1367,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -1238,197 +1384,224 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "apoapsis_km",
-              "req": false,
-              "short": "Apoapsis in km",
-              "type": "`$NUMBER`"
+          "fields": {
+            "apoapsis_km": {
+              "a": true,
+              "h": "Apoapsis Km",
+              "n": "apoapsis_km",
+              "r": false,
+              "sh": "Apoapsis in km",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "arg_of_pericenter",
-              "req": false,
-              "short": "Argument of pericenter",
-              "type": "`$NUMBER`"
+            "arg_of_pericenter": {
+              "a": true,
+              "h": "Arg Of Pericenter",
+              "n": "arg_of_pericenter",
+              "r": false,
+              "sh": "Argument of pericenter",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "customers",
-              "req": false,
-              "short": "Customers",
-              "type": "`$ARRAY`"
+            "customers": {
+              "a": true,
+              "h": "Customers",
+              "n": "customers",
+              "r": false,
+              "sh": "Customers",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "eccentricity",
-              "req": false,
-              "short": "Eccentricity",
-              "type": "`$NUMBER`"
+            "eccentricity": {
+              "a": true,
+              "h": "Eccentricity",
+              "n": "eccentricity",
+              "r": false,
+              "sh": "Eccentricity",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "epoch",
-              "req": false,
-              "short": "Epoch",
-              "type": "`$STRING`"
+            "epoch": {
+              "a": true,
+              "h": "Epoch",
+              "n": "epoch",
+              "r": false,
+              "sh": "Epoch",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Payload ID",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Payload ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "inclination_deg",
-              "req": false,
-              "short": "Inclination in degrees",
-              "type": "`$NUMBER`"
+            "inclination_deg": {
+              "a": true,
+              "h": "Inclination Deg",
+              "n": "inclination_deg",
+              "r": false,
+              "sh": "Inclination in degrees",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "launch",
-              "req": false,
-              "short": "Launch ID",
-              "type": "`$STRING`"
+            "launch": {
+              "a": true,
+              "h": "Launch",
+              "n": "launch",
+              "r": false,
+              "sh": "Launch ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "lifespan_years",
-              "req": false,
-              "short": "Lifespan in years",
-              "type": "`$NUMBER`"
+            "lifespan_years": {
+              "a": true,
+              "h": "Lifespan Years",
+              "n": "lifespan_years",
+              "r": false,
+              "sh": "Lifespan in years",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "longitude",
-              "req": false,
-              "short": "Longitude",
-              "type": "`$NUMBER`"
+            "longitude": {
+              "a": true,
+              "h": "Longitude",
+              "n": "longitude",
+              "r": false,
+              "sh": "Longitude",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "manufacturers",
-              "req": false,
-              "short": "Manufacturers",
-              "type": "`$ARRAY`"
+            "manufacturers": {
+              "a": true,
+              "h": "Manufacturers",
+              "n": "manufacturers",
+              "r": false,
+              "sh": "Manufacturers",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "mass_kg",
-              "req": false,
-              "short": "Payload mass in kilograms",
-              "type": "`$NUMBER`"
+            "mass_kg": {
+              "a": true,
+              "h": "Mass Kg",
+              "n": "mass_kg",
+              "r": false,
+              "sh": "Payload mass in kilograms",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "mass_lbs",
-              "req": false,
-              "short": "Payload mass in pounds",
-              "type": "`$NUMBER`"
+            "mass_lbs": {
+              "a": true,
+              "h": "Mass Lbs",
+              "n": "mass_lbs",
+              "r": false,
+              "sh": "Payload mass in pounds",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "mean_anomaly",
-              "req": false,
-              "short": "Mean anomaly",
-              "type": "`$NUMBER`"
+            "mean_anomaly": {
+              "a": true,
+              "h": "Mean Anomaly",
+              "n": "mean_anomaly",
+              "r": false,
+              "sh": "Mean anomaly",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "mean_motion",
-              "req": false,
-              "short": "Mean motion",
-              "type": "`$NUMBER`"
+            "mean_motion": {
+              "a": true,
+              "h": "Mean Motion",
+              "n": "mean_motion",
+              "r": false,
+              "sh": "Mean motion",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Payload name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Payload name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "nationalities",
-              "req": false,
-              "short": "Nationalities",
-              "type": "`$ARRAY`"
+            "nationalities": {
+              "a": true,
+              "h": "Nationalities",
+              "n": "nationalities",
+              "r": false,
+              "sh": "Nationalities",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "norad_ids",
-              "req": false,
-              "short": "NORAD IDs",
-              "type": "`$ARRAY`"
+            "norad_ids": {
+              "a": true,
+              "h": "Norad Ids",
+              "n": "norad_ids",
+              "r": false,
+              "sh": "NORAD IDs",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "orbit",
-              "req": false,
-              "short": "Orbit type",
-              "type": "`$STRING`"
+            "orbit": {
+              "a": true,
+              "h": "Orbit",
+              "n": "orbit",
+              "r": false,
+              "sh": "Orbit type",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "periapsis_km",
-              "req": false,
-              "short": "Periapsis in km",
-              "type": "`$NUMBER`"
+            "periapsis_km": {
+              "a": true,
+              "h": "Periapsis Km",
+              "n": "periapsis_km",
+              "r": false,
+              "sh": "Periapsis in km",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "period_min",
-              "req": false,
-              "short": "Orbital period in minutes",
-              "type": "`$NUMBER`"
+            "period_min": {
+              "a": true,
+              "h": "Period Min",
+              "n": "period_min",
+              "r": false,
+              "sh": "Orbital period in minutes",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "raan",
-              "req": false,
-              "short": "Right ascension of the ascending node",
-              "type": "`$NUMBER`"
+            "raan": {
+              "a": true,
+              "h": "Raan",
+              "n": "raan",
+              "r": false,
+              "sh": "Right ascension of the ascending node",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "reference_system",
-              "req": false,
-              "short": "Reference system",
-              "type": "`$STRING`"
+            "reference_system": {
+              "a": true,
+              "h": "Reference System",
+              "n": "reference_system",
+              "r": false,
+              "sh": "Reference system",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "regime",
-              "req": false,
-              "short": "Orbit regime",
-              "type": "`$STRING`"
+            "regime": {
+              "a": true,
+              "h": "Regime",
+              "n": "regime",
+              "r": false,
+              "sh": "Orbit regime",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "reused",
-              "req": false,
-              "short": "Whether the payload was reused",
-              "type": "`$BOOLEAN`"
+            "reused": {
+              "a": true,
+              "h": "Reused",
+              "n": "reused",
+              "r": false,
+              "sh": "Whether the payload was reused",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "semi_major_axis_km",
-              "req": false,
-              "short": "Semi-major axis in km",
-              "type": "`$NUMBER`"
+            "semi_major_axis_km": {
+              "a": true,
+              "h": "Semi Major Axis Km",
+              "n": "semi_major_axis_km",
+              "r": false,
+              "sh": "Semi-major axis in km",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "type",
-              "req": false,
-              "short": "Payload type",
-              "type": "`$STRING`"
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "sh": "Payload type",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -1440,24 +1613,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /payloads",
-                    "json": "{\"operationId\":\"getAllPayloads\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"apoapsis_km\":{\"description\":\"Apoapsis in km\",\"nullable\":true,\"type\":\"number\"},\"arg_of_pericenter\":{\"description\":\"Argument of pericenter\",\"nullable\":true,\"type\":\"number\"},\"customers\":{\"description\":\"Customers\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"eccentricity\":{\"description\":\"Eccentricity\",\"nullable\":true,\"type\":\"number\"},\"epoch\":{\"description\":\"Epoch\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"description\":\"Payload ID\",\"type\":\"string\"},\"inclination_deg\":{\"description\":\"Inclination in degrees\",\"nullable\":true,\"type\":\"number\"},\"launch\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"lifespan_years\":{\"description\":\"Lifespan in years\",\"nullable\":true,\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude\",\"nullable\":true,\"type\":\"number\"},\"manufacturers\":{\"description\":\"Manufacturers\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"mass_kg\":{\"description\":\"Payload mass in kilograms\",\"nullable\":true,\"type\":\"number\"},\"mass_lbs\":{\"description\":\"Payload mass in pounds\",\"nullable\":true,\"type\":\"number\"},\"mean_anomaly\":{\"description\":\"Mean anomaly\",\"nullable\":true,\"type\":\"number\"},\"mean_motion\":{\"description\":\"Mean motion\",\"nullable\":true,\"type\":\"number\"},\"name\":{\"description\":\"Payload name\",\"type\":\"string\"},\"nationalities\":{\"description\":\"Nationalities\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"norad_ids\":{\"description\":\"NORAD IDs\",\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"orbit\":{\"description\":\"Orbit type\",\"type\":\"string\"},\"periapsis_km\":{\"description\":\"Periapsis in km\",\"nullable\":true,\"type\":\"number\"},\"period_min\":{\"description\":\"Orbital period in minutes\",\"nullable\":true,\"type\":\"number\"},\"raan\":{\"description\":\"Right ascension of the ascending node\",\"nullable\":true,\"type\":\"number\"},\"reference_system\":{\"description\":\"Reference system\",\"type\":\"string\"},\"regime\":{\"description\":\"Orbit regime\",\"type\":\"string\"},\"reused\":{\"description\":\"Whether the payload was reused\",\"type\":\"boolean\"},\"semi_major_axis_km\":{\"description\":\"Semi-major axis in km\",\"nullable\":true,\"type\":\"number\"},\"type\":{\"description\":\"Payload type\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/payloads",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/payloads",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "payloads"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -1469,29 +1642,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /payloads/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /payloads/{id}",
-                    "json": "{\"operationId\":\"getOnePayload\",\"parameters\":[{\"description\":\"Payload ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"apoapsis_km\":{\"description\":\"Apoapsis in km\",\"nullable\":true,\"type\":\"number\"},\"arg_of_pericenter\":{\"description\":\"Argument of pericenter\",\"nullable\":true,\"type\":\"number\"},\"customers\":{\"description\":\"Customers\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"eccentricity\":{\"description\":\"Eccentricity\",\"nullable\":true,\"type\":\"number\"},\"epoch\":{\"description\":\"Epoch\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"description\":\"Payload ID\",\"type\":\"string\"},\"inclination_deg\":{\"description\":\"Inclination in degrees\",\"nullable\":true,\"type\":\"number\"},\"launch\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"lifespan_years\":{\"description\":\"Lifespan in years\",\"nullable\":true,\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude\",\"nullable\":true,\"type\":\"number\"},\"manufacturers\":{\"description\":\"Manufacturers\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"mass_kg\":{\"description\":\"Payload mass in kilograms\",\"nullable\":true,\"type\":\"number\"},\"mass_lbs\":{\"description\":\"Payload mass in pounds\",\"nullable\":true,\"type\":\"number\"},\"mean_anomaly\":{\"description\":\"Mean anomaly\",\"nullable\":true,\"type\":\"number\"},\"mean_motion\":{\"description\":\"Mean motion\",\"nullable\":true,\"type\":\"number\"},\"name\":{\"description\":\"Payload name\",\"type\":\"string\"},\"nationalities\":{\"description\":\"Nationalities\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"norad_ids\":{\"description\":\"NORAD IDs\",\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"orbit\":{\"description\":\"Orbit type\",\"type\":\"string\"},\"periapsis_km\":{\"description\":\"Periapsis in km\",\"nullable\":true,\"type\":\"number\"},\"period_min\":{\"description\":\"Orbital period in minutes\",\"nullable\":true,\"type\":\"number\"},\"raan\":{\"description\":\"Right ascension of the ascending node\",\"nullable\":true,\"type\":\"number\"},\"reference_system\":{\"description\":\"Reference system\",\"type\":\"string\"},\"regime\":{\"description\":\"Orbit regime\",\"type\":\"string\"},\"reused\":{\"description\":\"Whether the payload was reused\",\"type\":\"boolean\"},\"semi_major_axis_km\":{\"description\":\"Semi-major axis in km\",\"nullable\":true,\"type\":\"number\"},\"type\":{\"description\":\"Payload type\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Payload not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/payloads/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/payloads/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "payloads"
                     },
@@ -1499,12 +1677,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -1521,198 +1694,225 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "apoapsis_au",
-              "req": false,
-              "short": "Apoapsis in AU",
-              "type": "`$NUMBER`"
+          "fields": {
+            "apoapsis_au": {
+              "a": true,
+              "h": "Apoapsis Au",
+              "n": "apoapsis_au",
+              "r": false,
+              "sh": "Apoapsis in AU",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "details",
-              "req": false,
-              "short": "Details",
-              "type": "`$STRING`"
+            "details": {
+              "a": true,
+              "h": "Details",
+              "n": "details",
+              "r": false,
+              "sh": "Details",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "earth_distance_km",
-              "req": false,
-              "short": "Distance from Earth in km",
-              "type": "`$NUMBER`"
+            "earth_distance_km": {
+              "a": true,
+              "h": "Earth Distance Km",
+              "n": "earth_distance_km",
+              "r": false,
+              "sh": "Distance from Earth in km",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "earth_distance_mi",
-              "req": false,
-              "short": "Distance from Earth in miles",
-              "type": "`$NUMBER`"
+            "earth_distance_mi": {
+              "a": true,
+              "h": "Earth Distance Mi",
+              "n": "earth_distance_mi",
+              "r": false,
+              "sh": "Distance from Earth in miles",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "eccentricity",
-              "req": false,
-              "short": "Eccentricity",
-              "type": "`$NUMBER`"
+            "eccentricity": {
+              "a": true,
+              "h": "Eccentricity",
+              "n": "eccentricity",
+              "r": false,
+              "sh": "Eccentricity",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "epoch_jd",
-              "req": false,
-              "short": "Epoch in Julian Date",
-              "type": "`$NUMBER`"
+            "epoch_jd": {
+              "a": true,
+              "h": "Epoch Jd",
+              "n": "epoch_jd",
+              "r": false,
+              "sh": "Epoch in Julian Date",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "flickr_images",
-              "req": false,
-              "short": "Flickr images",
-              "type": "`$ARRAY`"
+            "flickr_images": {
+              "a": true,
+              "h": "Flickr Images",
+              "n": "flickr_images",
+              "r": false,
+              "sh": "Flickr images",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Roadster ID",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Roadster ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "inclination",
-              "req": false,
-              "short": "Inclination",
-              "type": "`$NUMBER`"
+            "inclination": {
+              "a": true,
+              "h": "Inclination",
+              "n": "inclination",
+              "r": false,
+              "sh": "Inclination",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "launch_date_unix",
-              "req": false,
-              "short": "Launch date in unix timestamp",
-              "type": "`$INTEGER`"
+            "launch_date_unix": {
+              "a": true,
+              "h": "Launch Date Unix",
+              "n": "launch_date_unix",
+              "r": false,
+              "sh": "Launch date in unix timestamp",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "launch_date_utc",
-              "req": false,
-              "short": "Launch date in UTC",
-              "type": "`$STRING`"
+            "launch_date_utc": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Launch Date Utc",
+              "n": "launch_date_utc",
+              "r": false,
+              "sh": "Launch date in UTC",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "launch_mass_kg",
-              "req": false,
-              "short": "Launch mass in kilograms",
-              "type": "`$INTEGER`"
+            "launch_mass_kg": {
+              "a": true,
+              "h": "Launch Mass Kg",
+              "n": "launch_mass_kg",
+              "r": false,
+              "sh": "Launch mass in kilograms",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "launch_mass_lbs",
-              "req": false,
-              "short": "Launch mass in pounds",
-              "type": "`$INTEGER`"
+            "launch_mass_lbs": {
+              "a": true,
+              "h": "Launch Mass Lbs",
+              "n": "launch_mass_lbs",
+              "r": false,
+              "sh": "Launch mass in pounds",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "longitude",
-              "req": false,
-              "short": "Longitude",
-              "type": "`$NUMBER`"
+            "longitude": {
+              "a": true,
+              "h": "Longitude",
+              "n": "longitude",
+              "r": false,
+              "sh": "Longitude",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "mars_distance_km",
-              "req": false,
-              "short": "Distance from Mars in km",
-              "type": "`$NUMBER`"
+            "mars_distance_km": {
+              "a": true,
+              "h": "Mars Distance Km",
+              "n": "mars_distance_km",
+              "r": false,
+              "sh": "Distance from Mars in km",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "mars_distance_mi",
-              "req": false,
-              "short": "Distance from Mars in miles",
-              "type": "`$NUMBER`"
+            "mars_distance_mi": {
+              "a": true,
+              "h": "Mars Distance Mi",
+              "n": "mars_distance_mi",
+              "r": false,
+              "sh": "Distance from Mars in miles",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Roadster name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Roadster name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "norad_id",
-              "req": false,
-              "short": "NORAD ID",
-              "type": "`$INTEGER`"
+            "norad_id": {
+              "a": true,
+              "h": "Norad Id",
+              "n": "norad_id",
+              "r": false,
+              "sh": "NORAD ID",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "orbit_type",
-              "req": false,
-              "short": "Orbit type",
-              "type": "`$STRING`"
+            "orbit_type": {
+              "a": true,
+              "h": "Orbit Type",
+              "n": "orbit_type",
+              "r": false,
+              "sh": "Orbit type",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "periapsis_arg",
-              "req": false,
-              "short": "Argument of periapsis",
-              "type": "`$NUMBER`"
+            "periapsis_arg": {
+              "a": true,
+              "h": "Periapsis Arg",
+              "n": "periapsis_arg",
+              "r": false,
+              "sh": "Argument of periapsis",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "periapsis_au",
-              "req": false,
-              "short": "Periapsis in AU",
-              "type": "`$NUMBER`"
+            "periapsis_au": {
+              "a": true,
+              "h": "Periapsis Au",
+              "n": "periapsis_au",
+              "r": false,
+              "sh": "Periapsis in AU",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "period_days",
-              "req": false,
-              "short": "Orbital period in days",
-              "type": "`$NUMBER`"
+            "period_days": {
+              "a": true,
+              "h": "Period Days",
+              "n": "period_days",
+              "r": false,
+              "sh": "Orbital period in days",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "semi_major_axis_au",
-              "req": false,
-              "short": "Semi-major axis in AU",
-              "type": "`$NUMBER`"
+            "semi_major_axis_au": {
+              "a": true,
+              "h": "Semi Major Axis Au",
+              "n": "semi_major_axis_au",
+              "r": false,
+              "sh": "Semi-major axis in AU",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "speed_kph",
-              "req": false,
-              "short": "Speed in km/h",
-              "type": "`$NUMBER`"
+            "speed_kph": {
+              "a": true,
+              "h": "Speed Kph",
+              "n": "speed_kph",
+              "r": false,
+              "sh": "Speed in km/h",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "speed_mph",
-              "req": false,
-              "short": "Speed in mph",
-              "type": "`$NUMBER`"
+            "speed_mph": {
+              "a": true,
+              "h": "Speed Mph",
+              "n": "speed_mph",
+              "r": false,
+              "sh": "Speed in mph",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "video",
-              "req": false,
-              "short": "Video URL",
-              "type": "`$STRING`"
+            "video": {
+              "a": true,
+              "h": "Video",
+              "n": "video",
+              "r": false,
+              "sh": "Video URL",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "wikipedia",
-              "req": false,
-              "short": "Wikipedia URL",
-              "type": "`$STRING`"
+            "wikipedia": {
+              "a": true,
+              "h": "Wikipedia",
+              "n": "wikipedia",
+              "r": false,
+              "sh": "Wikipedia URL",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -1724,24 +1924,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /roadster",
-                    "json": "{\"operationId\":\"getRoadster\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"apoapsis_au\":{\"description\":\"Apoapsis in AU\",\"type\":\"number\"},\"details\":{\"description\":\"Details\",\"type\":\"string\"},\"earth_distance_km\":{\"description\":\"Distance from Earth in km\",\"type\":\"number\"},\"earth_distance_mi\":{\"description\":\"Distance from Earth in miles\",\"type\":\"number\"},\"eccentricity\":{\"description\":\"Eccentricity\",\"type\":\"number\"},\"epoch_jd\":{\"description\":\"Epoch in Julian Date\",\"type\":\"number\"},\"flickr_images\":{\"description\":\"Flickr images\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Roadster ID\",\"type\":\"string\"},\"inclination\":{\"description\":\"Inclination\",\"type\":\"number\"},\"launch_date_unix\":{\"description\":\"Launch date in unix timestamp\",\"type\":\"integer\"},\"launch_date_utc\":{\"description\":\"Launch date in UTC\",\"format\":\"date-time\",\"type\":\"string\"},\"launch_mass_kg\":{\"description\":\"Launch mass in kilograms\",\"type\":\"integer\"},\"launch_mass_lbs\":{\"description\":\"Launch mass in pounds\",\"type\":\"integer\"},\"longitude\":{\"description\":\"Longitude\",\"type\":\"number\"},\"mars_distance_km\":{\"description\":\"Distance from Mars in km\",\"type\":\"number\"},\"mars_distance_mi\":{\"description\":\"Distance from Mars in miles\",\"type\":\"number\"},\"name\":{\"description\":\"Roadster name\",\"type\":\"string\"},\"norad_id\":{\"description\":\"NORAD ID\",\"type\":\"integer\"},\"orbit_type\":{\"description\":\"Orbit type\",\"type\":\"string\"},\"periapsis_arg\":{\"description\":\"Argument of periapsis\",\"type\":\"number\"},\"periapsis_au\":{\"description\":\"Periapsis in AU\",\"type\":\"number\"},\"period_days\":{\"description\":\"Orbital period in days\",\"type\":\"number\"},\"semi_major_axis_au\":{\"description\":\"Semi-major axis in AU\",\"type\":\"number\"},\"speed_kph\":{\"description\":\"Speed in km/h\",\"type\":\"number\"},\"speed_mph\":{\"description\":\"Speed in mph\",\"type\":\"number\"},\"video\":{\"description\":\"Video URL\",\"type\":\"string\"},\"wikipedia\":{\"description\":\"Wikipedia URL\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/roadster",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/roadster",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "roadster"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.flickr_images`"
                   }
@@ -1758,122 +1958,139 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "active",
-              "req": false,
-              "short": "Whether the rocket is active",
-              "type": "`$BOOLEAN`"
+          "fields": {
+            "active": {
+              "a": true,
+              "h": "Active",
+              "n": "active",
+              "r": false,
+              "sh": "Whether the rocket is active",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "boosters",
-              "req": false,
-              "short": "Number of boosters",
-              "type": "`$INTEGER`"
+            "boosters": {
+              "a": true,
+              "h": "Boosters",
+              "n": "boosters",
+              "r": false,
+              "sh": "Number of boosters",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "company",
-              "req": false,
-              "short": "Company",
-              "type": "`$STRING`"
+            "company": {
+              "a": true,
+              "h": "Company",
+              "n": "company",
+              "r": false,
+              "sh": "Company",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "cost_per_launch",
-              "req": false,
-              "short": "Cost per launch in USD",
-              "type": "`$INTEGER`"
+            "cost_per_launch": {
+              "a": true,
+              "h": "Cost Per Launch",
+              "n": "cost_per_launch",
+              "r": false,
+              "sh": "Cost per launch in USD",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "country",
-              "req": false,
-              "short": "Country of origin",
-              "type": "`$STRING`"
+            "country": {
+              "a": true,
+              "h": "Country",
+              "n": "country",
+              "r": false,
+              "sh": "Country of origin",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "type": "`$STRING`"
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "diameter",
-              "req": false,
-              "type": "`$OBJECT`"
+            "diameter": {
+              "a": true,
+              "h": "Diameter",
+              "n": "diameter",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "format": "date",
-              "name": "first_flight",
-              "req": false,
-              "short": "Date of first flight",
-              "type": "`$STRING`"
+            "first_flight": {
+              "a": true,
+              "fo": "date",
+              "h": "First Flight",
+              "n": "first_flight",
+              "r": false,
+              "sh": "Date of first flight",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "flickr_images",
-              "req": false,
-              "type": "`$ARRAY`"
+            "flickr_images": {
+              "a": true,
+              "h": "Flickr Images",
+              "n": "flickr_images",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "height",
-              "req": false,
-              "type": "`$OBJECT`"
+            "height": {
+              "a": true,
+              "h": "Height",
+              "n": "height",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Rocket ID",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Rocket ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "mass",
-              "req": false,
-              "type": "`$OBJECT`"
+            "mass": {
+              "a": true,
+              "h": "Mass",
+              "n": "mass",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Rocket name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Rocket name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "stages",
-              "req": false,
-              "short": "Number of stages",
-              "type": "`$INTEGER`"
+            "stages": {
+              "a": true,
+              "h": "Stages",
+              "n": "stages",
+              "r": false,
+              "sh": "Number of stages",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "success_rate_pct",
-              "req": false,
-              "short": "Success rate percentage",
-              "type": "`$NUMBER`"
+            "success_rate_pct": {
+              "a": true,
+              "h": "Success Rate Pct",
+              "n": "success_rate_pct",
+              "r": false,
+              "sh": "Success rate percentage",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "type",
-              "req": false,
-              "short": "Rocket type",
-              "type": "`$STRING`"
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "sh": "Rocket type",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "wikipedia",
-              "req": false,
-              "type": "`$STRING`"
+            "wikipedia": {
+              "a": true,
+              "h": "Wikipedia",
+              "n": "wikipedia",
+              "r": false,
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -1885,24 +2102,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /rockets",
-                    "json": "{\"operationId\":\"getAllRockets\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"active\":{\"description\":\"Whether the rocket is active\",\"type\":\"boolean\"},\"boosters\":{\"description\":\"Number of boosters\",\"type\":\"integer\"},\"company\":{\"description\":\"Company\",\"type\":\"string\"},\"cost_per_launch\":{\"description\":\"Cost per launch in USD\",\"type\":\"integer\"},\"country\":{\"description\":\"Country of origin\",\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"diameter\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"first_flight\":{\"description\":\"Date of first flight\",\"format\":\"date\",\"type\":\"string\"},\"flickr_images\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"height\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"id\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"mass\":{\"properties\":{\"kg\":{\"type\":\"integer\"},\"lb\":{\"type\":\"integer\"}},\"type\":\"object\"},\"name\":{\"description\":\"Rocket name\",\"type\":\"string\"},\"stages\":{\"description\":\"Number of stages\",\"type\":\"integer\"},\"success_rate_pct\":{\"description\":\"Success rate percentage\",\"type\":\"number\"},\"type\":{\"description\":\"Rocket type\",\"type\":\"string\"},\"wikipedia\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/rockets",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/rockets",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "rockets"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -1914,29 +2131,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /rockets/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /rockets/{id}",
-                    "json": "{\"operationId\":\"getOneRocket\",\"parameters\":[{\"description\":\"Rocket ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"active\":{\"description\":\"Whether the rocket is active\",\"type\":\"boolean\"},\"boosters\":{\"description\":\"Number of boosters\",\"type\":\"integer\"},\"company\":{\"description\":\"Company\",\"type\":\"string\"},\"cost_per_launch\":{\"description\":\"Cost per launch in USD\",\"type\":\"integer\"},\"country\":{\"description\":\"Country of origin\",\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"diameter\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"first_flight\":{\"description\":\"Date of first flight\",\"format\":\"date\",\"type\":\"string\"},\"flickr_images\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"height\":{\"properties\":{\"feet\":{\"type\":\"number\"},\"meters\":{\"type\":\"number\"}},\"type\":\"object\"},\"id\":{\"description\":\"Rocket ID\",\"type\":\"string\"},\"mass\":{\"properties\":{\"kg\":{\"type\":\"integer\"},\"lb\":{\"type\":\"integer\"}},\"type\":\"object\"},\"name\":{\"description\":\"Rocket name\",\"type\":\"string\"},\"stages\":{\"description\":\"Number of stages\",\"type\":\"integer\"},\"success_rate_pct\":{\"description\":\"Success rate percentage\",\"type\":\"number\"},\"type\":{\"description\":\"Rocket type\",\"type\":\"string\"},\"wikipedia\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Rocket not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/rockets/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/rockets/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "rockets"
                     },
@@ -1944,12 +2166,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -1966,169 +2183,192 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "abs",
-              "req": false,
-              "short": "ABS number",
-              "type": "`$INTEGER`"
+          "fields": {
+            "abs": {
+              "a": true,
+              "h": "Abs",
+              "n": "abs",
+              "r": false,
+              "sh": "ABS number",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "class",
-              "req": false,
-              "short": "Ship class",
-              "type": "`$INTEGER`"
+            "class": {
+              "a": true,
+              "h": "Class",
+              "n": "class",
+              "r": false,
+              "sh": "Ship class",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "course_deg",
-              "req": false,
-              "short": "Course in degrees",
-              "type": "`$NUMBER`"
+            "course_deg": {
+              "a": true,
+              "h": "Course Deg",
+              "n": "course_deg",
+              "r": false,
+              "sh": "Course in degrees",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "home_port",
-              "req": false,
-              "short": "Home port",
-              "type": "`$STRING`"
+            "home_port": {
+              "a": true,
+              "h": "Home Port",
+              "n": "home_port",
+              "r": false,
+              "sh": "Home port",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Ship ID",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Ship ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "image",
-              "req": false,
-              "short": "Image URL",
-              "type": "`$STRING`"
+            "image": {
+              "a": true,
+              "h": "Image",
+              "n": "image",
+              "r": false,
+              "sh": "Image URL",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "imo",
-              "req": false,
-              "short": "IMO number",
-              "type": "`$INTEGER`"
+            "imo": {
+              "a": true,
+              "h": "Imo",
+              "n": "imo",
+              "r": false,
+              "sh": "IMO number",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "last_ais_update",
-              "req": false,
-              "short": "Last AIS update timestamp",
-              "type": "`$STRING`"
+            "last_ais_update": {
+              "a": true,
+              "h": "Last Ais Update",
+              "n": "last_ais_update",
+              "r": false,
+              "sh": "Last AIS update timestamp",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "latitude",
-              "req": false,
-              "short": "Latitude",
-              "type": "`$NUMBER`"
+            "latitude": {
+              "a": true,
+              "h": "Latitude",
+              "n": "latitude",
+              "r": false,
+              "sh": "Latitude",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "launches",
-              "req": false,
-              "short": "Launch IDs",
-              "type": "`$ARRAY`"
+            "launches": {
+              "a": true,
+              "h": "Launches",
+              "n": "launches",
+              "r": false,
+              "sh": "Launch IDs",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "legacy_id",
-              "req": false,
-              "short": "Legacy ID",
-              "type": "`$STRING`"
+            "legacy_id": {
+              "a": true,
+              "h": "Legacy Id",
+              "n": "legacy_id",
+              "r": false,
+              "sh": "Legacy ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "link",
-              "req": false,
-              "short": "Link to ship info",
-              "type": "`$STRING`"
+            "link": {
+              "a": true,
+              "h": "Link",
+              "n": "link",
+              "r": false,
+              "sh": "Link to ship info",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "longitude",
-              "req": false,
-              "short": "Longitude",
-              "type": "`$NUMBER`"
+            "longitude": {
+              "a": true,
+              "h": "Longitude",
+              "n": "longitude",
+              "r": false,
+              "sh": "Longitude",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "mass_kg",
-              "req": false,
-              "short": "Mass in kilograms",
-              "type": "`$INTEGER`"
+            "mass_kg": {
+              "a": true,
+              "h": "Mass Kg",
+              "n": "mass_kg",
+              "r": false,
+              "sh": "Mass in kilograms",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "mass_lbs",
-              "req": false,
-              "short": "Mass in pounds",
-              "type": "`$INTEGER`"
+            "mass_lbs": {
+              "a": true,
+              "h": "Mass Lbs",
+              "n": "mass_lbs",
+              "r": false,
+              "sh": "Mass in pounds",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "mmsi",
-              "req": false,
-              "short": "MMSI number",
-              "type": "`$INTEGER`"
+            "mmsi": {
+              "a": true,
+              "h": "Mmsi",
+              "n": "mmsi",
+              "r": false,
+              "sh": "MMSI number",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "model",
-              "req": false,
-              "short": "Ship model",
-              "type": "`$STRING`"
+            "model": {
+              "a": true,
+              "h": "Model",
+              "n": "model",
+              "r": false,
+              "sh": "Ship model",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Ship name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Ship name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "roles",
-              "req": false,
-              "short": "Ship roles",
-              "type": "`$ARRAY`"
+            "roles": {
+              "a": true,
+              "h": "Roles",
+              "n": "roles",
+              "r": false,
+              "sh": "Ship roles",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "speed_kn",
-              "req": false,
-              "short": "Speed in knots",
-              "type": "`$NUMBER`"
+            "speed_kn": {
+              "a": true,
+              "h": "Speed Kn",
+              "n": "speed_kn",
+              "r": false,
+              "sh": "Speed in knots",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "status",
-              "req": false,
-              "short": "Ship status",
-              "type": "`$STRING`"
+            "status": {
+              "a": true,
+              "h": "Status",
+              "n": "status",
+              "r": false,
+              "sh": "Ship status",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "type",
-              "req": false,
-              "short": "Ship type",
-              "type": "`$STRING`"
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "sh": "Ship type",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "year_built",
-              "req": false,
-              "short": "Year built",
-              "type": "`$INTEGER`"
+            "year_built": {
+              "a": true,
+              "h": "Year Built",
+              "n": "year_built",
+              "r": false,
+              "sh": "Year built",
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -2140,24 +2380,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /ships",
-                    "json": "{\"operationId\":\"getAllShips\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"abs\":{\"description\":\"ABS number\",\"nullable\":true,\"type\":\"integer\"},\"class\":{\"description\":\"Ship class\",\"nullable\":true,\"type\":\"integer\"},\"course_deg\":{\"description\":\"Course in degrees\",\"nullable\":true,\"type\":\"number\"},\"home_port\":{\"description\":\"Home port\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"description\":\"Ship ID\",\"type\":\"string\"},\"image\":{\"description\":\"Image URL\",\"nullable\":true,\"type\":\"string\"},\"imo\":{\"description\":\"IMO number\",\"nullable\":true,\"type\":\"integer\"},\"last_ais_update\":{\"description\":\"Last AIS update timestamp\",\"nullable\":true,\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude\",\"nullable\":true,\"type\":\"number\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"legacy_id\":{\"description\":\"Legacy ID\",\"nullable\":true,\"type\":\"string\"},\"link\":{\"description\":\"Link to ship info\",\"nullable\":true,\"type\":\"string\"},\"longitude\":{\"description\":\"Longitude\",\"nullable\":true,\"type\":\"number\"},\"mass_kg\":{\"description\":\"Mass in kilograms\",\"nullable\":true,\"type\":\"integer\"},\"mass_lbs\":{\"description\":\"Mass in pounds\",\"nullable\":true,\"type\":\"integer\"},\"mmsi\":{\"description\":\"MMSI number\",\"nullable\":true,\"type\":\"integer\"},\"model\":{\"description\":\"Ship model\",\"nullable\":true,\"type\":\"string\"},\"name\":{\"description\":\"Ship name\",\"type\":\"string\"},\"roles\":{\"description\":\"Ship roles\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"speed_kn\":{\"description\":\"Speed in knots\",\"nullable\":true,\"type\":\"number\"},\"status\":{\"description\":\"Ship status\",\"type\":\"string\"},\"type\":{\"description\":\"Ship type\",\"type\":\"string\"},\"year_built\":{\"description\":\"Year built\",\"nullable\":true,\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/ships",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/ships",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "ships"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -2169,29 +2409,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /ships/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /ships/{id}",
-                    "json": "{\"operationId\":\"getOneShip\",\"parameters\":[{\"description\":\"Ship ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"abs\":{\"description\":\"ABS number\",\"nullable\":true,\"type\":\"integer\"},\"class\":{\"description\":\"Ship class\",\"nullable\":true,\"type\":\"integer\"},\"course_deg\":{\"description\":\"Course in degrees\",\"nullable\":true,\"type\":\"number\"},\"home_port\":{\"description\":\"Home port\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"description\":\"Ship ID\",\"type\":\"string\"},\"image\":{\"description\":\"Image URL\",\"nullable\":true,\"type\":\"string\"},\"imo\":{\"description\":\"IMO number\",\"nullable\":true,\"type\":\"integer\"},\"last_ais_update\":{\"description\":\"Last AIS update timestamp\",\"nullable\":true,\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude\",\"nullable\":true,\"type\":\"number\"},\"launches\":{\"description\":\"Launch IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"legacy_id\":{\"description\":\"Legacy ID\",\"nullable\":true,\"type\":\"string\"},\"link\":{\"description\":\"Link to ship info\",\"nullable\":true,\"type\":\"string\"},\"longitude\":{\"description\":\"Longitude\",\"nullable\":true,\"type\":\"number\"},\"mass_kg\":{\"description\":\"Mass in kilograms\",\"nullable\":true,\"type\":\"integer\"},\"mass_lbs\":{\"description\":\"Mass in pounds\",\"nullable\":true,\"type\":\"integer\"},\"mmsi\":{\"description\":\"MMSI number\",\"nullable\":true,\"type\":\"integer\"},\"model\":{\"description\":\"Ship model\",\"nullable\":true,\"type\":\"string\"},\"name\":{\"description\":\"Ship name\",\"type\":\"string\"},\"roles\":{\"description\":\"Ship roles\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"speed_kn\":{\"description\":\"Speed in knots\",\"nullable\":true,\"type\":\"number\"},\"status\":{\"description\":\"Ship status\",\"type\":\"string\"},\"type\":{\"description\":\"Ship type\",\"type\":\"string\"},\"year_built\":{\"description\":\"Year built\",\"nullable\":true,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Ship not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/ships/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/ships/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "ships"
                     },
@@ -2199,12 +2444,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -2221,64 +2461,72 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "height_km",
-              "req": false,
-              "short": "Current height in kilometers",
-              "type": "`$NUMBER`"
+          "fields": {
+            "height_km": {
+              "a": true,
+              "h": "Height Km",
+              "n": "height_km",
+              "r": false,
+              "sh": "Current height in kilometers",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Starlink satellite ID",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Starlink satellite ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "latitude",
-              "req": false,
-              "short": "Current latitude",
-              "type": "`$NUMBER`"
+            "latitude": {
+              "a": true,
+              "h": "Latitude",
+              "n": "latitude",
+              "r": false,
+              "sh": "Current latitude",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "launch",
-              "req": false,
-              "short": "Launch ID",
-              "type": "`$STRING`"
+            "launch": {
+              "a": true,
+              "h": "Launch",
+              "n": "launch",
+              "r": false,
+              "sh": "Launch ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "longitude",
-              "req": false,
-              "short": "Current longitude",
-              "type": "`$NUMBER`"
+            "longitude": {
+              "a": true,
+              "h": "Longitude",
+              "n": "longitude",
+              "r": false,
+              "sh": "Current longitude",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "spaceTrack",
-              "req": false,
-              "short": "Space-Track.org data",
-              "type": "`$OBJECT`"
+            "spaceTrack": {
+              "a": true,
+              "h": "Space Track",
+              "n": "spaceTrack",
+              "r": false,
+              "sh": "Space-Track.org data",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "velocity_kms",
-              "req": false,
-              "short": "Current velocity in km/s",
-              "type": "`$NUMBER`"
+            "velocity_kms": {
+              "a": true,
+              "h": "Velocity Kms",
+              "n": "velocity_kms",
+              "r": false,
+              "sh": "Current velocity in km/s",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "version",
-              "req": false,
-              "short": "Satellite version",
-              "type": "`$STRING`"
+            "version": {
+              "a": true,
+              "h": "Version",
+              "n": "version",
+              "r": false,
+              "sh": "Satellite version",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -2290,24 +2538,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /starlink",
-                    "json": "{\"operationId\":\"getAllStarlink\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"height_km\":{\"description\":\"Current height in kilometers\",\"type\":\"number\"},\"id\":{\"description\":\"Starlink satellite ID\",\"type\":\"string\"},\"latitude\":{\"description\":\"Current latitude\",\"type\":\"number\"},\"launch\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"longitude\":{\"description\":\"Current longitude\",\"type\":\"number\"},\"spaceTrack\":{\"description\":\"Space-Track.org data\",\"type\":\"object\"},\"velocity_kms\":{\"description\":\"Current velocity in km/s\",\"type\":\"number\"},\"version\":{\"description\":\"Satellite version\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/starlink",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/starlink",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "starlink"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -2319,29 +2567,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /starlink/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /starlink/{id}",
-                    "json": "{\"operationId\":\"getOneStarlink\",\"parameters\":[{\"description\":\"Starlink satellite ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"height_km\":{\"description\":\"Current height in kilometers\",\"type\":\"number\"},\"id\":{\"description\":\"Starlink satellite ID\",\"type\":\"string\"},\"latitude\":{\"description\":\"Current latitude\",\"type\":\"number\"},\"launch\":{\"description\":\"Launch ID\",\"type\":\"string\"},\"longitude\":{\"description\":\"Current longitude\",\"type\":\"number\"},\"spaceTrack\":{\"description\":\"Space-Track.org data\",\"type\":\"object\"},\"velocity_kms\":{\"description\":\"Current velocity in km/s\",\"type\":\"number\"},\"version\":{\"description\":\"Satellite version\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Starlink satellite not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/starlink/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/starlink/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "starlink"
                     },
@@ -2349,12 +2602,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.spaceTrack`"
                   }
@@ -2783,13 +3031,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2799,19 +3047,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "capsule_ref01",
                 "srcdatavar": "capsule_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "capsule01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -2831,13 +3079,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2847,19 +3095,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "core_ref01",
                 "srcdatavar": "core_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "core01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -2879,13 +3127,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2895,19 +3143,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "crew_ref01",
                 "srcdatavar": "crew_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "crew01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -2927,13 +3175,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2943,19 +3191,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "landpad_ref01",
                 "srcdatavar": "landpad_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "landpad01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -2975,13 +3223,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2991,19 +3239,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "launch_ref01",
                 "srcdatavar": "launch_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "launch01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -3023,13 +3271,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -3039,19 +3287,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "launchpad_ref01",
                 "srcdatavar": "launchpad_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "launchpad01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -3071,13 +3319,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -3087,19 +3335,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "payload_ref01",
                 "srcdatavar": "payload_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "payload01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -3119,13 +3367,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -3145,13 +3393,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -3161,19 +3409,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "rocket_ref01",
                 "srcdatavar": "rocket_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "rocket01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -3193,13 +3441,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -3209,19 +3457,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "ship_ref01",
                 "srcdatavar": "ship_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "ship01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -3241,13 +3489,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -3257,19 +3505,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "starlink_ref01",
                 "srcdatavar": "starlink_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "starlink01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {

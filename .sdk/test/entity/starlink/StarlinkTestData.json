@@ -49,129 +49,13 @@
   "requests": {
     "GET /starlink": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getAllStarlink",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "properties": {
-                      "height_km": {
-                        "description": "Current height in kilometers",
-                        "type": "number"
-                      },
-                      "id": {
-                        "description": "Starlink satellite ID",
-                        "type": "string"
-                      },
-                      "latitude": {
-                        "description": "Current latitude",
-                        "type": "number"
-                      },
-                      "launch": {
-                        "description": "Launch ID",
-                        "type": "string"
-                      },
-                      "longitude": {
-                        "description": "Current longitude",
-                        "type": "number"
-                      },
-                      "spaceTrack": {
-                        "description": "Space-Track.org data",
-                        "type": "object"
-                      },
-                      "velocity_kms": {
-                        "description": "Current velocity in km/s",
-                        "type": "number"
-                      },
-                      "version": {
-                        "description": "Satellite version",
-                        "type": "string"
-                      }
-                    },
-                    "type": "object"
-                  },
-                  "type": "array"
-                }
-              }
-            },
-            "description": "Successful response"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "GET /starlink/{id}": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getOneStarlink",
-        "parameters": [
-          {
-            "description": "Starlink satellite ID",
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "height_km": {
-                      "description": "Current height in kilometers",
-                      "type": "number"
-                    },
-                    "id": {
-                      "description": "Starlink satellite ID",
-                      "type": "string"
-                    },
-                    "latitude": {
-                      "description": "Current latitude",
-                      "type": "number"
-                    },
-                    "launch": {
-                      "description": "Launch ID",
-                      "type": "string"
-                    },
-                    "longitude": {
-                      "description": "Current longitude",
-                      "type": "number"
-                    },
-                    "spaceTrack": {
-                      "description": "Space-Track.org data",
-                      "type": "object"
-                    },
-                    "velocity_kms": {
-                      "description": "Current velocity in km/s",
-                      "type": "number"
-                    },
-                    "version": {
-                      "description": "Satellite version",
-                      "type": "string"
-                    }
-                  },
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Successful response"
-          },
-          "404": {
-            "description": "Starlink satellite not found"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     }
   }
 }

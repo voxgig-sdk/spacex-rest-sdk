@@ -1,0 +1,135 @@
+# Entity: crew
+
+main: kit: entity: crew: {
+
+  alias: field: {}
+
+  fields: {
+    agency: {
+      h: "Agency"
+      n: "agency"
+      r: false
+      sh: "Agency"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Crew member ID"
+      t: "`$STRING`"
+    }
+    image: {
+      h: "Image"
+      n: "image"
+      r: false
+      sh: "Image URL"
+      t: "`$STRING`"
+    }
+    launches: {
+      h: "Launches"
+      n: "launches"
+      r: false
+      sh: "Launch IDs"
+      t: "`$ARRAY`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Crew member name"
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "Status (active, inactive, retired, unknown)"
+      t: "`$STRING`"
+    }
+    wikipedia: {
+      h: "Wikipedia"
+      n: "wikipedia"
+      r: false
+      sh: "Wikipedia URL"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "crew"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /crew"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/crew"
+          s: [
+            {
+              lit: "crew"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /crew/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/crew/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "crew"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,149 @@
+# Entity: capsule
+
+main: kit: entity: capsule: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Capsule serial number"
+      t: "`$STRING`"
+    }
+    land_landings: {
+      h: "Land Landings"
+      n: "land_landings"
+      r: false
+      sh: "Number of land landings"
+      t: "`$INTEGER`"
+    }
+    last_update: {
+      h: "Last Update"
+      n: "last_update"
+      r: false
+      sh: "Last update about the capsule"
+      t: "`$STRING`"
+    }
+    launches: {
+      h: "Launches"
+      n: "launches"
+      r: false
+      sh: "Launch IDs"
+      t: "`$ARRAY`"
+    }
+    reuse_count: {
+      h: "Reuse Count"
+      n: "reuse_count"
+      r: false
+      sh: "Number of times capsule has been reused"
+      t: "`$INTEGER`"
+    }
+    serial: {
+      h: "Serial"
+      n: "serial"
+      r: false
+      sh: "Capsule serial number"
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "Capsule status"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Capsule type"
+      t: "`$STRING`"
+    }
+    water_landings: {
+      h: "Water Landings"
+      n: "water_landings"
+      r: false
+      sh: "Number of water landings"
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "capsule"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /capsules"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/capsules"
+          s: [
+            {
+              lit: "capsules"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /capsules/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/capsules/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "capsules"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

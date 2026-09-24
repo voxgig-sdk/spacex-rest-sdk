@@ -1,0 +1,177 @@
+# Entity: launchpad
+
+main: kit: entity: launchpad: {
+
+  alias: field: {}
+
+  fields: {
+    details: {
+      h: "Details"
+      n: "details"
+      r: false
+      sh: "Launchpad details"
+      t: "`$STRING`"
+    }
+    full_name: {
+      h: "Full Name"
+      n: "full_name"
+      r: false
+      sh: "Full launchpad name"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Launchpad ID"
+      t: "`$STRING`"
+    }
+    latitude: {
+      h: "Latitude"
+      n: "latitude"
+      r: false
+      sh: "Latitude"
+      t: "`$NUMBER`"
+    }
+    launch_attempts: {
+      h: "Launch Attempts"
+      n: "launch_attempts"
+      r: false
+      sh: "Number of launch attempts"
+      t: "`$INTEGER`"
+    }
+    launch_successes: {
+      h: "Launch Successes"
+      n: "launch_successes"
+      r: false
+      sh: "Number of successful launches"
+      t: "`$INTEGER`"
+    }
+    launches: {
+      h: "Launches"
+      n: "launches"
+      r: false
+      sh: "Launch IDs"
+      t: "`$ARRAY`"
+    }
+    locality: {
+      h: "Locality"
+      n: "locality"
+      r: false
+      sh: "Locality"
+      t: "`$STRING`"
+    }
+    longitude: {
+      h: "Longitude"
+      n: "longitude"
+      r: false
+      sh: "Longitude"
+      t: "`$NUMBER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Launchpad name"
+      t: "`$STRING`"
+    }
+    region: {
+      h: "Region"
+      n: "region"
+      r: false
+      sh: "Region"
+      t: "`$STRING`"
+    }
+    rockets: {
+      h: "Rockets"
+      n: "rockets"
+      r: false
+      sh: "Rocket IDs"
+      t: "`$ARRAY`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "Launchpad status (active, inactive, unknown, retired, lost, under construction)"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "launchpad"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /launchpads"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/launchpads"
+          s: [
+            {
+              lit: "launchpads"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /launchpads/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/launchpads/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "launchpads"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

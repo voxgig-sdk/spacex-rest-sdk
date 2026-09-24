@@ -101,48 +101,57 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
-						"short": "Capsule serial number",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Capsule serial number",
 					},
 					map[string]any{
 						"name": "land_landings",
-						"short": "Number of land landings",
+						"title": "Land Landings",
 						"type": "`$INTEGER`",
+						"short": "Number of land landings",
 					},
 					map[string]any{
 						"name": "last_update",
-						"short": "Last update about the capsule",
+						"title": "Last Update",
 						"type": "`$STRING`",
+						"short": "Last update about the capsule",
 					},
 					map[string]any{
 						"name": "launches",
-						"short": "Launch IDs",
+						"title": "Launches",
 						"type": "`$ARRAY`",
+						"short": "Launch IDs",
 					},
 					map[string]any{
 						"name": "reuse_count",
-						"short": "Number of times capsule has been reused",
+						"title": "Reuse Count",
 						"type": "`$INTEGER`",
+						"short": "Number of times capsule has been reused",
 					},
 					map[string]any{
 						"name": "serial",
-						"short": "Capsule serial number",
+						"title": "Serial",
 						"type": "`$STRING`",
+						"short": "Capsule serial number",
 					},
 					map[string]any{
 						"name": "status",
-						"short": "Capsule status",
+						"title": "Status",
 						"type": "`$STRING`",
+						"short": "Capsule status",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "Capsule type",
+						"title": "Type",
 						"type": "`$STRING`",
+						"short": "Capsule type",
 					},
 					map[string]any{
 						"name": "water_landings",
-						"short": "Number of water landings",
+						"title": "Water Landings",
 						"type": "`$INTEGER`",
+						"short": "Number of water landings",
 					},
 				},
 				"id": map[string]any{
@@ -156,7 +165,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/capsules",
@@ -165,14 +173,16 @@ func MakeConfig() map[string]any {
 										"lit": "capsules",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"capsules",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"capsules",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -181,17 +191,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/capsules/{id}",
@@ -203,18 +202,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"capsules",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"capsules",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -228,58 +239,69 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "asds_attempts",
-						"short": "Number of autonomous spaceport drone ship landing attempts",
+						"title": "Asds Attempts",
 						"type": "`$INTEGER`",
+						"short": "Number of autonomous spaceport drone ship landing attempts",
 					},
 					map[string]any{
 						"name": "asds_landings",
-						"short": "Number of successful ASDS landings",
+						"title": "Asds Landings",
 						"type": "`$INTEGER`",
+						"short": "Number of successful ASDS landings",
 					},
 					map[string]any{
 						"name": "block",
-						"short": "Core block number",
+						"title": "Block",
 						"type": "`$INTEGER`",
+						"short": "Core block number",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Core serial number",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Core serial number",
 					},
 					map[string]any{
 						"name": "last_update",
-						"short": "Last update about the core",
+						"title": "Last Update",
 						"type": "`$STRING`",
+						"short": "Last update about the core",
 					},
 					map[string]any{
 						"name": "launches",
-						"short": "Launch IDs",
+						"title": "Launches",
 						"type": "`$ARRAY`",
+						"short": "Launch IDs",
 					},
 					map[string]any{
 						"name": "reuse_count",
-						"short": "Number of times core has been reused",
+						"title": "Reuse Count",
 						"type": "`$INTEGER`",
+						"short": "Number of times core has been reused",
 					},
 					map[string]any{
 						"name": "rtls_attempts",
-						"short": "Number of return to launch site attempts",
+						"title": "Rtls Attempts",
 						"type": "`$INTEGER`",
+						"short": "Number of return to launch site attempts",
 					},
 					map[string]any{
 						"name": "rtls_landings",
-						"short": "Number of successful RTLS landings",
+						"title": "Rtls Landings",
 						"type": "`$INTEGER`",
+						"short": "Number of successful RTLS landings",
 					},
 					map[string]any{
 						"name": "serial",
-						"short": "Core serial number",
+						"title": "Serial",
 						"type": "`$STRING`",
+						"short": "Core serial number",
 					},
 					map[string]any{
 						"name": "status",
-						"short": "Core status (active, inactive, unknown, expended, lost, retired)",
+						"title": "Status",
 						"type": "`$STRING`",
+						"short": "Core status (active, inactive, unknown, expended, lost, retired)",
 					},
 				},
 				"id": map[string]any{
@@ -293,7 +315,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cores",
@@ -302,14 +323,16 @@ func MakeConfig() map[string]any {
 										"lit": "cores",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"cores",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"cores",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -318,17 +341,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cores/{id}",
@@ -340,18 +352,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"cores",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"cores",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -365,38 +389,45 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "agency",
-						"short": "Agency",
+						"title": "Agency",
 						"type": "`$STRING`",
+						"short": "Agency",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Crew member ID",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Crew member ID",
 					},
 					map[string]any{
 						"name": "image",
-						"short": "Image URL",
+						"title": "Image",
 						"type": "`$STRING`",
+						"short": "Image URL",
 					},
 					map[string]any{
 						"name": "launches",
-						"short": "Launch IDs",
+						"title": "Launches",
 						"type": "`$ARRAY`",
+						"short": "Launch IDs",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Crew member name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Crew member name",
 					},
 					map[string]any{
 						"name": "status",
-						"short": "Status (active, inactive, retired, unknown)",
+						"title": "Status",
 						"type": "`$STRING`",
+						"short": "Status (active, inactive, retired, unknown)",
 					},
 					map[string]any{
 						"name": "wikipedia",
-						"short": "Wikipedia URL",
+						"title": "Wikipedia",
 						"type": "`$STRING`",
+						"short": "Wikipedia URL",
 					},
 				},
 				"id": map[string]any{
@@ -410,7 +441,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/crew",
@@ -419,14 +449,16 @@ func MakeConfig() map[string]any {
 										"lit": "crew",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"crew",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"crew",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -435,17 +467,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/crew/{id}",
@@ -457,18 +478,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"crew",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"crew",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -482,73 +515,87 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "details",
-						"short": "Landing pad details",
+						"title": "Details",
 						"type": "`$STRING`",
+						"short": "Landing pad details",
 					},
 					map[string]any{
 						"name": "full_name",
-						"short": "Full landing pad name",
+						"title": "Full Name",
 						"type": "`$STRING`",
+						"short": "Full landing pad name",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Landing pad ID",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Landing pad ID",
 					},
 					map[string]any{
 						"name": "landing_attempts",
-						"short": "Number of landing attempts",
+						"title": "Landing Attempts",
 						"type": "`$INTEGER`",
+						"short": "Number of landing attempts",
 					},
 					map[string]any{
 						"name": "landing_successes",
-						"short": "Number of successful landings",
+						"title": "Landing Successes",
 						"type": "`$INTEGER`",
+						"short": "Number of successful landings",
 					},
 					map[string]any{
 						"name": "latitude",
-						"short": "Latitude",
+						"title": "Latitude",
 						"type": "`$NUMBER`",
+						"short": "Latitude",
 					},
 					map[string]any{
 						"name": "launches",
-						"short": "Launch IDs",
+						"title": "Launches",
 						"type": "`$ARRAY`",
+						"short": "Launch IDs",
 					},
 					map[string]any{
 						"name": "locality",
-						"short": "Locality",
+						"title": "Locality",
 						"type": "`$STRING`",
+						"short": "Locality",
 					},
 					map[string]any{
 						"name": "longitude",
-						"short": "Longitude",
+						"title": "Longitude",
 						"type": "`$NUMBER`",
+						"short": "Longitude",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Landing pad name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Landing pad name",
 					},
 					map[string]any{
 						"name": "region",
-						"short": "Region",
+						"title": "Region",
 						"type": "`$STRING`",
+						"short": "Region",
 					},
 					map[string]any{
 						"name": "status",
-						"short": "Landing pad status (active, inactive, unknown, retired, lost, under construction)",
+						"title": "Status",
 						"type": "`$STRING`",
+						"short": "Landing pad status (active, inactive, unknown, retired, lost, under construction)",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "Landing pad type (ASDS, RTLS)",
+						"title": "Type",
 						"type": "`$STRING`",
+						"short": "Landing pad type (ASDS, RTLS)",
 					},
 					map[string]any{
 						"name": "wikipedia",
-						"short": "Wikipedia URL",
+						"title": "Wikipedia",
 						"type": "`$STRING`",
+						"short": "Wikipedia URL",
 					},
 				},
 				"id": map[string]any{
@@ -562,7 +609,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/landpads",
@@ -571,14 +617,16 @@ func MakeConfig() map[string]any {
 										"lit": "landpads",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"landpads",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"landpads",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -587,17 +635,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/landpads/{id}",
@@ -609,18 +646,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"landpads",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"landpads",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -634,133 +683,159 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "auto_update",
-						"short": "Whether the launch data is automatically updated",
+						"title": "Auto Update",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the launch data is automatically updated",
 					},
 					map[string]any{
 						"name": "capsules",
-						"short": "Capsule IDs",
+						"title": "Capsules",
 						"type": "`$ARRAY`",
+						"short": "Capsule IDs",
 					},
 					map[string]any{
 						"name": "cores",
+						"title": "Cores",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "crew",
-						"short": "Crew member IDs",
+						"title": "Crew",
 						"type": "`$ARRAY`",
+						"short": "Crew member IDs",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "date_local",
-						"short": "Launch date in local time",
+						"title": "Date Local",
 						"type": "`$STRING`",
+						"short": "Launch date in local time",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "date_precision",
-						"short": "Date precision (hour, day, month, quarter, half, year)",
+						"title": "Date Precision",
 						"type": "`$STRING`",
+						"short": "Date precision (hour, day, month, quarter, half, year)",
 					},
 					map[string]any{
 						"name": "date_unix",
-						"short": "Launch date in unix timestamp",
+						"title": "Date Unix",
 						"type": "`$INTEGER`",
+						"short": "Launch date in unix timestamp",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "date_utc",
-						"short": "Launch date in UTC",
+						"title": "Date Utc",
 						"type": "`$STRING`",
+						"short": "Launch date in UTC",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "details",
-						"short": "Launch details",
+						"title": "Details",
 						"type": "`$STRING`",
+						"short": "Launch details",
 					},
 					map[string]any{
 						"name": "failures",
-						"short": "Launch failures",
+						"title": "Failures",
 						"type": "`$ARRAY`",
+						"short": "Launch failures",
 					},
 					map[string]any{
 						"name": "fairings",
+						"title": "Fairings",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "flight_number",
-						"short": "Flight number",
+						"title": "Flight Number",
 						"type": "`$INTEGER`",
+						"short": "Flight number",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Launch ID",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Launch ID",
 					},
 					map[string]any{
 						"name": "launchpad",
-						"short": "Launchpad ID",
+						"title": "Launchpad",
 						"type": "`$STRING`",
+						"short": "Launchpad ID",
 					},
 					map[string]any{
 						"name": "links",
+						"title": "Links",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Launch name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Launch name",
 					},
 					map[string]any{
 						"name": "net",
-						"short": "No earlier than",
+						"title": "Net",
 						"type": "`$BOOLEAN`",
+						"short": "No earlier than",
 					},
 					map[string]any{
 						"name": "payloads",
-						"short": "Payload IDs",
+						"title": "Payloads",
 						"type": "`$ARRAY`",
+						"short": "Payload IDs",
 					},
 					map[string]any{
 						"name": "rocket",
-						"short": "Rocket ID",
+						"title": "Rocket",
 						"type": "`$STRING`",
+						"short": "Rocket ID",
 					},
 					map[string]any{
 						"name": "ships",
-						"short": "Ship IDs",
+						"title": "Ships",
 						"type": "`$ARRAY`",
+						"short": "Ship IDs",
 					},
 					map[string]any{
 						"name": "static_fire_date_unix",
-						"short": "Static fire date in unix timestamp",
+						"title": "Static Fire Date Unix",
 						"type": "`$INTEGER`",
+						"short": "Static fire date in unix timestamp",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "static_fire_date_utc",
-						"short": "Static fire date in UTC",
+						"title": "Static Fire Date Utc",
 						"type": "`$STRING`",
+						"short": "Static fire date in UTC",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "success",
-						"short": "Launch success status",
+						"title": "Success",
 						"type": "`$BOOLEAN`",
+						"short": "Launch success status",
 					},
 					map[string]any{
 						"name": "tdb",
-						"short": "To be determined",
+						"title": "Tdb",
 						"type": "`$BOOLEAN`",
+						"short": "To be determined",
 					},
 					map[string]any{
 						"name": "upcoming",
-						"short": "Whether the launch is upcoming",
+						"title": "Upcoming",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the launch is upcoming",
 					},
 					map[string]any{
 						"name": "window",
-						"short": "Launch window in seconds",
+						"title": "Window",
 						"type": "`$INTEGER`",
+						"short": "Launch window in seconds",
 					},
 				},
 				"id": map[string]any{
@@ -774,7 +849,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/launches",
@@ -783,17 +857,18 @@ func MakeConfig() map[string]any {
 										"lit": "launches",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"launches",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"launches",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/launches/latest",
@@ -805,20 +880,21 @@ func MakeConfig() map[string]any {
 										"lit": "latest",
 									},
 								},
-								"select": map[string]any{
-									"$action": "latest",
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"launches",
 									"latest",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "latest",
+								},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/launches/past",
@@ -830,20 +906,21 @@ func MakeConfig() map[string]any {
 										"lit": "past",
 									},
 								},
-								"select": map[string]any{
-									"$action": "past",
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"launches",
 									"past",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "past",
+								},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/launches/upcoming",
@@ -855,16 +932,18 @@ func MakeConfig() map[string]any {
 										"lit": "upcoming",
 									},
 								},
-								"select": map[string]any{
-									"$action": "upcoming",
+								"parts": []any{
+									"launches",
+									"upcoming",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"launches",
-									"upcoming",
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "upcoming",
 								},
 							},
 						},
@@ -874,17 +953,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/launches/{id}",
@@ -896,18 +964,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"launches",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"launches",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -921,68 +1001,81 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "details",
-						"short": "Launchpad details",
+						"title": "Details",
 						"type": "`$STRING`",
+						"short": "Launchpad details",
 					},
 					map[string]any{
 						"name": "full_name",
-						"short": "Full launchpad name",
+						"title": "Full Name",
 						"type": "`$STRING`",
+						"short": "Full launchpad name",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Launchpad ID",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Launchpad ID",
 					},
 					map[string]any{
 						"name": "latitude",
-						"short": "Latitude",
+						"title": "Latitude",
 						"type": "`$NUMBER`",
+						"short": "Latitude",
 					},
 					map[string]any{
 						"name": "launch_attempts",
-						"short": "Number of launch attempts",
+						"title": "Launch Attempts",
 						"type": "`$INTEGER`",
+						"short": "Number of launch attempts",
 					},
 					map[string]any{
 						"name": "launch_successes",
-						"short": "Number of successful launches",
+						"title": "Launch Successes",
 						"type": "`$INTEGER`",
+						"short": "Number of successful launches",
 					},
 					map[string]any{
 						"name": "launches",
-						"short": "Launch IDs",
+						"title": "Launches",
 						"type": "`$ARRAY`",
+						"short": "Launch IDs",
 					},
 					map[string]any{
 						"name": "locality",
-						"short": "Locality",
+						"title": "Locality",
 						"type": "`$STRING`",
+						"short": "Locality",
 					},
 					map[string]any{
 						"name": "longitude",
-						"short": "Longitude",
+						"title": "Longitude",
 						"type": "`$NUMBER`",
+						"short": "Longitude",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Launchpad name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Launchpad name",
 					},
 					map[string]any{
 						"name": "region",
-						"short": "Region",
+						"title": "Region",
 						"type": "`$STRING`",
+						"short": "Region",
 					},
 					map[string]any{
 						"name": "rockets",
-						"short": "Rocket IDs",
+						"title": "Rockets",
 						"type": "`$ARRAY`",
+						"short": "Rocket IDs",
 					},
 					map[string]any{
 						"name": "status",
-						"short": "Launchpad status (active, inactive, unknown, retired, lost, under construction)",
+						"title": "Status",
 						"type": "`$STRING`",
+						"short": "Launchpad status (active, inactive, unknown, retired, lost, under construction)",
 					},
 				},
 				"id": map[string]any{
@@ -996,7 +1089,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/launchpads",
@@ -1005,14 +1097,16 @@ func MakeConfig() map[string]any {
 										"lit": "launchpads",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"launchpads",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"launchpads",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -1021,17 +1115,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/launchpads/{id}",
@@ -1043,18 +1126,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"launchpads",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"launchpads",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -1068,138 +1163,165 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "apoapsis_km",
-						"short": "Apoapsis in km",
+						"title": "Apoapsis Km",
 						"type": "`$NUMBER`",
+						"short": "Apoapsis in km",
 					},
 					map[string]any{
 						"name": "arg_of_pericenter",
-						"short": "Argument of pericenter",
+						"title": "Arg Of Pericenter",
 						"type": "`$NUMBER`",
+						"short": "Argument of pericenter",
 					},
 					map[string]any{
 						"name": "customers",
-						"short": "Customers",
+						"title": "Customers",
 						"type": "`$ARRAY`",
+						"short": "Customers",
 					},
 					map[string]any{
 						"name": "eccentricity",
-						"short": "Eccentricity",
+						"title": "Eccentricity",
 						"type": "`$NUMBER`",
+						"short": "Eccentricity",
 					},
 					map[string]any{
 						"name": "epoch",
-						"short": "Epoch",
+						"title": "Epoch",
 						"type": "`$STRING`",
+						"short": "Epoch",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Payload ID",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Payload ID",
 					},
 					map[string]any{
 						"name": "inclination_deg",
-						"short": "Inclination in degrees",
+						"title": "Inclination Deg",
 						"type": "`$NUMBER`",
+						"short": "Inclination in degrees",
 					},
 					map[string]any{
 						"name": "launch",
-						"short": "Launch ID",
+						"title": "Launch",
 						"type": "`$STRING`",
+						"short": "Launch ID",
 					},
 					map[string]any{
 						"name": "lifespan_years",
-						"short": "Lifespan in years",
+						"title": "Lifespan Years",
 						"type": "`$NUMBER`",
+						"short": "Lifespan in years",
 					},
 					map[string]any{
 						"name": "longitude",
-						"short": "Longitude",
+						"title": "Longitude",
 						"type": "`$NUMBER`",
+						"short": "Longitude",
 					},
 					map[string]any{
 						"name": "manufacturers",
-						"short": "Manufacturers",
+						"title": "Manufacturers",
 						"type": "`$ARRAY`",
+						"short": "Manufacturers",
 					},
 					map[string]any{
 						"name": "mass_kg",
-						"short": "Payload mass in kilograms",
+						"title": "Mass Kg",
 						"type": "`$NUMBER`",
+						"short": "Payload mass in kilograms",
 					},
 					map[string]any{
 						"name": "mass_lbs",
-						"short": "Payload mass in pounds",
+						"title": "Mass Lbs",
 						"type": "`$NUMBER`",
+						"short": "Payload mass in pounds",
 					},
 					map[string]any{
 						"name": "mean_anomaly",
-						"short": "Mean anomaly",
+						"title": "Mean Anomaly",
 						"type": "`$NUMBER`",
+						"short": "Mean anomaly",
 					},
 					map[string]any{
 						"name": "mean_motion",
-						"short": "Mean motion",
+						"title": "Mean Motion",
 						"type": "`$NUMBER`",
+						"short": "Mean motion",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Payload name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Payload name",
 					},
 					map[string]any{
 						"name": "nationalities",
-						"short": "Nationalities",
+						"title": "Nationalities",
 						"type": "`$ARRAY`",
+						"short": "Nationalities",
 					},
 					map[string]any{
 						"name": "norad_ids",
-						"short": "NORAD IDs",
+						"title": "Norad Ids",
 						"type": "`$ARRAY`",
+						"short": "NORAD IDs",
 					},
 					map[string]any{
 						"name": "orbit",
-						"short": "Orbit type",
+						"title": "Orbit",
 						"type": "`$STRING`",
+						"short": "Orbit type",
 					},
 					map[string]any{
 						"name": "periapsis_km",
-						"short": "Periapsis in km",
+						"title": "Periapsis Km",
 						"type": "`$NUMBER`",
+						"short": "Periapsis in km",
 					},
 					map[string]any{
 						"name": "period_min",
-						"short": "Orbital period in minutes",
+						"title": "Period Min",
 						"type": "`$NUMBER`",
+						"short": "Orbital period in minutes",
 					},
 					map[string]any{
 						"name": "raan",
-						"short": "Right ascension of the ascending node",
+						"title": "Raan",
 						"type": "`$NUMBER`",
+						"short": "Right ascension of the ascending node",
 					},
 					map[string]any{
 						"name": "reference_system",
-						"short": "Reference system",
+						"title": "Reference System",
 						"type": "`$STRING`",
+						"short": "Reference system",
 					},
 					map[string]any{
 						"name": "regime",
-						"short": "Orbit regime",
+						"title": "Regime",
 						"type": "`$STRING`",
+						"short": "Orbit regime",
 					},
 					map[string]any{
 						"name": "reused",
-						"short": "Whether the payload was reused",
+						"title": "Reused",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the payload was reused",
 					},
 					map[string]any{
 						"name": "semi_major_axis_km",
-						"short": "Semi-major axis in km",
+						"title": "Semi Major Axis Km",
 						"type": "`$NUMBER`",
+						"short": "Semi-major axis in km",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "Payload type",
+						"title": "Type",
 						"type": "`$STRING`",
+						"short": "Payload type",
 					},
 				},
 				"id": map[string]any{
@@ -1213,7 +1335,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/payloads",
@@ -1222,14 +1343,16 @@ func MakeConfig() map[string]any {
 										"lit": "payloads",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"payloads",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"payloads",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -1238,17 +1361,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/payloads/{id}",
@@ -1260,18 +1372,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"payloads",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"payloads",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -1285,139 +1409,166 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "apoapsis_au",
-						"short": "Apoapsis in AU",
+						"title": "Apoapsis Au",
 						"type": "`$NUMBER`",
+						"short": "Apoapsis in AU",
 					},
 					map[string]any{
 						"name": "details",
-						"short": "Details",
+						"title": "Details",
 						"type": "`$STRING`",
+						"short": "Details",
 					},
 					map[string]any{
 						"name": "earth_distance_km",
-						"short": "Distance from Earth in km",
+						"title": "Earth Distance Km",
 						"type": "`$NUMBER`",
+						"short": "Distance from Earth in km",
 					},
 					map[string]any{
 						"name": "earth_distance_mi",
-						"short": "Distance from Earth in miles",
+						"title": "Earth Distance Mi",
 						"type": "`$NUMBER`",
+						"short": "Distance from Earth in miles",
 					},
 					map[string]any{
 						"name": "eccentricity",
-						"short": "Eccentricity",
+						"title": "Eccentricity",
 						"type": "`$NUMBER`",
+						"short": "Eccentricity",
 					},
 					map[string]any{
 						"name": "epoch_jd",
-						"short": "Epoch in Julian Date",
+						"title": "Epoch Jd",
 						"type": "`$NUMBER`",
+						"short": "Epoch in Julian Date",
 					},
 					map[string]any{
 						"name": "flickr_images",
-						"short": "Flickr images",
+						"title": "Flickr Images",
 						"type": "`$ARRAY`",
+						"short": "Flickr images",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Roadster ID",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Roadster ID",
 					},
 					map[string]any{
 						"name": "inclination",
-						"short": "Inclination",
+						"title": "Inclination",
 						"type": "`$NUMBER`",
+						"short": "Inclination",
 					},
 					map[string]any{
 						"name": "launch_date_unix",
-						"short": "Launch date in unix timestamp",
+						"title": "Launch Date Unix",
 						"type": "`$INTEGER`",
+						"short": "Launch date in unix timestamp",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "launch_date_utc",
-						"short": "Launch date in UTC",
+						"title": "Launch Date Utc",
 						"type": "`$STRING`",
+						"short": "Launch date in UTC",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "launch_mass_kg",
-						"short": "Launch mass in kilograms",
+						"title": "Launch Mass Kg",
 						"type": "`$INTEGER`",
+						"short": "Launch mass in kilograms",
 					},
 					map[string]any{
 						"name": "launch_mass_lbs",
-						"short": "Launch mass in pounds",
+						"title": "Launch Mass Lbs",
 						"type": "`$INTEGER`",
+						"short": "Launch mass in pounds",
 					},
 					map[string]any{
 						"name": "longitude",
-						"short": "Longitude",
+						"title": "Longitude",
 						"type": "`$NUMBER`",
+						"short": "Longitude",
 					},
 					map[string]any{
 						"name": "mars_distance_km",
-						"short": "Distance from Mars in km",
+						"title": "Mars Distance Km",
 						"type": "`$NUMBER`",
+						"short": "Distance from Mars in km",
 					},
 					map[string]any{
 						"name": "mars_distance_mi",
-						"short": "Distance from Mars in miles",
+						"title": "Mars Distance Mi",
 						"type": "`$NUMBER`",
+						"short": "Distance from Mars in miles",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Roadster name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Roadster name",
 					},
 					map[string]any{
 						"name": "norad_id",
-						"short": "NORAD ID",
+						"title": "Norad Id",
 						"type": "`$INTEGER`",
+						"short": "NORAD ID",
 					},
 					map[string]any{
 						"name": "orbit_type",
-						"short": "Orbit type",
+						"title": "Orbit Type",
 						"type": "`$STRING`",
+						"short": "Orbit type",
 					},
 					map[string]any{
 						"name": "periapsis_arg",
-						"short": "Argument of periapsis",
+						"title": "Periapsis Arg",
 						"type": "`$NUMBER`",
+						"short": "Argument of periapsis",
 					},
 					map[string]any{
 						"name": "periapsis_au",
-						"short": "Periapsis in AU",
+						"title": "Periapsis Au",
 						"type": "`$NUMBER`",
+						"short": "Periapsis in AU",
 					},
 					map[string]any{
 						"name": "period_days",
-						"short": "Orbital period in days",
+						"title": "Period Days",
 						"type": "`$NUMBER`",
+						"short": "Orbital period in days",
 					},
 					map[string]any{
 						"name": "semi_major_axis_au",
-						"short": "Semi-major axis in AU",
+						"title": "Semi Major Axis Au",
 						"type": "`$NUMBER`",
+						"short": "Semi-major axis in AU",
 					},
 					map[string]any{
 						"name": "speed_kph",
-						"short": "Speed in km/h",
+						"title": "Speed Kph",
 						"type": "`$NUMBER`",
+						"short": "Speed in km/h",
 					},
 					map[string]any{
 						"name": "speed_mph",
-						"short": "Speed in mph",
+						"title": "Speed Mph",
 						"type": "`$NUMBER`",
+						"short": "Speed in mph",
 					},
 					map[string]any{
 						"name": "video",
-						"short": "Video URL",
+						"title": "Video",
 						"type": "`$STRING`",
+						"short": "Video URL",
 					},
 					map[string]any{
 						"name": "wikipedia",
-						"short": "Wikipedia URL",
+						"title": "Wikipedia",
 						"type": "`$STRING`",
+						"short": "Wikipedia URL",
 					},
 				},
 				"id": map[string]any{
@@ -1431,7 +1582,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/roadster",
@@ -1440,14 +1590,16 @@ func MakeConfig() map[string]any {
 										"lit": "roadster",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"roadster",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.flickr_images`",
 								},
-								"parts": []any{
-									"roadster",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -1460,82 +1612,99 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "active",
-						"short": "Whether the rocket is active",
+						"title": "Active",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the rocket is active",
 					},
 					map[string]any{
 						"name": "boosters",
-						"short": "Number of boosters",
+						"title": "Boosters",
 						"type": "`$INTEGER`",
+						"short": "Number of boosters",
 					},
 					map[string]any{
 						"name": "company",
-						"short": "Company",
+						"title": "Company",
 						"type": "`$STRING`",
+						"short": "Company",
 					},
 					map[string]any{
 						"name": "cost_per_launch",
-						"short": "Cost per launch in USD",
+						"title": "Cost Per Launch",
 						"type": "`$INTEGER`",
+						"short": "Cost per launch in USD",
 					},
 					map[string]any{
 						"name": "country",
-						"short": "Country of origin",
+						"title": "Country",
 						"type": "`$STRING`",
+						"short": "Country of origin",
 					},
 					map[string]any{
 						"name": "description",
+						"title": "Description",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "diameter",
+						"title": "Diameter",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
-						"format": "date",
 						"name": "first_flight",
-						"short": "Date of first flight",
+						"title": "First Flight",
 						"type": "`$STRING`",
+						"short": "Date of first flight",
+						"format": "date",
 					},
 					map[string]any{
 						"name": "flickr_images",
+						"title": "Flickr Images",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "height",
+						"title": "Height",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Rocket ID",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Rocket ID",
 					},
 					map[string]any{
 						"name": "mass",
+						"title": "Mass",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Rocket name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Rocket name",
 					},
 					map[string]any{
 						"name": "stages",
-						"short": "Number of stages",
+						"title": "Stages",
 						"type": "`$INTEGER`",
+						"short": "Number of stages",
 					},
 					map[string]any{
 						"name": "success_rate_pct",
-						"short": "Success rate percentage",
+						"title": "Success Rate Pct",
 						"type": "`$NUMBER`",
+						"short": "Success rate percentage",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "Rocket type",
+						"title": "Type",
 						"type": "`$STRING`",
+						"short": "Rocket type",
 					},
 					map[string]any{
 						"name": "wikipedia",
+						"title": "Wikipedia",
 						"type": "`$STRING`",
 					},
 				},
@@ -1550,7 +1719,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/rockets",
@@ -1559,14 +1727,16 @@ func MakeConfig() map[string]any {
 										"lit": "rockets",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"rockets",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"rockets",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -1575,17 +1745,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/rockets/{id}",
@@ -1597,18 +1756,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"rockets",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"rockets",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -1622,118 +1793,141 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "abs",
-						"short": "ABS number",
+						"title": "Abs",
 						"type": "`$INTEGER`",
+						"short": "ABS number",
 					},
 					map[string]any{
 						"name": "class",
-						"short": "Ship class",
+						"title": "Class",
 						"type": "`$INTEGER`",
+						"short": "Ship class",
 					},
 					map[string]any{
 						"name": "course_deg",
-						"short": "Course in degrees",
+						"title": "Course Deg",
 						"type": "`$NUMBER`",
+						"short": "Course in degrees",
 					},
 					map[string]any{
 						"name": "home_port",
-						"short": "Home port",
+						"title": "Home Port",
 						"type": "`$STRING`",
+						"short": "Home port",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Ship ID",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Ship ID",
 					},
 					map[string]any{
 						"name": "image",
-						"short": "Image URL",
+						"title": "Image",
 						"type": "`$STRING`",
+						"short": "Image URL",
 					},
 					map[string]any{
 						"name": "imo",
-						"short": "IMO number",
+						"title": "Imo",
 						"type": "`$INTEGER`",
+						"short": "IMO number",
 					},
 					map[string]any{
 						"name": "last_ais_update",
-						"short": "Last AIS update timestamp",
+						"title": "Last Ais Update",
 						"type": "`$STRING`",
+						"short": "Last AIS update timestamp",
 					},
 					map[string]any{
 						"name": "latitude",
-						"short": "Latitude",
+						"title": "Latitude",
 						"type": "`$NUMBER`",
+						"short": "Latitude",
 					},
 					map[string]any{
 						"name": "launches",
-						"short": "Launch IDs",
+						"title": "Launches",
 						"type": "`$ARRAY`",
+						"short": "Launch IDs",
 					},
 					map[string]any{
 						"name": "legacy_id",
-						"short": "Legacy ID",
+						"title": "Legacy Id",
 						"type": "`$STRING`",
+						"short": "Legacy ID",
 					},
 					map[string]any{
 						"name": "link",
-						"short": "Link to ship info",
+						"title": "Link",
 						"type": "`$STRING`",
+						"short": "Link to ship info",
 					},
 					map[string]any{
 						"name": "longitude",
-						"short": "Longitude",
+						"title": "Longitude",
 						"type": "`$NUMBER`",
+						"short": "Longitude",
 					},
 					map[string]any{
 						"name": "mass_kg",
-						"short": "Mass in kilograms",
+						"title": "Mass Kg",
 						"type": "`$INTEGER`",
+						"short": "Mass in kilograms",
 					},
 					map[string]any{
 						"name": "mass_lbs",
-						"short": "Mass in pounds",
+						"title": "Mass Lbs",
 						"type": "`$INTEGER`",
+						"short": "Mass in pounds",
 					},
 					map[string]any{
 						"name": "mmsi",
-						"short": "MMSI number",
+						"title": "Mmsi",
 						"type": "`$INTEGER`",
+						"short": "MMSI number",
 					},
 					map[string]any{
 						"name": "model",
-						"short": "Ship model",
+						"title": "Model",
 						"type": "`$STRING`",
+						"short": "Ship model",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Ship name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Ship name",
 					},
 					map[string]any{
 						"name": "roles",
-						"short": "Ship roles",
+						"title": "Roles",
 						"type": "`$ARRAY`",
+						"short": "Ship roles",
 					},
 					map[string]any{
 						"name": "speed_kn",
-						"short": "Speed in knots",
+						"title": "Speed Kn",
 						"type": "`$NUMBER`",
+						"short": "Speed in knots",
 					},
 					map[string]any{
 						"name": "status",
-						"short": "Ship status",
+						"title": "Status",
 						"type": "`$STRING`",
+						"short": "Ship status",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "Ship type",
+						"title": "Type",
 						"type": "`$STRING`",
+						"short": "Ship type",
 					},
 					map[string]any{
 						"name": "year_built",
-						"short": "Year built",
+						"title": "Year Built",
 						"type": "`$INTEGER`",
+						"short": "Year built",
 					},
 				},
 				"id": map[string]any{
@@ -1747,7 +1941,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/ships",
@@ -1756,14 +1949,16 @@ func MakeConfig() map[string]any {
 										"lit": "ships",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"ships",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"ships",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -1772,17 +1967,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/ships/{id}",
@@ -1794,18 +1978,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"ships",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"ships",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -1819,43 +2015,51 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "height_km",
-						"short": "Current height in kilometers",
+						"title": "Height Km",
 						"type": "`$NUMBER`",
+						"short": "Current height in kilometers",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Starlink satellite ID",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Starlink satellite ID",
 					},
 					map[string]any{
 						"name": "latitude",
-						"short": "Current latitude",
+						"title": "Latitude",
 						"type": "`$NUMBER`",
+						"short": "Current latitude",
 					},
 					map[string]any{
 						"name": "launch",
-						"short": "Launch ID",
+						"title": "Launch",
 						"type": "`$STRING`",
+						"short": "Launch ID",
 					},
 					map[string]any{
 						"name": "longitude",
-						"short": "Current longitude",
+						"title": "Longitude",
 						"type": "`$NUMBER`",
+						"short": "Current longitude",
 					},
 					map[string]any{
 						"name": "spaceTrack",
-						"short": "Space-Track.org data",
+						"title": "Space Track",
 						"type": "`$OBJECT`",
+						"short": "Space-Track.org data",
 					},
 					map[string]any{
 						"name": "velocity_kms",
-						"short": "Current velocity in km/s",
+						"title": "Velocity Kms",
 						"type": "`$NUMBER`",
+						"short": "Current velocity in km/s",
 					},
 					map[string]any{
 						"name": "version",
-						"short": "Satellite version",
+						"title": "Version",
 						"type": "`$STRING`",
+						"short": "Satellite version",
 					},
 				},
 				"id": map[string]any{
@@ -1869,7 +2073,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/starlink",
@@ -1878,14 +2081,16 @@ func MakeConfig() map[string]any {
 										"lit": "starlink",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"starlink",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"starlink",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -1894,17 +2099,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/starlink/{id}",
@@ -1916,18 +2110,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"starlink",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.spaceTrack`",
 								},
-								"parts": []any{
-									"starlink",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},

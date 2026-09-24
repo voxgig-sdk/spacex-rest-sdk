@@ -1,0 +1,275 @@
+# Entity: payload
+
+main: kit: entity: payload: {
+
+  alias: field: {}
+
+  fields: {
+    apoapsis_km: {
+      h: "Apoapsis Km"
+      n: "apoapsis_km"
+      r: false
+      sh: "Apoapsis in km"
+      t: "`$NUMBER`"
+    }
+    arg_of_pericenter: {
+      h: "Arg Of Pericenter"
+      n: "arg_of_pericenter"
+      r: false
+      sh: "Argument of pericenter"
+      t: "`$NUMBER`"
+    }
+    customers: {
+      h: "Customers"
+      n: "customers"
+      r: false
+      sh: "Customers"
+      t: "`$ARRAY`"
+    }
+    eccentricity: {
+      h: "Eccentricity"
+      n: "eccentricity"
+      r: false
+      sh: "Eccentricity"
+      t: "`$NUMBER`"
+    }
+    epoch: {
+      h: "Epoch"
+      n: "epoch"
+      r: false
+      sh: "Epoch"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Payload ID"
+      t: "`$STRING`"
+    }
+    inclination_deg: {
+      h: "Inclination Deg"
+      n: "inclination_deg"
+      r: false
+      sh: "Inclination in degrees"
+      t: "`$NUMBER`"
+    }
+    launch: {
+      h: "Launch"
+      n: "launch"
+      r: false
+      sh: "Launch ID"
+      t: "`$STRING`"
+    }
+    lifespan_years: {
+      h: "Lifespan Years"
+      n: "lifespan_years"
+      r: false
+      sh: "Lifespan in years"
+      t: "`$NUMBER`"
+    }
+    longitude: {
+      h: "Longitude"
+      n: "longitude"
+      r: false
+      sh: "Longitude"
+      t: "`$NUMBER`"
+    }
+    manufacturers: {
+      h: "Manufacturers"
+      n: "manufacturers"
+      r: false
+      sh: "Manufacturers"
+      t: "`$ARRAY`"
+    }
+    mass_kg: {
+      h: "Mass Kg"
+      n: "mass_kg"
+      r: false
+      sh: "Payload mass in kilograms"
+      t: "`$NUMBER`"
+    }
+    mass_lbs: {
+      h: "Mass Lbs"
+      n: "mass_lbs"
+      r: false
+      sh: "Payload mass in pounds"
+      t: "`$NUMBER`"
+    }
+    mean_anomaly: {
+      h: "Mean Anomaly"
+      n: "mean_anomaly"
+      r: false
+      sh: "Mean anomaly"
+      t: "`$NUMBER`"
+    }
+    mean_motion: {
+      h: "Mean Motion"
+      n: "mean_motion"
+      r: false
+      sh: "Mean motion"
+      t: "`$NUMBER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Payload name"
+      t: "`$STRING`"
+    }
+    nationalities: {
+      h: "Nationalities"
+      n: "nationalities"
+      r: false
+      sh: "Nationalities"
+      t: "`$ARRAY`"
+    }
+    norad_ids: {
+      h: "Norad Ids"
+      n: "norad_ids"
+      r: false
+      sh: "NORAD IDs"
+      t: "`$ARRAY`"
+    }
+    orbit: {
+      h: "Orbit"
+      n: "orbit"
+      r: false
+      sh: "Orbit type"
+      t: "`$STRING`"
+    }
+    periapsis_km: {
+      h: "Periapsis Km"
+      n: "periapsis_km"
+      r: false
+      sh: "Periapsis in km"
+      t: "`$NUMBER`"
+    }
+    period_min: {
+      h: "Period Min"
+      n: "period_min"
+      r: false
+      sh: "Orbital period in minutes"
+      t: "`$NUMBER`"
+    }
+    raan: {
+      h: "Raan"
+      n: "raan"
+      r: false
+      sh: "Right ascension of the ascending node"
+      t: "`$NUMBER`"
+    }
+    reference_system: {
+      h: "Reference System"
+      n: "reference_system"
+      r: false
+      sh: "Reference system"
+      t: "`$STRING`"
+    }
+    regime: {
+      h: "Regime"
+      n: "regime"
+      r: false
+      sh: "Orbit regime"
+      t: "`$STRING`"
+    }
+    reused: {
+      h: "Reused"
+      n: "reused"
+      r: false
+      sh: "Whether the payload was reused"
+      t: "`$BOOLEAN`"
+    }
+    semi_major_axis_km: {
+      h: "Semi Major Axis Km"
+      n: "semi_major_axis_km"
+      r: false
+      sh: "Semi-major axis in km"
+      t: "`$NUMBER`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Payload type"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "payload"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /payloads"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/payloads"
+          s: [
+            {
+              lit: "payloads"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /payloads/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/payloads/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "payloads"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
