@@ -2125,7 +2125,7 @@ module SpacexRestConfig
                   "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body.spaceTrack`",
+                    "res" => "`body`",
                   },
                   "args" => {
                     "params" => [

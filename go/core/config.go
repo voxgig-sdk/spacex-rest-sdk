@@ -2117,7 +2117,7 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body.spaceTrack`",
+									"res": "`body`",
 								},
 								"args": map[string]any{
 									"params": []any{

@@ -114,7 +114,6 @@ guide: {
     }
     path: "/starlink/{id}": {
       op: load: method: *GET
-      op: load: transform: res: *("`body.spaceTrack`")|top
     }
   }
 

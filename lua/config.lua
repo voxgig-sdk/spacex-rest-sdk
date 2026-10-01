@@ -2113,7 +2113,7 @@ local function make_config()
                 ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body.spaceTrack`",
+                  ["res"] = "`body`",
                 },
                 ["args"] = {
                   ["params"] = {

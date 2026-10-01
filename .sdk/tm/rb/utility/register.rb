@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 SpacexRestUtility.registrar = ->(u) {
   u.clean = SpacexRestUtilities::Clean
+  u.clean_add = SpacexRestUtilities::CleanAdd
+  u.clean_explain = SpacexRestUtilities::CleanExplain
   u.done = SpacexRestUtilities::Done
   u.make_error = SpacexRestUtilities::MakeError
   u.feature_add = SpacexRestUtilities::FeatureAdd

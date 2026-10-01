@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 SpacexRestUtility::setRegistrar(function (SpacexRestUtility $u): void {
     $u->clean = [SpacexRestClean::class, 'call'];
+    $u->clean_add = [SpacexRestClean::class, 'add'];
+    $u->clean_explain = [SpacexRestDone::class, 'clean_explain'];
     $u->done = [SpacexRestDone::class, 'call'];
     $u->make_error = [SpacexRestMakeError::class, 'call'];
     $u->feature_add = [SpacexRestFeatureAdd::class, 'call'];

@@ -130,7 +130,7 @@ main: kit: entity: starlink: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body.spaceTrack`"
+            res: "`body`"
           }
         }
       ]
