@@ -123,6 +123,10 @@ main: kit: entity: landpad: {
           }
           m: "GET"
           o: "/landpads"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "landpads"
@@ -161,6 +165,10 @@ main: kit: entity: landpad: {
             exist: [
               "id"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

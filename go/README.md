@@ -16,7 +16,7 @@ go get github.com/voxgig-sdk/spacex-rest-sdk/go@latest
 ```
 
 The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
-release tag — see [Releases](https://github.com/voxgig-sdk/spacex-rest-sdk/releases) for the available versions.
+release tag — see [Tags](https://github.com/voxgig-sdk/spacex-rest-sdk/tags) for the available versions.
 
 To vendor from a local checkout instead, clone this repo alongside your
 project and add a `replace` directive pointing at the checked-out
@@ -35,9 +35,10 @@ loading a specific record.
 ### Quickstart
 
 A complete program: create a client, then call the entity operations.
-Each operation returns `(value, error)` — the value is the data itself
-(there is no `{ok, data}` wrapper), so check `err` and use the value
-directly.
+Each operation returns `(value, error)` — the value is the entity, and for
+`List` a `[]any` of entities, one per record (there is no `{ok, data}`
+wrapper), so check `err` and read a record through the entity's
+`Data()`.
 
 ```go
 package main
@@ -50,21 +51,21 @@ import (
 func main() {
     client := sdk.New()
 
-    // List capsule records — the value is the array of records itself.
+    // List capsule records — the value is a []any of entities, one per record.
     capsules, err := client.Capsule(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
     for _, item := range capsules.([]any) {
-        fmt.Println(item)
+        fmt.Println(item.(sdk.Entity).Data())
     }
 
-    // Load a single capsule — the value is the loaded record.
+    // Load a single capsule — the value is the entity; Data() reads its record.
     capsule, err := client.Capsule(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(capsule)
+    fmt.Println(capsule.(sdk.Entity).Data())
 }
 ```
 
@@ -144,13 +145,16 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-landpad, err := client.Landpad(nil).List(
+landpads, err := client.Landpad(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(landpad) // the returned mock data
+// A []any of entities, one per mock record.
+for _, item := range landpads.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ### Use a custom fetch function
@@ -245,8 +249,8 @@ All entities implement the `SpacexRestEntity` interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
-| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
+| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria, and return it. |
+| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria, one per record. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -254,21 +258,21 @@ All entities implement the `SpacexRestEntity` interface.
 
 ### Result shape
 
-Entity operations return `(value, error)`. The `value` is the
-operation's data **directly** — there is no wrapper:
+Entity operations return `(value, error)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` | the entity record (`map[string]any`) |
-| `List` | a `[]any` of entity records |
+| `Load` | the entity, whose `Data()` reads its record (`map[string]any`) |
+| `List` | a `[]any` of entities, one per record |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    capsule, err := client.Capsule(nil).List(map[string]any{/* fields */}, nil)
+    capsule, err := client.Capsule(nil).List(nil, nil)
     if err != nil { /* handle */ }
-    // capsule is the returned record
+    // capsule is a []any of entities, one per record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -593,7 +597,7 @@ capsule, err := client.Capsule(nil).Load(map[string]any{"id": "capsule_id"}, nil
 if err != nil {
     panic(err)
 }
-fmt.Println(capsule) // the loaded record
+fmt.Println(capsule.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -603,7 +607,10 @@ capsules, err := client.Capsule(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(capsules) // the array of records
+// A []any of entities, one per record.
+for _, item := range capsules.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -641,7 +648,7 @@ core, err := client.Core(nil).Load(map[string]any{"id": "core_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(core) // the loaded record
+fmt.Println(core.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -651,7 +658,10 @@ cores, err := client.Core(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(cores) // the array of records
+// A []any of entities, one per record.
+for _, item := range cores.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -685,7 +695,7 @@ crew, err := client.Crew(nil).Load(map[string]any{"id": "crew_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(crew) // the loaded record
+fmt.Println(crew.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -695,7 +705,10 @@ crews, err := client.Crew(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(crews) // the array of records
+// A []any of entities, one per record.
+for _, item := range crews.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -736,7 +749,7 @@ landpad, err := client.Landpad(nil).Load(map[string]any{"id": "landpad_id"}, nil
 if err != nil {
     panic(err)
 }
-fmt.Println(landpad) // the loaded record
+fmt.Println(landpad.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -746,7 +759,10 @@ landpads, err := client.Landpad(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(landpads) // the array of records
+// A []any of entities, one per record.
+for _, item := range landpads.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -799,7 +815,7 @@ launch, err := client.Launch(nil).Load(map[string]any{"id": "launch_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(launch) // the loaded record
+fmt.Println(launch.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -809,7 +825,10 @@ launchs, err := client.Launch(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(launchs) // the array of records
+// A []any of entities, one per record.
+for _, item := range launchs.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -849,7 +868,7 @@ launchpad, err := client.Launchpad(nil).Load(map[string]any{"id": "launchpad_id"
 if err != nil {
     panic(err)
 }
-fmt.Println(launchpad) // the loaded record
+fmt.Println(launchpad.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -859,7 +878,10 @@ launchpads, err := client.Launchpad(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(launchpads) // the array of records
+// A []any of entities, one per record.
+for _, item := range launchpads.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -913,7 +935,7 @@ payload, err := client.Payload(nil).Load(map[string]any{"id": "payload_id"}, nil
 if err != nil {
     panic(err)
 }
-fmt.Println(payload) // the loaded record
+fmt.Println(payload.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -923,7 +945,10 @@ payloads, err := client.Payload(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(payloads) // the array of records
+// A []any of entities, one per record.
+for _, item := range payloads.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -976,7 +1001,10 @@ roadsters, err := client.Roadster(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(roadsters) // the array of records
+// A []any of entities, one per record.
+for _, item := range roadsters.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -1020,7 +1048,7 @@ rocket, err := client.Rocket(nil).Load(map[string]any{"id": "rocket_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(rocket) // the loaded record
+fmt.Println(rocket.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1030,7 +1058,10 @@ rockets, err := client.Rocket(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(rockets) // the array of records
+// A []any of entities, one per record.
+for _, item := range rockets.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -1080,7 +1111,7 @@ ship, err := client.Ship(nil).Load(map[string]any{"id": "ship_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(ship) // the loaded record
+fmt.Println(ship.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1090,7 +1121,10 @@ ships, err := client.Ship(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(ships) // the array of records
+// A []any of entities, one per record.
+for _, item := range ships.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -1125,7 +1159,7 @@ starlink, err := client.Starlink(nil).Load(map[string]any{"id": "starlink_id"}, 
 if err != nil {
     panic(err)
 }
-fmt.Println(starlink) // the loaded record
+fmt.Println(starlink.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1135,7 +1169,10 @@ starlinks, err := client.Starlink(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(starlinks) // the array of records
+// A []any of entities, one per record.
+for _, item := range starlinks.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ## Features
@@ -1272,7 +1309,9 @@ The Go SDK uses `map[string]any` throughout rather than typed structs.
 This mirrors the dynamic nature of the API and keeps the SDK
 flexible — no code generation is needed when the API schema changes.
 
-Use `core.ToMapAny()` to safely cast results and nested data.
+An operation returns the entity, and its `Data()` returns the record. Use
+`core.ToMapAny()` to safely cast that record, or data nested in it, to
+`map[string]any`: it returns `nil` for anything else, an entity included.
 
 ### Package structure
 

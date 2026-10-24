@@ -17,7 +17,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": [
@@ -52,7 +57,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
@@ -79,7 +89,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": [
@@ -116,7 +131,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
@@ -145,7 +165,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": [
@@ -178,7 +203,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
@@ -203,7 +233,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": [
@@ -243,7 +278,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
@@ -275,7 +315,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": [
@@ -300,9 +345,9 @@ const PLAN = [
                 "upcoming": true,
                 "details": "x",
                 "fairings": {
-                    "recovered": true,
-                    "recovery_attempt": true,
                     "reused": true,
+                    "recovery_attempt": true,
+                    "recovered": true,
                     "ships": [
                         "x"
                     ]
@@ -325,38 +370,38 @@ const PLAN = [
                         "core": "x",
                         "flight": 1,
                         "gridfins": true,
+                        "legs": true,
+                        "reused": true,
                         "landing_attempt": true,
                         "landing_success": true,
                         "landing_type": "x",
-                        "landpad": "x",
-                        "legs": true,
-                        "reused": true
+                        "landpad": "x"
                     }
                 ],
                 "links": {
-                    "article": "x",
-                    "flickr": {
-                        "original": [
-                            "x"
-                        ],
-                        "small": [
-                            "x"
-                        ]
-                    },
                     "patch": {
-                        "large": "x",
-                        "small": "x"
+                        "small": "x",
+                        "large": "x"
                     },
-                    "presskit": "x",
                     "reddit": {
                         "campaign": "x",
                         "launch": "x",
                         "media": "x",
                         "recovery": "x"
                     },
+                    "flickr": {
+                        "small": [
+                            "x"
+                        ],
+                        "original": [
+                            "x"
+                        ]
+                    },
+                    "presskit": "x",
                     "webcast": "x",
-                    "wikipedia": "x",
-                    "youtube_id": "x"
+                    "youtube_id": "x",
+                    "article": "x",
+                    "wikipedia": "x"
                 },
                 "auto_update": true
             }
@@ -373,7 +418,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
@@ -397,9 +447,9 @@ const PLAN = [
             "upcoming": true,
             "details": "x",
             "fairings": {
-                "recovered": true,
-                "recovery_attempt": true,
                 "reused": true,
+                "recovery_attempt": true,
+                "recovered": true,
                 "ships": [
                     "x"
                 ]
@@ -422,38 +472,38 @@ const PLAN = [
                     "core": "x",
                     "flight": 1,
                     "gridfins": true,
+                    "legs": true,
+                    "reused": true,
                     "landing_attempt": true,
                     "landing_success": true,
                     "landing_type": "x",
-                    "landpad": "x",
-                    "legs": true,
-                    "reused": true
+                    "landpad": "x"
                 }
             ],
             "links": {
-                "article": "x",
-                "flickr": {
-                    "original": [
-                        "x"
-                    ],
-                    "small": [
-                        "x"
-                    ]
-                },
                 "patch": {
-                    "large": "x",
-                    "small": "x"
+                    "small": "x",
+                    "large": "x"
                 },
-                "presskit": "x",
                 "reddit": {
                     "campaign": "x",
                     "launch": "x",
                     "media": "x",
                     "recovery": "x"
                 },
+                "flickr": {
+                    "small": [
+                        "x"
+                    ],
+                    "original": [
+                        "x"
+                    ]
+                },
+                "presskit": "x",
                 "webcast": "x",
-                "wikipedia": "x",
-                "youtube_id": "x"
+                "youtube_id": "x",
+                "article": "x",
+                "wikipedia": "x"
             },
             "auto_update": true
         },
@@ -469,7 +519,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": [
@@ -494,9 +549,9 @@ const PLAN = [
                 "upcoming": true,
                 "details": "x",
                 "fairings": {
-                    "recovered": true,
-                    "recovery_attempt": true,
                     "reused": true,
+                    "recovery_attempt": true,
+                    "recovered": true,
                     "ships": [
                         "x"
                     ]
@@ -519,38 +574,38 @@ const PLAN = [
                         "core": "x",
                         "flight": 1,
                         "gridfins": true,
+                        "legs": true,
+                        "reused": true,
                         "landing_attempt": true,
                         "landing_success": true,
                         "landing_type": "x",
-                        "landpad": "x",
-                        "legs": true,
-                        "reused": true
+                        "landpad": "x"
                     }
                 ],
                 "links": {
-                    "article": "x",
-                    "flickr": {
-                        "original": [
-                            "x"
-                        ],
-                        "small": [
-                            "x"
-                        ]
-                    },
                     "patch": {
-                        "large": "x",
-                        "small": "x"
+                        "small": "x",
+                        "large": "x"
                     },
-                    "presskit": "x",
                     "reddit": {
                         "campaign": "x",
                         "launch": "x",
                         "media": "x",
                         "recovery": "x"
                     },
+                    "flickr": {
+                        "small": [
+                            "x"
+                        ],
+                        "original": [
+                            "x"
+                        ]
+                    },
+                    "presskit": "x",
                     "webcast": "x",
-                    "wikipedia": "x",
-                    "youtube_id": "x"
+                    "youtube_id": "x",
+                    "article": "x",
+                    "wikipedia": "x"
                 },
                 "auto_update": true
             }
@@ -567,7 +622,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": [
@@ -592,9 +652,9 @@ const PLAN = [
                 "upcoming": true,
                 "details": "x",
                 "fairings": {
-                    "recovered": true,
-                    "recovery_attempt": true,
                     "reused": true,
+                    "recovery_attempt": true,
+                    "recovered": true,
                     "ships": [
                         "x"
                     ]
@@ -617,38 +677,38 @@ const PLAN = [
                         "core": "x",
                         "flight": 1,
                         "gridfins": true,
+                        "legs": true,
+                        "reused": true,
                         "landing_attempt": true,
                         "landing_success": true,
                         "landing_type": "x",
-                        "landpad": "x",
-                        "legs": true,
-                        "reused": true
+                        "landpad": "x"
                     }
                 ],
                 "links": {
-                    "article": "x",
-                    "flickr": {
-                        "original": [
-                            "x"
-                        ],
-                        "small": [
-                            "x"
-                        ]
-                    },
                     "patch": {
-                        "large": "x",
-                        "small": "x"
+                        "small": "x",
+                        "large": "x"
                     },
-                    "presskit": "x",
                     "reddit": {
                         "campaign": "x",
                         "launch": "x",
                         "media": "x",
                         "recovery": "x"
                     },
+                    "flickr": {
+                        "small": [
+                            "x"
+                        ],
+                        "original": [
+                            "x"
+                        ]
+                    },
+                    "presskit": "x",
                     "webcast": "x",
-                    "wikipedia": "x",
-                    "youtube_id": "x"
+                    "youtube_id": "x",
+                    "article": "x",
+                    "wikipedia": "x"
                 },
                 "auto_update": true
             }
@@ -670,7 +730,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
@@ -694,9 +759,9 @@ const PLAN = [
             "upcoming": true,
             "details": "x",
             "fairings": {
-                "recovered": true,
-                "recovery_attempt": true,
                 "reused": true,
+                "recovery_attempt": true,
+                "recovered": true,
                 "ships": [
                     "x"
                 ]
@@ -719,38 +784,38 @@ const PLAN = [
                     "core": "x",
                     "flight": 1,
                     "gridfins": true,
+                    "legs": true,
+                    "reused": true,
                     "landing_attempt": true,
                     "landing_success": true,
                     "landing_type": "x",
-                    "landpad": "x",
-                    "legs": true,
-                    "reused": true
+                    "landpad": "x"
                 }
             ],
             "links": {
-                "article": "x",
-                "flickr": {
-                    "original": [
-                        "x"
-                    ],
-                    "small": [
-                        "x"
-                    ]
-                },
                 "patch": {
-                    "large": "x",
-                    "small": "x"
+                    "small": "x",
+                    "large": "x"
                 },
-                "presskit": "x",
                 "reddit": {
                     "campaign": "x",
                     "launch": "x",
                     "media": "x",
                     "recovery": "x"
                 },
+                "flickr": {
+                    "small": [
+                        "x"
+                    ],
+                    "original": [
+                        "x"
+                    ]
+                },
+                "presskit": "x",
                 "webcast": "x",
-                "wikipedia": "x",
-                "youtube_id": "x"
+                "youtube_id": "x",
+                "article": "x",
+                "wikipedia": "x"
             },
             "auto_update": true
         },
@@ -765,7 +830,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": [
@@ -806,7 +876,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
@@ -839,7 +914,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": [
@@ -898,7 +978,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
@@ -949,7 +1034,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
@@ -994,7 +1084,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": [
@@ -1046,7 +1141,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
@@ -1090,7 +1190,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": [
@@ -1141,7 +1246,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
@@ -1184,7 +1294,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": [
@@ -1216,7 +1331,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {

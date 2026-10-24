@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { SpacexRestSDK, BaseFeature, stdutil } from '../../..'
+import { SpacexRestSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('PayloadEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('payload hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of SpacexRestSDK.test(offline).Payload().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of SpacexRestSDK.test(offline).Payload()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = SpacexRestSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Payload().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of SpacexRestSDK.test().Payload().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new SpacexRestSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Payload().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Payload().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = SpacexRestSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Payload().list({"apoapsis_km":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.SPACEX_REST_TEST_LIVE
@@ -51,7 +109,7 @@ describe('PayloadEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"apoapsis_km":{"a":true,"h":"Apoapsis Km","n":"apoapsis_km","r":false,"sh":"Apoapsis in km","t":"`$NUMBER`","key$":"apoapsis_km","index$":0},"arg_of_pericenter":{"a":true,"h":"Arg Of Pericenter","n":"arg_of_pericenter","r":false,"sh":"Argument of pericenter","t":"`$NUMBER`","key$":"arg_of_pericenter","index$":1},"customers":{"a":true,"h":"Customers","n":"customers","r":false,"sh":"Customers","t":"`$ARRAY`","key$":"customers","index$":2},"eccentricity":{"a":true,"h":"Eccentricity","n":"eccentricity","r":false,"sh":"Eccentricity","t":"`$NUMBER`","key$":"eccentricity","index$":3},"epoch":{"a":true,"h":"Epoch","n":"epoch","r":false,"sh":"Epoch","t":"`$STRING`","key$":"epoch","index$":4},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Payload ID","t":"`$STRING`","key$":"id","index$":5},"inclination_deg":{"a":true,"h":"Inclination Deg","n":"inclination_deg","r":false,"sh":"Inclination in degrees","t":"`$NUMBER`","key$":"inclination_deg","index$":6},"launch":{"a":true,"h":"Launch","n":"launch","r":false,"sh":"Launch ID","t":"`$STRING`","key$":"launch","index$":7},"lifespan_years":{"a":true,"h":"Lifespan Years","n":"lifespan_years","r":false,"sh":"Lifespan in years","t":"`$NUMBER`","key$":"lifespan_years","index$":8},"longitude":{"a":true,"h":"Longitude","n":"longitude","r":false,"sh":"Longitude","t":"`$NUMBER`","key$":"longitude","index$":9},"manufacturers":{"a":true,"h":"Manufacturers","n":"manufacturers","r":false,"sh":"Manufacturers","t":"`$ARRAY`","key$":"manufacturers","index$":10},"mass_kg":{"a":true,"h":"Mass Kg","n":"mass_kg","r":false,"sh":"Payload mass in kilograms","t":"`$NUMBER`","key$":"mass_kg","index$":11},"mass_lbs":{"a":true,"h":"Mass Lbs","n":"mass_lbs","r":false,"sh":"Payload mass in pounds","t":"`$NUMBER`","key$":"mass_lbs","index$":12},"mean_anomaly":{"a":true,"h":"Mean Anomaly","n":"mean_anomaly","r":false,"sh":"Mean anomaly","t":"`$NUMBER`","key$":"mean_anomaly","index$":13},"mean_motion":{"a":true,"h":"Mean Motion","n":"mean_motion","r":false,"sh":"Mean motion","t":"`$NUMBER`","key$":"mean_motion","index$":14},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Payload name","t":"`$STRING`","key$":"name","index$":15},"nationalities":{"a":true,"h":"Nationalities","n":"nationalities","r":false,"sh":"Nationalities","t":"`$ARRAY`","key$":"nationalities","index$":16},"norad_ids":{"a":true,"h":"Norad Ids","n":"norad_ids","r":false,"sh":"NORAD IDs","t":"`$ARRAY`","key$":"norad_ids","index$":17},"orbit":{"a":true,"h":"Orbit","n":"orbit","r":false,"sh":"Orbit type","t":"`$STRING`","key$":"orbit","index$":18},"periapsis_km":{"a":true,"h":"Periapsis Km","n":"periapsis_km","r":false,"sh":"Periapsis in km","t":"`$NUMBER`","key$":"periapsis_km","index$":19},"period_min":{"a":true,"h":"Period Min","n":"period_min","r":false,"sh":"Orbital period in minutes","t":"`$NUMBER`","key$":"period_min","index$":20},"raan":{"a":true,"h":"Raan","n":"raan","r":false,"sh":"Right ascension of the ascending node","t":"`$NUMBER`","key$":"raan","index$":21},"reference_system":{"a":true,"h":"Reference System","n":"reference_system","r":false,"sh":"Reference system","t":"`$STRING`","key$":"reference_system","index$":22},"regime":{"a":true,"h":"Regime","n":"regime","r":false,"sh":"Orbit regime","t":"`$STRING`","key$":"regime","index$":23},"reused":{"a":true,"h":"Reused","n":"reused","r":false,"sh":"Whether the payload was reused","t":"`$BOOLEAN`","key$":"reused","index$":24},"semi_major_axis_km":{"a":true,"h":"Semi Major Axis Km","n":"semi_major_axis_km","r":false,"sh":"Semi-major axis in km","t":"`$NUMBER`","key$":"semi_major_axis_km","index$":25},"type":{"a":true,"h":"Type","n":"type","r":false,"sh":"Payload type","t":"`$STRING`","key$":"type","index$":26}},"id":{"field":"id","name":"id"},"name":"payload","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /payloads","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/payloads","q":{},"r":{},"s":[{"lit":"payloads"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /payloads/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/payloads/{id}","q":{"exist":["id"]},"r":{},"s":[{"lit":"payloads"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"payload","name__orig":"payload","Name":"Payload","name_":"payload","name-":"payload","NAME":"PAYLOAD","index$":6}, {"active":true,"entity":"payload","key$":"BasicPayloadFlow","kind":"basic","name":"BasicPayloadFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"payload_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"payload_ref01","srcdatavar":"payload_ref01_data","suffix":"_dt0"},"m":{"id":"payload01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-payload_ref01"}}],"index$":1}]}, 'Payload', {"GET /payloads":{"protocol":"http","parameters":[]},"GET /payloads/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","required":true,"description":"Payload ID","schema":{"type":"string"},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"apoapsis_km":{"a":true,"h":"Apoapsis Km","n":"apoapsis_km","r":false,"sh":"Apoapsis in km","t":"`$NUMBER`","key$":"apoapsis_km","index$":0},"arg_of_pericenter":{"a":true,"h":"Arg Of Pericenter","n":"arg_of_pericenter","r":false,"sh":"Argument of pericenter","t":"`$NUMBER`","key$":"arg_of_pericenter","index$":1},"customers":{"a":true,"h":"Customers","n":"customers","r":false,"sh":"Customers","t":"`$ARRAY`","key$":"customers","index$":2},"eccentricity":{"a":true,"h":"Eccentricity","n":"eccentricity","r":false,"sh":"Eccentricity","t":"`$NUMBER`","key$":"eccentricity","index$":3},"epoch":{"a":true,"h":"Epoch","n":"epoch","r":false,"sh":"Epoch","t":"`$STRING`","key$":"epoch","index$":4},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Payload ID","t":"`$STRING`","key$":"id","index$":5},"inclination_deg":{"a":true,"h":"Inclination Deg","n":"inclination_deg","r":false,"sh":"Inclination in degrees","t":"`$NUMBER`","key$":"inclination_deg","index$":6},"launch":{"a":true,"h":"Launch","n":"launch","r":false,"sh":"Launch ID","t":"`$STRING`","key$":"launch","index$":7},"lifespan_years":{"a":true,"h":"Lifespan Years","n":"lifespan_years","r":false,"sh":"Lifespan in years","t":"`$NUMBER`","key$":"lifespan_years","index$":8},"longitude":{"a":true,"h":"Longitude","n":"longitude","r":false,"sh":"Longitude","t":"`$NUMBER`","key$":"longitude","index$":9},"manufacturers":{"a":true,"h":"Manufacturers","n":"manufacturers","r":false,"sh":"Manufacturers","t":"`$ARRAY`","key$":"manufacturers","index$":10},"mass_kg":{"a":true,"h":"Mass Kg","n":"mass_kg","r":false,"sh":"Payload mass in kilograms","t":"`$NUMBER`","key$":"mass_kg","index$":11},"mass_lbs":{"a":true,"h":"Mass Lbs","n":"mass_lbs","r":false,"sh":"Payload mass in pounds","t":"`$NUMBER`","key$":"mass_lbs","index$":12},"mean_anomaly":{"a":true,"h":"Mean Anomaly","n":"mean_anomaly","r":false,"sh":"Mean anomaly","t":"`$NUMBER`","key$":"mean_anomaly","index$":13},"mean_motion":{"a":true,"h":"Mean Motion","n":"mean_motion","r":false,"sh":"Mean motion","t":"`$NUMBER`","key$":"mean_motion","index$":14},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Payload name","t":"`$STRING`","key$":"name","index$":15},"nationalities":{"a":true,"h":"Nationalities","n":"nationalities","r":false,"sh":"Nationalities","t":"`$ARRAY`","key$":"nationalities","index$":16},"norad_ids":{"a":true,"h":"Norad Ids","n":"norad_ids","r":false,"sh":"NORAD IDs","t":"`$ARRAY`","key$":"norad_ids","index$":17},"orbit":{"a":true,"h":"Orbit","n":"orbit","r":false,"sh":"Orbit type","t":"`$STRING`","key$":"orbit","index$":18},"periapsis_km":{"a":true,"h":"Periapsis Km","n":"periapsis_km","r":false,"sh":"Periapsis in km","t":"`$NUMBER`","key$":"periapsis_km","index$":19},"period_min":{"a":true,"h":"Period Min","n":"period_min","r":false,"sh":"Orbital period in minutes","t":"`$NUMBER`","key$":"period_min","index$":20},"raan":{"a":true,"h":"Raan","n":"raan","r":false,"sh":"Right ascension of the ascending node","t":"`$NUMBER`","key$":"raan","index$":21},"reference_system":{"a":true,"h":"Reference System","n":"reference_system","r":false,"sh":"Reference system","t":"`$STRING`","key$":"reference_system","index$":22},"regime":{"a":true,"h":"Regime","n":"regime","r":false,"sh":"Orbit regime","t":"`$STRING`","key$":"regime","index$":23},"reused":{"a":true,"h":"Reused","n":"reused","r":false,"sh":"Whether the payload was reused","t":"`$BOOLEAN`","key$":"reused","index$":24},"semi_major_axis_km":{"a":true,"h":"Semi Major Axis Km","n":"semi_major_axis_km","r":false,"sh":"Semi-major axis in km","t":"`$NUMBER`","key$":"semi_major_axis_km","index$":25},"type":{"a":true,"h":"Type","n":"type","r":false,"sh":"Payload type","t":"`$STRING`","key$":"type","index$":26}},"id":{"field":"id","name":"id"},"name":"payload","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /payloads","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/payloads","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"payloads"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /payloads/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/payloads/{id}","q":{"exist":["id"]},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"payloads"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"payload","name__orig":"payload","Name":"Payload","name_":"payload","name-":"payload","NAME":"PAYLOAD","index$":6}, {"active":true,"entity":"payload","key$":"BasicPayloadFlow","kind":"basic","name":"BasicPayloadFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"payload_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"payload_ref01","srcdatavar":"payload_ref01_data","suffix":"_dt0"},"m":{"id":"payload01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-payload_ref01"}}],"index$":1}]}, 'Payload', {"GET /payloads":{"protocol":"http","parameters":[]},"GET /payloads/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","required":true,"description":"Payload ID","schema":{"type":"string"},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -79,6 +137,12 @@ describe('PayloadEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

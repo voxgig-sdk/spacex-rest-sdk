@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Core();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('core hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.SpacexRestSDK.test(offline).Core().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.SpacexRestSDK.test(offline).Core()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.SpacexRestSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Core().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.SpacexRestSDK.test().Core().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.SpacexRestSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Core().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Core().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.SpacexRestSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Core().list({ "asds_attempts": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.SPACEX_REST_TEST_LIVE;
         for (const op of ['list', 'load']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "asds_attempts": { "a": true, "h": "Asds Attempts", "n": "asds_attempts", "r": false, "sh": "Number of autonomous spaceport drone ship landing attempts", "t": "`$INTEGER`", "key$": "asds_attempts", "index$": 0 }, "asds_landings": { "a": true, "h": "Asds Landings", "n": "asds_landings", "r": false, "sh": "Number of successful ASDS landings", "t": "`$INTEGER`", "key$": "asds_landings", "index$": 1 }, "block": { "a": true, "h": "Block", "n": "block", "r": false, "sh": "Core block number", "t": "`$INTEGER`", "key$": "block", "index$": 2 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "sh": "Core serial number", "t": "`$STRING`", "key$": "id", "index$": 3 }, "last_update": { "a": true, "h": "Last Update", "n": "last_update", "r": false, "sh": "Last update about the core", "t": "`$STRING`", "key$": "last_update", "index$": 4 }, "launches": { "a": true, "h": "Launches", "n": "launches", "r": false, "sh": "Launch IDs", "t": "`$ARRAY`", "key$": "launches", "index$": 5 }, "reuse_count": { "a": true, "h": "Reuse Count", "n": "reuse_count", "r": false, "sh": "Number of times core has been reused", "t": "`$INTEGER`", "key$": "reuse_count", "index$": 6 }, "rtls_attempts": { "a": true, "h": "Rtls Attempts", "n": "rtls_attempts", "r": false, "sh": "Number of return to launch site attempts", "t": "`$INTEGER`", "key$": "rtls_attempts", "index$": 7 }, "rtls_landings": { "a": true, "h": "Rtls Landings", "n": "rtls_landings", "r": false, "sh": "Number of successful RTLS landings", "t": "`$INTEGER`", "key$": "rtls_landings", "index$": 8 }, "serial": { "a": true, "h": "Serial", "n": "serial", "r": false, "sh": "Core serial number", "t": "`$STRING`", "key$": "serial", "index$": 9 }, "status": { "a": true, "h": "Status", "n": "status", "r": false, "sh": "Core status (active, inactive, unknown, expended, lost, retired)", "t": "`$STRING`", "key$": "status", "index$": 10 } }, "id": { "field": "id", "name": "id" }, "name": "core", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /cores", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/cores", "q": {}, "r": {}, "s": [{ "lit": "cores" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /cores/{id}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "id", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/cores/{id}", "q": { "exist": ["id"] }, "r": {}, "s": [{ "lit": "cores" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "core", "name__orig": "core", "Name": "Core", "name_": "core", "name-": "core", "NAME": "CORE", "index$": 1 }, { "active": true, "entity": "core", "key$": "BasicCoreFlow", "kind": "basic", "name": "BasicCoreFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "core_ref01" } }], "index$": 0 }, { "a": true, "d": {}, "i": { "ref": "core_ref01", "srcdatavar": "core_ref01_data", "suffix": "_dt0" }, "m": { "id": "core01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-core_ref01" } }], "index$": 1 }] }, 'Core', { "GET /cores": { "protocol": "http", "parameters": [] }, "GET /cores/{id}": { "protocol": "http", "parameters": [{ "name": "id", "in": "path", "required": true, "description": "Core ID", "schema": { "type": "string" }, "index$": 0 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "asds_attempts": { "a": true, "h": "Asds Attempts", "n": "asds_attempts", "r": false, "sh": "Number of autonomous spaceport drone ship landing attempts", "t": "`$INTEGER`", "key$": "asds_attempts", "index$": 0 }, "asds_landings": { "a": true, "h": "Asds Landings", "n": "asds_landings", "r": false, "sh": "Number of successful ASDS landings", "t": "`$INTEGER`", "key$": "asds_landings", "index$": 1 }, "block": { "a": true, "h": "Block", "n": "block", "r": false, "sh": "Core block number", "t": "`$INTEGER`", "key$": "block", "index$": 2 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "sh": "Core serial number", "t": "`$STRING`", "key$": "id", "index$": 3 }, "last_update": { "a": true, "h": "Last Update", "n": "last_update", "r": false, "sh": "Last update about the core", "t": "`$STRING`", "key$": "last_update", "index$": 4 }, "launches": { "a": true, "h": "Launches", "n": "launches", "r": false, "sh": "Launch IDs", "t": "`$ARRAY`", "key$": "launches", "index$": 5 }, "reuse_count": { "a": true, "h": "Reuse Count", "n": "reuse_count", "r": false, "sh": "Number of times core has been reused", "t": "`$INTEGER`", "key$": "reuse_count", "index$": 6 }, "rtls_attempts": { "a": true, "h": "Rtls Attempts", "n": "rtls_attempts", "r": false, "sh": "Number of return to launch site attempts", "t": "`$INTEGER`", "key$": "rtls_attempts", "index$": 7 }, "rtls_landings": { "a": true, "h": "Rtls Landings", "n": "rtls_landings", "r": false, "sh": "Number of successful RTLS landings", "t": "`$INTEGER`", "key$": "rtls_landings", "index$": 8 }, "serial": { "a": true, "h": "Serial", "n": "serial", "r": false, "sh": "Core serial number", "t": "`$STRING`", "key$": "serial", "index$": 9 }, "status": { "a": true, "h": "Status", "n": "status", "r": false, "sh": "Core status (active, inactive, unknown, expended, lost, retired)", "t": "`$STRING`", "key$": "status", "index$": 10 } }, "id": { "field": "id", "name": "id" }, "name": "core", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /cores", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/cores", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "cores" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /cores/{id}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "id", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/cores/{id}", "q": { "exist": ["id"] }, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "cores" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "core", "name__orig": "core", "Name": "Core", "name_": "core", "name-": "core", "NAME": "CORE", "index$": 1 }, { "active": true, "entity": "core", "key$": "BasicCoreFlow", "kind": "basic", "name": "BasicCoreFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "core_ref01" } }], "index$": 0 }, { "a": true, "d": {}, "i": { "ref": "core_ref01", "srcdatavar": "core_ref01_data", "suffix": "_dt0" }, "m": { "id": "core01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-core_ref01" } }], "index$": 1 }] }, 'Core', { "GET /cores": { "protocol": "http", "parameters": [] }, "GET /cores/{id}": { "protocol": "http", "parameters": [{ "name": "id", "in": "path", "required": true, "description": "Core ID", "schema": { "type": "string" }, "index$": 0 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -80,6 +127,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(core_ref01_data_dt0.id === core_ref01_data.id);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

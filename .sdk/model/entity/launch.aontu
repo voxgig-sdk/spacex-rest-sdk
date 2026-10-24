@@ -207,6 +207,10 @@ main: kit: entity: launch: {
           }
           m: "GET"
           o: "/launches"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "launches"
@@ -227,6 +231,10 @@ main: kit: entity: launch: {
           o: "/launches/latest"
           q: {
             "$action": "latest"
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -252,6 +260,10 @@ main: kit: entity: launch: {
           q: {
             "$action": "past"
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "launches"
@@ -275,6 +287,10 @@ main: kit: entity: launch: {
           o: "/launches/upcoming"
           q: {
             "$action": "upcoming"
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -317,6 +333,10 @@ main: kit: entity: launch: {
             exist: [
               "id"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

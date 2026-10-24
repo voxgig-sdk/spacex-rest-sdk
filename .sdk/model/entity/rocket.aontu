@@ -139,6 +139,10 @@ main: kit: entity: rocket: {
           }
           m: "GET"
           o: "/rockets"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "rockets"
@@ -177,6 +181,10 @@ main: kit: entity: rocket: {
             exist: [
               "id"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

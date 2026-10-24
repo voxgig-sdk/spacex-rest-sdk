@@ -215,6 +215,10 @@ main: kit: entity: roadster: {
           }
           m: "GET"
           o: "/roadster"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "roadster"

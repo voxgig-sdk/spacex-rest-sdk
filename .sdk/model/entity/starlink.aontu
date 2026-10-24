@@ -81,6 +81,10 @@ main: kit: entity: starlink: {
           }
           m: "GET"
           o: "/starlink"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "starlink"
@@ -119,6 +123,10 @@ main: kit: entity: starlink: {
             exist: [
               "id"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

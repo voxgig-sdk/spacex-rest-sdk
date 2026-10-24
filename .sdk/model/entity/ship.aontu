@@ -186,6 +186,10 @@ main: kit: entity: ship: {
           }
           m: "GET"
           o: "/ships"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "ships"
@@ -224,6 +228,10 @@ main: kit: entity: ship: {
             exist: [
               "id"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

@@ -214,6 +214,10 @@ main: kit: entity: payload: {
           }
           m: "GET"
           o: "/payloads"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "payloads"
@@ -252,6 +256,10 @@ main: kit: entity: payload: {
             exist: [
               "id"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

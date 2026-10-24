@@ -630,6 +630,6 @@ initialiser
 [Ff][Oo][Uu][Nn][Dd]
 [Gg][Rr][Ii][Dd]
 [Ff][Ii][Nn][Ss]
+[Ll][Ee][Gg][Ss]
 [Aa][Tt][Tt][Ee][Mm][Pp][Tt][Ee][Dd]
 [Oo][Cc][Ee][Aa][Nn]
-[Ll][Ee][Gg][Ss]

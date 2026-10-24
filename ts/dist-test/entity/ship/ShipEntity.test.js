@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Ship();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('ship hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.SpacexRestSDK.test(offline).Ship().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.SpacexRestSDK.test(offline).Ship()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.SpacexRestSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Ship().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.SpacexRestSDK.test().Ship().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.SpacexRestSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Ship().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Ship().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.SpacexRestSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Ship().list({ "abs": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.SPACEX_REST_TEST_LIVE;
         for (const op of ['list', 'load']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "abs": { "a": true, "h": "Abs", "n": "abs", "r": false, "sh": "ABS number", "t": "`$INTEGER`", "key$": "abs", "index$": 0 }, "class": { "a": true, "h": "Class", "n": "class", "r": false, "sh": "Ship class", "t": "`$INTEGER`", "key$": "class", "index$": 1 }, "course_deg": { "a": true, "h": "Course Deg", "n": "course_deg", "r": false, "sh": "Course in degrees", "t": "`$NUMBER`", "key$": "course_deg", "index$": 2 }, "home_port": { "a": true, "h": "Home Port", "n": "home_port", "r": false, "sh": "Home port", "t": "`$STRING`", "key$": "home_port", "index$": 3 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "sh": "Ship ID", "t": "`$STRING`", "key$": "id", "index$": 4 }, "image": { "a": true, "h": "Image", "n": "image", "r": false, "sh": "Image URL", "t": "`$STRING`", "key$": "image", "index$": 5 }, "imo": { "a": true, "h": "Imo", "n": "imo", "r": false, "sh": "IMO number", "t": "`$INTEGER`", "key$": "imo", "index$": 6 }, "last_ais_update": { "a": true, "h": "Last Ais Update", "n": "last_ais_update", "r": false, "sh": "Last AIS update timestamp", "t": "`$STRING`", "key$": "last_ais_update", "index$": 7 }, "latitude": { "a": true, "h": "Latitude", "n": "latitude", "r": false, "sh": "Latitude", "t": "`$NUMBER`", "key$": "latitude", "index$": 8 }, "launches": { "a": true, "h": "Launches", "n": "launches", "r": false, "sh": "Launch IDs", "t": "`$ARRAY`", "key$": "launches", "index$": 9 }, "legacy_id": { "a": true, "h": "Legacy Id", "n": "legacy_id", "r": false, "sh": "Legacy ID", "t": "`$STRING`", "key$": "legacy_id", "index$": 10 }, "link": { "a": true, "h": "Link", "n": "link", "r": false, "sh": "Link to ship info", "t": "`$STRING`", "key$": "link", "index$": 11 }, "longitude": { "a": true, "h": "Longitude", "n": "longitude", "r": false, "sh": "Longitude", "t": "`$NUMBER`", "key$": "longitude", "index$": 12 }, "mass_kg": { "a": true, "h": "Mass Kg", "n": "mass_kg", "r": false, "sh": "Mass in kilograms", "t": "`$INTEGER`", "key$": "mass_kg", "index$": 13 }, "mass_lbs": { "a": true, "h": "Mass Lbs", "n": "mass_lbs", "r": false, "sh": "Mass in pounds", "t": "`$INTEGER`", "key$": "mass_lbs", "index$": 14 }, "mmsi": { "a": true, "h": "Mmsi", "n": "mmsi", "r": false, "sh": "MMSI number", "t": "`$INTEGER`", "key$": "mmsi", "index$": 15 }, "model": { "a": true, "h": "Model", "n": "model", "r": false, "sh": "Ship model", "t": "`$STRING`", "key$": "model", "index$": 16 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "sh": "Ship name", "t": "`$STRING`", "key$": "name", "index$": 17 }, "roles": { "a": true, "h": "Roles", "n": "roles", "r": false, "sh": "Ship roles", "t": "`$ARRAY`", "key$": "roles", "index$": 18 }, "speed_kn": { "a": true, "h": "Speed Kn", "n": "speed_kn", "r": false, "sh": "Speed in knots", "t": "`$NUMBER`", "key$": "speed_kn", "index$": 19 }, "status": { "a": true, "h": "Status", "n": "status", "r": false, "sh": "Ship status", "t": "`$STRING`", "key$": "status", "index$": 20 }, "type": { "a": true, "h": "Type", "n": "type", "r": false, "sh": "Ship type", "t": "`$STRING`", "key$": "type", "index$": 21 }, "year_built": { "a": true, "h": "Year Built", "n": "year_built", "r": false, "sh": "Year built", "t": "`$INTEGER`", "key$": "year_built", "index$": 22 } }, "id": { "field": "id", "name": "id" }, "name": "ship", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /ships", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/ships", "q": {}, "r": {}, "s": [{ "lit": "ships" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /ships/{id}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "id", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/ships/{id}", "q": { "exist": ["id"] }, "r": {}, "s": [{ "lit": "ships" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "ship", "name__orig": "ship", "Name": "Ship", "name_": "ship", "name-": "ship", "NAME": "SHIP", "index$": 9 }, { "active": true, "entity": "ship", "key$": "BasicShipFlow", "kind": "basic", "name": "BasicShipFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "ship_ref01" } }], "index$": 0 }, { "a": true, "d": {}, "i": { "ref": "ship_ref01", "srcdatavar": "ship_ref01_data", "suffix": "_dt0" }, "m": { "id": "ship01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-ship_ref01" } }], "index$": 1 }] }, 'Ship', { "GET /ships": { "protocol": "http", "parameters": [] }, "GET /ships/{id}": { "protocol": "http", "parameters": [{ "name": "id", "in": "path", "required": true, "description": "Ship ID", "schema": { "type": "string" }, "index$": 0 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "abs": { "a": true, "h": "Abs", "n": "abs", "r": false, "sh": "ABS number", "t": "`$INTEGER`", "key$": "abs", "index$": 0 }, "class": { "a": true, "h": "Class", "n": "class", "r": false, "sh": "Ship class", "t": "`$INTEGER`", "key$": "class", "index$": 1 }, "course_deg": { "a": true, "h": "Course Deg", "n": "course_deg", "r": false, "sh": "Course in degrees", "t": "`$NUMBER`", "key$": "course_deg", "index$": 2 }, "home_port": { "a": true, "h": "Home Port", "n": "home_port", "r": false, "sh": "Home port", "t": "`$STRING`", "key$": "home_port", "index$": 3 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "sh": "Ship ID", "t": "`$STRING`", "key$": "id", "index$": 4 }, "image": { "a": true, "h": "Image", "n": "image", "r": false, "sh": "Image URL", "t": "`$STRING`", "key$": "image", "index$": 5 }, "imo": { "a": true, "h": "Imo", "n": "imo", "r": false, "sh": "IMO number", "t": "`$INTEGER`", "key$": "imo", "index$": 6 }, "last_ais_update": { "a": true, "h": "Last Ais Update", "n": "last_ais_update", "r": false, "sh": "Last AIS update timestamp", "t": "`$STRING`", "key$": "last_ais_update", "index$": 7 }, "latitude": { "a": true, "h": "Latitude", "n": "latitude", "r": false, "sh": "Latitude", "t": "`$NUMBER`", "key$": "latitude", "index$": 8 }, "launches": { "a": true, "h": "Launches", "n": "launches", "r": false, "sh": "Launch IDs", "t": "`$ARRAY`", "key$": "launches", "index$": 9 }, "legacy_id": { "a": true, "h": "Legacy Id", "n": "legacy_id", "r": false, "sh": "Legacy ID", "t": "`$STRING`", "key$": "legacy_id", "index$": 10 }, "link": { "a": true, "h": "Link", "n": "link", "r": false, "sh": "Link to ship info", "t": "`$STRING`", "key$": "link", "index$": 11 }, "longitude": { "a": true, "h": "Longitude", "n": "longitude", "r": false, "sh": "Longitude", "t": "`$NUMBER`", "key$": "longitude", "index$": 12 }, "mass_kg": { "a": true, "h": "Mass Kg", "n": "mass_kg", "r": false, "sh": "Mass in kilograms", "t": "`$INTEGER`", "key$": "mass_kg", "index$": 13 }, "mass_lbs": { "a": true, "h": "Mass Lbs", "n": "mass_lbs", "r": false, "sh": "Mass in pounds", "t": "`$INTEGER`", "key$": "mass_lbs", "index$": 14 }, "mmsi": { "a": true, "h": "Mmsi", "n": "mmsi", "r": false, "sh": "MMSI number", "t": "`$INTEGER`", "key$": "mmsi", "index$": 15 }, "model": { "a": true, "h": "Model", "n": "model", "r": false, "sh": "Ship model", "t": "`$STRING`", "key$": "model", "index$": 16 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "sh": "Ship name", "t": "`$STRING`", "key$": "name", "index$": 17 }, "roles": { "a": true, "h": "Roles", "n": "roles", "r": false, "sh": "Ship roles", "t": "`$ARRAY`", "key$": "roles", "index$": 18 }, "speed_kn": { "a": true, "h": "Speed Kn", "n": "speed_kn", "r": false, "sh": "Speed in knots", "t": "`$NUMBER`", "key$": "speed_kn", "index$": 19 }, "status": { "a": true, "h": "Status", "n": "status", "r": false, "sh": "Ship status", "t": "`$STRING`", "key$": "status", "index$": 20 }, "type": { "a": true, "h": "Type", "n": "type", "r": false, "sh": "Ship type", "t": "`$STRING`", "key$": "type", "index$": 21 }, "year_built": { "a": true, "h": "Year Built", "n": "year_built", "r": false, "sh": "Year built", "t": "`$INTEGER`", "key$": "year_built", "index$": 22 } }, "id": { "field": "id", "name": "id" }, "name": "ship", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /ships", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/ships", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "ships" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /ships/{id}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "id", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/ships/{id}", "q": { "exist": ["id"] }, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "ships" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "ship", "name__orig": "ship", "Name": "Ship", "name_": "ship", "name-": "ship", "NAME": "SHIP", "index$": 9 }, { "active": true, "entity": "ship", "key$": "BasicShipFlow", "kind": "basic", "name": "BasicShipFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "ship_ref01" } }], "index$": 0 }, { "a": true, "d": {}, "i": { "ref": "ship_ref01", "srcdatavar": "ship_ref01_data", "suffix": "_dt0" }, "m": { "id": "ship01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-ship_ref01" } }], "index$": 1 }] }, 'Ship', { "GET /ships": { "protocol": "http", "parameters": [] }, "GET /ships/{id}": { "protocol": "http", "parameters": [{ "name": "id", "in": "path", "required": true, "description": "Ship ID", "schema": { "type": "string" }, "index$": 0 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -80,6 +127,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(ship_ref01_data_dt0.id === ship_ref01_data.id);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

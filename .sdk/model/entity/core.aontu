@@ -102,6 +102,10 @@ main: kit: entity: core: {
           }
           m: "GET"
           o: "/cores"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "cores"
@@ -140,6 +144,10 @@ main: kit: entity: core: {
             exist: [
               "id"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

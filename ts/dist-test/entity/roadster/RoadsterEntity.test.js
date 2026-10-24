@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Roadster();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('roadster hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.SpacexRestSDK.test(offline).Roadster().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.SpacexRestSDK.test(offline).Roadster()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.SpacexRestSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Roadster().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.SpacexRestSDK.test().Roadster().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.SpacexRestSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Roadster().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Roadster().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.SpacexRestSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Roadster().list({ "apoapsis_au": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.SPACEX_REST_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "apoapsis_au": { "a": true, "h": "Apoapsis Au", "n": "apoapsis_au", "r": false, "sh": "Apoapsis in AU", "t": "`$NUMBER`", "key$": "apoapsis_au", "index$": 0 }, "details": { "a": true, "h": "Details", "n": "details", "r": false, "sh": "Details", "t": "`$STRING`", "key$": "details", "index$": 1 }, "earth_distance_km": { "a": true, "h": "Earth Distance Km", "n": "earth_distance_km", "r": false, "sh": "Distance from Earth in km", "t": "`$NUMBER`", "key$": "earth_distance_km", "index$": 2 }, "earth_distance_mi": { "a": true, "h": "Earth Distance Mi", "n": "earth_distance_mi", "r": false, "sh": "Distance from Earth in miles", "t": "`$NUMBER`", "key$": "earth_distance_mi", "index$": 3 }, "eccentricity": { "a": true, "h": "Eccentricity", "n": "eccentricity", "r": false, "sh": "Eccentricity", "t": "`$NUMBER`", "key$": "eccentricity", "index$": 4 }, "epoch_jd": { "a": true, "h": "Epoch Jd", "n": "epoch_jd", "r": false, "sh": "Epoch in Julian Date", "t": "`$NUMBER`", "key$": "epoch_jd", "index$": 5 }, "flickr_images": { "a": true, "h": "Flickr Images", "n": "flickr_images", "r": false, "sh": "Flickr images", "t": "`$ARRAY`", "key$": "flickr_images", "index$": 6 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "sh": "Roadster ID", "t": "`$STRING`", "key$": "id", "index$": 7 }, "inclination": { "a": true, "h": "Inclination", "n": "inclination", "r": false, "sh": "Inclination", "t": "`$NUMBER`", "key$": "inclination", "index$": 8 }, "launch_date_unix": { "a": true, "h": "Launch Date Unix", "n": "launch_date_unix", "r": false, "sh": "Launch date in unix timestamp", "t": "`$INTEGER`", "key$": "launch_date_unix", "index$": 9 }, "launch_date_utc": { "a": true, "fo": "date-time", "h": "Launch Date Utc", "n": "launch_date_utc", "r": false, "sh": "Launch date in UTC", "t": "`$STRING`", "key$": "launch_date_utc", "index$": 10 }, "launch_mass_kg": { "a": true, "h": "Launch Mass Kg", "n": "launch_mass_kg", "r": false, "sh": "Launch mass in kilograms", "t": "`$INTEGER`", "key$": "launch_mass_kg", "index$": 11 }, "launch_mass_lbs": { "a": true, "h": "Launch Mass Lbs", "n": "launch_mass_lbs", "r": false, "sh": "Launch mass in pounds", "t": "`$INTEGER`", "key$": "launch_mass_lbs", "index$": 12 }, "longitude": { "a": true, "h": "Longitude", "n": "longitude", "r": false, "sh": "Longitude", "t": "`$NUMBER`", "key$": "longitude", "index$": 13 }, "mars_distance_km": { "a": true, "h": "Mars Distance Km", "n": "mars_distance_km", "r": false, "sh": "Distance from Mars in km", "t": "`$NUMBER`", "key$": "mars_distance_km", "index$": 14 }, "mars_distance_mi": { "a": true, "h": "Mars Distance Mi", "n": "mars_distance_mi", "r": false, "sh": "Distance from Mars in miles", "t": "`$NUMBER`", "key$": "mars_distance_mi", "index$": 15 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "sh": "Roadster name", "t": "`$STRING`", "key$": "name", "index$": 16 }, "norad_id": { "a": true, "h": "Norad Id", "n": "norad_id", "r": false, "sh": "NORAD ID", "t": "`$INTEGER`", "key$": "norad_id", "index$": 17 }, "orbit_type": { "a": true, "h": "Orbit Type", "n": "orbit_type", "r": false, "sh": "Orbit type", "t": "`$STRING`", "key$": "orbit_type", "index$": 18 }, "periapsis_arg": { "a": true, "h": "Periapsis Arg", "n": "periapsis_arg", "r": false, "sh": "Argument of periapsis", "t": "`$NUMBER`", "key$": "periapsis_arg", "index$": 19 }, "periapsis_au": { "a": true, "h": "Periapsis Au", "n": "periapsis_au", "r": false, "sh": "Periapsis in AU", "t": "`$NUMBER`", "key$": "periapsis_au", "index$": 20 }, "period_days": { "a": true, "h": "Period Days", "n": "period_days", "r": false, "sh": "Orbital period in days", "t": "`$NUMBER`", "key$": "period_days", "index$": 21 }, "semi_major_axis_au": { "a": true, "h": "Semi Major Axis Au", "n": "semi_major_axis_au", "r": false, "sh": "Semi-major axis in AU", "t": "`$NUMBER`", "key$": "semi_major_axis_au", "index$": 22 }, "speed_kph": { "a": true, "h": "Speed Kph", "n": "speed_kph", "r": false, "sh": "Speed in km/h", "t": "`$NUMBER`", "key$": "speed_kph", "index$": 23 }, "speed_mph": { "a": true, "h": "Speed Mph", "n": "speed_mph", "r": false, "sh": "Speed in mph", "t": "`$NUMBER`", "key$": "speed_mph", "index$": 24 }, "video": { "a": true, "h": "Video", "n": "video", "r": false, "sh": "Video URL", "t": "`$STRING`", "key$": "video", "index$": 25 }, "wikipedia": { "a": true, "h": "Wikipedia", "n": "wikipedia", "r": false, "sh": "Wikipedia URL", "t": "`$STRING`", "key$": "wikipedia", "index$": 26 } }, "id": { "field": "id", "name": "id" }, "name": "roadster", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /roadster", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/roadster", "q": {}, "r": {}, "s": [{ "lit": "roadster" }], "t": { "req": "`reqdata`", "res": "`body.flickr_images`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "roadster", "name__orig": "roadster", "Name": "Roadster", "name_": "roadster", "name-": "roadster", "NAME": "ROADSTER", "index$": 7 }, { "active": true, "entity": "roadster", "key$": "BasicRoadsterFlow", "kind": "basic", "name": "BasicRoadsterFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "roadster_ref01" } }], "index$": 0 }] }, 'Roadster', { "GET /roadster": { "protocol": "http", "parameters": [] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "apoapsis_au": { "a": true, "h": "Apoapsis Au", "n": "apoapsis_au", "r": false, "sh": "Apoapsis in AU", "t": "`$NUMBER`", "key$": "apoapsis_au", "index$": 0 }, "details": { "a": true, "h": "Details", "n": "details", "r": false, "sh": "Details", "t": "`$STRING`", "key$": "details", "index$": 1 }, "earth_distance_km": { "a": true, "h": "Earth Distance Km", "n": "earth_distance_km", "r": false, "sh": "Distance from Earth in km", "t": "`$NUMBER`", "key$": "earth_distance_km", "index$": 2 }, "earth_distance_mi": { "a": true, "h": "Earth Distance Mi", "n": "earth_distance_mi", "r": false, "sh": "Distance from Earth in miles", "t": "`$NUMBER`", "key$": "earth_distance_mi", "index$": 3 }, "eccentricity": { "a": true, "h": "Eccentricity", "n": "eccentricity", "r": false, "sh": "Eccentricity", "t": "`$NUMBER`", "key$": "eccentricity", "index$": 4 }, "epoch_jd": { "a": true, "h": "Epoch Jd", "n": "epoch_jd", "r": false, "sh": "Epoch in Julian Date", "t": "`$NUMBER`", "key$": "epoch_jd", "index$": 5 }, "flickr_images": { "a": true, "h": "Flickr Images", "n": "flickr_images", "r": false, "sh": "Flickr images", "t": "`$ARRAY`", "key$": "flickr_images", "index$": 6 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "sh": "Roadster ID", "t": "`$STRING`", "key$": "id", "index$": 7 }, "inclination": { "a": true, "h": "Inclination", "n": "inclination", "r": false, "sh": "Inclination", "t": "`$NUMBER`", "key$": "inclination", "index$": 8 }, "launch_date_unix": { "a": true, "h": "Launch Date Unix", "n": "launch_date_unix", "r": false, "sh": "Launch date in unix timestamp", "t": "`$INTEGER`", "key$": "launch_date_unix", "index$": 9 }, "launch_date_utc": { "a": true, "fo": "date-time", "h": "Launch Date Utc", "n": "launch_date_utc", "r": false, "sh": "Launch date in UTC", "t": "`$STRING`", "key$": "launch_date_utc", "index$": 10 }, "launch_mass_kg": { "a": true, "h": "Launch Mass Kg", "n": "launch_mass_kg", "r": false, "sh": "Launch mass in kilograms", "t": "`$INTEGER`", "key$": "launch_mass_kg", "index$": 11 }, "launch_mass_lbs": { "a": true, "h": "Launch Mass Lbs", "n": "launch_mass_lbs", "r": false, "sh": "Launch mass in pounds", "t": "`$INTEGER`", "key$": "launch_mass_lbs", "index$": 12 }, "longitude": { "a": true, "h": "Longitude", "n": "longitude", "r": false, "sh": "Longitude", "t": "`$NUMBER`", "key$": "longitude", "index$": 13 }, "mars_distance_km": { "a": true, "h": "Mars Distance Km", "n": "mars_distance_km", "r": false, "sh": "Distance from Mars in km", "t": "`$NUMBER`", "key$": "mars_distance_km", "index$": 14 }, "mars_distance_mi": { "a": true, "h": "Mars Distance Mi", "n": "mars_distance_mi", "r": false, "sh": "Distance from Mars in miles", "t": "`$NUMBER`", "key$": "mars_distance_mi", "index$": 15 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "sh": "Roadster name", "t": "`$STRING`", "key$": "name", "index$": 16 }, "norad_id": { "a": true, "h": "Norad Id", "n": "norad_id", "r": false, "sh": "NORAD ID", "t": "`$INTEGER`", "key$": "norad_id", "index$": 17 }, "orbit_type": { "a": true, "h": "Orbit Type", "n": "orbit_type", "r": false, "sh": "Orbit type", "t": "`$STRING`", "key$": "orbit_type", "index$": 18 }, "periapsis_arg": { "a": true, "h": "Periapsis Arg", "n": "periapsis_arg", "r": false, "sh": "Argument of periapsis", "t": "`$NUMBER`", "key$": "periapsis_arg", "index$": 19 }, "periapsis_au": { "a": true, "h": "Periapsis Au", "n": "periapsis_au", "r": false, "sh": "Periapsis in AU", "t": "`$NUMBER`", "key$": "periapsis_au", "index$": 20 }, "period_days": { "a": true, "h": "Period Days", "n": "period_days", "r": false, "sh": "Orbital period in days", "t": "`$NUMBER`", "key$": "period_days", "index$": 21 }, "semi_major_axis_au": { "a": true, "h": "Semi Major Axis Au", "n": "semi_major_axis_au", "r": false, "sh": "Semi-major axis in AU", "t": "`$NUMBER`", "key$": "semi_major_axis_au", "index$": 22 }, "speed_kph": { "a": true, "h": "Speed Kph", "n": "speed_kph", "r": false, "sh": "Speed in km/h", "t": "`$NUMBER`", "key$": "speed_kph", "index$": 23 }, "speed_mph": { "a": true, "h": "Speed Mph", "n": "speed_mph", "r": false, "sh": "Speed in mph", "t": "`$NUMBER`", "key$": "speed_mph", "index$": 24 }, "video": { "a": true, "h": "Video", "n": "video", "r": false, "sh": "Video URL", "t": "`$STRING`", "key$": "video", "index$": 25 }, "wikipedia": { "a": true, "h": "Wikipedia", "n": "wikipedia", "r": false, "sh": "Wikipedia URL", "t": "`$STRING`", "key$": "wikipedia", "index$": 26 } }, "id": { "field": "id", "name": "id" }, "name": "roadster", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /roadster", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/roadster", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "roadster" }], "t": { "req": "`reqdata`", "res": "`body.flickr_images`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "roadster", "name__orig": "roadster", "Name": "Roadster", "name_": "roadster", "name-": "roadster", "NAME": "ROADSTER", "index$": 7 }, { "active": true, "entity": "roadster", "key$": "BasicRoadsterFlow", "kind": "basic", "name": "BasicRoadsterFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "roadster_ref01" } }], "index$": 0 }] }, 'Roadster', { "GET /roadster": { "protocol": "http", "parameters": [] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +122,11 @@ const utility_1 = require("../../utility");
         const roadster_ref01_list = (await roadster_ref01_ent.list(roadster_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

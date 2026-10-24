@@ -116,6 +116,10 @@ main: kit: entity: launchpad: {
           }
           m: "GET"
           o: "/launchpads"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "launchpads"
@@ -154,6 +158,10 @@ main: kit: entity: launchpad: {
             exist: [
               "id"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { SpacexRestSDK, BaseFeature, stdutil } from '../../..'
+import { SpacexRestSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('RocketEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('rocket hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of SpacexRestSDK.test(offline).Rocket().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of SpacexRestSDK.test(offline).Rocket()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = SpacexRestSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Rocket().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of SpacexRestSDK.test().Rocket().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new SpacexRestSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Rocket().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Rocket().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = SpacexRestSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Rocket().list({"active":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.SPACEX_REST_TEST_LIVE
@@ -51,7 +109,7 @@ describe('RocketEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"active":{"a":true,"h":"Active","n":"active","r":false,"sh":"Whether the rocket is active","t":"`$BOOLEAN`","key$":"active","index$":0},"boosters":{"a":true,"h":"Boosters","n":"boosters","r":false,"sh":"Number of boosters","t":"`$INTEGER`","key$":"boosters","index$":1},"company":{"a":true,"h":"Company","n":"company","r":false,"sh":"Company","t":"`$STRING`","key$":"company","index$":2},"cost_per_launch":{"a":true,"h":"Cost Per Launch","n":"cost_per_launch","r":false,"sh":"Cost per launch in USD","t":"`$INTEGER`","key$":"cost_per_launch","index$":3},"country":{"a":true,"h":"Country","n":"country","r":false,"sh":"Country of origin","t":"`$STRING`","key$":"country","index$":4},"description":{"a":true,"h":"Description","n":"description","r":false,"t":"`$STRING`","key$":"description","index$":5},"diameter":{"a":true,"h":"Diameter","n":"diameter","r":false,"t":"`$OBJECT`","key$":"diameter","index$":6},"first_flight":{"a":true,"fo":"date","h":"First Flight","n":"first_flight","r":false,"sh":"Date of first flight","t":"`$STRING`","key$":"first_flight","index$":7},"flickr_images":{"a":true,"h":"Flickr Images","n":"flickr_images","r":false,"t":"`$ARRAY`","key$":"flickr_images","index$":8},"height":{"a":true,"h":"Height","n":"height","r":false,"t":"`$OBJECT`","key$":"height","index$":9},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Rocket ID","t":"`$STRING`","key$":"id","index$":10},"mass":{"a":true,"h":"Mass","n":"mass","r":false,"t":"`$OBJECT`","key$":"mass","index$":11},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Rocket name","t":"`$STRING`","key$":"name","index$":12},"stages":{"a":true,"h":"Stages","n":"stages","r":false,"sh":"Number of stages","t":"`$INTEGER`","key$":"stages","index$":13},"success_rate_pct":{"a":true,"h":"Success Rate Pct","n":"success_rate_pct","r":false,"sh":"Success rate percentage","t":"`$NUMBER`","key$":"success_rate_pct","index$":14},"type":{"a":true,"h":"Type","n":"type","r":false,"sh":"Rocket type","t":"`$STRING`","key$":"type","index$":15},"wikipedia":{"a":true,"h":"Wikipedia","n":"wikipedia","r":false,"t":"`$STRING`","key$":"wikipedia","index$":16}},"id":{"field":"id","name":"id"},"name":"rocket","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /rockets","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/rockets","q":{},"r":{},"s":[{"lit":"rockets"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /rockets/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/rockets/{id}","q":{"exist":["id"]},"r":{},"s":[{"lit":"rockets"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"rocket","name__orig":"rocket","Name":"Rocket","name_":"rocket","name-":"rocket","NAME":"ROCKET","index$":8}, {"active":true,"entity":"rocket","key$":"BasicRocketFlow","kind":"basic","name":"BasicRocketFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"rocket_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"rocket_ref01","srcdatavar":"rocket_ref01_data","suffix":"_dt0"},"m":{"id":"rocket01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-rocket_ref01"}}],"index$":1}]}, 'Rocket', {"GET /rockets":{"protocol":"http","parameters":[]},"GET /rockets/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","required":true,"description":"Rocket ID","schema":{"type":"string"},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"active":{"a":true,"h":"Active","n":"active","r":false,"sh":"Whether the rocket is active","t":"`$BOOLEAN`","key$":"active","index$":0},"boosters":{"a":true,"h":"Boosters","n":"boosters","r":false,"sh":"Number of boosters","t":"`$INTEGER`","key$":"boosters","index$":1},"company":{"a":true,"h":"Company","n":"company","r":false,"sh":"Company","t":"`$STRING`","key$":"company","index$":2},"cost_per_launch":{"a":true,"h":"Cost Per Launch","n":"cost_per_launch","r":false,"sh":"Cost per launch in USD","t":"`$INTEGER`","key$":"cost_per_launch","index$":3},"country":{"a":true,"h":"Country","n":"country","r":false,"sh":"Country of origin","t":"`$STRING`","key$":"country","index$":4},"description":{"a":true,"h":"Description","n":"description","r":false,"t":"`$STRING`","key$":"description","index$":5},"diameter":{"a":true,"h":"Diameter","n":"diameter","r":false,"t":"`$OBJECT`","key$":"diameter","index$":6},"first_flight":{"a":true,"fo":"date","h":"First Flight","n":"first_flight","r":false,"sh":"Date of first flight","t":"`$STRING`","key$":"first_flight","index$":7},"flickr_images":{"a":true,"h":"Flickr Images","n":"flickr_images","r":false,"t":"`$ARRAY`","key$":"flickr_images","index$":8},"height":{"a":true,"h":"Height","n":"height","r":false,"t":"`$OBJECT`","key$":"height","index$":9},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Rocket ID","t":"`$STRING`","key$":"id","index$":10},"mass":{"a":true,"h":"Mass","n":"mass","r":false,"t":"`$OBJECT`","key$":"mass","index$":11},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Rocket name","t":"`$STRING`","key$":"name","index$":12},"stages":{"a":true,"h":"Stages","n":"stages","r":false,"sh":"Number of stages","t":"`$INTEGER`","key$":"stages","index$":13},"success_rate_pct":{"a":true,"h":"Success Rate Pct","n":"success_rate_pct","r":false,"sh":"Success rate percentage","t":"`$NUMBER`","key$":"success_rate_pct","index$":14},"type":{"a":true,"h":"Type","n":"type","r":false,"sh":"Rocket type","t":"`$STRING`","key$":"type","index$":15},"wikipedia":{"a":true,"h":"Wikipedia","n":"wikipedia","r":false,"t":"`$STRING`","key$":"wikipedia","index$":16}},"id":{"field":"id","name":"id"},"name":"rocket","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /rockets","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/rockets","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"rockets"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /rockets/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/rockets/{id}","q":{"exist":["id"]},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"rockets"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"rocket","name__orig":"rocket","Name":"Rocket","name_":"rocket","name-":"rocket","NAME":"ROCKET","index$":8}, {"active":true,"entity":"rocket","key$":"BasicRocketFlow","kind":"basic","name":"BasicRocketFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"rocket_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"rocket_ref01","srcdatavar":"rocket_ref01_data","suffix":"_dt0"},"m":{"id":"rocket01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-rocket_ref01"}}],"index$":1}]}, 'Rocket', {"GET /rockets":{"protocol":"http","parameters":[]},"GET /rockets/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","required":true,"description":"Rocket ID","schema":{"type":"string"},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -79,6 +137,12 @@ describe('RocketEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

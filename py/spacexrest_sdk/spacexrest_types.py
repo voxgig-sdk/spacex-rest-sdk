@@ -404,58 +404,62 @@ class RocketListMatch(TypedDict, total=False):
     wikipedia: str
 
 
-class Ship(TypedDict, total=False):
-    abs: int
-    course_deg: float
-    home_port: str
-    id: str
-    image: str
-    imo: int
-    last_ais_update: str
-    latitude: float
-    launches: list
-    legacy_id: str
-    link: str
-    longitude: float
-    mass_kg: int
-    mass_lbs: int
-    mmsi: int
-    model: str
-    name: str
-    roles: list
-    speed_kn: float
-    status: str
-    type: str
-    year_built: int
+Ship = TypedDict('Ship', {
+    "abs": int,
+    "class": int,
+    "course_deg": float,
+    "home_port": str,
+    "id": str,
+    "image": str,
+    "imo": int,
+    "last_ais_update": str,
+    "latitude": float,
+    "launches": list,
+    "legacy_id": str,
+    "link": str,
+    "longitude": float,
+    "mass_kg": int,
+    "mass_lbs": int,
+    "mmsi": int,
+    "model": str,
+    "name": str,
+    "roles": list,
+    "speed_kn": float,
+    "status": str,
+    "type": str,
+    "year_built": int,
+}, total=False)
 
 
 class ShipLoadMatch(TypedDict):
     id: str
 
 
-class ShipListMatch(TypedDict, total=False):
-    abs: int
-    course_deg: float
-    home_port: str
-    id: str
-    image: str
-    imo: int
-    last_ais_update: str
-    latitude: float
-    launches: list
-    legacy_id: str
-    link: str
-    longitude: float
-    mass_kg: int
-    mass_lbs: int
-    mmsi: int
-    model: str
-    name: str
-    roles: list
-    speed_kn: float
-    status: str
-    type: str
-    year_built: int
+ShipListMatch = TypedDict('ShipListMatch', {
+    "abs": int,
+    "class": int,
+    "course_deg": float,
+    "home_port": str,
+    "id": str,
+    "image": str,
+    "imo": int,
+    "last_ais_update": str,
+    "latitude": float,
+    "launches": list,
+    "legacy_id": str,
+    "link": str,
+    "longitude": float,
+    "mass_kg": int,
+    "mass_lbs": int,
+    "mmsi": int,
+    "model": str,
+    "name": str,
+    "roles": list,
+    "speed_kn": float,
+    "status": str,
+    "type": str,
+    "year_built": int,
+}, total=False)
 
 
 class Starlink(TypedDict, total=False):

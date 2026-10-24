@@ -88,6 +88,10 @@ main: kit: entity: capsule: {
           }
           m: "GET"
           o: "/capsules"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "capsules"
@@ -126,6 +130,10 @@ main: kit: entity: capsule: {
             exist: [
               "id"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

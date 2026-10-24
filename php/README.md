@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/spacex-rest-sdk/releases)), or
+GitHub release tag (`php/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/spacex-rest-sdk/tags)), or
 from a clone as a Composer path repository:
 
 ```bash
@@ -246,8 +246,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
+| `load` | `($reqmatch, $ctrl): mixed` | Load a single entity by match criteria, and return it. |
+| `list` | `(?array $reqmatch = null, $ctrl): mixed` | List entities matching the criteria (call with no argument to list all), one per record. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -257,9 +257,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
-ops, a `list` for `list`) and throw on error. Wrap calls in
-`try`/`catch` to handle failures.
+Entity operations return the entity, and `list` an `array` of entities, one
+per record; an entity's `data_get()` reads its record (an `array`). They
+throw on error, so wrap calls in `try`/`catch` to handle failures.
 
 The `direct()` escape hatch never throws — it returns a result `array`
 you branch on via `$result["ok"]`:
@@ -596,7 +596,7 @@ $capsule = $client->Capsule()->load(["id" => "capsule_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Capsule records (throws on error).
+// list() returns an array of Capsule entities, one per record (throws on error).
 $capsules = $client->Capsule()->list();
 ```
 
@@ -638,7 +638,7 @@ $core = $client->Core()->load(["id" => "core_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Core records (throws on error).
+// list() returns an array of Core entities, one per record (throws on error).
 $cores = $client->Core()->list();
 ```
 
@@ -676,7 +676,7 @@ $crew = $client->Crew()->load(["id" => "crew_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Crew records (throws on error).
+// list() returns an array of Crew entities, one per record (throws on error).
 $crews = $client->Crew()->list();
 ```
 
@@ -721,7 +721,7 @@ $landpad = $client->Landpad()->load(["id" => "landpad_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Landpad records (throws on error).
+// list() returns an array of Landpad entities, one per record (throws on error).
 $landpads = $client->Landpad()->list();
 ```
 
@@ -778,7 +778,7 @@ $launch = $client->Launch()->load(["id" => "launch_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Launch records (throws on error).
+// list() returns an array of Launch entities, one per record (throws on error).
 $launchs = $client->Launch()->list();
 ```
 
@@ -822,7 +822,7 @@ $launchpad = $client->Launchpad()->load(["id" => "launchpad_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Launchpad records (throws on error).
+// list() returns an array of Launchpad entities, one per record (throws on error).
 $launchpads = $client->Launchpad()->list();
 ```
 
@@ -880,7 +880,7 @@ $payload = $client->Payload()->load(["id" => "payload_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Payload records (throws on error).
+// list() returns an array of Payload entities, one per record (throws on error).
 $payloads = $client->Payload()->list();
 ```
 
@@ -930,7 +930,7 @@ Create an instance: `$roadster = $client->Roadster();`
 #### Example: List
 
 ```php
-// list() returns an array of Roadster records (throws on error).
+// list() returns an array of Roadster entities, one per record (throws on error).
 $roadsters = $client->Roadster()->list();
 ```
 
@@ -978,7 +978,7 @@ $rocket = $client->Rocket()->load(["id" => "rocket_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Rocket records (throws on error).
+// list() returns an array of Rocket entities, one per record (throws on error).
 $rockets = $client->Rocket()->list();
 ```
 
@@ -1032,7 +1032,7 @@ $ship = $client->Ship()->load(["id" => "ship_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Ship records (throws on error).
+// list() returns an array of Ship entities, one per record (throws on error).
 $ships = $client->Ship()->list();
 ```
 
@@ -1071,7 +1071,7 @@ $starlink = $client->Starlink()->load(["id" => "starlink_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Starlink records (throws on error).
+// list() returns an array of Starlink entities, one per record (throws on error).
 $starlinks = $client->Starlink()->list();
 ```
 

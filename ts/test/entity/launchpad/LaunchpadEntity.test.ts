@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { SpacexRestSDK, BaseFeature, stdutil } from '../../..'
+import { SpacexRestSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('LaunchpadEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('launchpad hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of SpacexRestSDK.test(offline).Launchpad().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of SpacexRestSDK.test(offline).Launchpad()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = SpacexRestSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Launchpad().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of SpacexRestSDK.test().Launchpad().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new SpacexRestSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Launchpad().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Launchpad().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = SpacexRestSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Launchpad().list({"details":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.SPACEX_REST_TEST_LIVE
@@ -51,7 +109,7 @@ describe('LaunchpadEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"details":{"a":true,"h":"Details","n":"details","r":false,"sh":"Launchpad details","t":"`$STRING`","key$":"details","index$":0},"full_name":{"a":true,"h":"Full Name","n":"full_name","r":false,"sh":"Full launchpad name","t":"`$STRING`","key$":"full_name","index$":1},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Launchpad ID","t":"`$STRING`","key$":"id","index$":2},"latitude":{"a":true,"h":"Latitude","n":"latitude","r":false,"sh":"Latitude","t":"`$NUMBER`","key$":"latitude","index$":3},"launch_attempts":{"a":true,"h":"Launch Attempts","n":"launch_attempts","r":false,"sh":"Number of launch attempts","t":"`$INTEGER`","key$":"launch_attempts","index$":4},"launch_successes":{"a":true,"h":"Launch Successes","n":"launch_successes","r":false,"sh":"Number of successful launches","t":"`$INTEGER`","key$":"launch_successes","index$":5},"launches":{"a":true,"h":"Launches","n":"launches","r":false,"sh":"Launch IDs","t":"`$ARRAY`","key$":"launches","index$":6},"locality":{"a":true,"h":"Locality","n":"locality","r":false,"sh":"Locality","t":"`$STRING`","key$":"locality","index$":7},"longitude":{"a":true,"h":"Longitude","n":"longitude","r":false,"sh":"Longitude","t":"`$NUMBER`","key$":"longitude","index$":8},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Launchpad name","t":"`$STRING`","key$":"name","index$":9},"region":{"a":true,"h":"Region","n":"region","r":false,"sh":"Region","t":"`$STRING`","key$":"region","index$":10},"rockets":{"a":true,"h":"Rockets","n":"rockets","r":false,"sh":"Rocket IDs","t":"`$ARRAY`","key$":"rockets","index$":11},"status":{"a":true,"h":"Status","n":"status","r":false,"sh":"Launchpad status (active, inactive, unknown, retired, lost, under construction)","t":"`$STRING`","key$":"status","index$":12}},"id":{"field":"id","name":"id"},"name":"launchpad","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /launchpads","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/launchpads","q":{},"r":{},"s":[{"lit":"launchpads"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /launchpads/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/launchpads/{id}","q":{"exist":["id"]},"r":{},"s":[{"lit":"launchpads"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"launchpad","name__orig":"launchpad","Name":"Launchpad","name_":"launchpad","name-":"launchpad","NAME":"LAUNCHPAD","index$":5}, {"active":true,"entity":"launchpad","key$":"BasicLaunchpadFlow","kind":"basic","name":"BasicLaunchpadFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"launchpad_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"launchpad_ref01","srcdatavar":"launchpad_ref01_data","suffix":"_dt0"},"m":{"id":"launchpad01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-launchpad_ref01"}}],"index$":1}]}, 'Launchpad', {"GET /launchpads":{"protocol":"http","parameters":[]},"GET /launchpads/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","required":true,"description":"Launchpad ID","schema":{"type":"string"},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"details":{"a":true,"h":"Details","n":"details","r":false,"sh":"Launchpad details","t":"`$STRING`","key$":"details","index$":0},"full_name":{"a":true,"h":"Full Name","n":"full_name","r":false,"sh":"Full launchpad name","t":"`$STRING`","key$":"full_name","index$":1},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Launchpad ID","t":"`$STRING`","key$":"id","index$":2},"latitude":{"a":true,"h":"Latitude","n":"latitude","r":false,"sh":"Latitude","t":"`$NUMBER`","key$":"latitude","index$":3},"launch_attempts":{"a":true,"h":"Launch Attempts","n":"launch_attempts","r":false,"sh":"Number of launch attempts","t":"`$INTEGER`","key$":"launch_attempts","index$":4},"launch_successes":{"a":true,"h":"Launch Successes","n":"launch_successes","r":false,"sh":"Number of successful launches","t":"`$INTEGER`","key$":"launch_successes","index$":5},"launches":{"a":true,"h":"Launches","n":"launches","r":false,"sh":"Launch IDs","t":"`$ARRAY`","key$":"launches","index$":6},"locality":{"a":true,"h":"Locality","n":"locality","r":false,"sh":"Locality","t":"`$STRING`","key$":"locality","index$":7},"longitude":{"a":true,"h":"Longitude","n":"longitude","r":false,"sh":"Longitude","t":"`$NUMBER`","key$":"longitude","index$":8},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Launchpad name","t":"`$STRING`","key$":"name","index$":9},"region":{"a":true,"h":"Region","n":"region","r":false,"sh":"Region","t":"`$STRING`","key$":"region","index$":10},"rockets":{"a":true,"h":"Rockets","n":"rockets","r":false,"sh":"Rocket IDs","t":"`$ARRAY`","key$":"rockets","index$":11},"status":{"a":true,"h":"Status","n":"status","r":false,"sh":"Launchpad status (active, inactive, unknown, retired, lost, under construction)","t":"`$STRING`","key$":"status","index$":12}},"id":{"field":"id","name":"id"},"name":"launchpad","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /launchpads","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/launchpads","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"launchpads"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /launchpads/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/launchpads/{id}","q":{"exist":["id"]},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"launchpads"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"launchpad","name__orig":"launchpad","Name":"Launchpad","name_":"launchpad","name-":"launchpad","NAME":"LAUNCHPAD","index$":5}, {"active":true,"entity":"launchpad","key$":"BasicLaunchpadFlow","kind":"basic","name":"BasicLaunchpadFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"launchpad_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"launchpad_ref01","srcdatavar":"launchpad_ref01_data","suffix":"_dt0"},"m":{"id":"launchpad01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-launchpad_ref01"}}],"index$":1}]}, 'Launchpad', {"GET /launchpads":{"protocol":"http","parameters":[]},"GET /launchpads/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","required":true,"description":"Launchpad ID","schema":{"type":"string"},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -79,6 +137,12 @@ describe('LaunchpadEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

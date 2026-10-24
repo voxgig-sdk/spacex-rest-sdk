@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { SpacexRestSDK, BaseFeature, stdutil } from '../../..'
+import { SpacexRestSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('LandpadEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('landpad hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of SpacexRestSDK.test(offline).Landpad().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of SpacexRestSDK.test(offline).Landpad()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = SpacexRestSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Landpad().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of SpacexRestSDK.test().Landpad().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new SpacexRestSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Landpad().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Landpad().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = SpacexRestSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Landpad().list({"details":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.SPACEX_REST_TEST_LIVE
@@ -51,7 +109,7 @@ describe('LandpadEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"details":{"a":true,"h":"Details","n":"details","r":false,"sh":"Landing pad details","t":"`$STRING`","key$":"details","index$":0},"full_name":{"a":true,"h":"Full Name","n":"full_name","r":false,"sh":"Full landing pad name","t":"`$STRING`","key$":"full_name","index$":1},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Landing pad ID","t":"`$STRING`","key$":"id","index$":2},"landing_attempts":{"a":true,"h":"Landing Attempts","n":"landing_attempts","r":false,"sh":"Number of landing attempts","t":"`$INTEGER`","key$":"landing_attempts","index$":3},"landing_successes":{"a":true,"h":"Landing Successes","n":"landing_successes","r":false,"sh":"Number of successful landings","t":"`$INTEGER`","key$":"landing_successes","index$":4},"latitude":{"a":true,"h":"Latitude","n":"latitude","r":false,"sh":"Latitude","t":"`$NUMBER`","key$":"latitude","index$":5},"launches":{"a":true,"h":"Launches","n":"launches","r":false,"sh":"Launch IDs","t":"`$ARRAY`","key$":"launches","index$":6},"locality":{"a":true,"h":"Locality","n":"locality","r":false,"sh":"Locality","t":"`$STRING`","key$":"locality","index$":7},"longitude":{"a":true,"h":"Longitude","n":"longitude","r":false,"sh":"Longitude","t":"`$NUMBER`","key$":"longitude","index$":8},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Landing pad name","t":"`$STRING`","key$":"name","index$":9},"region":{"a":true,"h":"Region","n":"region","r":false,"sh":"Region","t":"`$STRING`","key$":"region","index$":10},"status":{"a":true,"h":"Status","n":"status","r":false,"sh":"Landing pad status (active, inactive, unknown, retired, lost, under construction)","t":"`$STRING`","key$":"status","index$":11},"type":{"a":true,"h":"Type","n":"type","r":false,"sh":"Landing pad type (ASDS, RTLS)","t":"`$STRING`","key$":"type","index$":12},"wikipedia":{"a":true,"h":"Wikipedia","n":"wikipedia","r":false,"sh":"Wikipedia URL","t":"`$STRING`","key$":"wikipedia","index$":13}},"id":{"field":"id","name":"id"},"name":"landpad","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /landpads","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/landpads","q":{},"r":{},"s":[{"lit":"landpads"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /landpads/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/landpads/{id}","q":{"exist":["id"]},"r":{},"s":[{"lit":"landpads"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"landpad","name__orig":"landpad","Name":"Landpad","name_":"landpad","name-":"landpad","NAME":"LANDPAD","index$":3}, {"active":true,"entity":"landpad","key$":"BasicLandpadFlow","kind":"basic","name":"BasicLandpadFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"landpad_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"landpad_ref01","srcdatavar":"landpad_ref01_data","suffix":"_dt0"},"m":{"id":"landpad01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-landpad_ref01"}}],"index$":1}]}, 'Landpad', {"GET /landpads":{"protocol":"http","parameters":[]},"GET /landpads/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","required":true,"description":"Landing pad ID","schema":{"type":"string"},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"details":{"a":true,"h":"Details","n":"details","r":false,"sh":"Landing pad details","t":"`$STRING`","key$":"details","index$":0},"full_name":{"a":true,"h":"Full Name","n":"full_name","r":false,"sh":"Full landing pad name","t":"`$STRING`","key$":"full_name","index$":1},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Landing pad ID","t":"`$STRING`","key$":"id","index$":2},"landing_attempts":{"a":true,"h":"Landing Attempts","n":"landing_attempts","r":false,"sh":"Number of landing attempts","t":"`$INTEGER`","key$":"landing_attempts","index$":3},"landing_successes":{"a":true,"h":"Landing Successes","n":"landing_successes","r":false,"sh":"Number of successful landings","t":"`$INTEGER`","key$":"landing_successes","index$":4},"latitude":{"a":true,"h":"Latitude","n":"latitude","r":false,"sh":"Latitude","t":"`$NUMBER`","key$":"latitude","index$":5},"launches":{"a":true,"h":"Launches","n":"launches","r":false,"sh":"Launch IDs","t":"`$ARRAY`","key$":"launches","index$":6},"locality":{"a":true,"h":"Locality","n":"locality","r":false,"sh":"Locality","t":"`$STRING`","key$":"locality","index$":7},"longitude":{"a":true,"h":"Longitude","n":"longitude","r":false,"sh":"Longitude","t":"`$NUMBER`","key$":"longitude","index$":8},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Landing pad name","t":"`$STRING`","key$":"name","index$":9},"region":{"a":true,"h":"Region","n":"region","r":false,"sh":"Region","t":"`$STRING`","key$":"region","index$":10},"status":{"a":true,"h":"Status","n":"status","r":false,"sh":"Landing pad status (active, inactive, unknown, retired, lost, under construction)","t":"`$STRING`","key$":"status","index$":11},"type":{"a":true,"h":"Type","n":"type","r":false,"sh":"Landing pad type (ASDS, RTLS)","t":"`$STRING`","key$":"type","index$":12},"wikipedia":{"a":true,"h":"Wikipedia","n":"wikipedia","r":false,"sh":"Wikipedia URL","t":"`$STRING`","key$":"wikipedia","index$":13}},"id":{"field":"id","name":"id"},"name":"landpad","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /landpads","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/landpads","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"landpads"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /landpads/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/landpads/{id}","q":{"exist":["id"]},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"landpads"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"landpad","name__orig":"landpad","Name":"Landpad","name_":"landpad","name-":"landpad","NAME":"LANDPAD","index$":3}, {"active":true,"entity":"landpad","key$":"BasicLandpadFlow","kind":"basic","name":"BasicLandpadFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"landpad_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"landpad_ref01","srcdatavar":"landpad_ref01_data","suffix":"_dt0"},"m":{"id":"landpad01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-landpad_ref01"}}],"index$":1}]}, 'Landpad', {"GET /landpads":{"protocol":"http","parameters":[]},"GET /landpads/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","required":true,"description":"Landing pad ID","schema":{"type":"string"},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -79,6 +137,12 @@ describe('LandpadEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

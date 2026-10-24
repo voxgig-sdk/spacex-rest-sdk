@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { SpacexRestSDK, BaseFeature, stdutil } from '../../..'
+import { SpacexRestSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('CoreEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('core hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of SpacexRestSDK.test(offline).Core().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of SpacexRestSDK.test(offline).Core()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = SpacexRestSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Core().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of SpacexRestSDK.test().Core().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new SpacexRestSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Core().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Core().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = SpacexRestSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Core().list({"asds_attempts":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.SPACEX_REST_TEST_LIVE
@@ -51,7 +109,7 @@ describe('CoreEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"asds_attempts":{"a":true,"h":"Asds Attempts","n":"asds_attempts","r":false,"sh":"Number of autonomous spaceport drone ship landing attempts","t":"`$INTEGER`","key$":"asds_attempts","index$":0},"asds_landings":{"a":true,"h":"Asds Landings","n":"asds_landings","r":false,"sh":"Number of successful ASDS landings","t":"`$INTEGER`","key$":"asds_landings","index$":1},"block":{"a":true,"h":"Block","n":"block","r":false,"sh":"Core block number","t":"`$INTEGER`","key$":"block","index$":2},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Core serial number","t":"`$STRING`","key$":"id","index$":3},"last_update":{"a":true,"h":"Last Update","n":"last_update","r":false,"sh":"Last update about the core","t":"`$STRING`","key$":"last_update","index$":4},"launches":{"a":true,"h":"Launches","n":"launches","r":false,"sh":"Launch IDs","t":"`$ARRAY`","key$":"launches","index$":5},"reuse_count":{"a":true,"h":"Reuse Count","n":"reuse_count","r":false,"sh":"Number of times core has been reused","t":"`$INTEGER`","key$":"reuse_count","index$":6},"rtls_attempts":{"a":true,"h":"Rtls Attempts","n":"rtls_attempts","r":false,"sh":"Number of return to launch site attempts","t":"`$INTEGER`","key$":"rtls_attempts","index$":7},"rtls_landings":{"a":true,"h":"Rtls Landings","n":"rtls_landings","r":false,"sh":"Number of successful RTLS landings","t":"`$INTEGER`","key$":"rtls_landings","index$":8},"serial":{"a":true,"h":"Serial","n":"serial","r":false,"sh":"Core serial number","t":"`$STRING`","key$":"serial","index$":9},"status":{"a":true,"h":"Status","n":"status","r":false,"sh":"Core status (active, inactive, unknown, expended, lost, retired)","t":"`$STRING`","key$":"status","index$":10}},"id":{"field":"id","name":"id"},"name":"core","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /cores","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/cores","q":{},"r":{},"s":[{"lit":"cores"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /cores/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/cores/{id}","q":{"exist":["id"]},"r":{},"s":[{"lit":"cores"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"core","name__orig":"core","Name":"Core","name_":"core","name-":"core","NAME":"CORE","index$":1}, {"active":true,"entity":"core","key$":"BasicCoreFlow","kind":"basic","name":"BasicCoreFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"core_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"core_ref01","srcdatavar":"core_ref01_data","suffix":"_dt0"},"m":{"id":"core01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-core_ref01"}}],"index$":1}]}, 'Core', {"GET /cores":{"protocol":"http","parameters":[]},"GET /cores/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","required":true,"description":"Core ID","schema":{"type":"string"},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"asds_attempts":{"a":true,"h":"Asds Attempts","n":"asds_attempts","r":false,"sh":"Number of autonomous spaceport drone ship landing attempts","t":"`$INTEGER`","key$":"asds_attempts","index$":0},"asds_landings":{"a":true,"h":"Asds Landings","n":"asds_landings","r":false,"sh":"Number of successful ASDS landings","t":"`$INTEGER`","key$":"asds_landings","index$":1},"block":{"a":true,"h":"Block","n":"block","r":false,"sh":"Core block number","t":"`$INTEGER`","key$":"block","index$":2},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Core serial number","t":"`$STRING`","key$":"id","index$":3},"last_update":{"a":true,"h":"Last Update","n":"last_update","r":false,"sh":"Last update about the core","t":"`$STRING`","key$":"last_update","index$":4},"launches":{"a":true,"h":"Launches","n":"launches","r":false,"sh":"Launch IDs","t":"`$ARRAY`","key$":"launches","index$":5},"reuse_count":{"a":true,"h":"Reuse Count","n":"reuse_count","r":false,"sh":"Number of times core has been reused","t":"`$INTEGER`","key$":"reuse_count","index$":6},"rtls_attempts":{"a":true,"h":"Rtls Attempts","n":"rtls_attempts","r":false,"sh":"Number of return to launch site attempts","t":"`$INTEGER`","key$":"rtls_attempts","index$":7},"rtls_landings":{"a":true,"h":"Rtls Landings","n":"rtls_landings","r":false,"sh":"Number of successful RTLS landings","t":"`$INTEGER`","key$":"rtls_landings","index$":8},"serial":{"a":true,"h":"Serial","n":"serial","r":false,"sh":"Core serial number","t":"`$STRING`","key$":"serial","index$":9},"status":{"a":true,"h":"Status","n":"status","r":false,"sh":"Core status (active, inactive, unknown, expended, lost, retired)","t":"`$STRING`","key$":"status","index$":10}},"id":{"field":"id","name":"id"},"name":"core","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /cores","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/cores","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"cores"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /cores/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/cores/{id}","q":{"exist":["id"]},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"cores"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"core","name__orig":"core","Name":"Core","name_":"core","name-":"core","NAME":"CORE","index$":1}, {"active":true,"entity":"core","key$":"BasicCoreFlow","kind":"basic","name":"BasicCoreFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"core_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"core_ref01","srcdatavar":"core_ref01_data","suffix":"_dt0"},"m":{"id":"core01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-core_ref01"}}],"index$":1}]}, 'Core', {"GET /cores":{"protocol":"http","parameters":[]},"GET /cores/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","required":true,"description":"Core ID","schema":{"type":"string"},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -79,6 +137,12 @@ describe('CoreEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options
